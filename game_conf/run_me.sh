@@ -3,7 +3,7 @@
 # game_conf/run_me.sh — 一键编译 xls 配置
 #
 # 从 common/game_conf/ 目录运行。读取 ./xls/*.xlsx，生成：
-#   - pb text (.conf) → ../../module/gamedata/data/        （运行时配置）
+#   - pb text (.conf) → ../game_data/                      （运行时配置）
 #   - proto 定义      → ../game_proto/config/               （配置表 proto）
 #   - Go 查询代码     → ../../module/gamedata/repository/   （生成 .gen.go）
 #
@@ -32,7 +32,7 @@ if [ ! -x "${BIN}" ] && [ ! -f "${BIN}" ]; then
 fi
 
 # 输出目录（相对 common/game_conf/）
-DATA_DIR=../../module/gamedata/data
+DATA_DIR=../game_data
 REPO_DIR=../../module/gamedata/repository
 PROTO_DIR=../game_proto/config
 

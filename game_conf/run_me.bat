@@ -3,7 +3,7 @@ REM
 REM game_conf\run_me.bat — 一键编译 xls 配置 (Windows)
 REM
 REM 从 common\game_conf\ 目录运行。读取 .\xls\*.xlsx，生成：
-REM   - pb text (.conf) -^> ..\..\module\gamedata\data\
+REM   - pb text (.conf) -^> ..\game_data\
 REM   - proto 定义      -^> ..\game_proto\config\
 REM   - Go 查询代码     -^> ..\..\module\gamedata\repository\
 REM
@@ -25,7 +25,7 @@ if not exist "%BIN%" (
     exit /b 1
 )
 
-set DATA_DIR=..\..\module\gamedata\data
+set DATA_DIR=..\game_data
 set REPO_DIR=..\..\module\gamedata\repository
 set PROTO_DIR=..\game_proto\config
 

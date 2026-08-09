@@ -15,6 +15,8 @@ game_conf/
 └── readme.md        # 本文档
 ```
 
+> **数据目录**：生成的 `.conf` 运行时数据文件输出到同级 `../game_data/`（即 `common/game_data/`），不在本目录。
+
 ## 快速使用
 
 ### 一键生成（推荐）
@@ -44,7 +46,7 @@ run_me.bat server
 
 | 产物 | 输出路径 | 说明 |
 |------|---------|------|
-| 运行时数据 `.conf` | `../../module/gamedata/data/` | pb text 格式，服务启动时由 `gamedata.InitLocal` 读取 |
+| 运行时数据 `.conf` | `../../common/game_data/` | pb text 格式，服务启动时由 `gamedata.InitLocal` 读取 |
 | 配置表 proto | `../game_proto/config/` | xlsx 结构对应的 proto 定义（4 个：enum/global/struct/xlsx_config） |
 | Go 查询代码 `.gen.go` | `../../module/gamedata/repository/<sheet>/` | 每个表一个包，含 `GetById/Filter/Range` 等查询 API |
 

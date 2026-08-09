@@ -26,6 +26,10 @@ g1_common/
 │   ├── run_me.bat
 │   └── readme.md        # 详细使用说明
 │
+├── game_data/           # 运行时配置数据（.conf，由 cfgtool 从 xlsx 生成）
+│   ├── *.conf           # pb text 格式，服务启动时 gamedata.InitLocal 读取
+│   └── gamedata.tar     # 打包归档（部署用）
+│
 ├── sensitive/           # 敏感词表
 │   └── sensitive.txt
 │
