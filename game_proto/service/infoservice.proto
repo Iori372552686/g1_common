@@ -3,8 +3,8 @@ syntax = "proto3";
 package game.infosvr.v1;
 
 import "goone/options/v1/options.proto";
-import "proto/core/client.proto";
-import "proto/service/infosvr.proto";
+import "core/client.proto";
+import "service/infosvr.proto";
 
 option go_package = "github.com/Iori372552686/GoOne/api/gen/game/infosvr/v1;infosvrv1";
 

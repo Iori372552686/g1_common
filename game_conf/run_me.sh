@@ -47,9 +47,13 @@ echo "==> 生成配置（mode=${CONF_MODE}）..."
     -mode="${CONF_MODE}" \
     -module=github.com/Iori372552686/GoOne \
     -pb=github.com/Iori372552686/g1_common/protocol \
-    -proto-src=../game_proto
+    -proto-src=../game_proto/core
 
 echo "✓ 配置生成完成"
 echo "  - 运行时数据(.conf): ${DATA_DIR}/"
 echo "  - 配置表 proto:      ${PROTO_DIR}/"
 echo "  - 查询代码(.gen.go): ${REPO_DIR}/"
+
+# 清理：cfgtool 的 -proto 输出可能混入 -proto-src 扫描到的 core/service/storage proto，
+# 只保留配置表 proto（enum_config/global_config/struct_config/xlsx_config）。
+find "${PROTO_DIR}" -maxdepth 1 -name '*.proto' ! -name 'enum_config.proto' ! -name 'global_config.proto' ! -name 'struct_config.proto' ! -name 'xlsx_config.proto' -delete 2>/dev/null || true

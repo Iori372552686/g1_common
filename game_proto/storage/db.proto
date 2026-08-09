@@ -3,9 +3,9 @@ syntax = "proto3";
 package g1.protocol;
 option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
 
-import "proto/core/room.proto";
-import "proto/core/struct.proto";
-import "proto/core/game_enum.proto";
+import "core/room.proto";
+import "core/struct.proto";
+import "core/game_enum.proto";
 
 // 游戏房间数据db
 //@db:string|Global|DBTexasRoomData:%s,RoomId|#multi

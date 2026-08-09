@@ -3,8 +3,8 @@ syntax = "proto3";
 package g1.protocol;
 option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
 
-import "proto/core/role.proto";
-import "proto/core/game_enum.proto";
+import "core/role.proto";
+import "core/game_enum.proto";
 
 //inner room TickReq
 message InnerTickReq {

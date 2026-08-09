@@ -3,7 +3,7 @@ syntax = "proto3";
 package g1.protocol;
 option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
 
-import "proto/core/error_code.proto";
+import "core/error_code.proto";
 
 // 每个回包都需要包含的返回值
 message Ret {

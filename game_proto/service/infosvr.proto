@@ -3,7 +3,7 @@ syntax = "proto3";
 package g1.protocol;
 option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
 
-import "proto/core/common.proto";
+import "core/common.proto";
 
 message PbRoleBriefInfo {
     uint64 uid           = 1;

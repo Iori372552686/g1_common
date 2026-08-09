@@ -3,9 +3,9 @@ syntax = "proto3";
 package game.roomcenter.v1;
 
 import "goone/options/v1/options.proto";
-import "proto/core/client.proto";
-import "proto/core/room.proto";
-import "proto/core/struct.proto";
+import "core/client.proto";
+import "core/room.proto";
+import "core/struct.proto";
 import "google/protobuf/empty.proto";
 
 option go_package = "github.com/Iori372552686/GoOne/api/gen/game/roomcenter/v1;roomcenterv1";

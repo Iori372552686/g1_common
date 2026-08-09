@@ -3,13 +3,13 @@ syntax = "proto3";
 package g1.protocol;
 option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
 
-import "proto/core/common.proto";
-import "proto/core/role.proto";
-import "proto/service/infosvr.proto";
-import "proto/core/room.proto";
-import "proto/core/game_enum.proto";
-import "proto/core/struct.proto";
-import "proto/core/database.proto";
+import "core/common.proto";
+import "core/role.proto";
+import "service/infosvr.proto";
+import "core/room.proto";
+import "core/game_enum.proto";
+import "core/struct.proto";
+import "core/database.proto";
 
 // ---- chat / mail / friend / GM (formerly separate *.proto) ----
 
