@@ -1,0 +1,5 @@
+# 中间编译产物（protoc 插件二进制，每次 gen_proto 现场构建）
+game_proto/.bin/
+
+# cfgtool 生成产物（按需，二进制 cfgtool/cfgtool.exe 不忽略，已提交）
+game_conf/gen/
