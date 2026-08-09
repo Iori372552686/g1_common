@@ -1,6 +1,7 @@
-# game_conf — 游戏配置表工具链
+# GoOne Game配置生成工具使用说明 (xlsx-trans / cfgtool)
 
-本目录是 GoOne 的 **xlsx → 配置** 工具链，属于 `g1_common` 仓库的一部分。
+> 本目录 `game_conf/` 是 cfgtool 工具的**分发位置**（属于 `g1_common` submodule）。
+> 工具源码在主仓 `tools/cfgtool/`，本文档与其保持同步。
 
 ## 目录结构
 
@@ -18,7 +19,7 @@ game_conf/
 
 ### 一键生成（推荐）
 
-在 `common/game_conf/` 目录下：
+在 `game_conf/` 目录下：
 
 ```bash
 # Linux / macOS / Git-Bash
@@ -34,73 +35,721 @@ run_me.bat server
 
 ```bash
 ./main.sh xls            # 一键生成
+./main.sh xls server     # 仅服务端
 ```
 
 ### 生成产物
 
-运行后产出三部分：
+`run_me.sh` / `run_me.bat` 会产出三部分（路径相对 `game_conf/`）：
 
 | 产物 | 输出路径 | 说明 |
 |------|---------|------|
 | 运行时数据 `.conf` | `../../module/gamedata/data/` | pb text 格式，服务启动时由 `gamedata.InitLocal` 读取 |
-| 配置表 proto | `../game_proto/config/` | xlsx 结构对应的 proto 定义 |
-| Go 查询代码 `.gen.go` | `../../module/gamedata/repository/` | 每个表一个包，含 `GetById/Filter/Range` 等查询 API |
+| 配置表 proto | `../game_proto/config/` | xlsx 结构对应的 proto 定义（4 个：enum/global/struct/xlsx_config） |
+| Go 查询代码 `.gen.go` | `../../module/gamedata/repository/<sheet>/` | 每个表一个包，含 `GetById/Filter/Range` 等查询 API |
 
-## 重新编译二进制
+### 重新编译二进制
 
 cfgtool 二进制由主仓 `tools/cfgtool/` 源码编译。更新工具源码后，在主仓根目录：
 
 ```bash
-./main.sh build cfgtool              # 默认（无 etcd 后端）
-# 或
-./build.sh cfgtool && cp build/cfgtool common/game_conf/cfgtool
-
-# etcd 上传后端（需 build tag）
-GO_BUILD_TAGS=config_etcd ./main.sh build cfgtool
+./main.sh build cfgtool                          # 默认（无 etcd 后端）
+GO_BUILD_TAGS=config_etcd ./main.sh build cfgtool # etcd 上传后端（需 build tag）
 ```
 
-> Windows 用 `.\build.ps1 cfgtool`。
+> Windows 用 `.\build.ps1 cfgtool`。产物自动输出到 `common/game_conf/cfgtool(.exe)`。
 
-## cfgtool 命令参数
+---
 
-`cfgtool` 支持以下参数（`cfgtool --help` 查看）：
+## 工具功能
+
+---
+本工具用于将Excel/XLSX文件转换为多种格式的配置文件，主要用于游戏开发中的配置管理。它支持从Excel文件中读取数据，并生成对应的Protocol Buffers文本/二进制格式、JSON、Lua配置表，以及Go/C++/Node.js(TypeScript)多语言的配置加载与便捷查询代码。
+
+---
+
+### 主要功能
+
+1. 支持对xlsx配置结构、内嵌结构体、枚举定义生成Proto文件
+2. 支持将xlsx数据转换成pb bytes数据、pb text数据、JSON数据
+3. 支持将xlsx直接的Lua配置代码
+4. 支持xlsx表格内填入中文枚举、中文sheet名
+5. 支持根据配置结构，生成对应的 **Go / C++ / Node.js(TypeScript)** 调用代码，支持生成多维key index查询map方法
+6. 支持根据配置gen模式，生成不同内容的配置文件：
+   - `all`：生成全部配置
+   - `client`：仅生成客户端配置
+   - `server`：仅生成服务器配置
+7. 支持在xlsx第四行标记 `key` / `KEY`，自动生成主键Map索引，无需在生成表中手写 `map:字段名` 规则
+8. 支持 `map[K]V` 字段类型（proto3 原生 map），K 限标量、V 支持标量/枚举/结构体
+9. 支持通过 `pb.MessageName` 语法引用外部 proto 文件定义的 message/enum（`-proto-src` 指定源目录），等价内置结构体
+10. 统一的错误日志输出，包含文件名、表名、字段名、行号、错误类型，方便快速定位问题
+
+---
+
+### 支持的输出格式
+
+| 格式 | 说明 |
+|------|------|
+| Protocol Buffers 定义 (.proto) | 根据xlsx表结构自动生成proto文件 |
+| Protocol Buffers 文本 (.conf) | pb text格式数据文件 |
+| Protocol Buffers 二进制 (.bytes) | pb bytes格式数据文件 |
+| JSON (.json) | JSON格式数据文件 |
+| Lua (.lua) | Lua配置表 |
+| Go 代码 (.gen.go) | Go语言配置加载与便捷查询代码 |
+| C++17 代码 (.gen.hpp) | C++17配置加载与便捷查询头文件 |
+| Node.js/TypeScript 代码 (.gen.ts) | TypeScript配置加载与便捷查询代码，带完整类型定义 |
+
+---
+
+## 安装与使用
+
+### 安装Git
+如果您的系统尚未安装Git，请先安装Git。可以从[Git官网](https://git-scm.com/downloads)下载并安装。
+
+### 使用运行脚本 (bat / sh)
+
+项目包含一个批处理脚本 `run_me.bat`，用于简化执行流程。编辑该脚本设置您的参数，然后直接运行：
+
+```bash
+cfgtool.exe ^
+  -xlsx=./xls ^
+  -text=./gen/text ^
+  -proto=./gen/proto ^
+  -json=./gen/json ^
+  -bytes=./gen/bytes ^
+  -lua=./gen/lua ^
+  -ts=./gen/ts ^
+  -code=./gen/code ^
+  -cpp=./gen/cpp ^
+  -nodejs=./gen/nodejs ^
+  -mode=all
+pause
+```
+
+> 所有输出目录参数为空则不生成对应格式，可按需开启。
+
+---
+
+## 工具参数说明
 
 | 参数 | 说明 | 默认值 |
 |------|------|--------|
-| `-xlsx` | xlsx 源目录 | `./xls` |
-| `-text` | pb text(.conf) 输出目录 | 空（不生成） |
-| `-proto` | proto 定义输出目录 | 空 |
-| `-code` | Go 代码输出目录 | 空 |
-| `-json` | JSON 输出目录 | 空 |
-| `-bytes` | pb bytes 输出目录 | 空 |
-| `-lua` | Lua 输出目录 | 空 |
-| `-mode` | 生成模式（all/client/server） | `all` |
-| `-module` | 生成代码的 module 路径 | `github.com/Iori372552686/GoOne` |
-| `-pb` | proto 生成的包路径 | `github.com/Iori372552686/g1_common/protocol` |
-| `-proto-src` | 外部 proto 源目录（用于 pb.XXX 引用） | 空 |
-| `-upload` | 配置中心 URL（留空不上传） | 空 |
-| `-uptype` | 上传格式（json/conf/bytes/lua） | 空 |
+| `-xlsx` | Excel文件目录 | `./xls` |
+| `-text` | 生成pb text格式文件目录 | 空（不生成） |
+| `-proto` | 生成proto定义文件目录 | 空（不生成） |
+| `-proto-src` | 外部proto源文件目录（用于`pb.XXX`类型引用检索，如`common/game_proto`） | 空（不启用） |
+| `-json` | 生成JSON格式文件目录 | 空（不生成） |
+| `-bytes` | 生成pb bytes格式文件目录 | 空（不生成） |
+| `-lua` | 生成Lua配置表文件目录 | 空（不生成） |
+| `-ts` | 生成TypeScript类型定义文件目录 | 空（不生成） |
+| `-code` | 生成Go语言代码文件目录 | 空（不生成） |
+| `-cpp` | 生成C++17代码文件目录 | 空（不生成） |
+| `-nodejs` | 生成Node.js/TypeScript代码文件目录 | 空（不生成） |
+| `-mode` | 配置生成模式（`all` / `client` / `server`） | `all` |
+| `-module` | 生成代码导出项目目录 | `github.com/Iori372552686/GoOne` |
+| `-pb` | Protocol Buffers生成路径 | `github.com/Iori372552686/g1_common/protocol` |
+| `-upload` | 配置中心URL（留空不上传；详见下方[上传到配置中心](#上传到配置中心)） | 空（不上传） |
+| `-uptype` | 上传数据格式，逗号分隔（`json` / `conf` / `bytes` / `lua`），需配合对应 `-json` / `-text` / `-bytes` / `-lua` 目录 | 空（不上传） |
+| `-version` | 打印当前程序版本号 | - |
 
-详细语法（xlsx 表结构、分隔符规则、类型支持等）见主仓 `tools/cfgtool/README.md`。
+---
+
+## 配置文件格式说明
+
+### Excel表结构规范
+
+```
+第一行：中文列名，作为注解（如 道具类型、道具名称 等）
+第二行：字段名，作为字段标识（如 Id、Name 等）
+第三行：数据类型（如 int32、int64、[]uint32、string、[][]int64、[][][]int64 等）
+第四行：配置gen模式（all、client、server、key）
+第五行起：实际数据行
+```
+
+### 第四行标记说明
+
+| 标记 | 说明 |
+|------|------|
+| `all` | 所有模式都生成该列 |
+| `client` | 仅 `-mode=client` 时生成该列 |
+| `server` | 仅 `-mode=server` 时生成该列 |
+| `key` / `KEY` | 所有模式都生成（等同 all），**同时自动作为主键Map索引** |
+
+`key` 标记可以标在一个或多个列上：
+- **单列 key**：自动生成 `GetById(Id)` 风格的单字段索引
+- **多列 key**：自动生成复合键索引（如 `GetByTypeLevel(Type, Level)`）
+
+> **key 与 map 规则的关系**：`key` 标记是 xlsx 表内的列级声明，替代在生成表中写 `map:字段名` 的方式。两者可以共存——`key` 生成的索引与 `map` 规则生成的索引互不影响。
+
+**示例：**
+
+| 道具ID | 道具名称 | 品质 | 价格 |
+|--------|---------|------|------|
+| Id | Name | Quality | Price |
+| int32 | string | int32 | int64 |
+| **key** | all | all | server |
+
+上面的配置中 `Id` 列标记为 `key`，工具将自动生成 `GetById(Id int32)` 的 Map 索引方法，无需在生成表中额外写 `map:Id`。
+
+### 支持的数据类型
+
+| 类型 | 说明 | 示例 |
+|------|------|------|
+| `int` / `int32` | 32位整数 | `100` |
+| `int64` | 64位整数 | `100000` |
+| `uint32` | 无符号32位整数 | `100` |
+| `uint64` | 无符号64位整数 | `100000` |
+| `float` | 32位浮点数 | `3.14` |
+| `float64` / `double` | 64位浮点数 | `3.14159` |
+| `string` | 字符串 | `hello` |
+| `bool` | 布尔值 | `true` / `false` |
+| `[]int32` | 整数数组 | `1\|2\|3` |
+| `[]string` | 字符串数组 | `a\|b\|c` |
+| `[][]int64` | 二维整数数组 | `1\|2;3\|4` |
+| `[][][]int64` | 三维整数数组 | `1\|2;3\|4^5\|6;7\|8` |
+| `[][]string` | 二维字符串数组 | `a\|b;c\|d` |
+| `[][]float64` / `[][]double` | 二维浮点数组 | `1.1\|2.2;3.3` |
+| `[][]Reward` | 二维结构体数组 | `1,10\|2,20;3,30\|4,40` |
+| `[][][]Reward` | 三维结构体数组 | `1,10\|2,20;3,30\|4,40^5,50\|6,60;7,70\|8,80` |
+| `map[int32]string` | 整数→字符串 映射 | `1:hp\|2:mp\|3:atk` |
+| `map[string]int64` | 字符串→整数 映射 | `hp:100\|mp:50` |
+| `map[int32]Reward` | 整数→结构体 映射 | `1:1,10\|2:2,20` |
+| `pb.MessageName` | 引用外部proto的message | `100,200,1` |
+| `[]pb.MessageName` | 外部proto结构体数组 | `100,200,1\|200,300,2` |
+| `map[int32]pb.MessageName` | 整数→外部结构体 映射 | `1:100,200,1;2:200,300,2` |
+| 枚举名 | 枚举类型，可中文 | `金币` |
+| 结构名 | 引用结构体 | `1,100,name` |
+
+### 分隔符规则（类型无关、层级递进）
+
+工具采用**鲁班式「纯层级化」分隔符设计**：分隔符仅表达「第几维」，与元素是标量还是结构体无关。因此**标量数组与结构体数组共用同一张层级表**，用户只需记住一套规则。
+
+#### 层级分隔符总表
+
+| 层级 | 分隔符 | 用途 | 示例类型 | 示例值 |
+|------|--------|------|---------|--------|
+| 结构体成员 | `,` | 结构体内部字段间（叶子层） | `Reward` | `1,10` |
+| 数组第1维 | `\|` | 一维数组元素间 | `[]int64` | `1\|2\|3` |
+| 数组第2维 | `;` | 二维数组的外层分隔 | `[][]int64` | `1\|2;3\|4` |
+| 数组第3维 | `^` | 三维数组的最外层分隔 | `[][][]int64` | `1\|2;3\|4^5\|6;7\|8` |
+| map 元素间 | `;` | map 元素之间的分隔（高于 value 内部的 `,` 与 `\|`） | `map[int32]string` | `1:hp;2:mp` |
+| map K:V | `:` | map 元素的键值分隔（独占，正交） | `map[K]V` | `1:hp` |
+
+**设计要点：**
+
+1. **类型无关** —— 同一维度的数组分隔符固定，无论元素是标量还是结构体。如 `[]int64` 和 `[]Reward` 的元素间都用 `|`。
+2. **层级递进** —— 数组从内到外：成员 `,`（最细）→ 1维 `|` → 2维 `;` → 3维 `^`（最粗）。
+3. **map 元素用 `;`** —— 高于 value 内部的 `,`（结构体成员）与 `|`（repeated 字段内部），保证 value 是含 repeated 字段的结构体（如 `pb.TexasGameEndInfo` 的 hands/bests）时不冲突。
+4. **map K:V 独占 `:`** —— 与所有层级符号正交。因结构体成员用 `,`、数组用 `|`/`;`，value 内部不含 `:`，故 map 的 K/V 切分天然无歧义（按首个 `:` 切分）。
+
+#### 示例对照
+
+| 类型 | 单元格写法 | 解析结果 |
+|------|-----------|---------|
+| `[]int32` | `1\|2\|3` | `[1, 2, 3]` |
+| `[][]int64` | `1\|2;3\|4` | `[[1,2],[3,4]]` |
+| `[][][]int64` | `1\|2;3\|4^5\|6;7\|8` | `[[[1,2],[3,4]],[[5,6],[7,8]]]` |
+| `Reward` (结构体) | `1,10` | `{ItemId:1, Count:10}` |
+| `[]Reward` | `1,10\|2,20` | `[{1,10},{2,20}]` |
+| `[][]Reward` | `1,10\|2,20;3,30\|4,40` | `[[{1,10},{2,20}],[{3,30},{4,40}]]` |
+| `map[int32]string` | `1:hp;2:mp` | `{1:"hp", 2:"mp"}` |
+| `map[int32]Reward` | `1:1,10;2:2,20` | `{1:{1,10}, 2:{2,20}}` |
+
+### 多维数组说明
+
+当前实现**最多支持 3 维数组**。底层 protobuf 方案是递归包装 message，因此**理论上**可以继续扩展到 4 维、5 维；但如果要正式开启更高维，需要同步扩展代码中的维度上限、分隔符规则与测试用例。
+
+### map 类型说明
+
+工具支持 `map[K]V` 字段类型（Go 风格语法），对应 protobuf3 原生 `map<K, V>`，用于表达键值映射配置。
+
+**语法：** 在 xlsx 第三行（数据类型行）写 `map[K]V`，如 `map[int32]string`、`map[string]int64`、`map[int32]Reward`。
+
+**K（键）限制** —— 受 protobuf3 规范约束：
+
+| 允许的 K | 说明 |
+|----------|------|
+| `int32` / `int64` / `uint32` / `uint64` | 整数键 |
+| `string` | 字符串键 |
+| `bool` | 布尔键 |
+
+> 浮点（`float`/`double`）、枚举、结构体、数组**不能**作为 map 的 key。
+
+**V（值）支持：**
+
+| V 类型 | 说明 | 示例类型 |
+|-------|------|---------|
+| 标量 | `int32`/`int64`/`string`/`bool` 等 | `map[int32]string` |
+| 枚举 | 引用枚举名 | `map[int32]PropertyType` |
+| 结构体 | 引用 `@struct` 定义名 | `map[int32]Reward` |
+
+> 本期**不支持** `map[K][]V`（值为数组）与 `map[K]map[K2]V`（嵌套 map）。如需更高复杂度，建议拆分为结构体数组或单独配置表。
+
+#### map 元素分隔符
+
+每个 map 元素用 `K:V` 表示，元素之间**统一用 `;`**（高于 value 内部的 `,` 与 `|`，保证 value 是含 repeated 字段的结构体时不冲突）：
+
+| value 类型 | 元素分隔符 | 示例 |
+|-----------|-----------|------|
+| 标量 / 枚举 | `;` | `1:hp;2:mp;3:atk` |
+| 结构体 | `;` | `1:1,10;2:2,20` |
+| 含 repeated 的结构体 | `;` | `1:100,1\|2;2:200,3\|4`（value 内部 repeated 仍用 `\|`） |
+
+> 解析时按第一个 `:` 切分 K 与 V。因结构体成员用 `,`、repeated 内部用 `|`，value 内部不含 `:` 与 `;`，K/V 切分与元素切分均无歧义。
+
+#### map 字段示例
+
+假设结构体 `Reward` 定义为 `ItemId,Count`：
+
+| 编号 | 属性名映射 | 标签数值 | ID奖励 |
+|------|-----------|---------|--------|
+| Id | Attrs | Tags | Rewards |
+| `int32` | `map[int32]string` | `map[string]int64` | `map[int32]Reward` |
+| key | all | all | all |
+| 1 | `1:hp;2:mp;3:atk` | `hp:100;mp:50;speed:20` | `1:1,10;2:2,20` |
+
+对应的 proto 输出：
+```proto
+message MapConfig {
+    int32 Id = 1;
+    map<int32, string> Attrs = 2;
+    map<string, int64> Tags = 3;
+    map<int32, Reward> Rewards = 4;
+}
+```
+
+对应的 JSON 输出（map 字段渲染为对象）：
+```json
+{
+  "Id": 1,
+  "Attrs": { "1": "hp", "2": "mp", "3": "atk" },
+  "Tags": { "hp": 100, "mp": 50, "speed": 20 },
+  "Rewards": {
+    "1": { "ItemId": 1, "Count": 10 },
+    "2": { "ItemId": 2, "Count": 20 }
+  }
+}
+```
+
+### 外部 proto 引用（pb.XXX）
+
+工具支持在 xlsx 字段类型中引用**外部 proto 文件**里定义的 message 或 enum，语法为 `pb.MessageName`。`pb.` 是语法糖前缀，表示「去 `-proto-src` 指定的目录检索」；解析后等效于内置结构体，数据格式（分隔符）保持一致。
+
+**适用场景：** 配置表需要复用业务层已有的 proto 结构（如 `core/struct.proto` 里的 `Reward`、`core/role.proto` 里的 `RoleInfo`），避免在 xlsx 里重复定义。
+
+#### 使用步骤
+
+1. **准备外部 proto 目录**：所有 `.proto` 文件放在一个根目录下。通常指向 `game_protocol`（仓库根，使相对路径 `proto/core/x.proto` 与 proto 内的 import 声明对齐），工具会递归扫描全部 `.proto`。
+
+2. **启动时指定 `-proto-src`**：
+   ```bash
+   cfgtool.exe -xlsx=./xls -proto-src=../game_proto/core -json=./gen/json ...
+   ```
+   留空则不启用外部引用（不影响现有功能）。
+
+   > **容错说明**：若目录下部分 proto import 了仓库外文件（如 `google/protobuf/*.proto`、`goone/options/*.proto`），工具会自动跳过这些文件，不影响其余 proto 的加载。
+
+3. **xlsx 类型列写 `pb.MessageName`**：
+   ```
+   pb.Reward              // 单值
+   []pb.Reward            // 数组
+   [][]pb.Reward          // 多维数组
+   map[int32]pb.Reward    // map value
+   pb.RarityType          // enum
+   ```
+
+#### 工作机制
+
+- 工具启动时扫描 `-proto-src` 目录所有 `.proto`，读入内部 proto 注册表，并提取所有 message/enum 的短名建立索引。
+- xlsx 解析时，`pb.XXX` 前缀被识别，按短名 `XXX` 在外部注册表查找，命中后等价为内置 struct/enum。
+- 生成的 proto 文件自动 `import` 对应的外部 proto（路径相对仓库根，如 `import "proto/core/struct.proto";`）。
+- 数据填充由 proto descriptor 反射驱动——按 message 字段定义顺序，从单元格的 `,` 分隔项取值。
+
+#### 类型能力边界
+
+- ✅ **K（map 的 key）**：仍限于标量（protobuf3 规范），不接受 `pb.X` 作 key。
+- ✅ **V / 元素**：外部 message 可作单值、数组元素、map value，与内置 struct 完全对齐。
+- ✅ **message 内部字段**：按 proto 定义顺序用 `,` 分隔填值；标量/enum/repeated 字段均支持。
+  - 其中 **repeated 字段内部**（如 `hands`/`bests`）用 `/` 分隔（外部 message 专用 repeated 分隔符，避开所有外层容器的 `,`/`|`/`;`/`^`/`:`）。
+- ⚠️ **嵌套 message 字段**：外部 message 内部若含 message 类型字段，会递归解析，但 xlsx 单元格表达嵌套层级有限，复杂嵌套建议拆表。
+- ⚠️ **要求同包**：外部 proto 的 `package` 必须与配置 proto 一致（`g1.protocol`），跨 package 暂不支持。
+
+#### 示例
+
+假设外部 proto 定义（`proto/ext/reward.proto`）：
+```proto
+message TheReward {
+  int32 item_id = 1;
+  int64 count   = 2;
+  TheRarity rarity = 3;
+}
+enum TheRarity { TheNormal = 0; TheRare = 1; TheEpic = 2; }
+```
+
+xlsx 配置表：
+
+| 编号 | 单奖励 | 奖励列表 | ID奖励映射 |
+|------|--------|---------|-----------|
+| Id | Reward | Rewards | RewardMap |
+| `int32` | `pb.TheReward` | `[]pb.TheReward` | `map[int32]pb.TheReward` |
+| all | all | all | all |
+| 1 | `100,200,1` | `100,200,1\|200,300,2` | `1:100,200,1;2:200,300,2` |
+
+生成的 proto（自动 import）：
+```proto
+import "proto/ext/reward.proto";
+message ExtConfig {
+    int32 Id = 1;
+    TheReward Reward = 2;
+    repeated TheReward Rewards = 3;
+    map<int32, TheReward> RewardMap = 4;
+}
+```
+
+生成的 JSON：
+```json
+{
+  "Id": 1,
+  "Reward": { "item_id": 100, "count": 200, "rarity": 1 },
+  "Rewards": [
+    { "item_id": 100, "count": 200, "rarity": 1 },
+    { "item_id": 200, "count": 300, "rarity": 2 }
+  ],
+  "RewardMap": {
+    "1": { "item_id": 100, "count": 200, "rarity": 1 },
+    "2": { "item_id": 200, "count": 300, "rarity": 2 }
+  }
+}
+```
+
+#### 三维数组示例
+
+**基础类型三维数组：**
+
+| 奖励立方体 |
+|------------|
+| RewardCube |
+| `[][][]int64` |
+| all |
+| `1\|2;3\|4^5\|6;7\|8` |
+
+上面的值会被解析为：
+
+```json
+[
+  [
+    [1, 2],
+    [3, 4]
+  ],
+  [
+    [5, 6],
+    [7, 8]
+  ]
+]
+```
+
+**结构体三维数组：**
+
+假设结构体 `Reward` 定义为 `ItemId,Count`，那么：
+
+| 三维奖励 |
+|----------|
+| RewardCube |
+| `[][][]Reward` |
+| all |
+| `1,10\|2,20;3,30\|4,40^5,50\|6,60;7,70\|8,80` |
+
+会被解析为 2 个二维面，每个二维面包含 2 行结构体数组。
+
+### 枚举类型说明
+
+```
+E|道具类型-金币|PropertType|Coin|1
+```
+
+格式：`E|中文描述|枚举类型名|枚举值名|枚举值`
+
+### 配置规则说明（生成表中填写）
+
+```
+@config|sheet:结构名|map:字段名[,字段名]:别名|lua:参数1,参数2
+@struct|sheet:结构名
+@enum|sheet
+```
+
+- `@config`：定义配置表，支持 `map` 和 `group` 索引
+- `@struct`：定义结构体表
+- `@enum`：定义枚举表
+
+---
+
+## 各语言生成代码说明
+
+### 统一 API 一览
+
+三种语言生成代码遵循**统一命名风格**，方法名与语义完全对齐：
+
+| 方法 | 说明 | Go | C++ | TypeScript |
+|------|------|:--:|:---:|:----------:|
+| `GetHead` | 获取第一条记录 | `GetHead()` | `GetHead()` | `GetHead()` |
+| `GetAll` | 获取全部记录（拷贝） | `GetAll()` | `GetAll()` | `GetAll()` |
+| `Count` | 获取记录总数 | `Count()` | `Count()` | `Count()` |
+| `Range` | 遍历，回调返回 false 终止 | `Range(fn)` | `Range(fn)` | `Range(fn)` |
+| `Find` | 条件查找，返回第一个匹配项 | `Find(fn)` | `Find(fn)` | `Find(fn)` |
+| `Filter` | 条件过滤，返回所有匹配项 | `Filter(fn)` | `Filter(fn)` | `Filter(fn)` |
+| `GetByXxx` | 按 Map 索引精确查找 | `GetByXxx(key)` | `GetByXxx(key)` | `GetByXxx(key)` |
+| `GroupByXxx` | 按 Group 索引分组查找 | `GroupByXxx(key)` | `GroupByXxx(key)` | `GroupByXxx(key)` |
+
+> `Xxx` 由 xlsx 中 `map:字段名:别名` 规则决定，自动生成。
+
+---
+
+### Go 代码 (`-code`)
+
+为每个配置生成独立的 `.gen.go` 文件，包含：
+- 配置数据结构体 + `init()` 自动注册
+- 基础查询：`GetHead()` / `GetAll()` / `Count()`
+- 遍历：`Range(fn)`
+- 条件查询：`Find(fn)` / `Filter(fn)`
+- 索引查询：`GetByXxx(key)` / `GroupByXxx(key)`
+
+### C++17 代码 (`-cpp`)
+
+为每个配置生成独立的 `.gen.hpp` 头文件，包含：
+- 单例数据管理类，`ParseFromText()` 加载数据
+- 基础查询：`GetHead()` / `GetAll()` / `Count()`
+- 遍历：`Range(fn)`
+- 条件查询：`Find(fn)` / `Filter(fn)`
+- 索引查询：`GetByXxx(key)` / `GroupByXxx(key)`
+
+### Node.js/TypeScript 代码 (`-nodejs`)
+
+为每个配置生成独立的 `.gen.ts` 文件，包含：
+- 完整 TypeScript 接口定义（`IXxxConfig`），含引用的子结构体接口
+- 单例数据管理器类：
+  - 加载：`Parse(data)`
+  - 基础查询：`GetHead()` / `GetAll()` / `Count()`
+  - 遍历：`Range(fn)`
+  - 条件查询：`Find(fn)` / `Filter(fn)`
+  - 索引查询：`GetByXxx(key)` / `GroupByXxx(key)`
+- 自动生成 `index.ts` 入口文件，统一导出所有配置
+
+---
+
+### 使用示例
+
+**Go：**
+```go
+item := item_config.GetByList(1001)         // Map 索引查找
+all  := item_config.GetAll()                // 获取全部
+cnt  := item_config.Count()                 // 记录数
+rare := item_config.Filter(func(c *pb.ItemConfig) bool {
+    return c.Quality >= 4                   // 条件过滤
+})
+first := item_config.Find(func(c *pb.ItemConfig) bool {
+    return c.Name == "金币"                  // 条件查找
+})
+```
+
+**C++17：**
+```cpp
+auto* item = ItemData::GetByList(1001);      // Map 索引查找
+auto  all  = ItemData::GetAll();             // 获取全部
+auto  cnt  = ItemData::Count();              // 记录数
+auto  rare = ItemData::Filter([](const auto* c) {
+    return c->quality() >= 4;                // 条件过滤
+});
+auto* first = ItemData::Find([](const auto* c) {
+    return c->name() == "金币";               // 条件查找
+});
+```
+
+**TypeScript / Node.js：**
+```typescript
+import { item } from './gen/nodejs';
+import * as fs from 'fs';
+
+// 加载
+item.Parse(JSON.parse(fs.readFileSync('./gen/json/ItemConfig.json', 'utf-8')));
+
+// 使用
+const head = item.GetHead();                 // 第一条
+const all  = item.GetAll();                  // 全部
+const cnt  = item.Count();                   // 记录数
+const it   = item.GetByList(1001);           // Map 索引查找
+const rare = item.Filter(c => c.Quality >= 4);  // 条件过滤
+const first = item.Find(c => c.Name === '金币'); // 条件查找
+item.Range(c => { console.log(c.Name); return true; }); // 遍历
+```
+
+---
 
 ## 上传到配置中心
 
-cfgtool 支持把生成的配置发布到配置中心（复用 `lib/contrib/config` 地址解析）：
+生成完成后，工具可把**已生成的数据产物**直接发布到配置中心，复用 `lib/contrib/config` 的统一地址/鉴权解析（与 `common/gamedata` 读取路径同源），无需额外的上传脚本。
 
-```bash
-# 上传 .conf 到 etcd 开发环境（需 -tags config_etcd 编译）
-./cfgtool -xlsx=./xls -text=./gen/text -proto=./gen/proto \
-    -upload="etcd://host:2379?path=/goone/config/dev" -uptype=conf
+### 工作机制
 
-# 上传到 nacos
-./cfgtool -xlsx=./xls -text=./gen/text -json=./gen/json \
-    -upload="nacos://host:8848?group=GOONE_CONFIG&namespace_id=public" -uptype=conf,json
+- `-upload` 指定配置中心 URL（与读取路径完全一致的 `factory.ParseConfig` 格式），留空则跳过上传。
+- `-uptype` 指定上传哪些产物，逗号分隔，对应已开启的产物目录：
+
+  | `uptype` 取值 | 源目录 | 文件后缀 | 发布格式提示 |
+  |-------------|--------|---------|------------|
+  | `json` | `-json` 目录 | `.json` | `json` |
+  | `conf` | `-text` 目录 | `.conf`（pb text） | `text` |
+  | `bytes` | `-bytes` 目录 | `.bytes`（pb 二进制） | `bytes` |
+  | `lua` | `-lua` 目录 | `.lua` | `text` |
+
+- 每个**文件**作为一个配置项发布，`dataID` = 文件名（如 `ItemConfig.json`）。大小写不敏感，重复 token 自动去重，未知 token 记 warn 跳过。
+- 上传发生在 `GenData()` 之后；GenData 末尾会清空内存表，故上传阶段直接扫描各产物目录（而非读内存）。
+
+### Key 命名规范与永久性（etcd）
+
+为保证多环境隔离、可读、可治理，etcd 的 key 统一采用 **`<根前缀>/<配置分区>/<环境名>/<dataID>`** 的四段式布局：
+
+```
+/goone/config/<env>/<SheetName>.<ext>
+└─┬─────┘ └─┬────┘ └┬──┘ └────┬─────────────┘
+  根前缀   配置分区  环境名     dataID（= 文件名）
 ```
 
-> **读取端契约**：服务器 `gamedata` 当前生产读取端只接了 Nacos。etcd 读取需补路径前缀剥离适配（详见主仓 `tools/cfgtool/README.md`）。
+| 段 | 取值示例 | 说明 |
+|----|---------|------|
+| 根前缀 | `/goone` | 项目命名空间，与服务发现区(`/goone/register`)、其它业务隔离 |
+| 配置分区 | `config` | 固定，专放策划配置数据 |
+| **环境名** | `dev` / `test` / `prod` | **环境隔离的关键 key**；通过 URL 的 `path` 参数表达，一次上传一个环境 |
+| dataID | `ItemConfig.json` | = 本地产物文件名，见上表 |
+
+**示例**：开发环境传 `path=/goone/config/dev`，生成的 key 形如：
+
+```
+/goone/config/dev/DropItemConfig.json
+/goone/config/dev/GlobalConst.json
+/goone/config/dev/MachineConfig.json
+/goone/config/dev/TaskConfig.json
+/goone/config/dev/TexasConfig.json
+/goone/config/dev/TexasTestConfig.json
+```
+
+> 切换环境只需改 `path` 末段：`/goone/config/prod`、`/goone/config/test`。多环境并存、互不覆盖，便于灰度与回滚。
+
+**永久存储（永不过期）**：etcd `Publisher` 用裸 `Put` 写入、**不附带 Lease**，因此每个 key 都是永久 key（直到被显式 `Delete` 或集群 compact）。这是策划配置数据的预期语义——配置不随会话/进程消亡。
+
+### 支持的后端
+
+通过 `lib/contrib/config/factory` 的 URL scheme 选择后端：
+
+| 后端 | URL 形态 | 说明 |
+|------|---------|------|
+| **etcd** | `etcd://host:2379?path=/goone/config/dev&username=...&password=...` | 二进制安全，`key = path.Join(path, dataID)`，**永久存储**。**需用 `-tags config_etcd` 编译**。鉴权可选（`username`/`password` query）。 |
+| **nacos** | `nacos://host:8848?dataid=...&group=...&namespace_id=...&username=...&password=...` | `dataid` query 在发布时仅用于校验，实际以文件名为准；`group` 透传。Nacos 以**文本字符串**存储，`.bytes` 二进制经 `string()` 转换可能损坏非 UTF-8 字节，**建议仅在 etcd 上传 bytes**。 |
+
+> consul / apollo / k8s 目前只实现了读路径（`Source`），发布（`Publisher`）暂未实现，指定这些 scheme 会返回错误。
+
+### 完整使用示例
+
+**1) 编译（etcd 后端需 `config_etcd` tag）**
+
+```bash
+# 本仓库根目录
+go build -tags config_etcd -o cfgtool.exe ./
+```
+
+**2) 生成 + 上传到 etcd（开发环境 dev）**
+
+```bash
+./cfgtool.exe \
+  -xlsx=./xls \
+  -json=./gen/json \
+  -proto=./gen/proto \
+  -mode=all \
+  -upload="etcd://47.107.101.29:2379?path=/goone/config/dev" \
+  -uptype=json
+```
+
+输出（实测）：
+
+```
+✅ 配置数据生成完成
+ℹ️ 已连接配置中心后端=etcd，开始上传
+ℹ️ 已上传 DropItemConfig.json  (json, 1335 bytes)
+ℹ️ 已上传 GlobalConst.json     (json, 1389 bytes)
+ℹ️ 已上传 MachineConfig.json   (json,  822 bytes)
+ℹ️ 已上传 TaskConfig.json      (json,  453 bytes)
+ℹ️ 已上传 TexasConfig.json     (json, 2270 bytes)
+ℹ️ 已上传 TexasTestConfig.json (json, 2570 bytes)
+✅ 配置数据上传完成，共 6 项
+```
+
+**3) 上传多种格式（json + pb text + bytes）到 etcd 生产环境 prod**
+
+```bash
+./cfgtool.exe \
+  -xlsx=./xls \
+  -json=./gen/json -text=./gen/text -bytes=./gen/bytes \
+  -proto=./gen/proto -mode=all \
+  -upload="etcd://47.107.101.29:2379?path=/goone/config/prod" \
+  -uptype=json,conf,bytes
+```
+
+**4) 上传到 nacos（文本产物）**
+
+```bash
+./cfgtool.exe \
+  -xlsx=./xls \
+  -json=./gen/json -text=./gen/text -proto=./gen/proto -mode=all \
+  -upload="nacos://127.0.0.1:8848?group=GOONE_CONFIG&namespace_id=public&username=nacos&password=nacos" \
+  -uptype=json,conf
+```
+
+### 回读校验（运维/CI 可用）
+
+上传后可用任意 etcd client 直接 `Get` 前缀验证。下面是用 Go 校验「永久 + JSON 合法 + 与本地一致」的最小程序：
+
+```go
+resp, _ := cli.Get(ctx, "/goone/config/dev/", clientv3.WithPrefix())
+for _, kv := range resp.Kvs {
+    // kv.Lease == 0            → 永久 key（不过期）
+    // json.Unmarshal(kv.Value) → 合法 JSON
+    // 与本地 ./gen/json/<basename> 字节一致
+}
+```
+
+> 实测（`47.107.101.29:2379`，`/goone/config/dev/`）：6 个 key 全部 `lease=0`、JSON 合法、与本地字节一致。
+
+### ⚠️ 读取端契约（架构师须知）
+
+上传只是"写"，要让业务服务真正读回这些数据，必须对齐 `common/gamedata` 读取端的契约，否则会 `InitRemote` 失败：
+
+1. **格式必须是 pb text（`.conf`）**：`gamedata` 每个 sheet 的 parser 硬编码调 `proto.UnmarshalText`，**完全忽略 `kv.Format`**。上传 JSON/bytes 给 `gamedata` 读会反序列化失败。→ **服务器侧读取请用 `-uptype=conf` 上传 `.conf`**；JSON/bytes 仅供客户端/工具链消费。
+2. **dataID 必须是 `<SheetName>.conf`**：`SheetFiles()` 返回的是 `["ItemConfig.conf", "TexasConfig.conf", ...]`，`applyKVs` 用 `kv.Key` **精确匹配**，未知名直接判缺失。
+3. **etcd 读取端需剥路径前缀**：Nacos `Load()` 返回 `kv.Key = dataID`（裸名，如 `ItemConfig.conf`），与读取端匹配；但 etcd `Load()` 返回 `kv.Key = 完整 key`（如 `/goone/config/dev/ItemConfig.conf`），而当前 `applyKVs` **不做 `filepath.Base` 剥离**。
+   → **若要用 etcd 作为 `gamedata` 后端**，需二选一改一处（尚未实现）：
+   - 在 `common/gamedata/gamedata.go` 的 `applyKVs` 里改用 `byKey[filepath.Base(kv.Key)]`；或
+   - 新增 `gamedata.InitEtcd` 分支（参考 `remote.go` 的 `InitNacos`），并在 `src/*/app.go` 里按配置选择后端。
+
+> 当前仓库**生产读取端只接了 Nacos**（`gamedata.InitNacos`），etcd 读取路径尚未在业务侧落地。本工具的 etcd 上传能力已就绪并可独立用于客户端/工具链/校验场景；要打通服务器热更读取，按上述第 3 点补一处适配即可。
+
+### 关于 `-tags config_etcd`
+
+etcd 后端依赖 `go.etcd.io/etcd/client/v3`（可能触发 protobuf extension 相关的 panic），默认不编入，需显式开启：
+
+```bash
+go build -tags config_etcd ./
+```
+
+> 启用后 etcd 的读路径（`factory.NewClient`）与写路径（`factory.NewPublisher` / `NewPublisherFromURL`）同时可用。未启用时两者均返回 `"etcd config backend not enabled"` 错误。
+
+---
 
 ## 注意事项
 
-- **xlsx 是唯一数据源**。禁止直接修改 `.conf` 或 `.gen.go`（它们是生成产物）。
-- `.gen.go` 由 `init()` 自动注册到 `gamedata`，勿手动改名。
-- 服务器侧 `gamedata` 的 parser 只认 `.conf`（pb text）格式，JSON/bytes 仅供客户端/工具链。
+- 路径处理：支持Windows路径（反斜杠）和Linux路径（正斜杠），相对路径基于执行目录
+- 所有输出目录参数留空则不生成对应格式，按需开启即可
+- 结构体字段按定义顺序赋值，无需额外标记
+- 错误日志统一输出包含：文件名、表名、字段名、行号、错误类型，便于快速定位
+- Node.js代码依赖JSON输出，建议同时开启 `-json` 和 `-nodejs`
+- C++代码依赖proto生成的 `.pb.h`，请确保protoc的C++输出路径正确
+- 上传二进制 `.bytes` 优先选 etcd；Nacos 以文本存储，二进制可能损坏
+- 上传到 etcd 的 key 为**永久存储**（无 lease，不过期）；多环境靠 `path` 末段（`dev`/`test`/`prod`）隔离，切换环境只改 URL 的 `path` 参数即可
+- 服务器侧 `gamedata` 热更读取当前只接 Nacos；若要用 etcd 作为读取后端，需补一处路径前缀剥离适配（详见[上传到配置中心 › 读取端契约](#⚠️-读取端契约架构师须知)）
