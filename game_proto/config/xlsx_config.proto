@@ -123,6 +123,15 @@ message ItemRuleConfigAry {
 	repeated ItemRuleConfig Ary = 1;
 }
 
+message ItemRuleRefConfig {
+	int32 ItemId = 1; // 道具Id
+	int32 RuleId = 2; // 规则Id
+}
+
+message ItemRuleRefConfigAry { 
+	repeated ItemRuleRefConfig Ary = 1;
+}
+
 message ItemUseConfig {
 	int32 Id = 1; // 道具Id
 	int32 UseType = 2; // 使用类型

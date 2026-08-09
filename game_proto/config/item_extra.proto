@@ -96,3 +96,15 @@ message ObtainPolicyConfig {
 message ObtainPolicyConfigAry {
 	repeated ObtainPolicyConfig Ary = 1;
 }
+
+// ItemRuleRefConfig 道具→规则引用表
+// 独立于 ItemConfig，用于规避 ItemConfig 无法全量重编的限制。
+// 业务通过 item_rule_ref_config.GetByItemId(itemId) 查 RuleId，再查 ItemRuleConfig。
+message ItemRuleRefConfig {
+	int32 ItemId = 1;
+	int32 RuleId = 2;
+}
+
+message ItemRuleRefConfigAry {
+	repeated ItemRuleRefConfig Ary = 1;
+}

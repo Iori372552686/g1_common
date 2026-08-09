@@ -801,6 +801,105 @@ func (x *ObtainPolicyConfigAry) GetAry() []*ObtainPolicyConfig {
 	return nil
 }
 
+// ItemRuleRefConfig 道具→规则引用表
+// 独立于 ItemConfig，用于规避 ItemConfig 无法全量重编的限制。
+// 业务通过 item_rule_ref_config.GetByItemId(itemId) 查 RuleId，再查 ItemRuleConfig。
+type ItemRuleRefConfig struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	ItemId        int32                  `protobuf:"varint,1,opt,name=ItemId,proto3" json:"ItemId,omitempty"`
+	RuleId        int32                  `protobuf:"varint,2,opt,name=RuleId,proto3" json:"RuleId,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ItemRuleRefConfig) Reset() {
+	*x = ItemRuleRefConfig{}
+	mi := &file_config_item_extra_proto_msgTypes[10]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ItemRuleRefConfig) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ItemRuleRefConfig) ProtoMessage() {}
+
+func (x *ItemRuleRefConfig) ProtoReflect() protoreflect.Message {
+	mi := &file_config_item_extra_proto_msgTypes[10]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ItemRuleRefConfig.ProtoReflect.Descriptor instead.
+func (*ItemRuleRefConfig) Descriptor() ([]byte, []int) {
+	return file_config_item_extra_proto_rawDescGZIP(), []int{10}
+}
+
+func (x *ItemRuleRefConfig) GetItemId() int32 {
+	if x != nil {
+		return x.ItemId
+	}
+	return 0
+}
+
+func (x *ItemRuleRefConfig) GetRuleId() int32 {
+	if x != nil {
+		return x.RuleId
+	}
+	return 0
+}
+
+type ItemRuleRefConfigAry struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ary           []*ItemRuleRefConfig   `protobuf:"bytes,1,rep,name=Ary,proto3" json:"Ary,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *ItemRuleRefConfigAry) Reset() {
+	*x = ItemRuleRefConfigAry{}
+	mi := &file_config_item_extra_proto_msgTypes[11]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *ItemRuleRefConfigAry) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*ItemRuleRefConfigAry) ProtoMessage() {}
+
+func (x *ItemRuleRefConfigAry) ProtoReflect() protoreflect.Message {
+	mi := &file_config_item_extra_proto_msgTypes[11]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use ItemRuleRefConfigAry.ProtoReflect.Descriptor instead.
+func (*ItemRuleRefConfigAry) Descriptor() ([]byte, []int) {
+	return file_config_item_extra_proto_rawDescGZIP(), []int{11}
+}
+
+func (x *ItemRuleRefConfigAry) GetAry() []*ItemRuleRefConfig {
+	if x != nil {
+		return x.Ary
+	}
+	return nil
+}
+
 var File_config_item_extra_proto protoreflect.FileDescriptor
 
 const file_config_item_extra_proto_rawDesc = "" +
@@ -880,7 +979,12 @@ const file_config_item_extra_proto_rawDesc = "" +
 	"\x04Desc\x18\n" +
 	" \x01(\tR\x04Desc\"J\n" +
 	"\x15ObtainPolicyConfigAry\x121\n" +
-	"\x03Ary\x18\x01 \x03(\v2\x1f.g1.protocol.ObtainPolicyConfigR\x03AryB\x0fZ\r./g1_protocolb\x06proto3"
+	"\x03Ary\x18\x01 \x03(\v2\x1f.g1.protocol.ObtainPolicyConfigR\x03Ary\"C\n" +
+	"\x11ItemRuleRefConfig\x12\x16\n" +
+	"\x06ItemId\x18\x01 \x01(\x05R\x06ItemId\x12\x16\n" +
+	"\x06RuleId\x18\x02 \x01(\x05R\x06RuleId\"H\n" +
+	"\x14ItemRuleRefConfigAry\x120\n" +
+	"\x03Ary\x18\x01 \x03(\v2\x1e.g1.protocol.ItemRuleRefConfigR\x03AryB\x0fZ\r./g1_protocolb\x06proto3"
 
 var (
 	file_config_item_extra_proto_rawDescOnce sync.Once
@@ -894,7 +998,7 @@ func file_config_item_extra_proto_rawDescGZIP() []byte {
 	return file_config_item_extra_proto_rawDescData
 }
 
-var file_config_item_extra_proto_msgTypes = make([]protoimpl.MessageInfo, 11)
+var file_config_item_extra_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_config_item_extra_proto_goTypes = []any{
 	(*ItemRuleConfig)(nil),        // 0: g1.protocol.ItemRuleConfig
 	(*ItemRuleConfigAry)(nil),     // 1: g1.protocol.ItemRuleConfigAry
@@ -906,20 +1010,23 @@ var file_config_item_extra_proto_goTypes = []any{
 	(*DropGroupConfigAry)(nil),    // 7: g1.protocol.DropGroupConfigAry
 	(*ObtainPolicyConfig)(nil),    // 8: g1.protocol.ObtainPolicyConfig
 	(*ObtainPolicyConfigAry)(nil), // 9: g1.protocol.ObtainPolicyConfigAry
-	nil,                           // 10: g1.protocol.DropGroupConfig.DropRateMapEntry
+	(*ItemRuleRefConfig)(nil),     // 10: g1.protocol.ItemRuleRefConfig
+	(*ItemRuleRefConfigAry)(nil),  // 11: g1.protocol.ItemRuleRefConfigAry
+	nil,                           // 12: g1.protocol.DropGroupConfig.DropRateMapEntry
 }
 var file_config_item_extra_proto_depIdxs = []int32{
 	0,  // 0: g1.protocol.ItemRuleConfigAry.Ary:type_name -> g1.protocol.ItemRuleConfig
 	2,  // 1: g1.protocol.ItemUseConfigAry.Ary:type_name -> g1.protocol.ItemUseConfig
 	4,  // 2: g1.protocol.DecomposeConfigAry.Ary:type_name -> g1.protocol.DecomposeConfig
-	10, // 3: g1.protocol.DropGroupConfig.DropRateMap:type_name -> g1.protocol.DropGroupConfig.DropRateMapEntry
+	12, // 3: g1.protocol.DropGroupConfig.DropRateMap:type_name -> g1.protocol.DropGroupConfig.DropRateMapEntry
 	6,  // 4: g1.protocol.DropGroupConfigAry.Ary:type_name -> g1.protocol.DropGroupConfig
 	8,  // 5: g1.protocol.ObtainPolicyConfigAry.Ary:type_name -> g1.protocol.ObtainPolicyConfig
-	6,  // [6:6] is the sub-list for method output_type
-	6,  // [6:6] is the sub-list for method input_type
-	6,  // [6:6] is the sub-list for extension type_name
-	6,  // [6:6] is the sub-list for extension extendee
-	0,  // [0:6] is the sub-list for field type_name
+	10, // 6: g1.protocol.ItemRuleRefConfigAry.Ary:type_name -> g1.protocol.ItemRuleRefConfig
+	7,  // [7:7] is the sub-list for method output_type
+	7,  // [7:7] is the sub-list for method input_type
+	7,  // [7:7] is the sub-list for extension type_name
+	7,  // [7:7] is the sub-list for extension extendee
+	0,  // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_config_item_extra_proto_init() }
@@ -933,7 +1040,7 @@ func file_config_item_extra_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_config_item_extra_proto_rawDesc), len(file_config_item_extra_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   11,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
