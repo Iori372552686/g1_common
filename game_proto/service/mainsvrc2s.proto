@@ -72,6 +72,43 @@ service MainC2SService {
     };
   }
 
+  // ===== 背包/道具系统（移植自 seed-server）=====
+
+  rpc UseItem(g1.protocol.UseItemReq) returns (g1.protocol.UseItemRsp) {
+    option (goone.options.v1.ssrpc) = {
+      cmd_name: "CMD_MAIN_ITEM_USE_REQ"
+      comment: "use item"
+    };
+  }
+
+  rpc SellItem(g1.protocol.SellItemReq) returns (g1.protocol.SellItemRsp) {
+    option (goone.options.v1.ssrpc) = {
+      cmd_name: "CMD_MAIN_ITEM_SELL_REQ"
+      comment: "sell item"
+    };
+  }
+
+  rpc DecomposeItem(g1.protocol.DecomposeItemReq) returns (g1.protocol.DecomposeItemRsp) {
+    option (goone.options.v1.ssrpc) = {
+      cmd_name: "CMD_MAIN_ITEM_DECOMPOSE_REQ"
+      comment: "decompose item"
+    };
+  }
+
+  rpc QueryBackpack(g1.protocol.QueryBackpackReq) returns (g1.protocol.QueryBackpackRsp) {
+    option (goone.options.v1.ssrpc) = {
+      cmd_name: "CMD_MAIN_BACKPACK_QUERY_REQ"
+      comment: "query backpack with paging"
+    };
+  }
+
+  rpc BatchAddItem(g1.protocol.BatchAddItemReq) returns (g1.protocol.BatchAddItemRsp) {
+    option (goone.options.v1.ssrpc) = {
+      cmd_name: "CMD_MAIN_ITEM_BATCH_ADD_REQ"
+      comment: "batch add item (gm/test)"
+    };
+  }
+
   rpc MallBuyPackage(g1.protocol.MallBuyPackageReq) returns (g1.protocol.MallBuyPackageRsp) {
     option (goone.options.v1.ssrpc) = {
       cmd_name: "CMD_MAIN_MALL_BUY_PACKAGE_REQ"

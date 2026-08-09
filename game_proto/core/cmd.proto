@@ -32,6 +32,9 @@ enum CMD {
     // 同步玩家数据（全量 section + 增量 patch，与 SC_SYNC_USER_DATA 并存）
     SC_SYNC_USER_DATA_V2 = 0x003006;
 
+    // 恭喜获得：奖励展示聚合推送
+    SC_OBTAIN_NOTICE = 0x003007;
+
     // -------- connsvr(server_type = 1) --------
 
     CONN_KICK_OUT_REQ = 0x011000;
@@ -65,6 +68,19 @@ enum CMD {
     // 改头像
     MAIN_CHANGE_ICON_REQ = 0x02000A;
     MAIN_CHANGE_ICON_RSP = 0x02000B;
+
+    // 出售道具
+    MAIN_ITEM_SELL_REQ = 0x02000C;
+    MAIN_ITEM_SELL_RSP = 0x02000D;
+    // 分解道具
+    MAIN_ITEM_DECOMPOSE_REQ = 0x02000E;
+    MAIN_ITEM_DECOMPOSE_RSP = 0x02000F;
+    // 背包查询(分类分页)
+    MAIN_BACKPACK_QUERY_REQ = 0x020010;
+    MAIN_BACKPACK_QUERY_RSP = 0x020011;
+    // 批量添加道具(GM/测试)
+    MAIN_ITEM_BATCH_ADD_REQ = 0x020012;
+    MAIN_ITEM_BATCH_ADD_RSP = 0x020013;
 
     // ~~~~~~~~~~~~引导功能~~~~~~~~~~~~~~~~~~
     // 发送已经完成的ID

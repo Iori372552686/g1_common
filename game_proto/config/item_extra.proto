@@ -1,0 +1,98 @@
+//
+// 新增配置表 message（item_rule_config / item_use_config / decompose_config）
+// 由 protoc 单独编译为 protocol/item_extra.pb.go，不参与 gen_code.sh 全量编译。
+// 字段契约与 game_proto/config/xlsx_config.proto 中由 cfgtool 生成的同名 message 对齐。
+
+syntax = "proto3";
+
+package g1.protocol;
+
+option go_package = "./g1_protocol";
+
+message ItemRuleConfig {
+	int32 Id = 1;
+	string Name = 2;
+	int32 CanExchange = 3;
+	int32 CanUse = 4;
+	int32 MaxOwnCount = 5;
+	int32 MaxOverlay = 6;
+	int32 MaxUseCount = 7;
+	int32 MaxUseNumber = 8;
+	int32 UseNumberInterval = 9;
+	int32 Getuse = 10;
+	int32 CanDecompose = 11;
+	int32 CanRecycle = 12;
+	int32 CanDrop = 13;
+	int32 CanMail = 14;
+	int32 TradeLimitDaily = 15;
+}
+
+message ItemRuleConfigAry {
+	repeated ItemRuleConfig Ary = 1;
+}
+
+message ItemUseConfig {
+	int32 Id = 1;
+	int32 UseType = 2;
+	int32 UseId = 3;
+	int32 UseValue = 4;
+	int32 UseCD = 5;
+	int32 IsEnable = 6;
+}
+
+message ItemUseConfigAry {
+	repeated ItemUseConfig Ary = 1;
+}
+
+message DecomposeConfig {
+	int32 Id = 1;
+	int32 ItemId = 2;
+	int32 OutputItemId = 3;
+	int32 OutputCount = 4;
+	int32 IsEnable = 5;
+}
+
+message DecomposeConfigAry {
+	repeated DecomposeConfig Ary = 1;
+}
+
+// DropGroupConfig 掉落组配置（双层模型：组→包→物品）
+// Type: 0=叶子掉落包(dropRateMap的key直接当DropId产出), 1=组合包(key指向子组,递归解析)
+// DropWay: 1=概率独立(万分比), 2=固定全掉, 3=权重选1
+// DropType: 0=结果×N(一次选择后整体乘倍数), 1=选N次(独立执行N次)
+message DropGroupConfig {
+	int32 Groupid = 1;
+	int32 Subid = 2;
+	string DropGroupName = 3;
+	int32 DropWay = 4;
+	map<int32, int32> DropRateMap = 5;
+	int32 DropType = 6;
+	int32 DropCount = 7;
+	int32 Type = 8;
+	int32 IsBan = 9;
+	string Desc = 10;
+}
+
+message DropGroupConfigAry {
+	repeated DropGroupConfig Ary = 1;
+}
+
+// ObtainPolicyConfig 恭喜获得展示策略表（主键 Source 字符串）
+// DisplayMode: 0=不展示 1=Tips 2=弹窗 3=结算
+// MergeMode: 0=不合并 1=按 itemId 合并 2=按品质保留
+message ObtainPolicyConfig {
+	string Source = 1;
+	int32 DisplayMode = 2;
+	int32 MergeMode = 3;
+	int32 MinQuality = 4;
+	int32 IncludeCurrency = 5;
+	int32 MaxShowCount = 6;
+	int32 RarePopupQuality = 7;
+	int32 CooldownMs = 8;
+	int32 IsEnable = 9;
+	string Desc = 10;
+}
+
+message ObtainPolicyConfigAry {
+	repeated ObtainPolicyConfig Ary = 1;
+}
