@@ -1,11 +1,14 @@
 @echo off
 REM
-REM common\gen_proto.bat — 一键编译 g1_common 协议 proto (Windows)
+REM common\gen_proto.bat - one-shot compile of g1_common protocol protos (Windows)
 REM
-REM 用法（从主仓根）：
+REM Usage (from the main repo root):
 REM   .\common\gen_proto.bat
-REM 或经控制台：
-REM   .\main.sh proto game
+REM or via Git-Bash/WSL:
+REM   ./main.sh proto game
+REM
+REM NOTE: keep this file ASCII-only; cmd.exe on GBK consoles mis-parses
+REM UTF-8 Chinese comments and corrupts the following line.
 REM
 setlocal
 set SCRIPT_DIR=%~dp0

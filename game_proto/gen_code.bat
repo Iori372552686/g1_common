@@ -1,16 +1,21 @@
 @echo off
 REM
-REM 生成 g1_common/protocol/*.pb.go (Windows)
+REM Generate g1_common/protocol/*.pb.go (Windows)
 REM
-REM 此脚本需从主仓根目录调用（依赖主仓 lib/contrib/protoc 和 Go 工具链）。
-REM 用法：cd common\game_proto && gen_code.bat
-REM 或经主仓脚本：scripts\gen_common_proto.bat
+REM Run from common/game_proto (depends on the main repo's lib/contrib/protoc
+REM and the Go toolchain).
+REM Usage: cd common\game_proto && gen_code.bat
+REM (or run common\gen_proto.bat from the main repo root)
+REM
+REM NOTE: keep this file ASCII-only. cmd.exe on a GBK (CP936) console
+REM mis-parses UTF-8 Chinese in comments: a line ending in a multi-byte
+REM char corrupts the NEXT line (e.g. drops the leading REM token).
 REM
 setlocal EnableDelayedExpansion
 
 set module=github.com/Iori372552686/g1_common
 set bin_dir=.bin
-REM protoc 二进制：优先环境变量，回退到主仓 ..\..\lib\contrib\protoc
+REM protoc binary: prefer PROTOC_BIN_DIR env var, fall back to the main repo copy
 if defined PROTOC_BIN_DIR (
     set protoc_dir=%PROTOC_BIN_DIR%\bin
     set protoc_include=%PROTOC_BIN_DIR%\include
@@ -30,11 +35,16 @@ if errorlevel 1 goto :end
 go build -o "%protoc_go_inject_tag%" github.com/favadi/protoc-go-inject-tag
 if errorlevel 1 goto :end
 
-REM 收集 protocol-owned proto 文件（排除 go_package 指向 GoOne/api/gen 的 service proto）
-for /r %%f in (core\*.proto config\*.proto storage\*.proto service\*.proto) do (
-    findstr /c:"github.com/Iori372552686/GoOne/api/gen/" "%%f" >nul 2>&1
-    if errorlevel 1 (
-        set proto_args=!proto_args! "%%f"
+REM Collect protocol-owned proto files (exclude service protos whose go_package
+REM points at GoOne/api/gen). Use plain for (relative paths, NOT for /r):
+REM for /r yields absolute paths, which protoc on Windows cannot resolve
+REM against the relative -I. option.
+for %%f in (core\*.proto config\*.proto storage\*.proto service\*.proto) do (
+    if exist "%%f" (
+        findstr /c:"github.com/Iori372552686/GoOne/api/gen/" "%%f" >nul 2>&1
+        if errorlevel 1 (
+            set proto_args=!proto_args! "%%f"
+        )
     )
 )
 
@@ -43,7 +53,9 @@ if not defined proto_args (
     goto :end
 )
 
-if exist ..\protocol rmdir /s /q ..\protocol
+REM Best-effort cleanup: rmdir can hit a transient sharing violation (e.g.
+REM antivirus scan) - protoc overwrites in place anyway, so hide the noise.
+if exist ..\protocol rmdir /s /q ..\protocol 2>nul
 
 "%protoc_dir%\protoc.exe" -I. -I"%protoc_include%" --plugin=protoc-gen-go="%protoc_gen_go%" --go_out=.. --go_opt=module=%module% --go_opt=paths=import !proto_args!
 if errorlevel 1 goto :end
@@ -52,18 +64,21 @@ if exist ..\protocol\database.pb.go (
     "%protoc_go_inject_tag%" -input=..\protocol\database.pb.go
     if errorlevel 1 goto :end
 
-    REM xorm:"-" 标签后处理（与 .sh 版一致）
-    powershell -NoProfile -Command "(Get-Content ..\protocol\database.pb.go) -replace '(^\s*state\s+protoimpl\.MessageState\s+`)([^`]*)(`)','${1}${2} xorm:\"-\"${3}' | Set-Content ..\protocol\database.pb.go"
-    powershell -NoProfile -Command "(Get-Content ..\protocol\database.pb.go) -replace '(^\s*sizeCache\s+protoimpl\.SizeCache)\s*$','${1} `xorm:\"-\"`' | Set-Content ..\protocol\database.pb.go"
-    powershell -NoProfile -Command "(Get-Content ..\protocol\database.pb.go) -replace '(^\s*unknownFields\s+protoimpl\.UnknownFields)\s*$','${1} `xorm:\"-\"`' | Set-Content ..\protocol\database.pb.go"
+    REM Append xorm:"-" to protobuf internal fields (state/sizeCache/unknownFields)
+    REM so legacy xorm reflection does not panic on unexported fields.
+    REM Use [System.IO.File] read/write: preserves LF endings and UTF-8
+    REM without BOM regardless of the console codepage. (?m) anchors ^/$ per
+    REM line; \" becomes " at the PowerShell command-line tokenizer level.
+    powershell -NoProfile -Command "$p='..\protocol\database.pb.go'; $c=[System.IO.File]::ReadAllText($p); $c=[regex]::Replace($c,'(?m)^(\s*state\s+protoimpl\.MessageState\s+`)([^`]*)(`)','${1}${2} xorm:\"-\"${3}'); $c=[regex]::Replace($c,'(?m)^(\s*sizeCache\s+protoimpl\.SizeCache)\s*$','${1} `xorm:\"-\"`'); $c=[regex]::Replace($c,'(?m)^(\s*unknownFields\s+protoimpl\.UnknownFields)\s*$','${1} `xorm:\"-\"`'); [System.IO.File]::WriteAllText($p,$c,(New-Object System.Text.UTF8Encoding $false))"
+    if errorlevel 1 goto :end
 
     gofmt -w ..\protocol\database.pb.go
 )
 
-REM 复合键容器类型（Index2/3/4）已内置到 module/gamedata/index.go（手写），
-REM 不再随 cfgtool 生成、不再复制到 protocol 目录。
+REM Composite-key containers (Index2/3/4) are hand-written in
+REM module/gamedata/index.go of the main repo; no longer generated or copied.
 
-echo ^✓ g1_common/protocol generated ^(..\protocol^)
+echo [OK] g1_common/protocol generated (..\protocol)
 
 :end
 endlocal

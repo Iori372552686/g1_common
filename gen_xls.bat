@@ -1,11 +1,14 @@
 @echo off
 REM
-REM common\gen_xls.bat — 一键编译 xlsx 游戏配置 (Windows)
+REM common\gen_xls.bat - one-shot compile of xlsx game configs (Windows)
 REM
-REM 用法（从主仓根）：
-REM   .\common\gen_xls.bat [mode]      REM mode: all(默认)/client/server
-REM 或经控制台：
-REM   .\main.sh xls [mode]
+REM Usage (from the main repo root):
+REM   .\common\gen_xls.bat [mode]     REM mode: all (default) / client / server
+REM or via Git-Bash/WSL:
+REM   ./main.sh xls [mode]
+REM
+REM NOTE: keep this file ASCII-only; cmd.exe on GBK consoles mis-parses
+REM UTF-8 Chinese comments and corrupts the following line.
 REM
 setlocal
 set SCRIPT_DIR=%~dp0
