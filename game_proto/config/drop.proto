@@ -1,0 +1,45 @@
+
+/*
+* 本代码由xlsx工具生成，请勿手动修改
+*/
+
+syntax = "proto3";
+
+package g1.protocol;
+
+option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
+
+
+message DropGroupConfig {
+	int32 Groupid = 1; // 掉落组Id
+	int32 Subid = 2; // 子序号
+	string DropGroupName = 3; // 掉落组名
+	int32 DropWay = 4; // 选择方式
+	map<int32, int32> DropRateMap = 5; // 掉落概率表
+	int32 DropType = 6; // 产出控制
+	int32 DropCount = 7; // 执行次数
+	int32 Type = 8; // 组类型
+	int32 IsBan = 9; // 是否禁用
+	string Desc = 10; // 描述
+}
+
+message DropGroupConfigAry { 
+	repeated DropGroupConfig Ary = 1;
+}
+
+message DropItemConfig {
+	int32 DropItemId = 1; // 掉落物品Id
+	int32 DropId = 2; // 掉落Id
+	int32 ItemId = 3; // 物品Id
+	string ItemName = 4; // 物品名
+	int64 Count = 5; // 数量
+	int32 DropWay = 6; // 掉落方式
+	int32 Probability = 7; // 掉落概率
+	int32 IsRare = 8; // 是否罕见
+	int32 IsShow = 9; // 是否展示
+}
+
+message DropItemConfigAry { 
+	repeated DropItemConfig Ary = 1;
+}
+

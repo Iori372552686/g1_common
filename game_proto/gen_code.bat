@@ -60,6 +60,9 @@ if exist ..\protocol\database.pb.go (
     gofmt -w ..\protocol\database.pb.go
 )
 
+REM 复合键容器类型（Index2/3/4）已内置到 module/gamedata/index.go（手写），
+REM 不再随 cfgtool 生成、不再复制到 protocol 目录。
+
 echo ^✓ g1_common/protocol generated ^(..\protocol^)
 
 :end

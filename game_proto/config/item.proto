@@ -1,0 +1,91 @@
+
+/*
+* 本代码由xlsx工具生成，请勿手动修改
+*/
+
+syntax = "proto3";
+
+package g1.protocol;
+
+option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
+
+
+message ItemConfig {
+	int32 ItemId = 1; // 物品Id
+	string Name = 2; // 物品名
+	int32 Type = 3; // 大类
+	int32 MainType = 4; // 主类型
+	int32 SubType = 5; // 子类型
+	string Description = 6; // 描述
+	int32 Quality = 7; // 品质
+	string Icon = 8; // 图标
+	int32 BagType = 9; // 背包页签
+	int32 NeedLevel = 10; // 所需等级
+	string GetWayDes = 11; // 获取途径_描述
+	string GetWayJump = 12; // 获取途径_跳转
+	string EffectiveTime = 13; // 生效时间
+	string InvalidTime = 14; // 失效时间
+	int32 Combine = 15; // 是否合成
+	int32 Sale = 16; // 出售
+}
+
+message ItemConfigAry { 
+	repeated ItemConfig Ary = 1;
+}
+
+message ItemDecomposeConfig {
+	int32 Id = 1; // Id
+	int32 ItemId = 2; // 被分解道具Id
+	int32 OutputItemId = 3; // 产出道具Id
+	int32 OutputCount = 4; // 产出数量
+	int32 IsEnable = 5; // 是否启用
+}
+
+message ItemDecomposeConfigAry { 
+	repeated ItemDecomposeConfig Ary = 1;
+}
+
+message ItemRuleConfig {
+	int32 Id = 1; // 规则Id
+	string Name = 2; // 规则名
+	int32 CanExchange = 3; // 可交换
+	int32 CanUse = 4; // 可使用
+	int32 MaxOwnCount = 5; // 最大拥有数
+	int32 MaxOverlay = 6; // 单堆上限
+	int32 MaxUseCount = 7; // 最大使用次数
+	int32 MaxUseNumber = 8; // 单次使用数
+	int32 UseNumberInterval = 9; // 使用间隔
+	int32 Getuse = 10; // 获得即使用
+	int32 CanDecompose = 11; // 可分解
+	int32 CanRecycle = 12; // 可回收
+	int32 CanDrop = 13; // 可丢弃
+	int32 CanMail = 14; // 可邮寄
+	int32 TradeLimitDaily = 15; // 日交易上限
+}
+
+message ItemRuleConfigAry { 
+	repeated ItemRuleConfig Ary = 1;
+}
+
+message ItemRuleRefConfig {
+	int32 ItemId = 1; // 道具Id
+	int32 RuleId = 2; // 规则Id
+}
+
+message ItemRuleRefConfigAry { 
+	repeated ItemRuleRefConfig Ary = 1;
+}
+
+message ItemUseConfig {
+	int32 Id = 1; // 道具Id
+	int32 UseType = 2; // 使用类型
+	int32 UseId = 3; // 使用参数Id
+	int32 UseValue = 4; // 使用参数值
+	int32 UseCD = 5; // 使用CD
+	int32 IsEnable = 6; // 是否启用
+}
+
+message ItemUseConfigAry { 
+	repeated ItemUseConfig Ary = 1;
+}
+

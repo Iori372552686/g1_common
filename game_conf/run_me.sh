@@ -54,6 +54,9 @@ echo "  - 运行时数据(.conf): ${DATA_DIR}/"
 echo "  - 配置表 proto:      ${PROTO_DIR}/"
 echo "  - 查询代码(.gen.go): ${REPO_DIR}/"
 
-# 清理：cfgtool 的 -proto 输出可能混入 -proto-src 扫描到的 core/service/storage proto，
-# 只保留配置表 proto（enum_config/global_config/struct_config/xlsx_config）。
-find "${PROTO_DIR}" -maxdepth 1 -name '*.proto' ! -name 'enum_config.proto' ! -name 'global_config.proto' ! -name 'struct_config.proto' ! -name 'xlsx_config.proto' -delete 2>/dev/null || true
+# 清理：cfgtool 的 -proto 输出可能混入 -proto-src 扫描到的 core/service/storage proto。
+# 配置表 proto 现按功能名拆分（const/drop/item/obtain/texas/enum 等），
+# 删除所有非配置表 proto（保留白名单：功能名 proto + enum_config.proto）。
+# 注意：core proto 在 ../game_proto/core 目录，不会误删。
+find "${PROTO_DIR}" -maxdepth 1 -name '*.proto' -delete 2>/dev/null || true
+# cfgtool 已按功能名重新生成所有配置 proto，无需保留白名单兜底

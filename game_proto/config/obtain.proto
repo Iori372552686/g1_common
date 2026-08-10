@@ -1,0 +1,29 @@
+
+/*
+* 本代码由xlsx工具生成，请勿手动修改
+*/
+
+syntax = "proto3";
+
+package g1.protocol;
+
+option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
+
+
+message ObtainPolicyConfig {
+	string Source = 1; // 来源标识
+	int32 DisplayMode = 2; // 展示模式
+	int32 MergeMode = 3; // 合并模式
+	int32 MinQuality = 4; // 最低品质
+	int32 IncludeCurrency = 5; // 含货币
+	int32 MaxShowCount = 6; // 最大展示数
+	int32 RarePopupQuality = 7; // 稀有弹窗品质
+	int32 CooldownMs = 8; // 冷却毫秒
+	int32 IsEnable = 9; // 是否启用
+	string Desc = 10; // 描述
+}
+
+message ObtainPolicyConfigAry { 
+	repeated ObtainPolicyConfig Ary = 1;
+}
+

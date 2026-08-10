@@ -1,0 +1,31 @@
+
+/*
+* 本代码由xlsx工具生成，请勿手动修改
+*/
+
+syntax = "proto3";
+
+package g1.protocol;
+
+option go_package = "github.com/Iori372552686/g1_common/protocol;g1_protocol";
+
+
+message MallConfig {
+	int32 Id = 1; // id
+	int32 Type = 2; // 商品类型
+	string Name = 3; // 礼包名称
+	int32 PackageID = 4; // 礼包ID
+	int32 CostItemID = 5; // 购买货币ID
+	int32 CostItemCnt = 6; // 购买货币数量
+	string BeginTime = 7; // 限时开始时间
+	string EndTime = 8; // 限时结束时间
+	int32 BuyLimit = 9; // 限购次数
+	int32 DailyBuyLimit = 10; // 每日限购次数
+	int32 Lable = 11; // 标签
+	int32 Rmb = 12; // 对应充值表ID
+}
+
+message MallConfigAry { 
+	repeated MallConfig Ary = 1;
+}
+
