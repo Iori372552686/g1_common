@@ -12,9 +12,10 @@ set -euo pipefail
 
 CONF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-SYSTEM=$(go env GOOS)
-BIN="${CONF_DIR}/cfgtool"
-[ "${SYSTEM}" = "windows" ] && BIN="${CONF_DIR}/cfgtool.exe"
+# 优先 Windows 版 cfgtool.exe（Git Bash 与 WSL interop 均可直接运行）；
+# 无 exe 时回落无扩展名版本（原生 Linux 构建）
+BIN="${CONF_DIR}/cfgtool.exe"
+[ -f "${BIN}" ] || BIN="${CONF_DIR}/cfgtool"
 
 if [ ! -f "${BIN}" ]; then
     echo "[ERROR] ${BIN} not found. Build it: ./main.sh build cfgtool" >&2
@@ -60,3 +61,6 @@ skip "${TEXT_DIR}"  && echo "  - runtime data (.conf): ${TEXT_DIR}/"
 skip "${PROTO_DIR}" && echo "  - config protos:        ${PROTO_DIR}/"
 skip "${CODE_DIR}"  && echo "  - lookup code:          ${CODE_DIR}/"
 skip "${JSON_DIR}"  && echo "  - client data (.json):  ${JSON_DIR}/"
+
+# 上面的 skip&&echo 在目录未启用时整行退出码为 1，显式以 0 收尾
+exit 0

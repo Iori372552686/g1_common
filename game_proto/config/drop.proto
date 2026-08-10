@@ -31,10 +31,12 @@ message DropItemConfig {
 	int32 DropItemId = 1; // 掉落物品Id
 	int32 DropId = 2; // 掉落Id
 	int32 ItemId = 3; // 物品Id
-	int64 Count = 4; // 数量
-	int32 DropWay = 5; // 掉落方式
-	int32 Probability = 6; // 掉落概率
-	int32 IsRare = 7; // 是否罕见
+	string ItemName = 4; // 物品名
+	int64 Count = 5; // 数量
+	int32 DropWay = 6; // 掉落方式
+	int32 Probability = 7; // 掉落概率
+	int32 IsRare = 8; // 是否罕见
+	int32 IsShow = 9; // 是否展示
 }
 
 message DropItemConfigAry { 
