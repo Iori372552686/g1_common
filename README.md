@@ -15,8 +15,8 @@ g1_common/
 │   └── gen_code.bat     # proto → .pb.go 生成脚本（Windows）
 │
 ├── protocol/            # 生成的 *.pb.go（package g1_protocol，禁止手改）
-│   ├── *.pb.go
-│   └── index.gen.go
+│   └── *.pb.go
+
 │
 ├── game_conf/           # xlsx → 配置 工具链
 │   ├── cfgtool          # Linux 二进制
