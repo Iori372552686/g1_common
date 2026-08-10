@@ -47,7 +47,7 @@ echo "==> 生成配置（mode=${CONF_MODE}）..."
     -mode="${CONF_MODE}" \
     -module=github.com/Iori372552686/GoOne \
     -pb=github.com/Iori372552686/g1_common/protocol \
-    -proto-src=../game_proto/core
+    -proto-src=../game_proto;../../api/proto
 
 echo "✓ 配置生成完成"
 echo "  - 运行时数据(.conf): ${DATA_DIR}/"

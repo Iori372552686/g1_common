@@ -1,20 +1,34 @@
 @echo off
 REM
-REM common\gen_xls.bat - one-shot compile of xlsx game configs (Windows)
+REM common\gen_xls.bat - one-click xlsx config generation (mode=all)
 REM
-REM Usage (from the main repo root):
-REM   .\common\gen_xls.bat [mode]     REM mode: all (default) / client / server
-REM or via Git-Bash/WSL:
-REM   ./main.sh xls [mode]
+REM Run from the main repo root:  .\common\gen_xls.bat
+REM Dedicated one-click scripts:  .\common\gen_xls_server.bat (server)
+REM                                .\common\gen_xls_client.bat (client)
 REM
-REM NOTE: keep this file ASCII-only; cmd.exe on GBK consoles mis-parses
-REM UTF-8 Chinese comments and corrupts the following line.
+REM Environment lives HERE (edit paths in the section below if they change).
+REM
+REM NOTE: keep ASCII-only; cmd.exe on GBK consoles mis-parses UTF-8 comments.
 REM
 setlocal
 set SCRIPT_DIR=%~dp0
-set MODE=%1
-if "%MODE%"=="" set MODE=all
 
-cd /d "%SCRIPT_DIR%game_conf"
-call run_me.bat %MODE%
+REM ---- environment (edit here) ----
+for %%i in ("%SCRIPT_DIR%..") do set REPO_ROOT=%%~fi
+set XLSX_DIR=%SCRIPT_DIR%game_conf\xls
+set TEXT_DIR=%SCRIPT_DIR%game_data
+set PROTO_DIR=%SCRIPT_DIR%game_proto\config
+set CODE_DIR=%REPO_ROOT%\module\gamedata\repository
+set GEN_MODE=all
+set MODULE=github.com/Iori372552686/GoOne
+set PB_PATH=github.com/Iori372552686/g1_common/protocol
+set PROTO_SRC=%SCRIPT_DIR%game_proto;%REPO_ROOT%\api\proto
+
+call "%SCRIPT_DIR%game_conf\run_me.bat"
+set _rc=%ERRORLEVEL%
+
+echo.
+echo [done] press any key to exit...
+pause >nul
 endlocal
+exit /b %_rc%

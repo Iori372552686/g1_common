@@ -14,4 +14,9 @@ setlocal
 set SCRIPT_DIR=%~dp0
 cd /d "%SCRIPT_DIR%game_proto"
 call gen_code.bat
+
+REM keep the window open when double-clicked
+echo.
+echo [done] press any key to exit...
+pause >nul
 endlocal
