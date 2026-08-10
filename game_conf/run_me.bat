@@ -2,14 +2,21 @@
 REM
 REM game_conf\run_me.bat - xlsx config generator (minimal launcher)
 REM
+REM Invoked DIRECTLY (no call) from common\gen_xls*.bat - it takes over the
+REM whole flow and owns the tail (result block, pause, exit code). Double-
+REM clicking this file in game_conf\ also works (defaults below apply).
+REM
 REM Env overrides (set by common\gen_xls*.bat; empty value = skip that output):
 REM   XLSX_DIR TEXT_DIR PROTO_DIR CODE_DIR JSON_DIR BYTES_DIR LUA_DIR
 REM   GEN_MODE MODULE PB_PATH PROTO_SRC
-REM Defaults below apply when a variable is UNDEFINED (double-click here works).
+REM Defaults below apply when a variable is UNDEFINED.
 REM
 REM NOTE: keep ASCII-only; cmd.exe on GBK consoles mis-parses UTF-8 comments.
 REM
 setlocal
+
+REM enlarge console scrollback so the whole run stays visible when double-clicked
+powershell -NoProfile -Command "$h=$host.UI.RawUI;$b=$h.BufferSize;if($b.Height -lt 4000){$b.Height=4000;$h.BufferSize=$b}" >nul 2>&1
 
 for /f "tokens=2 delims=:" %%i in ('chcp') do set "_SAVED_CP=%%i"
 chcp 65001 >nul
@@ -17,8 +24,8 @@ chcp 65001 >nul
 set BIN=%~dp0cfgtool.exe
 if not exist "%BIN%" (
     echo [ERROR] %BIN% not found. Build it: .\main.sh build cfgtool
-    if defined _SAVED_CP chcp %_SAVED_CP% >nul
-    exit /b 1
+    set _rc=1
+    goto :exit
 )
 
 if not defined XLSX_DIR  set XLSX_DIR=%~dp0xls
@@ -44,17 +51,20 @@ for %%d in ("%TEXT_DIR%" "%PROTO_DIR%" "%CODE_DIR%" "%JSON_DIR%" "%BYTES_DIR%" "
 echo ^>^>^> generating configs ^(mode=%GEN_MODE%^) ...
 "%BIN%" %ARGS%
 set _rc=%ERRORLEVEL%
+
 if not %_rc%==0 (
     echo [ERROR] generation failed ^(exit code %_rc%^)
-    if defined _SAVED_CP chcp %_SAVED_CP% >nul
-    exit /b %_rc%
+) else (
+    echo [OK] configs generated:
+    if not "%TEXT_DIR%"==""  if not "%TEXT_DIR%"=="-"  echo   - runtime data ^(.conf^): %TEXT_DIR%\
+    if not "%PROTO_DIR%"=="" if not "%PROTO_DIR%"=="-" echo   - config protos:        %PROTO_DIR%\
+    if not "%CODE_DIR%"==""  if not "%CODE_DIR%"=="-"  echo   - lookup code:          %CODE_DIR%\
+    if not "%JSON_DIR%"==""  if not "%JSON_DIR%"=="-"  echo   - client data ^(.json^):  %JSON_DIR%\
 )
 
-echo [OK] configs generated:
-if not "%TEXT_DIR%"==""  if not "%TEXT_DIR%"=="-"  echo   - runtime data (.conf): %TEXT_DIR%\
-if not "%PROTO_DIR%"=="" if not "%PROTO_DIR%"=="-" echo   - config protos:        %PROTO_DIR%\
-if not "%CODE_DIR%"==""  if not "%CODE_DIR%"=="-"  echo   - lookup code:          %CODE_DIR%\
-if not "%JSON_DIR%"==""  if not "%JSON_DIR%"=="-"  echo   - client data (.json):  %JSON_DIR%\
-
+:exit
+echo.
+echo [done] press any key to exit...
+pause >nul
 if defined _SAVED_CP chcp %_SAVED_CP% >nul
-endlocal
+endlocal & exit /b %_rc%

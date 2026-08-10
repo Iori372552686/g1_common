@@ -24,11 +24,5 @@ set MODULE=github.com/Iori372552686/GoOne
 set PB_PATH=github.com/Iori372552686/g1_common/protocol
 set PROTO_SRC=%SCRIPT_DIR%game_proto;%REPO_ROOT%\api\proto
 
-call "%SCRIPT_DIR%game_conf\run_me.bat"
-set _rc=%ERRORLEVEL%
-
-echo.
-echo [done] press any key to exit...
-pause >nul
-endlocal
-exit /b %_rc%
+REM run_me.bat takes over from here (no call - it owns the tail: pause + exit code)
+"%SCRIPT_DIR%game_conf\run_me.bat"

@@ -35,8 +35,10 @@ g1_common/
 │
 ├── gen_proto.sh         # 一键编译 proto（调 game_proto/gen_code.sh）
 ├── gen_proto.bat
-├── gen_xls.sh           # 一键编译 xls 配置（调 game_conf/run_me.sh）
-├── gen_xls.bat
+├── gen_xls.sh           # 一键编译 xls 配置（调 game_conf/run_me.sh，mode 由参数指定）
+├── gen_xls.bat          # Windows：一键全量（mode=all）
+├── gen_xls_server.bat   # Windows：一键导出 server（main.sh xls 的默认模式）
+├── gen_xls_client.bat   # Windows：一键导出 client（输出暂为 %TEMP%\g1_client_output\）
 ├── go.mod               # module github.com/Iori372552686/g1_common
 └── README.md            # 本文档
 ```
@@ -49,8 +51,18 @@ g1_common/
 
 ```bash
 ./main.sh proto game     # 生成 protocol/*.pb.go
-./main.sh xls            # 生成 xlsx 配置（.conf + repository/.gen.go）
+./main.sh xls            # 生成 xlsx 配置（默认 mode=server；.conf + repository/.gen.go）
+./main.sh xls client     # 仅客户端标记字段
+./main.sh xls all        # 全部字段
 ./main.sh build cfgtool  # 重新编译 cfgtool 二进制到 game_conf/
+```
+
+Windows 一键脚本（双击或命令行，环境配置集中在各 bat 顶部）：
+
+```bat
+.\common\gen_xls.bat           REM 全量（mode=all）
+.\common\gen_xls_server.bat    REM 一键导出 server（默认模式）
+.\common\gen_xls_client.bat    REM 一键导出 client（临时输出，后期改 bat 指向真实客户端目录）
 ```
 
 ### 直接调用
@@ -61,6 +73,7 @@ g1_common/
 ./gen_proto.sh                       # 生成 proto
 ./gen_xls.sh                         # 生成 xls 配置（mode=all）
 ./gen_xls.sh server                  # 仅服务端配置
+./gen_xls.sh client                  # 仅客户端标记字段
 
 # 或进入子目录直接调底层脚本：
 cd game_proto && ./gen_code.sh

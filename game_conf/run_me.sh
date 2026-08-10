@@ -1,60 +1,62 @@
 #!/bin/bash
 #
-# game_conf/run_me.sh — 一键编译 xls 配置
+# game_conf/run_me.sh - xlsx config generator (minimal launcher)
 #
-# 从 common/game_conf/ 目录运行。读取 ./xls/*.xlsx，生成：
-#   - pb text (.conf) → ../game_data/                      （运行时配置）
-#   - proto 定义      → ../game_proto/config/               （配置表 proto）
-#   - Go 查询代码     → ../../module/gamedata/repository/   （生成 .gen.go）
-#
-# 用法：
-#   ./run_me.sh              # 默认全量生成
-#   ./run_me.sh server       # 仅服务端（mode=server）
-#
-# 也可经主仓控制台：./main.sh xls
+# Env overrides (set by common/gen_xls.sh; EMPTY value = skip that output):
+#   XLSX_DIR TEXT_DIR PROTO_DIR CODE_DIR JSON_DIR BYTES_DIR LUA_DIR
+#   GEN_MODE MODULE PB_PATH PROTO_SRC
+# Defaults below apply when a variable is UNDEFINED (running this script
+# directly in game_conf/ still works).
 #
 set -euo pipefail
 
+CONF_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 SYSTEM=$(go env GOOS)
-CONF_MODE="${1:-all}"
+BIN="${CONF_DIR}/cfgtool"
+[ "${SYSTEM}" = "windows" ] && BIN="${CONF_DIR}/cfgtool.exe"
 
-# 定位二进制
-if [ "${SYSTEM}" = "windows" ]; then
-    BIN=./cfgtool.exe
-else
-    BIN=./cfgtool
-fi
-
-if [ ! -x "${BIN}" ] && [ ! -f "${BIN}" ]; then
-    echo "错误：找不到 cfgtool 二进制（${BIN}）" >&2
-    echo "请先编译：在主仓根目录执行 ./main.sh build cfgtool" >&2
+if [ ! -f "${BIN}" ]; then
+    echo "[ERROR] ${BIN} not found. Build it: ./main.sh build cfgtool" >&2
     exit 1
 fi
 
-# 输出目录（相对 common/game_conf/）
-DATA_DIR=../game_data
-REPO_DIR=../../module/gamedata/repository
-PROTO_DIR=../game_proto/config
+# defaults when unset or empty ("-" = explicitly disabled, skip that output)
+# NOTE: relative paths are resolved against the current dir (game_conf/),
+# which keeps Git-Bash -> Windows cfgtool.exe argument conversion working.
+: "${XLSX_DIR:=./xls}"
+: "${TEXT_DIR:=../game_data}"
+: "${PROTO_DIR:=../game_proto/config}"
+: "${CODE_DIR:=../../module/gamedata/repository}"
+: "${GEN_MODE:=all}"
+: "${MODULE:=github.com/Iori372552686/GoOne}"
+: "${PB_PATH:=github.com/Iori372552686/g1_common/protocol}"
+: "${PROTO_SRC:=../game_proto;../../api/proto}"
+# optional outputs: default empty = not generated
+: "${JSON_DIR:=}"
+: "${BYTES_DIR:=}"
+: "${LUA_DIR:=}"
 
-mkdir -p "${DATA_DIR}" "${REPO_DIR}" "${PROTO_DIR}"
+skip() { [ -n "$1" ] && [ "$1" != "-" ]; }
 
-echo "==> 生成配置（mode=${CONF_MODE}）..."
-"${BIN}" \
-    -xlsx=./xls \
-    -text="${DATA_DIR}" \
-    -proto="${PROTO_DIR}" \
-    -code="${REPO_DIR}" \
-    -mode="${CONF_MODE}" \
-    -module=github.com/Iori372552686/GoOne \
-    -pb=github.com/Iori372552686/g1_common/protocol \
-    -proto-src=../game_proto;../../api/proto
+ARGS=(-xlsx="${XLSX_DIR}" -mode="${GEN_MODE}")
+skip "${TEXT_DIR}"  && ARGS+=(-text="${TEXT_DIR}")
+skip "${PROTO_DIR}" && ARGS+=(-proto="${PROTO_DIR}")
+skip "${CODE_DIR}"  && ARGS+=(-code="${CODE_DIR}")
+skip "${JSON_DIR}"  && ARGS+=(-json="${JSON_DIR}")
+skip "${BYTES_DIR}" && ARGS+=(-bytes="${BYTES_DIR}")
+skip "${LUA_DIR}"   && ARGS+=(-lua="${LUA_DIR}")
+ARGS+=(-module="${MODULE}" -pb="${PB_PATH}" -proto-src="${PROTO_SRC}")
 
-echo "✓ 配置生成完成"
-echo "  - 运行时数据(.conf): ${DATA_DIR}/"
-echo "  - 配置表 proto:      ${PROTO_DIR}/"
-echo "  - 查询代码(.gen.go): ${REPO_DIR}/"
+for d in "${TEXT_DIR}" "${PROTO_DIR}" "${CODE_DIR}" "${JSON_DIR}" "${BYTES_DIR}" "${LUA_DIR}"; do
+    skip "${d}" && mkdir -p "${d}"
+done
 
-# 不做清理：cfgtool 的 -proto 输出只包含本次生成的配置表 proto
-# （按功能名拆分：drop.proto / item.proto / mall.proto 等）。
-# 注意：不要在这里加 find -delete / 白名单删除——旧的 enum_config 白名单
-# 在 @ 命名改造后会把刚生成的配置 proto 全部删掉（曾导致 config/ 目录被清空）。
+echo "==> 生成配置（mode=${GEN_MODE}）..."
+"${BIN}" "${ARGS[@]}"
+
+echo "[OK] configs generated:"
+skip "${TEXT_DIR}"  && echo "  - runtime data (.conf): ${TEXT_DIR}/"
+skip "${PROTO_DIR}" && echo "  - config protos:        ${PROTO_DIR}/"
+skip "${CODE_DIR}"  && echo "  - lookup code:          ${CODE_DIR}/"
+skip "${JSON_DIR}"  && echo "  - client data (.json):  ${JSON_DIR}/"

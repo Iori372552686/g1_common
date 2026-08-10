@@ -10,8 +10,8 @@ game_conf/
 ├── cfgtool          # Linux 二进制（由主仓 tools/cfgtool/ 编译）
 ├── cfgtool.exe      # Windows 二进制
 ├── xls/             # 策划填写的 xlsx 源表（唯一数据源）
-├── run_me.sh        # Linux/macOS 一键生成脚本
-├── run_me.bat       # Windows 一键生成脚本
+├── run_me.sh        # Linux/macOS 一键生成脚本（mode 由参数指定）
+├── run_me.bat       # Windows 极简执行器（参数经环境变量传入，见 common/gen_xls*.bat）
 └── readme.md        # 本文档
 ```
 
@@ -27,17 +27,23 @@ game_conf/
 # Linux / macOS / Git-Bash
 ./run_me.sh              # 全量生成（mode=all）
 ./run_me.sh server       # 仅服务端配置
-
-# Windows
-run_me.bat
-run_me.bat server
+./run_me.sh client       # 仅客户端标记字段
 ```
 
-或经**主仓控制台**（从主仓根目录）：
+Windows 推荐使用 `common/` 下的**一键脚本**（环境配置集中在各 bat 顶部，可直接修改）：
+
+```bat
+.\common\gen_xls.bat           REM 全量（mode=all）
+.\common\gen_xls_server.bat    REM 一键导出 server（默认模式）
+.\common\gen_xls_client.bat    REM 一键导出 client（输出暂为 %TEMP%\g1_client_output\，后期改 bat 指向真实客户端目录）
+```
+
+或经**主仓控制台**（从主仓根目录，**默认 server**）：
 
 ```bash
-./main.sh xls            # 一键生成
-./main.sh xls server     # 仅服务端
+./main.sh xls            # 默认 mode=server
+./main.sh xls client     # 仅客户端标记字段
+./main.sh xls all        # 全部字段
 ```
 
 ### 生成产物
@@ -47,8 +53,8 @@ run_me.bat server
 | 产物 | 输出路径 | 说明 |
 |------|---------|------|
 | 运行时数据 `.conf` | `../game_data/` | pb text 格式，服务启动时由 `gamedata.InitLocal` 读取 |
-| 配置表 proto | `../game_proto/config/` | xlsx 结构对应的 proto 定义（4 个：enum/global/struct/xlsx_config） |
-| Go 查询代码 `.gen.go` | `../../module/gamedata/repository/<sheet>/` | 每个表一个包，含 `GetById/Filter/Range` 等查询 API |
+| 配置表 proto | `../game_proto/config/` | xlsx 结构对应的 proto 定义（按功能名拆分：drop/item/mall/...） |
+| Go 查询代码 `.gen.go` | `../../module/gamedata/repository/<feature>/` | 每个功能一个子目录，含 `GetByXxx/GroupByXxx/Range` 等查询 API |
 
 ### 重新编译二进制
 
@@ -110,7 +116,7 @@ GO_BUILD_TAGS=config_etcd ./main.sh build cfgtool # etcd 上传后端（需 buil
 
 ### 使用运行脚本 (bat / sh)
 
-项目包含一个批处理脚本 `run_me.bat`，用于简化执行流程。编辑该脚本设置您的参数，然后直接运行：
+Windows 一键脚本为 `common/gen_xls.bat` / `gen_xls_server.bat` / `gen_xls_client.bat`（环境配置在各自顶部，`game_conf/run_me.bat` 是它们的极简执行器）。也可以手动直接执行 cfgtool：
 
 ```bash
 cfgtool.exe ^
@@ -341,15 +347,15 @@ message MapConfig {
 
 #### 使用步骤
 
-1. **准备外部 proto 目录**：所有 `.proto` 文件放在一个根目录下。GoOne 中通常指向 `common/game_proto/core`（只扫 core，不要扫 config/，否则与生成的配置 proto 符号重定义），工具会递归扫描该目录下全部 `.proto`。
+1. **准备外部 proto 目录**：所有 `.proto` 文件放在一个根目录下。GoOne 中 `run_me` 已配置为 `-proto-src=../game_proto;../../api/proto`（多目录用分号分隔，`game_proto` 为协议根、`api/proto` 含 service 协议依赖的 goone/options），工具会递归扫描各目录下全部 `.proto` 并按 import 路径对齐（自动跳过 cfgtool 自己的 `config/` 输出目录，避免符号重复定义）。
 
 2. **启动时指定 `-proto-src`**：
    ```bash
-   cfgtool.exe -xlsx=./xls -proto-src=../game_proto/core -json=./gen/json ...
+   cfgtool.exe -xlsx=./xls -proto-src=../game_proto;../../api/proto -json=./gen/json ...
    ```
    留空则不启用外部引用（不影响现有功能）。
 
-   > **容错说明**：若目录下部分 proto import 了仓库外文件（如 `google/protobuf/*.proto`、`goone/options/*.proto`），工具会自动跳过这些文件，不影响其余 proto 的加载。
+   > **容错说明**：若部分 proto import 了外部不存在的文件，工具会整体解析失败时回退为逐文件解析，自动跳过无法解析的文件，不影响其余 proto 的加载。
 
 3. **xlsx 类型列写 `pb.MessageName`**：
    ```
@@ -603,7 +609,7 @@ item.Range(c => { console.log(c.Name); return true; }); // 遍历
   | `lua` | `-lua` 目录 | `.lua` | `text` |
 
 - 每个**文件**作为一个配置项发布，`dataID` = 文件名（如 `ItemConfig.json`）。大小写不敏感，重复 token 自动去重，未知 token 记 warn 跳过。
-- 上传发生在 `GenData()` 之后；GenData 末尾会清空内存表，故上传阶段直接扫描各产物目录（而非读内存）。
+- 上传发生在 `GenData()` 之后；内存态清理统一在 `main.run()` 各 Gen* 完成后进行，上传阶段直接扫描各产物目录（而非读内存）。
 
 ### Key 命名规范与永久性（etcd）
 
