@@ -325,6 +325,9 @@ enum CMD {
     ROOM_CENTER_INNER_TICK_REQ = 0x0B1008; // tick
     ROOM_CENTER_INNER_TICK_RSP = 0x0B1009;
 
+    ROOM_CENTER_INNER_QUICK_START_ROLLBACK_REQ = 0x0B100A; // 快速开始占位回滚（加入失败归还座位）
+    ROOM_CENTER_INNER_QUICK_START_ROLLBACK_RSP = 0x0B100B;
+
     //----- texassvr(server_type  0x50) -----
     //------------- c2s cmd --------------
 

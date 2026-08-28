@@ -874,6 +874,15 @@ message QuickStartRsp {
     PlayerTexasGameCardData hand_info  = 5; // 玩家手牌信息
 }
 
+// CMD_ROOM_CENTER_INNER_QUICK_START_ROLLBACK_REQ 快速开始占位回滚
+// （mainsvr 调游戏服加入对局失败时，归还 roomcenter 侧的座位占位）
+message QuickStartRollbackReq {
+    uint64     room_id    = 1;  // 房间ID
+    GameTypeId game_id    = 2;  // 游戏id
+    CoinType   coin_type  = 3;  // 币种类型
+    RoomStage  stage      = 4;  // stage
+}
+
 // MAIN_MALL_BUY_PACKAGE_REQ
 message MallBuyPackageReq {
     int32 conf_id = 1;

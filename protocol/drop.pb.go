@@ -189,12 +189,10 @@ type DropItemConfig struct {
 	DropItemId    int32                  `protobuf:"varint,1,opt,name=DropItemId,proto3" json:"DropItemId,omitempty"`   // 掉落物品Id
 	DropId        int32                  `protobuf:"varint,2,opt,name=DropId,proto3" json:"DropId,omitempty"`           // 掉落Id
 	ItemId        int32                  `protobuf:"varint,3,opt,name=ItemId,proto3" json:"ItemId,omitempty"`           // 物品Id
-	ItemName      string                 `protobuf:"bytes,4,opt,name=ItemName,proto3" json:"ItemName,omitempty"`        // 物品名
-	Count         int64                  `protobuf:"varint,5,opt,name=Count,proto3" json:"Count,omitempty"`             // 数量
-	DropWay       int32                  `protobuf:"varint,6,opt,name=DropWay,proto3" json:"DropWay,omitempty"`         // 掉落方式
-	Probability   int32                  `protobuf:"varint,7,opt,name=Probability,proto3" json:"Probability,omitempty"` // 掉落概率
-	IsRare        int32                  `protobuf:"varint,8,opt,name=IsRare,proto3" json:"IsRare,omitempty"`           // 是否罕见
-	IsShow        int32                  `protobuf:"varint,9,opt,name=IsShow,proto3" json:"IsShow,omitempty"`           // 是否展示
+	Count         int64                  `protobuf:"varint,4,opt,name=Count,proto3" json:"Count,omitempty"`             // 数量
+	DropWay       int32                  `protobuf:"varint,5,opt,name=DropWay,proto3" json:"DropWay,omitempty"`         // 掉落方式
+	Probability   int32                  `protobuf:"varint,6,opt,name=Probability,proto3" json:"Probability,omitempty"` // 掉落概率
+	IsRare        int32                  `protobuf:"varint,7,opt,name=IsRare,proto3" json:"IsRare,omitempty"`           // 是否罕见
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -250,13 +248,6 @@ func (x *DropItemConfig) GetItemId() int32 {
 	return 0
 }
 
-func (x *DropItemConfig) GetItemName() string {
-	if x != nil {
-		return x.ItemName
-	}
-	return ""
-}
-
 func (x *DropItemConfig) GetCount() int64 {
 	if x != nil {
 		return x.Count
@@ -281,13 +272,6 @@ func (x *DropItemConfig) GetProbability() int32 {
 func (x *DropItemConfig) GetIsRare() int32 {
 	if x != nil {
 		return x.IsRare
-	}
-	return 0
-}
-
-func (x *DropItemConfig) GetIsShow() int32 {
-	if x != nil {
-		return x.IsShow
 	}
 	return 0
 }
@@ -357,19 +341,17 @@ const file_config_drop_proto_rawDesc = "" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
 	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"D\n" +
 	"\x12DropGroupConfigAry\x12.\n" +
-	"\x03Ary\x18\x01 \x03(\v2\x1c.g1.protocol.DropGroupConfigR\x03Ary\"\xfe\x01\n" +
+	"\x03Ary\x18\x01 \x03(\v2\x1c.g1.protocol.DropGroupConfigR\x03Ary\"\xca\x01\n" +
 	"\x0eDropItemConfig\x12\x1e\n" +
 	"\n" +
 	"DropItemId\x18\x01 \x01(\x05R\n" +
 	"DropItemId\x12\x16\n" +
 	"\x06DropId\x18\x02 \x01(\x05R\x06DropId\x12\x16\n" +
-	"\x06ItemId\x18\x03 \x01(\x05R\x06ItemId\x12\x1a\n" +
-	"\bItemName\x18\x04 \x01(\tR\bItemName\x12\x14\n" +
-	"\x05Count\x18\x05 \x01(\x03R\x05Count\x12\x18\n" +
-	"\aDropWay\x18\x06 \x01(\x05R\aDropWay\x12 \n" +
-	"\vProbability\x18\a \x01(\x05R\vProbability\x12\x16\n" +
-	"\x06IsRare\x18\b \x01(\x05R\x06IsRare\x12\x16\n" +
-	"\x06IsShow\x18\t \x01(\x05R\x06IsShow\"B\n" +
+	"\x06ItemId\x18\x03 \x01(\x05R\x06ItemId\x12\x14\n" +
+	"\x05Count\x18\x04 \x01(\x03R\x05Count\x12\x18\n" +
+	"\aDropWay\x18\x05 \x01(\x05R\aDropWay\x12 \n" +
+	"\vProbability\x18\x06 \x01(\x05R\vProbability\x12\x16\n" +
+	"\x06IsRare\x18\a \x01(\x05R\x06IsRare\"B\n" +
 	"\x11DropItemConfigAry\x12-\n" +
 	"\x03Ary\x18\x01 \x03(\v2\x1b.g1.protocol.DropItemConfigR\x03AryB9Z7github.com/Iori372552686/g1_common/protocol;g1_protocolb\x06proto3"
 

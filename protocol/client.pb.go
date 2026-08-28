@@ -8213,6 +8213,76 @@ func (x *QuickStartRsp) GetHandInfo() *PlayerTexasGameCardData {
 	return nil
 }
 
+// CMD_ROOM_CENTER_INNER_QUICK_START_ROLLBACK_REQ 快速开始占位回滚
+// （mainsvr 调游戏服加入对局失败时，归还 roomcenter 侧的座位占位）
+type QuickStartRollbackReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                 // 房间ID
+	GameId        GameTypeId             `protobuf:"varint,2,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`     // 游戏id
+	CoinType      CoinType               `protobuf:"varint,3,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
+	Stage         RoomStage              `protobuf:"varint,4,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                      // stage
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *QuickStartRollbackReq) Reset() {
+	*x = QuickStartRollbackReq{}
+	mi := &file_core_client_proto_msgTypes[152]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *QuickStartRollbackReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*QuickStartRollbackReq) ProtoMessage() {}
+
+func (x *QuickStartRollbackReq) ProtoReflect() protoreflect.Message {
+	mi := &file_core_client_proto_msgTypes[152]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use QuickStartRollbackReq.ProtoReflect.Descriptor instead.
+func (*QuickStartRollbackReq) Descriptor() ([]byte, []int) {
+	return file_core_client_proto_rawDescGZIP(), []int{152}
+}
+
+func (x *QuickStartRollbackReq) GetRoomId() uint64 {
+	if x != nil {
+		return x.RoomId
+	}
+	return 0
+}
+
+func (x *QuickStartRollbackReq) GetGameId() GameTypeId {
+	if x != nil {
+		return x.GameId
+	}
+	return GameTypeId_TEXAS_MODE_START
+}
+
+func (x *QuickStartRollbackReq) GetCoinType() CoinType {
+	if x != nil {
+		return x.CoinType
+	}
+	return CoinType_COIN_NONE
+}
+
+func (x *QuickStartRollbackReq) GetStage() RoomStage {
+	if x != nil {
+		return x.Stage
+	}
+	return RoomStage_Free
+}
+
 // MAIN_MALL_BUY_PACKAGE_REQ
 type MallBuyPackageReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -8223,7 +8293,7 @@ type MallBuyPackageReq struct {
 
 func (x *MallBuyPackageReq) Reset() {
 	*x = MallBuyPackageReq{}
-	mi := &file_core_client_proto_msgTypes[152]
+	mi := &file_core_client_proto_msgTypes[153]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8235,7 +8305,7 @@ func (x *MallBuyPackageReq) String() string {
 func (*MallBuyPackageReq) ProtoMessage() {}
 
 func (x *MallBuyPackageReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[152]
+	mi := &file_core_client_proto_msgTypes[153]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8248,7 +8318,7 @@ func (x *MallBuyPackageReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallBuyPackageReq.ProtoReflect.Descriptor instead.
 func (*MallBuyPackageReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{152}
+	return file_core_client_proto_rawDescGZIP(), []int{153}
 }
 
 func (x *MallBuyPackageReq) GetConfId() int32 {
@@ -8267,7 +8337,7 @@ type MallBuyPackageRsp struct {
 
 func (x *MallBuyPackageRsp) Reset() {
 	*x = MallBuyPackageRsp{}
-	mi := &file_core_client_proto_msgTypes[153]
+	mi := &file_core_client_proto_msgTypes[154]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8279,7 +8349,7 @@ func (x *MallBuyPackageRsp) String() string {
 func (*MallBuyPackageRsp) ProtoMessage() {}
 
 func (x *MallBuyPackageRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[153]
+	mi := &file_core_client_proto_msgTypes[154]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8292,7 +8362,7 @@ func (x *MallBuyPackageRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallBuyPackageRsp.ProtoReflect.Descriptor instead.
 func (*MallBuyPackageRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{153}
+	return file_core_client_proto_rawDescGZIP(), []int{154}
 }
 
 func (x *MallBuyPackageRsp) GetRet() *Ret {
@@ -8313,7 +8383,7 @@ type MallRechargeReq struct {
 
 func (x *MallRechargeReq) Reset() {
 	*x = MallRechargeReq{}
-	mi := &file_core_client_proto_msgTypes[154]
+	mi := &file_core_client_proto_msgTypes[155]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8325,7 +8395,7 @@ func (x *MallRechargeReq) String() string {
 func (*MallRechargeReq) ProtoMessage() {}
 
 func (x *MallRechargeReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[154]
+	mi := &file_core_client_proto_msgTypes[155]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8338,7 +8408,7 @@ func (x *MallRechargeReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallRechargeReq.ProtoReflect.Descriptor instead.
 func (*MallRechargeReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{154}
+	return file_core_client_proto_rawDescGZIP(), []int{155}
 }
 
 func (x *MallRechargeReq) GetConfId() int32 {
@@ -8364,7 +8434,7 @@ type MallRechargeRsp struct {
 
 func (x *MallRechargeRsp) Reset() {
 	*x = MallRechargeRsp{}
-	mi := &file_core_client_proto_msgTypes[155]
+	mi := &file_core_client_proto_msgTypes[156]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8376,7 +8446,7 @@ func (x *MallRechargeRsp) String() string {
 func (*MallRechargeRsp) ProtoMessage() {}
 
 func (x *MallRechargeRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[155]
+	mi := &file_core_client_proto_msgTypes[156]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8389,7 +8459,7 @@ func (x *MallRechargeRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallRechargeRsp.ProtoReflect.Descriptor instead.
 func (*MallRechargeRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{155}
+	return file_core_client_proto_rawDescGZIP(), []int{156}
 }
 
 func (x *MallRechargeRsp) GetRet() *Ret {
@@ -8411,7 +8481,7 @@ type MysqlInnerUpdateReq struct {
 
 func (x *MysqlInnerUpdateReq) Reset() {
 	*x = MysqlInnerUpdateReq{}
-	mi := &file_core_client_proto_msgTypes[156]
+	mi := &file_core_client_proto_msgTypes[157]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8423,7 +8493,7 @@ func (x *MysqlInnerUpdateReq) String() string {
 func (*MysqlInnerUpdateReq) ProtoMessage() {}
 
 func (x *MysqlInnerUpdateReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[156]
+	mi := &file_core_client_proto_msgTypes[157]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8436,7 +8506,7 @@ func (x *MysqlInnerUpdateReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MysqlInnerUpdateReq.ProtoReflect.Descriptor instead.
 func (*MysqlInnerUpdateReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{156}
+	return file_core_client_proto_rawDescGZIP(), []int{157}
 }
 
 func (x *MysqlInnerUpdateReq) GetId() uint64 {
@@ -8469,7 +8539,7 @@ type MysqlInnerUpdateRsp struct {
 
 func (x *MysqlInnerUpdateRsp) Reset() {
 	*x = MysqlInnerUpdateRsp{}
-	mi := &file_core_client_proto_msgTypes[157]
+	mi := &file_core_client_proto_msgTypes[158]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8481,7 +8551,7 @@ func (x *MysqlInnerUpdateRsp) String() string {
 func (*MysqlInnerUpdateRsp) ProtoMessage() {}
 
 func (x *MysqlInnerUpdateRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[157]
+	mi := &file_core_client_proto_msgTypes[158]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8494,7 +8564,7 @@ func (x *MysqlInnerUpdateRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MysqlInnerUpdateRsp.ProtoReflect.Descriptor instead.
 func (*MysqlInnerUpdateRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{157}
+	return file_core_client_proto_rawDescGZIP(), []int{158}
 }
 
 func (x *MysqlInnerUpdateRsp) GetRet() *Ret {
@@ -8519,7 +8589,7 @@ type QueryRoomInfoReq struct {
 
 func (x *QueryRoomInfoReq) Reset() {
 	*x = QueryRoomInfoReq{}
-	mi := &file_core_client_proto_msgTypes[158]
+	mi := &file_core_client_proto_msgTypes[159]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8531,7 +8601,7 @@ func (x *QueryRoomInfoReq) String() string {
 func (*QueryRoomInfoReq) ProtoMessage() {}
 
 func (x *QueryRoomInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[158]
+	mi := &file_core_client_proto_msgTypes[159]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8544,7 +8614,7 @@ func (x *QueryRoomInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryRoomInfoReq.ProtoReflect.Descriptor instead.
 func (*QueryRoomInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{158}
+	return file_core_client_proto_rawDescGZIP(), []int{159}
 }
 
 func (x *QueryRoomInfoReq) GetRoomId() uint64 {
@@ -8606,7 +8676,7 @@ type QueryRoomInfoRsp struct {
 
 func (x *QueryRoomInfoRsp) Reset() {
 	*x = QueryRoomInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[159]
+	mi := &file_core_client_proto_msgTypes[160]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8618,7 +8688,7 @@ func (x *QueryRoomInfoRsp) String() string {
 func (*QueryRoomInfoRsp) ProtoMessage() {}
 
 func (x *QueryRoomInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[159]
+	mi := &file_core_client_proto_msgTypes[160]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8631,7 +8701,7 @@ func (x *QueryRoomInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryRoomInfoRsp.ProtoReflect.Descriptor instead.
 func (*QueryRoomInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{159}
+	return file_core_client_proto_rawDescGZIP(), []int{160}
 }
 
 func (x *QueryRoomInfoRsp) GetRet() *Ret {
@@ -8664,7 +8734,7 @@ type QueryPlayerInfoReq struct {
 
 func (x *QueryPlayerInfoReq) Reset() {
 	*x = QueryPlayerInfoReq{}
-	mi := &file_core_client_proto_msgTypes[160]
+	mi := &file_core_client_proto_msgTypes[161]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8676,7 +8746,7 @@ func (x *QueryPlayerInfoReq) String() string {
 func (*QueryPlayerInfoReq) ProtoMessage() {}
 
 func (x *QueryPlayerInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[160]
+	mi := &file_core_client_proto_msgTypes[161]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8689,7 +8759,7 @@ func (x *QueryPlayerInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryPlayerInfoReq.ProtoReflect.Descriptor instead.
 func (*QueryPlayerInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{160}
+	return file_core_client_proto_rawDescGZIP(), []int{161}
 }
 
 func (x *QueryPlayerInfoReq) GetUid() uint64 {
@@ -8758,7 +8828,7 @@ type QueryPlayerInfoRsp struct {
 
 func (x *QueryPlayerInfoRsp) Reset() {
 	*x = QueryPlayerInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[161]
+	mi := &file_core_client_proto_msgTypes[162]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8770,7 +8840,7 @@ func (x *QueryPlayerInfoRsp) String() string {
 func (*QueryPlayerInfoRsp) ProtoMessage() {}
 
 func (x *QueryPlayerInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[161]
+	mi := &file_core_client_proto_msgTypes[162]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8783,7 +8853,7 @@ func (x *QueryPlayerInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryPlayerInfoRsp.ProtoReflect.Descriptor instead.
 func (*QueryPlayerInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{161}
+	return file_core_client_proto_rawDescGZIP(), []int{162}
 }
 
 func (x *QueryPlayerInfoRsp) GetRet() *Ret {
@@ -8809,7 +8879,7 @@ type QueryGameInfoReq struct {
 
 func (x *QueryGameInfoReq) Reset() {
 	*x = QueryGameInfoReq{}
-	mi := &file_core_client_proto_msgTypes[162]
+	mi := &file_core_client_proto_msgTypes[163]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8821,7 +8891,7 @@ func (x *QueryGameInfoReq) String() string {
 func (*QueryGameInfoReq) ProtoMessage() {}
 
 func (x *QueryGameInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[162]
+	mi := &file_core_client_proto_msgTypes[163]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8834,7 +8904,7 @@ func (x *QueryGameInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryGameInfoReq.ProtoReflect.Descriptor instead.
 func (*QueryGameInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{162}
+	return file_core_client_proto_rawDescGZIP(), []int{163}
 }
 
 func (x *QueryGameInfoReq) GetGameId() string {
@@ -8854,7 +8924,7 @@ type QueryGameInfoRsp struct {
 
 func (x *QueryGameInfoRsp) Reset() {
 	*x = QueryGameInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[163]
+	mi := &file_core_client_proto_msgTypes[164]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8866,7 +8936,7 @@ func (x *QueryGameInfoRsp) String() string {
 func (*QueryGameInfoRsp) ProtoMessage() {}
 
 func (x *QueryGameInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[163]
+	mi := &file_core_client_proto_msgTypes[164]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8879,7 +8949,7 @@ func (x *QueryGameInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryGameInfoRsp.ProtoReflect.Descriptor instead.
 func (*QueryGameInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{163}
+	return file_core_client_proto_rawDescGZIP(), []int{164}
 }
 
 func (x *QueryGameInfoRsp) GetRet() *Ret {
@@ -8907,7 +8977,7 @@ type UseItemReq struct {
 
 func (x *UseItemReq) Reset() {
 	*x = UseItemReq{}
-	mi := &file_core_client_proto_msgTypes[164]
+	mi := &file_core_client_proto_msgTypes[165]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8919,7 +8989,7 @@ func (x *UseItemReq) String() string {
 func (*UseItemReq) ProtoMessage() {}
 
 func (x *UseItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[164]
+	mi := &file_core_client_proto_msgTypes[165]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8932,7 +9002,7 @@ func (x *UseItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UseItemReq.ProtoReflect.Descriptor instead.
 func (*UseItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{164}
+	return file_core_client_proto_rawDescGZIP(), []int{165}
 }
 
 func (x *UseItemReq) GetItemId() int32 {
@@ -8958,7 +9028,7 @@ type UseItemRsp struct {
 
 func (x *UseItemRsp) Reset() {
 	*x = UseItemRsp{}
-	mi := &file_core_client_proto_msgTypes[165]
+	mi := &file_core_client_proto_msgTypes[166]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8970,7 +9040,7 @@ func (x *UseItemRsp) String() string {
 func (*UseItemRsp) ProtoMessage() {}
 
 func (x *UseItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[165]
+	mi := &file_core_client_proto_msgTypes[166]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8983,7 +9053,7 @@ func (x *UseItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UseItemRsp.ProtoReflect.Descriptor instead.
 func (*UseItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{165}
+	return file_core_client_proto_rawDescGZIP(), []int{166}
 }
 
 func (x *UseItemRsp) GetRet() *Ret {
@@ -9004,7 +9074,7 @@ type SellItemReq struct {
 
 func (x *SellItemReq) Reset() {
 	*x = SellItemReq{}
-	mi := &file_core_client_proto_msgTypes[166]
+	mi := &file_core_client_proto_msgTypes[167]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9016,7 +9086,7 @@ func (x *SellItemReq) String() string {
 func (*SellItemReq) ProtoMessage() {}
 
 func (x *SellItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[166]
+	mi := &file_core_client_proto_msgTypes[167]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9029,7 +9099,7 @@ func (x *SellItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SellItemReq.ProtoReflect.Descriptor instead.
 func (*SellItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{166}
+	return file_core_client_proto_rawDescGZIP(), []int{167}
 }
 
 func (x *SellItemReq) GetItemId() int32 {
@@ -9055,7 +9125,7 @@ type SellItemRsp struct {
 
 func (x *SellItemRsp) Reset() {
 	*x = SellItemRsp{}
-	mi := &file_core_client_proto_msgTypes[167]
+	mi := &file_core_client_proto_msgTypes[168]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9067,7 +9137,7 @@ func (x *SellItemRsp) String() string {
 func (*SellItemRsp) ProtoMessage() {}
 
 func (x *SellItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[167]
+	mi := &file_core_client_proto_msgTypes[168]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9080,7 +9150,7 @@ func (x *SellItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SellItemRsp.ProtoReflect.Descriptor instead.
 func (*SellItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{167}
+	return file_core_client_proto_rawDescGZIP(), []int{168}
 }
 
 func (x *SellItemRsp) GetRet() *Ret {
@@ -9101,7 +9171,7 @@ type DecomposeItemReq struct {
 
 func (x *DecomposeItemReq) Reset() {
 	*x = DecomposeItemReq{}
-	mi := &file_core_client_proto_msgTypes[168]
+	mi := &file_core_client_proto_msgTypes[169]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9113,7 +9183,7 @@ func (x *DecomposeItemReq) String() string {
 func (*DecomposeItemReq) ProtoMessage() {}
 
 func (x *DecomposeItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[168]
+	mi := &file_core_client_proto_msgTypes[169]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9126,7 +9196,7 @@ func (x *DecomposeItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecomposeItemReq.ProtoReflect.Descriptor instead.
 func (*DecomposeItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{168}
+	return file_core_client_proto_rawDescGZIP(), []int{169}
 }
 
 func (x *DecomposeItemReq) GetItemId() int32 {
@@ -9153,7 +9223,7 @@ type DecomposeItemRsp struct {
 
 func (x *DecomposeItemRsp) Reset() {
 	*x = DecomposeItemRsp{}
-	mi := &file_core_client_proto_msgTypes[169]
+	mi := &file_core_client_proto_msgTypes[170]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9165,7 +9235,7 @@ func (x *DecomposeItemRsp) String() string {
 func (*DecomposeItemRsp) ProtoMessage() {}
 
 func (x *DecomposeItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[169]
+	mi := &file_core_client_proto_msgTypes[170]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9178,7 +9248,7 @@ func (x *DecomposeItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecomposeItemRsp.ProtoReflect.Descriptor instead.
 func (*DecomposeItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{169}
+	return file_core_client_proto_rawDescGZIP(), []int{170}
 }
 
 func (x *DecomposeItemRsp) GetRet() *Ret {
@@ -9207,7 +9277,7 @@ type QueryBackpackReq struct {
 
 func (x *QueryBackpackReq) Reset() {
 	*x = QueryBackpackReq{}
-	mi := &file_core_client_proto_msgTypes[170]
+	mi := &file_core_client_proto_msgTypes[171]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9219,7 +9289,7 @@ func (x *QueryBackpackReq) String() string {
 func (*QueryBackpackReq) ProtoMessage() {}
 
 func (x *QueryBackpackReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[170]
+	mi := &file_core_client_proto_msgTypes[171]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9232,7 +9302,7 @@ func (x *QueryBackpackReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryBackpackReq.ProtoReflect.Descriptor instead.
 func (*QueryBackpackReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{170}
+	return file_core_client_proto_rawDescGZIP(), []int{171}
 }
 
 func (x *QueryBackpackReq) GetBagType() int32 {
@@ -9270,7 +9340,7 @@ type QueryBackpackRsp struct {
 
 func (x *QueryBackpackRsp) Reset() {
 	*x = QueryBackpackRsp{}
-	mi := &file_core_client_proto_msgTypes[171]
+	mi := &file_core_client_proto_msgTypes[172]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9282,7 +9352,7 @@ func (x *QueryBackpackRsp) String() string {
 func (*QueryBackpackRsp) ProtoMessage() {}
 
 func (x *QueryBackpackRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[171]
+	mi := &file_core_client_proto_msgTypes[172]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9295,7 +9365,7 @@ func (x *QueryBackpackRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryBackpackRsp.ProtoReflect.Descriptor instead.
 func (*QueryBackpackRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{171}
+	return file_core_client_proto_rawDescGZIP(), []int{172}
 }
 
 func (x *QueryBackpackRsp) GetRet() *Ret {
@@ -9350,7 +9420,7 @@ type BatchAddItemReq struct {
 
 func (x *BatchAddItemReq) Reset() {
 	*x = BatchAddItemReq{}
-	mi := &file_core_client_proto_msgTypes[172]
+	mi := &file_core_client_proto_msgTypes[173]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9362,7 +9432,7 @@ func (x *BatchAddItemReq) String() string {
 func (*BatchAddItemReq) ProtoMessage() {}
 
 func (x *BatchAddItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[172]
+	mi := &file_core_client_proto_msgTypes[173]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9375,7 +9445,7 @@ func (x *BatchAddItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BatchAddItemReq.ProtoReflect.Descriptor instead.
 func (*BatchAddItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{172}
+	return file_core_client_proto_rawDescGZIP(), []int{173}
 }
 
 func (x *BatchAddItemReq) GetItems() []*PbItem {
@@ -9394,7 +9464,7 @@ type BatchAddItemRsp struct {
 
 func (x *BatchAddItemRsp) Reset() {
 	*x = BatchAddItemRsp{}
-	mi := &file_core_client_proto_msgTypes[173]
+	mi := &file_core_client_proto_msgTypes[174]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9406,7 +9476,7 @@ func (x *BatchAddItemRsp) String() string {
 func (*BatchAddItemRsp) ProtoMessage() {}
 
 func (x *BatchAddItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[173]
+	mi := &file_core_client_proto_msgTypes[174]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9419,7 +9489,7 @@ func (x *BatchAddItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BatchAddItemRsp.ProtoReflect.Descriptor instead.
 func (*BatchAddItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{173}
+	return file_core_client_proto_rawDescGZIP(), []int{174}
 }
 
 func (x *BatchAddItemRsp) GetRet() *Ret {
@@ -9445,7 +9515,7 @@ type ObtainRewardItem struct {
 
 func (x *ObtainRewardItem) Reset() {
 	*x = ObtainRewardItem{}
-	mi := &file_core_client_proto_msgTypes[174]
+	mi := &file_core_client_proto_msgTypes[175]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9457,7 +9527,7 @@ func (x *ObtainRewardItem) String() string {
 func (*ObtainRewardItem) ProtoMessage() {}
 
 func (x *ObtainRewardItem) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[174]
+	mi := &file_core_client_proto_msgTypes[175]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9470,7 +9540,7 @@ func (x *ObtainRewardItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObtainRewardItem.ProtoReflect.Descriptor instead.
 func (*ObtainRewardItem) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{174}
+	return file_core_client_proto_rawDescGZIP(), []int{175}
 }
 
 func (x *ObtainRewardItem) GetRewardType() int32 {
@@ -9539,7 +9609,7 @@ type S2CObtainNotice struct {
 
 func (x *S2CObtainNotice) Reset() {
 	*x = S2CObtainNotice{}
-	mi := &file_core_client_proto_msgTypes[175]
+	mi := &file_core_client_proto_msgTypes[176]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9551,7 +9621,7 @@ func (x *S2CObtainNotice) String() string {
 func (*S2CObtainNotice) ProtoMessage() {}
 
 func (x *S2CObtainNotice) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[175]
+	mi := &file_core_client_proto_msgTypes[176]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9564,7 +9634,7 @@ func (x *S2CObtainNotice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use S2CObtainNotice.ProtoReflect.Descriptor instead.
 func (*S2CObtainNotice) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{175}
+	return file_core_client_proto_rawDescGZIP(), []int{176}
 }
 
 func (x *S2CObtainNotice) GetRequestId() string {
@@ -10170,7 +10240,12 @@ const file_core_client_proto_rawDesc = "" +
 	"\thand_info\x18\x05 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\x1aT\n" +
 	"\rRoleInfoEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x04R\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.g1.protocol.PbIconDescR\x05value:\x028\x01\",\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.g1.protocol.PbIconDescR\x05value:\x028\x01\"\xc4\x01\n" +
+	"\x15QuickStartRollbackReq\x12\x17\n" +
+	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x120\n" +
+	"\agame_id\x18\x02 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x122\n" +
+	"\tcoin_type\x18\x03 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\x12,\n" +
+	"\x05stage\x18\x04 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\",\n" +
 	"\x11MallBuyPackageReq\x12\x17\n" +
 	"\aconf_id\x18\x01 \x01(\x05R\x06confId\"7\n" +
 	"\x11MallBuyPackageRsp\x12\"\n" +
@@ -10290,7 +10365,7 @@ func file_core_client_proto_rawDescGZIP() []byte {
 }
 
 var file_core_client_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_core_client_proto_msgTypes = make([]protoimpl.MessageInfo, 179)
+var file_core_client_proto_msgTypes = make([]protoimpl.MessageInfo, 180)
 var file_core_client_proto_goTypes = []any{
 	(ObtainDisplayMode)(0),              // 0: g1.protocol.ObtainDisplayMode
 	(*PbChatMsg)(nil),                   // 1: g1.protocol.PbChatMsg
@@ -10445,230 +10520,234 @@ var file_core_client_proto_goTypes = []any{
 	(*JoinRoomRsp)(nil),                 // 150: g1.protocol.JoinRoomRsp
 	(*QuickStartReq)(nil),               // 151: g1.protocol.QuickStartReq
 	(*QuickStartRsp)(nil),               // 152: g1.protocol.QuickStartRsp
-	(*MallBuyPackageReq)(nil),           // 153: g1.protocol.MallBuyPackageReq
-	(*MallBuyPackageRsp)(nil),           // 154: g1.protocol.MallBuyPackageRsp
-	(*MallRechargeReq)(nil),             // 155: g1.protocol.MallRechargeReq
-	(*MallRechargeRsp)(nil),             // 156: g1.protocol.MallRechargeRsp
-	(*MysqlInnerUpdateReq)(nil),         // 157: g1.protocol.MysqlInnerUpdateReq
-	(*MysqlInnerUpdateRsp)(nil),         // 158: g1.protocol.MysqlInnerUpdateRsp
-	(*QueryRoomInfoReq)(nil),            // 159: g1.protocol.QueryRoomInfoReq
-	(*QueryRoomInfoRsp)(nil),            // 160: g1.protocol.QueryRoomInfoRsp
-	(*QueryPlayerInfoReq)(nil),          // 161: g1.protocol.QueryPlayerInfoReq
-	(*QueryPlayerInfoRsp)(nil),          // 162: g1.protocol.QueryPlayerInfoRsp
-	(*QueryGameInfoReq)(nil),            // 163: g1.protocol.QueryGameInfoReq
-	(*QueryGameInfoRsp)(nil),            // 164: g1.protocol.QueryGameInfoRsp
-	(*UseItemReq)(nil),                  // 165: g1.protocol.UseItemReq
-	(*UseItemRsp)(nil),                  // 166: g1.protocol.UseItemRsp
-	(*SellItemReq)(nil),                 // 167: g1.protocol.SellItemReq
-	(*SellItemRsp)(nil),                 // 168: g1.protocol.SellItemRsp
-	(*DecomposeItemReq)(nil),            // 169: g1.protocol.DecomposeItemReq
-	(*DecomposeItemRsp)(nil),            // 170: g1.protocol.DecomposeItemRsp
-	(*QueryBackpackReq)(nil),            // 171: g1.protocol.QueryBackpackReq
-	(*QueryBackpackRsp)(nil),            // 172: g1.protocol.QueryBackpackRsp
-	(*BatchAddItemReq)(nil),             // 173: g1.protocol.BatchAddItemReq
-	(*BatchAddItemRsp)(nil),             // 174: g1.protocol.BatchAddItemRsp
-	(*ObtainRewardItem)(nil),            // 175: g1.protocol.ObtainRewardItem
-	(*S2CObtainNotice)(nil),             // 176: g1.protocol.S2CObtainNotice
-	nil,                                 // 177: g1.protocol.RoomSetReq.SettingsEntry
-	nil,                                 // 178: g1.protocol.JoinRoomRsp.RoleInfoEntry
-	nil,                                 // 179: g1.protocol.QuickStartRsp.RoleInfoEntry
-	(*PbIconDesc)(nil),                  // 180: g1.protocol.PbIconDesc
-	(*PbItem)(nil),                      // 181: g1.protocol.PbItem
-	(*Ret)(nil),                         // 182: g1.protocol.Ret
-	(*RoleInfo)(nil),                    // 183: g1.protocol.RoleInfo
-	(EKickOutReason)(0),                 // 184: g1.protocol.EKickOutReason
-	(*PbMallItem)(nil),                  // 185: g1.protocol.PbMallItem
-	(*PbIcon)(nil),                      // 186: g1.protocol.PbIcon
-	(*PbFrame)(nil),                     // 187: g1.protocol.PbFrame
-	(*PbTask)(nil),                      // 188: g1.protocol.PbTask
-	(GameNotifyType)(0),                 // 189: g1.protocol.GameNotifyType
-	(*PbRoleBriefInfo)(nil),             // 190: g1.protocol.PbRoleBriefInfo
-	(GameTypeId)(0),                     // 191: g1.protocol.GameTypeId
-	(RoomStage)(0),                      // 192: g1.protocol.RoomStage
-	(RoomSortType)(0),                   // 193: g1.protocol.RoomSortType
-	(CoinType)(0),                       // 194: g1.protocol.CoinType
-	(*RoomShowInfo)(nil),                // 195: g1.protocol.RoomShowInfo
-	(OperateType)(0),                    // 196: g1.protocol.OperateType
-	(*RoomBaseInfo)(nil),                // 197: g1.protocol.RoomBaseInfo
-	(*TableTexasGameData)(nil),          // 198: g1.protocol.TableTexasGameData
-	(*PlayerTexasGameCardData)(nil),     // 199: g1.protocol.PlayerTexasGameCardData
-	(DataType)(0),                       // 200: g1.protocol.DataType
-	(*MysqlTexasRoomInfo)(nil),          // 201: g1.protocol.MysqlTexasRoomInfo
-	(*MysqlTexasPlayerInfo)(nil),        // 202: g1.protocol.MysqlTexasPlayerInfo
-	(*TexasGameRecord)(nil),             // 203: g1.protocol.TexasGameRecord
+	(*QuickStartRollbackReq)(nil),       // 153: g1.protocol.QuickStartRollbackReq
+	(*MallBuyPackageReq)(nil),           // 154: g1.protocol.MallBuyPackageReq
+	(*MallBuyPackageRsp)(nil),           // 155: g1.protocol.MallBuyPackageRsp
+	(*MallRechargeReq)(nil),             // 156: g1.protocol.MallRechargeReq
+	(*MallRechargeRsp)(nil),             // 157: g1.protocol.MallRechargeRsp
+	(*MysqlInnerUpdateReq)(nil),         // 158: g1.protocol.MysqlInnerUpdateReq
+	(*MysqlInnerUpdateRsp)(nil),         // 159: g1.protocol.MysqlInnerUpdateRsp
+	(*QueryRoomInfoReq)(nil),            // 160: g1.protocol.QueryRoomInfoReq
+	(*QueryRoomInfoRsp)(nil),            // 161: g1.protocol.QueryRoomInfoRsp
+	(*QueryPlayerInfoReq)(nil),          // 162: g1.protocol.QueryPlayerInfoReq
+	(*QueryPlayerInfoRsp)(nil),          // 163: g1.protocol.QueryPlayerInfoRsp
+	(*QueryGameInfoReq)(nil),            // 164: g1.protocol.QueryGameInfoReq
+	(*QueryGameInfoRsp)(nil),            // 165: g1.protocol.QueryGameInfoRsp
+	(*UseItemReq)(nil),                  // 166: g1.protocol.UseItemReq
+	(*UseItemRsp)(nil),                  // 167: g1.protocol.UseItemRsp
+	(*SellItemReq)(nil),                 // 168: g1.protocol.SellItemReq
+	(*SellItemRsp)(nil),                 // 169: g1.protocol.SellItemRsp
+	(*DecomposeItemReq)(nil),            // 170: g1.protocol.DecomposeItemReq
+	(*DecomposeItemRsp)(nil),            // 171: g1.protocol.DecomposeItemRsp
+	(*QueryBackpackReq)(nil),            // 172: g1.protocol.QueryBackpackReq
+	(*QueryBackpackRsp)(nil),            // 173: g1.protocol.QueryBackpackRsp
+	(*BatchAddItemReq)(nil),             // 174: g1.protocol.BatchAddItemReq
+	(*BatchAddItemRsp)(nil),             // 175: g1.protocol.BatchAddItemRsp
+	(*ObtainRewardItem)(nil),            // 176: g1.protocol.ObtainRewardItem
+	(*S2CObtainNotice)(nil),             // 177: g1.protocol.S2CObtainNotice
+	nil,                                 // 178: g1.protocol.RoomSetReq.SettingsEntry
+	nil,                                 // 179: g1.protocol.JoinRoomRsp.RoleInfoEntry
+	nil,                                 // 180: g1.protocol.QuickStartRsp.RoleInfoEntry
+	(*PbIconDesc)(nil),                  // 181: g1.protocol.PbIconDesc
+	(*PbItem)(nil),                      // 182: g1.protocol.PbItem
+	(*Ret)(nil),                         // 183: g1.protocol.Ret
+	(*RoleInfo)(nil),                    // 184: g1.protocol.RoleInfo
+	(EKickOutReason)(0),                 // 185: g1.protocol.EKickOutReason
+	(*PbMallItem)(nil),                  // 186: g1.protocol.PbMallItem
+	(*PbIcon)(nil),                      // 187: g1.protocol.PbIcon
+	(*PbFrame)(nil),                     // 188: g1.protocol.PbFrame
+	(*PbTask)(nil),                      // 189: g1.protocol.PbTask
+	(GameNotifyType)(0),                 // 190: g1.protocol.GameNotifyType
+	(*PbRoleBriefInfo)(nil),             // 191: g1.protocol.PbRoleBriefInfo
+	(GameTypeId)(0),                     // 192: g1.protocol.GameTypeId
+	(RoomStage)(0),                      // 193: g1.protocol.RoomStage
+	(RoomSortType)(0),                   // 194: g1.protocol.RoomSortType
+	(CoinType)(0),                       // 195: g1.protocol.CoinType
+	(*RoomShowInfo)(nil),                // 196: g1.protocol.RoomShowInfo
+	(OperateType)(0),                    // 197: g1.protocol.OperateType
+	(*RoomBaseInfo)(nil),                // 198: g1.protocol.RoomBaseInfo
+	(*TableTexasGameData)(nil),          // 199: g1.protocol.TableTexasGameData
+	(*PlayerTexasGameCardData)(nil),     // 200: g1.protocol.PlayerTexasGameCardData
+	(DataType)(0),                       // 201: g1.protocol.DataType
+	(*MysqlTexasRoomInfo)(nil),          // 202: g1.protocol.MysqlTexasRoomInfo
+	(*MysqlTexasPlayerInfo)(nil),        // 203: g1.protocol.MysqlTexasPlayerInfo
+	(*TexasGameRecord)(nil),             // 204: g1.protocol.TexasGameRecord
 }
 var file_core_client_proto_depIdxs = []int32{
-	180, // 0: g1.protocol.PbChatMsg.sender_icon:type_name -> g1.protocol.PbIconDesc
+	181, // 0: g1.protocol.PbChatMsg.sender_icon:type_name -> g1.protocol.PbIconDesc
 	1,   // 1: g1.protocol.PbChatFriendMsg.msg_list:type_name -> g1.protocol.PbChatMsg
 	2,   // 2: g1.protocol.PbChatInfo.friend_msg_list:type_name -> g1.protocol.PbChatFriendMsg
-	181, // 3: g1.protocol.PbMail.attach_list:type_name -> g1.protocol.PbItem
+	182, // 3: g1.protocol.PbMail.attach_list:type_name -> g1.protocol.PbItem
 	4,   // 4: g1.protocol.MailInfo.mail_list:type_name -> g1.protocol.PbMail
 	4,   // 5: g1.protocol.MailInnerAddMailReq.mail_list:type_name -> g1.protocol.PbMail
-	182, // 6: g1.protocol.MailInnerAddMailRsp.ret:type_name -> g1.protocol.Ret
+	183, // 6: g1.protocol.MailInnerAddMailRsp.ret:type_name -> g1.protocol.Ret
 	8,   // 7: g1.protocol.RoleFriendInfo.friend_list:type_name -> g1.protocol.PbFriend
 	9,   // 8: g1.protocol.RoleFriendInfo.invitation_list:type_name -> g1.protocol.PbFriendInvitation
-	182, // 9: g1.protocol.FriendInnerAddFriendRsp.ret:type_name -> g1.protocol.Ret
-	182, // 10: g1.protocol.FriendInnerConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
-	182, // 11: g1.protocol.GMGetRoleRsp.ret:type_name -> g1.protocol.Ret
-	183, // 12: g1.protocol.GMGetRoleRsp.role_info:type_name -> g1.protocol.RoleInfo
-	183, // 13: g1.protocol.GMSetRoleReq.role_info:type_name -> g1.protocol.RoleInfo
-	182, // 14: g1.protocol.GMSetRoleRsp.ret:type_name -> g1.protocol.Ret
-	182, // 15: g1.protocol.GMAddItemRsp.ret:type_name -> g1.protocol.Ret
-	184, // 16: g1.protocol.ScKickOut.reason:type_name -> g1.protocol.EKickOutReason
-	184, // 17: g1.protocol.ConnKickOutReq.reason:type_name -> g1.protocol.EKickOutReason
-	182, // 18: g1.protocol.ConnKickOutRsp.ret:type_name -> g1.protocol.Ret
-	183, // 19: g1.protocol.ScSyncUserData.role_info:type_name -> g1.protocol.RoleInfo
-	181, // 20: g1.protocol.RoleInventoryPatch.upsert_items:type_name -> g1.protocol.PbItem
-	185, // 21: g1.protocol.RoleMallPatch.upsert_items:type_name -> g1.protocol.PbMallItem
-	186, // 22: g1.protocol.RoleIconPatch.upsert_icons:type_name -> g1.protocol.PbIcon
-	187, // 23: g1.protocol.RoleIconPatch.upsert_frames:type_name -> g1.protocol.PbFrame
-	188, // 24: g1.protocol.RoleActvityTaskPatch.upsert_tasks:type_name -> g1.protocol.PbTask
-	183, // 25: g1.protocol.ScSyncUserDataV2.role_info:type_name -> g1.protocol.RoleInfo
+	183, // 9: g1.protocol.FriendInnerAddFriendRsp.ret:type_name -> g1.protocol.Ret
+	183, // 10: g1.protocol.FriendInnerConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
+	183, // 11: g1.protocol.GMGetRoleRsp.ret:type_name -> g1.protocol.Ret
+	184, // 12: g1.protocol.GMGetRoleRsp.role_info:type_name -> g1.protocol.RoleInfo
+	184, // 13: g1.protocol.GMSetRoleReq.role_info:type_name -> g1.protocol.RoleInfo
+	183, // 14: g1.protocol.GMSetRoleRsp.ret:type_name -> g1.protocol.Ret
+	183, // 15: g1.protocol.GMAddItemRsp.ret:type_name -> g1.protocol.Ret
+	185, // 16: g1.protocol.ScKickOut.reason:type_name -> g1.protocol.EKickOutReason
+	185, // 17: g1.protocol.ConnKickOutReq.reason:type_name -> g1.protocol.EKickOutReason
+	183, // 18: g1.protocol.ConnKickOutRsp.ret:type_name -> g1.protocol.Ret
+	184, // 19: g1.protocol.ScSyncUserData.role_info:type_name -> g1.protocol.RoleInfo
+	182, // 20: g1.protocol.RoleInventoryPatch.upsert_items:type_name -> g1.protocol.PbItem
+	186, // 21: g1.protocol.RoleMallPatch.upsert_items:type_name -> g1.protocol.PbMallItem
+	187, // 22: g1.protocol.RoleIconPatch.upsert_icons:type_name -> g1.protocol.PbIcon
+	188, // 23: g1.protocol.RoleIconPatch.upsert_frames:type_name -> g1.protocol.PbFrame
+	189, // 24: g1.protocol.RoleActvityTaskPatch.upsert_tasks:type_name -> g1.protocol.PbTask
+	184, // 25: g1.protocol.ScSyncUserDataV2.role_info:type_name -> g1.protocol.RoleInfo
 	27,  // 26: g1.protocol.ScSyncUserDataV2.inventory_patch:type_name -> g1.protocol.RoleInventoryPatch
 	28,  // 27: g1.protocol.ScSyncUserDataV2.mall_patch:type_name -> g1.protocol.RoleMallPatch
 	29,  // 28: g1.protocol.ScSyncUserDataV2.icon_patch:type_name -> g1.protocol.RoleIconPatch
 	30,  // 29: g1.protocol.ScSyncUserDataV2.actvity_task_patch:type_name -> g1.protocol.RoleActvityTaskPatch
 	1,   // 30: g1.protocol.ScChat.msg:type_name -> g1.protocol.PbChatMsg
-	189, // 31: g1.protocol.GameUserEventNotify.Event:type_name -> g1.protocol.GameNotifyType
-	182, // 32: g1.protocol.LoginRsp.ret:type_name -> g1.protocol.Ret
-	183, // 33: g1.protocol.LoginRsp.role_info:type_name -> g1.protocol.RoleInfo
-	182, // 34: g1.protocol.LogoutRsp.ret:type_name -> g1.protocol.Ret
-	182, // 35: g1.protocol.HeartBeatRsp.ret:type_name -> g1.protocol.Ret
-	181, // 36: g1.protocol.ItemUseReq.item_list:type_name -> g1.protocol.PbItem
-	182, // 37: g1.protocol.ItemUseRsp.ret:type_name -> g1.protocol.Ret
-	181, // 38: g1.protocol.ItemUseRsp.real_add_item_list:type_name -> g1.protocol.PbItem
-	182, // 39: g1.protocol.ChangeNameRsp.ret:type_name -> g1.protocol.Ret
-	182, // 40: g1.protocol.ChangeIconRsp.ret:type_name -> g1.protocol.Ret
-	182, // 41: g1.protocol.InfoGetBriefInfoRsp.ret:type_name -> g1.protocol.Ret
-	190, // 42: g1.protocol.InfoGetBriefInfoRsp.info_list:type_name -> g1.protocol.PbRoleBriefInfo
-	182, // 43: g1.protocol.InfoGetIconDescRsp.ret:type_name -> g1.protocol.Ret
-	180, // 44: g1.protocol.InfoGetIconDescRsp.icon_list:type_name -> g1.protocol.PbIconDesc
-	182, // 45: g1.protocol.GuideCompletedRsp.ret:type_name -> g1.protocol.Ret
-	182, // 46: g1.protocol.GuideInProgressRsp.ret:type_name -> g1.protocol.Ret
-	182, // 47: g1.protocol.ExchangeGiftBagRsp.ret:type_name -> g1.protocol.Ret
-	181, // 48: g1.protocol.ExchangeGiftBagRsp.item_list:type_name -> g1.protocol.PbItem
-	182, // 49: g1.protocol.GetMailListRsp.ret:type_name -> g1.protocol.Ret
+	190, // 31: g1.protocol.GameUserEventNotify.Event:type_name -> g1.protocol.GameNotifyType
+	183, // 32: g1.protocol.LoginRsp.ret:type_name -> g1.protocol.Ret
+	184, // 33: g1.protocol.LoginRsp.role_info:type_name -> g1.protocol.RoleInfo
+	183, // 34: g1.protocol.LogoutRsp.ret:type_name -> g1.protocol.Ret
+	183, // 35: g1.protocol.HeartBeatRsp.ret:type_name -> g1.protocol.Ret
+	182, // 36: g1.protocol.ItemUseReq.item_list:type_name -> g1.protocol.PbItem
+	183, // 37: g1.protocol.ItemUseRsp.ret:type_name -> g1.protocol.Ret
+	182, // 38: g1.protocol.ItemUseRsp.real_add_item_list:type_name -> g1.protocol.PbItem
+	183, // 39: g1.protocol.ChangeNameRsp.ret:type_name -> g1.protocol.Ret
+	183, // 40: g1.protocol.ChangeIconRsp.ret:type_name -> g1.protocol.Ret
+	183, // 41: g1.protocol.InfoGetBriefInfoRsp.ret:type_name -> g1.protocol.Ret
+	191, // 42: g1.protocol.InfoGetBriefInfoRsp.info_list:type_name -> g1.protocol.PbRoleBriefInfo
+	183, // 43: g1.protocol.InfoGetIconDescRsp.ret:type_name -> g1.protocol.Ret
+	181, // 44: g1.protocol.InfoGetIconDescRsp.icon_list:type_name -> g1.protocol.PbIconDesc
+	183, // 45: g1.protocol.GuideCompletedRsp.ret:type_name -> g1.protocol.Ret
+	183, // 46: g1.protocol.GuideInProgressRsp.ret:type_name -> g1.protocol.Ret
+	183, // 47: g1.protocol.ExchangeGiftBagRsp.ret:type_name -> g1.protocol.Ret
+	182, // 48: g1.protocol.ExchangeGiftBagRsp.item_list:type_name -> g1.protocol.PbItem
+	183, // 49: g1.protocol.GetMailListRsp.ret:type_name -> g1.protocol.Ret
 	5,   // 50: g1.protocol.GetMailListRsp.mail_info:type_name -> g1.protocol.MailInfo
-	182, // 51: g1.protocol.ReadMailRsp.ret:type_name -> g1.protocol.Ret
-	182, // 52: g1.protocol.DelMailRsp.ret:type_name -> g1.protocol.Ret
-	182, // 53: g1.protocol.GetMailAttachRsp.ret:type_name -> g1.protocol.Ret
-	181, // 54: g1.protocol.GetMailAttachRsp.item_list:type_name -> g1.protocol.PbItem
+	183, // 51: g1.protocol.ReadMailRsp.ret:type_name -> g1.protocol.Ret
+	183, // 52: g1.protocol.DelMailRsp.ret:type_name -> g1.protocol.Ret
+	183, // 53: g1.protocol.GetMailAttachRsp.ret:type_name -> g1.protocol.Ret
+	182, // 54: g1.protocol.GetMailAttachRsp.item_list:type_name -> g1.protocol.PbItem
 	1,   // 55: g1.protocol.ChatChatReq.msg:type_name -> g1.protocol.PbChatMsg
-	182, // 56: g1.protocol.ChatChatRsp.ret:type_name -> g1.protocol.Ret
-	182, // 57: g1.protocol.ChatGetChatInfoRsp.ret:type_name -> g1.protocol.Ret
+	183, // 56: g1.protocol.ChatChatRsp.ret:type_name -> g1.protocol.Ret
+	183, // 57: g1.protocol.ChatGetChatInfoRsp.ret:type_name -> g1.protocol.Ret
 	3,   // 58: g1.protocol.ChatGetChatInfoRsp.chat_info:type_name -> g1.protocol.PbChatInfo
-	182, // 59: g1.protocol.ChatDelChatRsp.ret:type_name -> g1.protocol.Ret
-	182, // 60: g1.protocol.FriendGetFriendInfoRsp.ret:type_name -> g1.protocol.Ret
+	183, // 59: g1.protocol.ChatDelChatRsp.ret:type_name -> g1.protocol.Ret
+	183, // 60: g1.protocol.FriendGetFriendInfoRsp.ret:type_name -> g1.protocol.Ret
 	10,  // 61: g1.protocol.FriendGetFriendInfoRsp.friend_info:type_name -> g1.protocol.RoleFriendInfo
-	182, // 62: g1.protocol.FriendAddFriendRsp.ret:type_name -> g1.protocol.Ret
-	182, // 63: g1.protocol.FriendConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
-	182, // 64: g1.protocol.FriendShieldUserRsp.ret:type_name -> g1.protocol.Ret
-	182, // 65: g1.protocol.FriendSearchRoleRsp.ret:type_name -> g1.protocol.Ret
-	180, // 66: g1.protocol.FriendSearchRoleRsp.role_list:type_name -> g1.protocol.PbIconDesc
-	191, // 67: g1.protocol.RoomListReq.game_id:type_name -> g1.protocol.GameTypeId
-	192, // 68: g1.protocol.RoomListReq.stage:type_name -> g1.protocol.RoomStage
-	193, // 69: g1.protocol.RoomListReq.sort_type:type_name -> g1.protocol.RoomSortType
-	194, // 70: g1.protocol.RoomListReq.coin_type:type_name -> g1.protocol.CoinType
-	182, // 71: g1.protocol.RoomListRsp.ret:type_name -> g1.protocol.Ret
-	191, // 72: g1.protocol.RoomListRsp.game_id:type_name -> g1.protocol.GameTypeId
-	192, // 73: g1.protocol.RoomListRsp.stage:type_name -> g1.protocol.RoomStage
-	195, // 74: g1.protocol.RoomListRsp.room_list:type_name -> g1.protocol.RoomShowInfo
-	194, // 75: g1.protocol.RoomListRsp.coin_type:type_name -> g1.protocol.CoinType
-	196, // 76: g1.protocol.DoBetReq.operate_type:type_name -> g1.protocol.OperateType
-	182, // 77: g1.protocol.DoBetRsp.ret:type_name -> g1.protocol.Ret
-	196, // 78: g1.protocol.DoBetRsp.op_type:type_name -> g1.protocol.OperateType
-	182, // 79: g1.protocol.FoldRsp.ret:type_name -> g1.protocol.Ret
-	182, // 80: g1.protocol.GetLookersRsp.ret:type_name -> g1.protocol.Ret
-	180, // 81: g1.protocol.GetLookersRsp.lookers:type_name -> g1.protocol.PbIconDesc
-	180, // 82: g1.protocol.SitDownReq.role_icon:type_name -> g1.protocol.PbIconDesc
-	182, // 83: g1.protocol.SitDownRsp.ret:type_name -> g1.protocol.Ret
-	182, // 84: g1.protocol.StandUpRsp.ret:type_name -> g1.protocol.Ret
-	182, // 85: g1.protocol.LeaveGameRsp.ret:type_name -> g1.protocol.Ret
-	182, // 86: g1.protocol.MilitarySuccessRsp.ret:type_name -> g1.protocol.Ret
-	182, // 87: g1.protocol.GetGameLogRsp.ret:type_name -> g1.protocol.Ret
-	182, // 88: g1.protocol.GetTimeLeftRsp.ret:type_name -> g1.protocol.Ret
-	182, // 89: g1.protocol.VoiceCallRsp.ret:type_name -> g1.protocol.Ret
-	182, // 90: g1.protocol.BuyThinkTimeRsp.ret:type_name -> g1.protocol.Ret
-	182, // 91: g1.protocol.AutoBuyinRsp.ret:type_name -> g1.protocol.Ret
-	182, // 92: g1.protocol.InteractionRsp.ret:type_name -> g1.protocol.Ret
-	182, // 93: g1.protocol.EmoticonRsp.ret:type_name -> g1.protocol.Ret
-	194, // 94: g1.protocol.BuyInReq.coin_type:type_name -> g1.protocol.CoinType
-	182, // 95: g1.protocol.BuyInRsp.ret:type_name -> g1.protocol.Ret
-	194, // 96: g1.protocol.BuyInRsp.coin_type:type_name -> g1.protocol.CoinType
-	194, // 97: g1.protocol.MainBuyInDetailReq.coin_type:type_name -> g1.protocol.CoinType
-	182, // 98: g1.protocol.MainBuyInDetailRsp.ret:type_name -> g1.protocol.Ret
-	182, // 99: g1.protocol.GetMilitaryDiagramRsp.ret:type_name -> g1.protocol.Ret
-	182, // 100: g1.protocol.ShowCardRsp.ret:type_name -> g1.protocol.Ret
-	182, // 101: g1.protocol.GetPlayerInfoRsp.ret:type_name -> g1.protocol.Ret
-	182, // 102: g1.protocol.MarkPlayerRsp.ret:type_name -> g1.protocol.Ret
-	182, // 103: g1.protocol.InsuranceBuyRsp.ret:type_name -> g1.protocol.Ret
-	177, // 104: g1.protocol.RoomSetReq.settings:type_name -> g1.protocol.RoomSetReq.SettingsEntry
-	182, // 105: g1.protocol.RoomSetRsp.ret:type_name -> g1.protocol.Ret
-	182, // 106: g1.protocol.SngGetBlindLevelRsp.ret:type_name -> g1.protocol.Ret
-	182, // 107: g1.protocol.GetRoomInfoRsp.ret:type_name -> g1.protocol.Ret
-	197, // 108: g1.protocol.GetRoomInfoRsp.base:type_name -> g1.protocol.RoomBaseInfo
-	198, // 109: g1.protocol.GetRoomInfoRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	199, // 110: g1.protocol.GetRoomInfoRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	182, // 111: g1.protocol.InsuranceThinkTimeRsp.ret:type_name -> g1.protocol.Ret
-	182, // 112: g1.protocol.InsuranceOpRsp.ret:type_name -> g1.protocol.Ret
-	182, // 113: g1.protocol.GetGameInfoRsp.ret:type_name -> g1.protocol.Ret
-	198, // 114: g1.protocol.GetGameInfoRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	199, // 115: g1.protocol.GetGameInfoRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	182, // 116: g1.protocol.AddToFavoriteRsp.ret:type_name -> g1.protocol.Ret
-	182, // 117: g1.protocol.ChangeSkinRsp.ret:type_name -> g1.protocol.Ret
-	196, // 118: g1.protocol.PreOperationReq.operate_type:type_name -> g1.protocol.OperateType
-	182, // 119: g1.protocol.PreOperationRsp.ret:type_name -> g1.protocol.Ret
-	182, // 120: g1.protocol.RabbitHuntingRsp.ret:type_name -> g1.protocol.Ret
-	182, // 121: g1.protocol.EarlySettleRsp.ret:type_name -> g1.protocol.Ret
-	191, // 122: g1.protocol.CreateRoomReq.game_id:type_name -> g1.protocol.GameTypeId
-	192, // 123: g1.protocol.CreateRoomReq.stage:type_name -> g1.protocol.RoomStage
-	194, // 124: g1.protocol.CreateRoomReq.coin_type:type_name -> g1.protocol.CoinType
-	182, // 125: g1.protocol.CreateRoomRsp.ret:type_name -> g1.protocol.Ret
-	197, // 126: g1.protocol.CreateRoomRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
-	182, // 127: g1.protocol.JoinRoomRsp.ret:type_name -> g1.protocol.Ret
-	197, // 128: g1.protocol.JoinRoomRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
-	198, // 129: g1.protocol.JoinRoomRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	178, // 130: g1.protocol.JoinRoomRsp.role_info:type_name -> g1.protocol.JoinRoomRsp.RoleInfoEntry
-	199, // 131: g1.protocol.JoinRoomRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	191, // 132: g1.protocol.QuickStartReq.game_id:type_name -> g1.protocol.GameTypeId
-	194, // 133: g1.protocol.QuickStartReq.coin_type:type_name -> g1.protocol.CoinType
-	192, // 134: g1.protocol.QuickStartReq.stage:type_name -> g1.protocol.RoomStage
-	182, // 135: g1.protocol.QuickStartRsp.ret:type_name -> g1.protocol.Ret
-	197, // 136: g1.protocol.QuickStartRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
-	198, // 137: g1.protocol.QuickStartRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	179, // 138: g1.protocol.QuickStartRsp.role_info:type_name -> g1.protocol.QuickStartRsp.RoleInfoEntry
-	199, // 139: g1.protocol.QuickStartRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	182, // 140: g1.protocol.MallBuyPackageRsp.ret:type_name -> g1.protocol.Ret
-	182, // 141: g1.protocol.MallRechargeRsp.ret:type_name -> g1.protocol.Ret
-	200, // 142: g1.protocol.MysqlInnerUpdateReq.data_type:type_name -> g1.protocol.DataType
-	182, // 143: g1.protocol.MysqlInnerUpdateRsp.ret:type_name -> g1.protocol.Ret
-	191, // 144: g1.protocol.QueryRoomInfoReq.game_type:type_name -> g1.protocol.GameTypeId
-	192, // 145: g1.protocol.QueryRoomInfoReq.room_stage:type_name -> g1.protocol.RoomStage
-	182, // 146: g1.protocol.QueryRoomInfoRsp.ret:type_name -> g1.protocol.Ret
-	201, // 147: g1.protocol.QueryRoomInfoRsp.list:type_name -> g1.protocol.MysqlTexasRoomInfo
-	191, // 148: g1.protocol.QueryPlayerInfoReq.game_type:type_name -> g1.protocol.GameTypeId
-	192, // 149: g1.protocol.QueryPlayerInfoReq.room_stage:type_name -> g1.protocol.RoomStage
-	182, // 150: g1.protocol.QueryPlayerInfoRsp.ret:type_name -> g1.protocol.Ret
-	202, // 151: g1.protocol.QueryPlayerInfoRsp.list:type_name -> g1.protocol.MysqlTexasPlayerInfo
-	182, // 152: g1.protocol.QueryGameInfoRsp.ret:type_name -> g1.protocol.Ret
-	203, // 153: g1.protocol.QueryGameInfoRsp.data:type_name -> g1.protocol.TexasGameRecord
-	182, // 154: g1.protocol.UseItemRsp.ret:type_name -> g1.protocol.Ret
-	182, // 155: g1.protocol.SellItemRsp.ret:type_name -> g1.protocol.Ret
-	182, // 156: g1.protocol.DecomposeItemRsp.ret:type_name -> g1.protocol.Ret
-	181, // 157: g1.protocol.DecomposeItemRsp.rewards:type_name -> g1.protocol.PbItem
-	182, // 158: g1.protocol.QueryBackpackRsp.ret:type_name -> g1.protocol.Ret
-	181, // 159: g1.protocol.QueryBackpackRsp.items:type_name -> g1.protocol.PbItem
-	181, // 160: g1.protocol.BatchAddItemReq.items:type_name -> g1.protocol.PbItem
-	182, // 161: g1.protocol.BatchAddItemRsp.ret:type_name -> g1.protocol.Ret
-	0,   // 162: g1.protocol.S2CObtainNotice.display_mode:type_name -> g1.protocol.ObtainDisplayMode
-	175, // 163: g1.protocol.S2CObtainNotice.items:type_name -> g1.protocol.ObtainRewardItem
-	180, // 164: g1.protocol.JoinRoomRsp.RoleInfoEntry.value:type_name -> g1.protocol.PbIconDesc
-	180, // 165: g1.protocol.QuickStartRsp.RoleInfoEntry.value:type_name -> g1.protocol.PbIconDesc
-	166, // [166:166] is the sub-list for method output_type
-	166, // [166:166] is the sub-list for method input_type
-	166, // [166:166] is the sub-list for extension type_name
-	166, // [166:166] is the sub-list for extension extendee
-	0,   // [0:166] is the sub-list for field type_name
+	183, // 62: g1.protocol.FriendAddFriendRsp.ret:type_name -> g1.protocol.Ret
+	183, // 63: g1.protocol.FriendConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
+	183, // 64: g1.protocol.FriendShieldUserRsp.ret:type_name -> g1.protocol.Ret
+	183, // 65: g1.protocol.FriendSearchRoleRsp.ret:type_name -> g1.protocol.Ret
+	181, // 66: g1.protocol.FriendSearchRoleRsp.role_list:type_name -> g1.protocol.PbIconDesc
+	192, // 67: g1.protocol.RoomListReq.game_id:type_name -> g1.protocol.GameTypeId
+	193, // 68: g1.protocol.RoomListReq.stage:type_name -> g1.protocol.RoomStage
+	194, // 69: g1.protocol.RoomListReq.sort_type:type_name -> g1.protocol.RoomSortType
+	195, // 70: g1.protocol.RoomListReq.coin_type:type_name -> g1.protocol.CoinType
+	183, // 71: g1.protocol.RoomListRsp.ret:type_name -> g1.protocol.Ret
+	192, // 72: g1.protocol.RoomListRsp.game_id:type_name -> g1.protocol.GameTypeId
+	193, // 73: g1.protocol.RoomListRsp.stage:type_name -> g1.protocol.RoomStage
+	196, // 74: g1.protocol.RoomListRsp.room_list:type_name -> g1.protocol.RoomShowInfo
+	195, // 75: g1.protocol.RoomListRsp.coin_type:type_name -> g1.protocol.CoinType
+	197, // 76: g1.protocol.DoBetReq.operate_type:type_name -> g1.protocol.OperateType
+	183, // 77: g1.protocol.DoBetRsp.ret:type_name -> g1.protocol.Ret
+	197, // 78: g1.protocol.DoBetRsp.op_type:type_name -> g1.protocol.OperateType
+	183, // 79: g1.protocol.FoldRsp.ret:type_name -> g1.protocol.Ret
+	183, // 80: g1.protocol.GetLookersRsp.ret:type_name -> g1.protocol.Ret
+	181, // 81: g1.protocol.GetLookersRsp.lookers:type_name -> g1.protocol.PbIconDesc
+	181, // 82: g1.protocol.SitDownReq.role_icon:type_name -> g1.protocol.PbIconDesc
+	183, // 83: g1.protocol.SitDownRsp.ret:type_name -> g1.protocol.Ret
+	183, // 84: g1.protocol.StandUpRsp.ret:type_name -> g1.protocol.Ret
+	183, // 85: g1.protocol.LeaveGameRsp.ret:type_name -> g1.protocol.Ret
+	183, // 86: g1.protocol.MilitarySuccessRsp.ret:type_name -> g1.protocol.Ret
+	183, // 87: g1.protocol.GetGameLogRsp.ret:type_name -> g1.protocol.Ret
+	183, // 88: g1.protocol.GetTimeLeftRsp.ret:type_name -> g1.protocol.Ret
+	183, // 89: g1.protocol.VoiceCallRsp.ret:type_name -> g1.protocol.Ret
+	183, // 90: g1.protocol.BuyThinkTimeRsp.ret:type_name -> g1.protocol.Ret
+	183, // 91: g1.protocol.AutoBuyinRsp.ret:type_name -> g1.protocol.Ret
+	183, // 92: g1.protocol.InteractionRsp.ret:type_name -> g1.protocol.Ret
+	183, // 93: g1.protocol.EmoticonRsp.ret:type_name -> g1.protocol.Ret
+	195, // 94: g1.protocol.BuyInReq.coin_type:type_name -> g1.protocol.CoinType
+	183, // 95: g1.protocol.BuyInRsp.ret:type_name -> g1.protocol.Ret
+	195, // 96: g1.protocol.BuyInRsp.coin_type:type_name -> g1.protocol.CoinType
+	195, // 97: g1.protocol.MainBuyInDetailReq.coin_type:type_name -> g1.protocol.CoinType
+	183, // 98: g1.protocol.MainBuyInDetailRsp.ret:type_name -> g1.protocol.Ret
+	183, // 99: g1.protocol.GetMilitaryDiagramRsp.ret:type_name -> g1.protocol.Ret
+	183, // 100: g1.protocol.ShowCardRsp.ret:type_name -> g1.protocol.Ret
+	183, // 101: g1.protocol.GetPlayerInfoRsp.ret:type_name -> g1.protocol.Ret
+	183, // 102: g1.protocol.MarkPlayerRsp.ret:type_name -> g1.protocol.Ret
+	183, // 103: g1.protocol.InsuranceBuyRsp.ret:type_name -> g1.protocol.Ret
+	178, // 104: g1.protocol.RoomSetReq.settings:type_name -> g1.protocol.RoomSetReq.SettingsEntry
+	183, // 105: g1.protocol.RoomSetRsp.ret:type_name -> g1.protocol.Ret
+	183, // 106: g1.protocol.SngGetBlindLevelRsp.ret:type_name -> g1.protocol.Ret
+	183, // 107: g1.protocol.GetRoomInfoRsp.ret:type_name -> g1.protocol.Ret
+	198, // 108: g1.protocol.GetRoomInfoRsp.base:type_name -> g1.protocol.RoomBaseInfo
+	199, // 109: g1.protocol.GetRoomInfoRsp.table_info:type_name -> g1.protocol.TableTexasGameData
+	200, // 110: g1.protocol.GetRoomInfoRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
+	183, // 111: g1.protocol.InsuranceThinkTimeRsp.ret:type_name -> g1.protocol.Ret
+	183, // 112: g1.protocol.InsuranceOpRsp.ret:type_name -> g1.protocol.Ret
+	183, // 113: g1.protocol.GetGameInfoRsp.ret:type_name -> g1.protocol.Ret
+	199, // 114: g1.protocol.GetGameInfoRsp.table_info:type_name -> g1.protocol.TableTexasGameData
+	200, // 115: g1.protocol.GetGameInfoRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
+	183, // 116: g1.protocol.AddToFavoriteRsp.ret:type_name -> g1.protocol.Ret
+	183, // 117: g1.protocol.ChangeSkinRsp.ret:type_name -> g1.protocol.Ret
+	197, // 118: g1.protocol.PreOperationReq.operate_type:type_name -> g1.protocol.OperateType
+	183, // 119: g1.protocol.PreOperationRsp.ret:type_name -> g1.protocol.Ret
+	183, // 120: g1.protocol.RabbitHuntingRsp.ret:type_name -> g1.protocol.Ret
+	183, // 121: g1.protocol.EarlySettleRsp.ret:type_name -> g1.protocol.Ret
+	192, // 122: g1.protocol.CreateRoomReq.game_id:type_name -> g1.protocol.GameTypeId
+	193, // 123: g1.protocol.CreateRoomReq.stage:type_name -> g1.protocol.RoomStage
+	195, // 124: g1.protocol.CreateRoomReq.coin_type:type_name -> g1.protocol.CoinType
+	183, // 125: g1.protocol.CreateRoomRsp.ret:type_name -> g1.protocol.Ret
+	198, // 126: g1.protocol.CreateRoomRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
+	183, // 127: g1.protocol.JoinRoomRsp.ret:type_name -> g1.protocol.Ret
+	198, // 128: g1.protocol.JoinRoomRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
+	199, // 129: g1.protocol.JoinRoomRsp.table_info:type_name -> g1.protocol.TableTexasGameData
+	179, // 130: g1.protocol.JoinRoomRsp.role_info:type_name -> g1.protocol.JoinRoomRsp.RoleInfoEntry
+	200, // 131: g1.protocol.JoinRoomRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
+	192, // 132: g1.protocol.QuickStartReq.game_id:type_name -> g1.protocol.GameTypeId
+	195, // 133: g1.protocol.QuickStartReq.coin_type:type_name -> g1.protocol.CoinType
+	193, // 134: g1.protocol.QuickStartReq.stage:type_name -> g1.protocol.RoomStage
+	183, // 135: g1.protocol.QuickStartRsp.ret:type_name -> g1.protocol.Ret
+	198, // 136: g1.protocol.QuickStartRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
+	199, // 137: g1.protocol.QuickStartRsp.table_info:type_name -> g1.protocol.TableTexasGameData
+	180, // 138: g1.protocol.QuickStartRsp.role_info:type_name -> g1.protocol.QuickStartRsp.RoleInfoEntry
+	200, // 139: g1.protocol.QuickStartRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
+	192, // 140: g1.protocol.QuickStartRollbackReq.game_id:type_name -> g1.protocol.GameTypeId
+	195, // 141: g1.protocol.QuickStartRollbackReq.coin_type:type_name -> g1.protocol.CoinType
+	193, // 142: g1.protocol.QuickStartRollbackReq.stage:type_name -> g1.protocol.RoomStage
+	183, // 143: g1.protocol.MallBuyPackageRsp.ret:type_name -> g1.protocol.Ret
+	183, // 144: g1.protocol.MallRechargeRsp.ret:type_name -> g1.protocol.Ret
+	201, // 145: g1.protocol.MysqlInnerUpdateReq.data_type:type_name -> g1.protocol.DataType
+	183, // 146: g1.protocol.MysqlInnerUpdateRsp.ret:type_name -> g1.protocol.Ret
+	192, // 147: g1.protocol.QueryRoomInfoReq.game_type:type_name -> g1.protocol.GameTypeId
+	193, // 148: g1.protocol.QueryRoomInfoReq.room_stage:type_name -> g1.protocol.RoomStage
+	183, // 149: g1.protocol.QueryRoomInfoRsp.ret:type_name -> g1.protocol.Ret
+	202, // 150: g1.protocol.QueryRoomInfoRsp.list:type_name -> g1.protocol.MysqlTexasRoomInfo
+	192, // 151: g1.protocol.QueryPlayerInfoReq.game_type:type_name -> g1.protocol.GameTypeId
+	193, // 152: g1.protocol.QueryPlayerInfoReq.room_stage:type_name -> g1.protocol.RoomStage
+	183, // 153: g1.protocol.QueryPlayerInfoRsp.ret:type_name -> g1.protocol.Ret
+	203, // 154: g1.protocol.QueryPlayerInfoRsp.list:type_name -> g1.protocol.MysqlTexasPlayerInfo
+	183, // 155: g1.protocol.QueryGameInfoRsp.ret:type_name -> g1.protocol.Ret
+	204, // 156: g1.protocol.QueryGameInfoRsp.data:type_name -> g1.protocol.TexasGameRecord
+	183, // 157: g1.protocol.UseItemRsp.ret:type_name -> g1.protocol.Ret
+	183, // 158: g1.protocol.SellItemRsp.ret:type_name -> g1.protocol.Ret
+	183, // 159: g1.protocol.DecomposeItemRsp.ret:type_name -> g1.protocol.Ret
+	182, // 160: g1.protocol.DecomposeItemRsp.rewards:type_name -> g1.protocol.PbItem
+	183, // 161: g1.protocol.QueryBackpackRsp.ret:type_name -> g1.protocol.Ret
+	182, // 162: g1.protocol.QueryBackpackRsp.items:type_name -> g1.protocol.PbItem
+	182, // 163: g1.protocol.BatchAddItemReq.items:type_name -> g1.protocol.PbItem
+	183, // 164: g1.protocol.BatchAddItemRsp.ret:type_name -> g1.protocol.Ret
+	0,   // 165: g1.protocol.S2CObtainNotice.display_mode:type_name -> g1.protocol.ObtainDisplayMode
+	176, // 166: g1.protocol.S2CObtainNotice.items:type_name -> g1.protocol.ObtainRewardItem
+	181, // 167: g1.protocol.JoinRoomRsp.RoleInfoEntry.value:type_name -> g1.protocol.PbIconDesc
+	181, // 168: g1.protocol.QuickStartRsp.RoleInfoEntry.value:type_name -> g1.protocol.PbIconDesc
+	169, // [169:169] is the sub-list for method output_type
+	169, // [169:169] is the sub-list for method input_type
+	169, // [169:169] is the sub-list for extension type_name
+	169, // [169:169] is the sub-list for extension extendee
+	0,   // [0:169] is the sub-list for field type_name
 }
 
 func init() { file_core_client_proto_init() }
@@ -10689,7 +10768,7 @@ func file_core_client_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_client_proto_rawDesc), len(file_core_client_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   179,
+			NumMessages:   180,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
