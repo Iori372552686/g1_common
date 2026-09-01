@@ -42,6 +42,8 @@ const (
 	ErrorCode_ERR_NOT_EXIST_PLAYER       ErrorCode = -13    // 玩家不存在
 	ErrorCode_ERR_NOT_EXIST_GAME_LOG     ErrorCode = -14    // 游戏日志不存在
 	ErrorCode_ERR_NOT_ENOUGH_GAME_ROOM   ErrorCode = -15    //  游戏房间不足
+	ErrorCode_ERR_UNAUTHENTICATED        ErrorCode = -16    // 身份凭据缺失、无效、过期或已吊销
+	ErrorCode_ERR_UNIMPLEMENTED          ErrorCode = -17    // RPC 方法尚未实现
 	ErrorCode_ERR_INSTANCE_NOT_AVAILABLE ErrorCode = -10001 // 副本未开放
 	ErrorCode_ERR_ITEM_NOT_ENOUGH        ErrorCode = -10002 // 道具数量不足
 	ErrorCode_ERR_ITEM_ADD_ERROR         ErrorCode = -10003 // 添加道具失败
@@ -119,6 +121,8 @@ var (
 		-13:    "ERR_NOT_EXIST_PLAYER",
 		-14:    "ERR_NOT_EXIST_GAME_LOG",
 		-15:    "ERR_NOT_ENOUGH_GAME_ROOM",
+		-16:    "ERR_UNAUTHENTICATED",
+		-17:    "ERR_UNIMPLEMENTED",
 		-10001: "ERR_INSTANCE_NOT_AVAILABLE",
 		-10002: "ERR_ITEM_NOT_ENOUGH",
 		-10003: "ERR_ITEM_ADD_ERROR",
@@ -190,6 +194,8 @@ var (
 		"ERR_NOT_EXIST_PLAYER":                -13,
 		"ERR_NOT_EXIST_GAME_LOG":              -14,
 		"ERR_NOT_ENOUGH_GAME_ROOM":            -15,
+		"ERR_UNAUTHENTICATED":                 -16,
+		"ERR_UNIMPLEMENTED":                   -17,
 		"ERR_INSTANCE_NOT_AVAILABLE":          -10001,
 		"ERR_ITEM_NOT_ENOUGH":                 -10002,
 		"ERR_ITEM_ADD_ERROR":                  -10003,
@@ -276,7 +282,7 @@ var File_core_error_code_proto protoreflect.FileDescriptor
 
 const file_core_error_code_proto_rawDesc = "" +
 	"\n" +
-	"\x15core/error_code.proto\x12\vg1.protocol*\x8e\x13\n" +
+	"\x15core/error_code.proto\x12\vg1.protocol*\xd0\x13\n" +
 	"\tErrorCode\x12\x0e\n" +
 	"\n" +
 	"ERR_SUCESS\x10\x00\x12\v\n" +
@@ -296,7 +302,9 @@ const file_core_error_code_proto_rawDesc = "" +
 	"\x17ERR_NOT_EXIST_GAME_ROOM\x10\xf4\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12!\n" +
 	"\x14ERR_NOT_EXIST_PLAYER\x10\xf3\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12#\n" +
 	"\x16ERR_NOT_EXIST_GAME_LOG\x10\xf2\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12%\n" +
-	"\x18ERR_NOT_ENOUGH_GAME_ROOM\x10\xf1\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12'\n" +
+	"\x18ERR_NOT_ENOUGH_GAME_ROOM\x10\xf1\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12 \n" +
+	"\x13ERR_UNAUTHENTICATED\x10\xf0\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12\x1e\n" +
+	"\x11ERR_UNIMPLEMENTED\x10\xef\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12'\n" +
 	"\x1aERR_INSTANCE_NOT_AVAILABLE\x10\xef\xb1\xff\xff\xff\xff\xff\xff\xff\x01\x12 \n" +
 	"\x13ERR_ITEM_NOT_ENOUGH\x10\xee\xb1\xff\xff\xff\xff\xff\xff\xff\x01\x12\x1f\n" +
 	"\x12ERR_ITEM_ADD_ERROR\x10\xed\xb1\xff\xff\xff\xff\xff\xff\xff\x01\x12$\n" +

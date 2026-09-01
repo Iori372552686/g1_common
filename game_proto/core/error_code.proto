@@ -22,6 +22,8 @@ enum ErrorCode {
     ERR_NOT_EXIST_PLAYER     = -13; // 玩家不存在
     ERR_NOT_EXIST_GAME_LOG   = -14; // 游戏日志不存在
     ERR_NOT_ENOUGH_GAME_ROOM = -15; //  游戏房间不足
+    ERR_UNAUTHENTICATED       = -16; // 身份凭据缺失、无效、过期或已吊销
+    ERR_UNIMPLEMENTED         = -17; // RPC 方法尚未实现
 
     ERR_INSTANCE_NOT_AVAILABLE = -10001; // 副本未开放
     ERR_ITEM_NOT_ENOUGH        = -10002; // 道具数量不足
