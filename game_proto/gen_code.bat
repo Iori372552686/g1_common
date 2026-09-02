@@ -63,15 +63,6 @@ if errorlevel 1 goto :end
 if exist ..\protocol\database.pb.go (
     "%protoc_go_inject_tag%" -input=..\protocol\database.pb.go
     if errorlevel 1 goto :end
-
-    REM Append xorm:"-" to protobuf internal fields (state/sizeCache/unknownFields)
-    REM so legacy xorm reflection does not panic on unexported fields.
-    REM Use [System.IO.File] read/write: preserves LF endings and UTF-8
-    REM without BOM regardless of the console codepage. (?m) anchors ^/$ per
-    REM line; \" becomes " at the PowerShell command-line tokenizer level.
-    powershell -NoProfile -Command "$p='..\protocol\database.pb.go'; $c=[System.IO.File]::ReadAllText($p); $c=[regex]::Replace($c,'(?m)^(\s*state\s+protoimpl\.MessageState\s+`)([^`]*)(`)','${1}${2} xorm:\"-\"${3}'); $c=[regex]::Replace($c,'(?m)^(\s*sizeCache\s+protoimpl\.SizeCache)\s*$','${1} `xorm:\"-\"`'); $c=[regex]::Replace($c,'(?m)^(\s*unknownFields\s+protoimpl\.UnknownFields)\s*$','${1} `xorm:\"-\"`'); [System.IO.File]::WriteAllText($p,$c,(New-Object System.Text.UTF8Encoding $false))"
-    if errorlevel 1 goto :end
-
     gofmt -w ..\protocol\database.pb.go
 )
 
