@@ -8138,12 +8138,15 @@ func (x *QuickStartReq) GetConnBusId() uint32 {
 }
 
 type QuickStartRsp struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Ret           *Ret                     `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomInfo      *RoomBaseInfo            `protobuf:"bytes,2,opt,name=room_info,json=roomInfo,proto3" json:"room_info,omitempty"`
-	TableInfo     *TableTexasGameData      `protobuf:"bytes,3,opt,name=table_info,json=tableInfo,proto3" json:"table_info,omitempty"`                                                                         // PrivateData一定为空
-	RoleInfo      map[uint64]*PbIconDesc   `protobuf:"bytes,4,rep,name=role_info,json=roleInfo,proto3" json:"role_info,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 玩家头像信息
-	HandInfo      *PlayerTexasGameCardData `protobuf:"bytes,5,opt,name=hand_info,json=handInfo,proto3" json:"hand_info,omitempty"`                                                                            // 玩家手牌信息
+	state     protoimpl.MessageState   `protogen:"open.v1"`
+	Ret       *Ret                     `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
+	RoomInfo  *RoomBaseInfo            `protobuf:"bytes,2,opt,name=room_info,json=roomInfo,proto3" json:"room_info,omitempty"`
+	TableInfo *TableTexasGameData      `protobuf:"bytes,3,opt,name=table_info,json=tableInfo,proto3" json:"table_info,omitempty"`                                                                         // PrivateData一定为空
+	RoleInfo  map[uint64]*PbIconDesc   `protobuf:"bytes,4,rep,name=role_info,json=roleInfo,proto3" json:"role_info,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 玩家头像信息
+	HandInfo  *PlayerTexasGameCardData `protobuf:"bytes,5,opt,name=hand_info,json=handInfo,proto3" json:"hand_info,omitempty"`                                                                            // 玩家手牌信息
+	// 本次座位占位的预约票据：回滚（QuickStartRollbackReq）必须携带，
+	// 同一票据至多释放一次（F03 幂等）；0 表示旧版调用方未携带。
+	ReservationId uint64 `protobuf:"varint,6,opt,name=reservation_id,json=reservationId,proto3" json:"reservation_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -8213,14 +8216,24 @@ func (x *QuickStartRsp) GetHandInfo() *PlayerTexasGameCardData {
 	return nil
 }
 
+func (x *QuickStartRsp) GetReservationId() uint64 {
+	if x != nil {
+		return x.ReservationId
+	}
+	return 0
+}
+
 // CMD_ROOM_CENTER_INNER_QUICK_START_ROLLBACK_REQ 快速开始占位回滚
 // （mainsvr 调游戏服加入对局失败时，归还 roomcenter 侧的座位占位）
 type QuickStartRollbackReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                 // 房间ID
-	GameId        GameTypeId             `protobuf:"varint,2,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`     // 游戏id
-	CoinType      CoinType               `protobuf:"varint,3,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	Stage         RoomStage              `protobuf:"varint,4,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                      // stage
+	state    protoimpl.MessageState `protogen:"open.v1"`
+	RoomId   uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                 // 房间ID
+	GameId   GameTypeId             `protobuf:"varint,2,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`     // 游戏id
+	CoinType CoinType               `protobuf:"varint,3,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
+	Stage    RoomStage              `protobuf:"varint,4,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                      // stage
+	// 预约票据（来自 QuickStartRsp.reservation_id）：同一票据至多释放一次；
+	// 未携带（旧版）时退回按房间计数回滚的旧行为。
+	ReservationId uint64 `protobuf:"varint,5,opt,name=reservation_id,json=reservationId,proto3" json:"reservation_id,omitempty"` // 预约票据
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -8281,6 +8294,13 @@ func (x *QuickStartRollbackReq) GetStage() RoomStage {
 		return x.Stage
 	}
 	return RoomStage_Free
+}
+
+func (x *QuickStartRollbackReq) GetReservationId() uint64 {
+	if x != nil {
+		return x.ReservationId
+	}
+	return 0
 }
 
 // MAIN_MALL_BUY_PACKAGE_REQ
@@ -10230,22 +10250,24 @@ const file_core_client_proto_rawDesc = "" +
 	"\tcoin_type\x18\x02 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\x12,\n" +
 	"\x05stage\x18\x03 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12\x1e\n" +
 	"\vconn_bus_id\x18\n" +
-	" \x01(\rR\tconnBusId\"\x8b\x03\n" +
+	" \x01(\rR\tconnBusId\"\xb2\x03\n" +
 	"\rQuickStartRsp\x12\"\n" +
 	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x126\n" +
 	"\troom_info\x18\x02 \x01(\v2\x19.g1.protocol.RoomBaseInfoR\broomInfo\x12>\n" +
 	"\n" +
 	"table_info\x18\x03 \x01(\v2\x1f.g1.protocol.TableTexasGameDataR\ttableInfo\x12E\n" +
 	"\trole_info\x18\x04 \x03(\v2(.g1.protocol.QuickStartRsp.RoleInfoEntryR\broleInfo\x12A\n" +
-	"\thand_info\x18\x05 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\x1aT\n" +
+	"\thand_info\x18\x05 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\x12%\n" +
+	"\x0ereservation_id\x18\x06 \x01(\x04R\rreservationId\x1aT\n" +
 	"\rRoleInfoEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x04R\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.g1.protocol.PbIconDescR\x05value:\x028\x01\"\xc4\x01\n" +
+	"\x05value\x18\x02 \x01(\v2\x17.g1.protocol.PbIconDescR\x05value:\x028\x01\"\xeb\x01\n" +
 	"\x15QuickStartRollbackReq\x12\x17\n" +
 	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x120\n" +
 	"\agame_id\x18\x02 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x122\n" +
 	"\tcoin_type\x18\x03 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\x12,\n" +
-	"\x05stage\x18\x04 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\",\n" +
+	"\x05stage\x18\x04 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12%\n" +
+	"\x0ereservation_id\x18\x05 \x01(\x04R\rreservationId\",\n" +
 	"\x11MallBuyPackageReq\x12\x17\n" +
 	"\aconf_id\x18\x01 \x01(\x05R\x06confId\"7\n" +
 	"\x11MallBuyPackageRsp\x12\"\n" +
