@@ -54,7 +54,7 @@ const (
 	ErrorCode_ERR_GOLD_NOT_ENOUGH        ErrorCode = -10008 // 金币不足
 	ErrorCode_ERR_DIAMOND_NOT_ENOUGH     ErrorCode = -10009 // 钻石不足
 	ErrorCode_ERR_ACE_COIN_NOT_ENOUGH    ErrorCode = -10010 // ace币不足
-	// 背包/道具系统（移植自 seed-server）
+	// 背包/道具系统
 	ErrorCode_ERR_ITEM_OVER_LIMIT                 ErrorCode = -10011 // 道具超过拥有上限
 	ErrorCode_ERR_ITEM_CAN_NOT_USE                ErrorCode = -10012 // 道具不可使用
 	ErrorCode_ERR_ITEM_CAN_NOT_SELL               ErrorCode = -10013 // 道具不可出售

@@ -72,7 +72,7 @@ service MainC2SService {
     };
   }
 
-  // ===== 背包/道具系统（移植自 seed-server）=====
+  // ===== 背包/道具系统=====
 
   rpc UseItem(g1.protocol.UseItemReq) returns (g1.protocol.UseItemRsp) {
     option (goone.options.v1.ssrpc) = {
