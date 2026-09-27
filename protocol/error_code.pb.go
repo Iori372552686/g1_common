@@ -80,23 +80,6 @@ const (
 	ErrorCode_ERR_MAIN_TASK_NOT_FINISH            ErrorCode = -10150 // 主线任务未完成
 	ErrorCode_ERR_GUIDE_IS_EXIST                  ErrorCode = -10187 // 该引导已经存在
 	ErrorCode_ERR_FUNCTION_NOT_OPEN               ErrorCode = -10188 // 功能未开放
-	// 德州扑克错误码
-	ErrorCode_ERR_TEXAS_FOLD_PARAMETERS         ErrorCode = -20000 // 弃牌参数错误
-	ErrorCode_ERR_TEXAS_SEAT_OCCUPIED           ErrorCode = -20001 // 座位已经被占用
-	ErrorCode_ERR_TEXAS_PLAYER_NOT_IN_GAME      ErrorCode = -20002 // 玩家不在游戏中
-	ErrorCode_ERR_TEXAS_PLAYER_NOT_ACTIVE       ErrorCode = -20003 // 玩家不能操作
-	ErrorCode_ERR_TEXAS_PLAYER_STATUS_INCORRECT ErrorCode = -20004 // 玩家状态不正确
-	ErrorCode_ERR_TEXAS_PLAYER_IN_GAME          ErrorCode = -20005 // 玩家已经在游戏中
-	ErrorCode_ERR_TEXAS_TABLE_FULL              ErrorCode = -20006 // 桌子数量已满
-	ErrorCode_ERR_TEXAS_NOT_IN_TABLE            ErrorCode = -20007 // 玩家不在桌子中
-	ErrorCode_ERR_TEXAS_STAND_UP_PARAMETERS     ErrorCode = -20008 // 站起参数错误
-	ErrorCode_ERR_TEXAS_PLAYER_HAS_STAND_UP     ErrorCode = -20009 // 玩家已经站起
-	ErrorCode_ERR_TEXAS_DO_BET_PARAMETERS       ErrorCode = -20010 // 下注参数错误
-	ErrorCode_ERR_TEXAS_CHIPS_NOT_ENOUGH        ErrorCode = -20011 // 筹码不足
-	ErrorCode_ERR_TEXAS_CALL_CHIPS_NOT_ENOUGH   ErrorCode = -20012 // 跟注筹码不足
-	ErrorCode_ERR_TEXAS_RAISE_CHIPS_NOT_ENOUGH  ErrorCode = -20013 // 加注筹码不足
-	ErrorCode_ERR_TEXAS_CONFIG_NOT_FOUND        ErrorCode = -20014 // 配置未找到
-	ErrorCode_ERR_TEXAS_SEAT_NOT_FOUND          ErrorCode = -20015 // 座位未找到
 	// 排行榜
 	ErrorCode_ERR_RANK_TYPE_ERROR ErrorCode = -90000 // 排行榜类型错误
 )
@@ -158,22 +141,6 @@ var (
 		-10150: "ERR_MAIN_TASK_NOT_FINISH",
 		-10187: "ERR_GUIDE_IS_EXIST",
 		-10188: "ERR_FUNCTION_NOT_OPEN",
-		-20000: "ERR_TEXAS_FOLD_PARAMETERS",
-		-20001: "ERR_TEXAS_SEAT_OCCUPIED",
-		-20002: "ERR_TEXAS_PLAYER_NOT_IN_GAME",
-		-20003: "ERR_TEXAS_PLAYER_NOT_ACTIVE",
-		-20004: "ERR_TEXAS_PLAYER_STATUS_INCORRECT",
-		-20005: "ERR_TEXAS_PLAYER_IN_GAME",
-		-20006: "ERR_TEXAS_TABLE_FULL",
-		-20007: "ERR_TEXAS_NOT_IN_TABLE",
-		-20008: "ERR_TEXAS_STAND_UP_PARAMETERS",
-		-20009: "ERR_TEXAS_PLAYER_HAS_STAND_UP",
-		-20010: "ERR_TEXAS_DO_BET_PARAMETERS",
-		-20011: "ERR_TEXAS_CHIPS_NOT_ENOUGH",
-		-20012: "ERR_TEXAS_CALL_CHIPS_NOT_ENOUGH",
-		-20013: "ERR_TEXAS_RAISE_CHIPS_NOT_ENOUGH",
-		-20014: "ERR_TEXAS_CONFIG_NOT_FOUND",
-		-20015: "ERR_TEXAS_SEAT_NOT_FOUND",
 		-90000: "ERR_RANK_TYPE_ERROR",
 	}
 	ErrorCode_value = map[string]int32{
@@ -231,22 +198,6 @@ var (
 		"ERR_MAIN_TASK_NOT_FINISH":            -10150,
 		"ERR_GUIDE_IS_EXIST":                  -10187,
 		"ERR_FUNCTION_NOT_OPEN":               -10188,
-		"ERR_TEXAS_FOLD_PARAMETERS":           -20000,
-		"ERR_TEXAS_SEAT_OCCUPIED":             -20001,
-		"ERR_TEXAS_PLAYER_NOT_IN_GAME":        -20002,
-		"ERR_TEXAS_PLAYER_NOT_ACTIVE":         -20003,
-		"ERR_TEXAS_PLAYER_STATUS_INCORRECT":   -20004,
-		"ERR_TEXAS_PLAYER_IN_GAME":            -20005,
-		"ERR_TEXAS_TABLE_FULL":                -20006,
-		"ERR_TEXAS_NOT_IN_TABLE":              -20007,
-		"ERR_TEXAS_STAND_UP_PARAMETERS":       -20008,
-		"ERR_TEXAS_PLAYER_HAS_STAND_UP":       -20009,
-		"ERR_TEXAS_DO_BET_PARAMETERS":         -20010,
-		"ERR_TEXAS_CHIPS_NOT_ENOUGH":          -20011,
-		"ERR_TEXAS_CALL_CHIPS_NOT_ENOUGH":     -20012,
-		"ERR_TEXAS_RAISE_CHIPS_NOT_ENOUGH":    -20013,
-		"ERR_TEXAS_CONFIG_NOT_FOUND":          -20014,
-		"ERR_TEXAS_SEAT_NOT_FOUND":            -20015,
 		"ERR_RANK_TYPE_ERROR":                 -90000,
 	}
 )
@@ -282,7 +233,7 @@ var File_core_error_code_proto protoreflect.FileDescriptor
 
 const file_core_error_code_proto_rawDesc = "" +
 	"\n" +
-	"\x15core/error_code.proto\x12\vg1.protocol*\xd0\x13\n" +
+	"\x15core/error_code.proto\x12\vg1.protocol*\xb6\x0e\n" +
 	"\tErrorCode\x12\x0e\n" +
 	"\n" +
 	"ERR_SUCESS\x10\x00\x12\v\n" +
@@ -339,23 +290,7 @@ const file_core_error_code_proto_rawDesc = "" +
 	"\x12ERR_MALL_BUY_LIMIT\x10\xec\xb0\xff\xff\xff\xff\xff\xff\xff\x01\x12%\n" +
 	"\x18ERR_MAIN_TASK_NOT_FINISH\x10ڰ\xff\xff\xff\xff\xff\xff\xff\x01\x12\x1f\n" +
 	"\x12ERR_GUIDE_IS_EXIST\x10\xb5\xb0\xff\xff\xff\xff\xff\xff\xff\x01\x12\"\n" +
-	"\x15ERR_FUNCTION_NOT_OPEN\x10\xb4\xb0\xff\xff\xff\xff\xff\xff\xff\x01\x12&\n" +
-	"\x19ERR_TEXAS_FOLD_PARAMETERS\x10\xe0\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12$\n" +
-	"\x17ERR_TEXAS_SEAT_OCCUPIED\x10\xdf\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12)\n" +
-	"\x1cERR_TEXAS_PLAYER_NOT_IN_GAME\x10\xde\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12(\n" +
-	"\x1bERR_TEXAS_PLAYER_NOT_ACTIVE\x10\xdd\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12.\n" +
-	"!ERR_TEXAS_PLAYER_STATUS_INCORRECT\x10\xdc\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12%\n" +
-	"\x18ERR_TEXAS_PLAYER_IN_GAME\x10\xdb\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12!\n" +
-	"\x14ERR_TEXAS_TABLE_FULL\x10\xda\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12#\n" +
-	"\x16ERR_TEXAS_NOT_IN_TABLE\x10\xd9\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12*\n" +
-	"\x1dERR_TEXAS_STAND_UP_PARAMETERS\x10\xd8\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12*\n" +
-	"\x1dERR_TEXAS_PLAYER_HAS_STAND_UP\x10\xd7\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12(\n" +
-	"\x1bERR_TEXAS_DO_BET_PARAMETERS\x10\xd6\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12'\n" +
-	"\x1aERR_TEXAS_CHIPS_NOT_ENOUGH\x10\xd5\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12,\n" +
-	"\x1fERR_TEXAS_CALL_CHIPS_NOT_ENOUGH\x10\xd4\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12-\n" +
-	" ERR_TEXAS_RAISE_CHIPS_NOT_ENOUGH\x10\xd3\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12'\n" +
-	"\x1aERR_TEXAS_CONFIG_NOT_FOUND\x10\xd2\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12%\n" +
-	"\x18ERR_TEXAS_SEAT_NOT_FOUND\x10\xd1\xe3\xfe\xff\xff\xff\xff\xff\xff\x01\x12 \n" +
+	"\x15ERR_FUNCTION_NOT_OPEN\x10\xb4\xb0\xff\xff\xff\xff\xff\xff\xff\x01\x12 \n" +
 	"\x13ERR_RANK_TYPE_ERROR\x10\xf0\xc0\xfa\xff\xff\xff\xff\xff\xff\x01B9Z7github.com/Iori372552686/g1_common/protocol;g1_protocolb\x06proto3"
 
 var (

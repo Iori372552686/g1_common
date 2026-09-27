@@ -35,3 +35,30 @@ message MysqlInnerSearchRoleRsp
     Ret    ret = 1;
     uint64 uid = 2;
 }
+
+// MYSQL_INNER_SAVE_ROLE_DATA_REQ — L3 全量快照写回（mainsvr 双写的异步落库路径）
+message MysqlInnerSaveRoleDataReq
+{
+    uint64 uid         = 1;
+    bytes  data        = 2;  // RoleInfo 整包序列化（ConnSvrInfo 已清空）
+    int64  update_time = 3;  // 服务器时钟 ms，陈旧写守卫用
+    bool   ignore_rsp  = 4;  // 运行期异步投递时不等 rsp
+}
+
+message MysqlInnerSaveRoleDataRsp
+{
+    Ret ret = 1;
+}
+
+// MYSQL_INNER_LOAD_ROLE_DATA_REQ — L2 miss 时的回源读（冷登录路径）
+message MysqlInnerLoadRoleDataReq
+{
+    uint64 uid = 1;
+}
+
+message MysqlInnerLoadRoleDataRsp
+{
+    Ret   ret         = 1;
+    bytes data        = 2;  // 命中时为 RoleInfo 整包序列化，miss 时为空
+    int64 update_time = 3;
+}

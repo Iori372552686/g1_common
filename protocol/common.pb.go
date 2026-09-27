@@ -24,19 +24,17 @@ const (
 type DBType int32
 
 const (
-	DBType__DB_ZERO                 DBType = 0
-	DBType_DB_TYPE_ROLE             DBType = 1  // 玩家角色的详细数据
-	DBType_DB_TYPE_ACCOUNT          DBType = 2  // 每个区当前账号数量，用于生成账号
-	DBType_DB_TYPE_BRIEF_INFO       DBType = 3  // 角色实时摘要信息
-	DBType_DB_TYPE_RANK             DBType = 4  // 各种排行榜
-	DBType_DB_TYPE_GUILD            DBType = 5  // 公会
-	DBType_DB_TYPE_MAIL             DBType = 6  // 邮件
-	DBType_DB_TYPE_CHAT             DBType = 7  // 离线聊天数据
-	DBType_DB_TYPE_FRIEND           DBType = 8  // 好友数据
-	DBType_DB_TYPE_ROOM_CENTER_INFO DBType = 9  // 房间中心数据
-	DBType_DB_TYPE_TEXAS_ROOM       DBType = 10 // 德州房间缓存数据
-	DBType_DB_TYPE_RUMMY_ROOM       DBType = 11 // 拉米牌房间缓存数据
-	DBType_DB_TYPE_MISC             DBType = 99 // 一些单独的key
+	DBType__DB_ZERO           DBType = 0
+	DBType_DB_TYPE_ROLE       DBType = 1  // 玩家角色的详细数据
+	DBType_DB_TYPE_ACCOUNT    DBType = 2  // 每个区当前账号数量，用于生成账号
+	DBType_DB_TYPE_BRIEF_INFO DBType = 3  // 角色实时摘要信息
+	DBType_DB_TYPE_RANK       DBType = 4  // 各种排行榜
+	DBType_DB_TYPE_GUILD      DBType = 5  // 公会
+	DBType_DB_TYPE_MAIL       DBType = 6  // 邮件
+	DBType_DB_TYPE_CHAT       DBType = 7  // 离线聊天数据
+	DBType_DB_TYPE_FRIEND     DBType = 8  // 好友数据
+	DBType_DB_TYPE_RUMMY_ROOM DBType = 11 // 拉米牌房间缓存数据
+	DBType_DB_TYPE_MISC       DBType = 99 // 一些单独的key
 )
 
 // Enum value maps for DBType.
@@ -51,25 +49,21 @@ var (
 		6:  "DB_TYPE_MAIL",
 		7:  "DB_TYPE_CHAT",
 		8:  "DB_TYPE_FRIEND",
-		9:  "DB_TYPE_ROOM_CENTER_INFO",
-		10: "DB_TYPE_TEXAS_ROOM",
 		11: "DB_TYPE_RUMMY_ROOM",
 		99: "DB_TYPE_MISC",
 	}
 	DBType_value = map[string]int32{
-		"_DB_ZERO":                 0,
-		"DB_TYPE_ROLE":             1,
-		"DB_TYPE_ACCOUNT":          2,
-		"DB_TYPE_BRIEF_INFO":       3,
-		"DB_TYPE_RANK":             4,
-		"DB_TYPE_GUILD":            5,
-		"DB_TYPE_MAIL":             6,
-		"DB_TYPE_CHAT":             7,
-		"DB_TYPE_FRIEND":           8,
-		"DB_TYPE_ROOM_CENTER_INFO": 9,
-		"DB_TYPE_TEXAS_ROOM":       10,
-		"DB_TYPE_RUMMY_ROOM":       11,
-		"DB_TYPE_MISC":             99,
+		"_DB_ZERO":           0,
+		"DB_TYPE_ROLE":       1,
+		"DB_TYPE_ACCOUNT":    2,
+		"DB_TYPE_BRIEF_INFO": 3,
+		"DB_TYPE_RANK":       4,
+		"DB_TYPE_GUILD":      5,
+		"DB_TYPE_MAIL":       6,
+		"DB_TYPE_CHAT":       7,
+		"DB_TYPE_FRIEND":     8,
+		"DB_TYPE_RUMMY_ROOM": 11,
+		"DB_TYPE_MISC":       99,
 	}
 )
 
@@ -1153,7 +1147,7 @@ const file_core_common_proto_rawDesc = "" +
 	"\x03Ret\x12*\n" +
 	"\x04code\x18\x01 \x01(\x0e2\x16.g1.protocol.ErrorCodeR\x04code\x12\x10\n" +
 	"\x03msg\x18\x02 \x01(\tR\x03msg\x12\x12\n" +
-	"\x04argv\x18\x03 \x03(\tR\x04argv*\x92\x02\n" +
+	"\x04argv\x18\x03 \x03(\tR\x04argv*\xdc\x01\n" +
 	"\x06DBType\x12\f\n" +
 	"\b_DB_ZERO\x10\x00\x12\x10\n" +
 	"\fDB_TYPE_ROLE\x10\x01\x12\x13\n" +
@@ -1163,10 +1157,7 @@ const file_core_common_proto_rawDesc = "" +
 	"\rDB_TYPE_GUILD\x10\x05\x12\x10\n" +
 	"\fDB_TYPE_MAIL\x10\x06\x12\x10\n" +
 	"\fDB_TYPE_CHAT\x10\a\x12\x12\n" +
-	"\x0eDB_TYPE_FRIEND\x10\b\x12\x1c\n" +
-	"\x18DB_TYPE_ROOM_CENTER_INFO\x10\t\x12\x16\n" +
-	"\x12DB_TYPE_TEXAS_ROOM\x10\n" +
-	"\x12\x16\n" +
+	"\x0eDB_TYPE_FRIEND\x10\b\x12\x16\n" +
 	"\x12DB_TYPE_RUMMY_ROOM\x10\v\x12\x10\n" +
 	"\fDB_TYPE_MISC\x10c*K\n" +
 	"\x0eEKickOutReason\x12\v\n" +

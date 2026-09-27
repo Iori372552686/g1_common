@@ -74,42 +74,32 @@ func (x *MysqlRoleInfo) GetName() string {
 	return ""
 }
 
-// 房间数据
-type MysqlTexasRoomInfo struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	Id                uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" gorm:"column:id;type:bigint;primaryKey;autoIncrement"`                                                                                                        // @inject_tag: gorm:"column:id;type:bigint;primaryKey;autoIncrement"
-	RoomId            uint64                 `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty" gorm:"column:room_id;type:bigint;index:IDX_mysql_texas_room_info_room_id;not null;comment:房间id"`                                        // @inject_tag: gorm:"column:room_id;type:bigint;index:IDX_mysql_texas_room_info_room_id;not null;comment:房间id"
-	RoomName          string                 `protobuf:"bytes,3,opt,name=room_name,json=roomName,proto3" json:"room_name,omitempty" gorm:"column:room_name;type:varchar(64);comment:房间名称"`                                                                             // @inject_tag: gorm:"column:room_name;type:varchar(64);comment:房间名称"
-	GameType          GameTypeId             `protobuf:"varint,4,opt,name=game_type,json=gameType,proto3,enum=g1.protocol.GameTypeId" json:"game_type,omitempty" gorm:"column:game_type;type:int;index:IDX_mysql_texas_room_info_game_type;not null;comment:房间模式"`     // @inject_tag: gorm:"column:game_type;type:int;index:IDX_mysql_texas_room_info_game_type;not null;comment:房间模式"
-	RoomStage         RoomStage              `protobuf:"varint,5,opt,name=room_stage,json=roomStage,proto3,enum=g1.protocol.RoomStage" json:"room_stage,omitempty" gorm:"column:room_stage;type:int;index:IDX_mysql_texas_room_info_room_stage;not null;comment:房间阶段"` // @inject_tag: gorm:"column:room_stage;type:int;index:IDX_mysql_texas_room_info_room_stage;not null;comment:房间阶段"
-	Blind             string                 `protobuf:"bytes,6,opt,name=blind,proto3" json:"blind,omitempty" gorm:"column:blind;type:varchar(30);index:IDX_mysql_texas_room_info_blind;not null;comment:小/大盲注"`                                                       // @inject_tag: gorm:"column:blind;type:varchar(30);index:IDX_mysql_texas_room_info_blind;not null;comment:小/大盲注"
-	CreateTime        int64                  `protobuf:"varint,7,opt,name=create_time,json=createTime,proto3" json:"create_time,omitempty" gorm:"column:create_time;type:bigint;index:IDX_mysql_texas_room_info_create_time;not null;comment:创建房间时间"`                  // @inject_tag: gorm:"column:create_time;type:bigint;index:IDX_mysql_texas_room_info_create_time;not null;comment:创建房间时间"
-	FinishTime        int64                  `protobuf:"varint,8,opt,name=finish_time,json=finishTime,proto3" json:"finish_time,omitempty" gorm:"column:finish_time;type:bigint;index:IDX_mysql_texas_room_info_finish_time;comment:房间结束时间"`                           // @inject_tag: gorm:"column:finish_time;type:bigint;index:IDX_mysql_texas_room_info_finish_time;comment:房间结束时间"
-	TableId           uint64                 `protobuf:"varint,9,opt,name=table_id,json=tableId,proto3" json:"table_id,omitempty" gorm:"column:table_id;type:bigint;index:IDX_mysql_texas_room_info_table_id;comment:牌局id"`                                            // @inject_tag: gorm:"column:table_id;type:bigint;index:IDX_mysql_texas_room_info_table_id;comment:牌局id"
-	TotalRound        uint32                 `protobuf:"varint,10,opt,name=total_round,json=totalRound,proto3" json:"total_round,omitempty" gorm:"column:total_round;type:bigint;comment:游戏局数"`                                                                        // @inject_tag: gorm:"column:total_round;type:bigint;comment:游戏局数"
-	TotalBuyinChips   int64                  `protobuf:"varint,11,opt,name=total_buyin_chips,json=totalBuyinChips,proto3" json:"total_buyin_chips,omitempty" gorm:"column:total_buyin_chips;type:bigint;comment:总带入筹码"`                                                // @inject_tag: gorm:"column:total_buyin_chips;type:bigint;comment:总带入筹码"
-	TotalJoinCount    uint32                 `protobuf:"varint,12,opt,name=total_join_count,json=totalJoinCount,proto3" json:"total_join_count,omitempty" gorm:"column:total_join_count;type:int;comment:总参与人数"`                                                       // @inject_tag: gorm:"column:total_join_count;type:int;comment:总参与人数"
-	TotalServiceChips int64                  `protobuf:"varint,13,opt,name=total_service_chips,json=totalServiceChips,proto3" json:"total_service_chips,omitempty" gorm:"column:total_service_chips;type:bigint;comment:总服务费"`                                         // @inject_tag: gorm:"column:total_service_chips;type:bigint;comment:总服务费"
-	TotalRuningWater  int64                  `protobuf:"varint,14,opt,name=total_runing_water,json=totalRuningWater,proto3" json:"total_runing_water,omitempty" gorm:"column:total_runing_water;type:bigint;comment:总流水"`                                              // @inject_tag: gorm:"column:total_runing_water;type:bigint;comment:总流水"
-	UpdateTime        int64                  `protobuf:"varint,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty" gorm:"column:update_time;type:bigint;comment:更新时间"`                                                                        // @inject_tag: gorm:"column:update_time;type:bigint;comment:更新时间"
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+// 角色全量数据快照（L3 持久层）：data 为 RoleInfo 整包 proto 序列化。
+// update_time 用服务器时钟（datetime.NowMs），禁用带时区偏移的 Role.Now()，
+// 与 SaveRoom/SaveGame 同构，作陈旧写守卫（repository.ErrStaleUpdate）。
+type MysqlRoleData struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           uint64                 `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty" gorm:"column:uid;type:bigint;primaryKey;comment:玩家uid"`                                      // @inject_tag: gorm:"column:uid;type:bigint;primaryKey;comment:玩家uid"
+	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty" gorm:"column:data;type:longblob;comment:RoleInfo整包序列化"`                                     // @inject_tag: gorm:"column:data;type:longblob;comment:RoleInfo整包序列化"
+	UpdateTime    int64                  `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty" gorm:"column:update_time;type:bigint;comment:更新时间(服务器时钟ms)"` // @inject_tag: gorm:"column:update_time;type:bigint;comment:更新时间(服务器时钟ms)"
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
 }
 
-func (x *MysqlTexasRoomInfo) Reset() {
-	*x = MysqlTexasRoomInfo{}
+func (x *MysqlRoleData) Reset() {
+	*x = MysqlRoleData{}
 	mi := &file_core_database_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *MysqlTexasRoomInfo) String() string {
+func (x *MysqlRoleData) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*MysqlTexasRoomInfo) ProtoMessage() {}
+func (*MysqlRoleData) ProtoMessage() {}
 
-func (x *MysqlTexasRoomInfo) ProtoReflect() protoreflect.Message {
+func (x *MysqlRoleData) ProtoReflect() protoreflect.Message {
 	mi := &file_core_database_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -121,823 +111,28 @@ func (x *MysqlTexasRoomInfo) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use MysqlTexasRoomInfo.ProtoReflect.Descriptor instead.
-func (*MysqlTexasRoomInfo) Descriptor() ([]byte, []int) {
+// Deprecated: Use MysqlRoleData.ProtoReflect.Descriptor instead.
+func (*MysqlRoleData) Descriptor() ([]byte, []int) {
 	return file_core_database_proto_rawDescGZIP(), []int{1}
 }
 
-func (x *MysqlTexasRoomInfo) GetId() uint64 {
+func (x *MysqlRoleData) GetUid() uint64 {
 	if x != nil {
-		return x.Id
+		return x.Uid
 	}
 	return 0
 }
 
-func (x *MysqlTexasRoomInfo) GetRoomId() uint64 {
+func (x *MysqlRoleData) GetData() []byte {
 	if x != nil {
-		return x.RoomId
+		return x.Data
 	}
-	return 0
+	return nil
 }
 
-func (x *MysqlTexasRoomInfo) GetRoomName() string {
-	if x != nil {
-		return x.RoomName
-	}
-	return ""
-}
-
-func (x *MysqlTexasRoomInfo) GetGameType() GameTypeId {
-	if x != nil {
-		return x.GameType
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *MysqlTexasRoomInfo) GetRoomStage() RoomStage {
-	if x != nil {
-		return x.RoomStage
-	}
-	return RoomStage_Free
-}
-
-func (x *MysqlTexasRoomInfo) GetBlind() string {
-	if x != nil {
-		return x.Blind
-	}
-	return ""
-}
-
-func (x *MysqlTexasRoomInfo) GetCreateTime() int64 {
-	if x != nil {
-		return x.CreateTime
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetFinishTime() int64 {
-	if x != nil {
-		return x.FinishTime
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetTableId() uint64 {
-	if x != nil {
-		return x.TableId
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetTotalRound() uint32 {
-	if x != nil {
-		return x.TotalRound
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetTotalBuyinChips() int64 {
-	if x != nil {
-		return x.TotalBuyinChips
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetTotalJoinCount() uint32 {
-	if x != nil {
-		return x.TotalJoinCount
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetTotalServiceChips() int64 {
-	if x != nil {
-		return x.TotalServiceChips
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetTotalRuningWater() int64 {
-	if x != nil {
-		return x.TotalRuningWater
-	}
-	return 0
-}
-
-func (x *MysqlTexasRoomInfo) GetUpdateTime() int64 {
+func (x *MysqlRoleData) GetUpdateTime() int64 {
 	if x != nil {
 		return x.UpdateTime
-	}
-	return 0
-}
-
-// 玩家游戏数据
-type MysqlTexasPlayerInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty" gorm:"column:id;type:bigint;primaryKey;autoIncrement"`                                                                                                 // @inject_tag: gorm:"column:id;type:bigint;primaryKey;autoIncrement"
-	Uid           uint64                 `protobuf:"varint,2,opt,name=uid,proto3" json:"uid,omitempty" gorm:"column:uid;type:bigint;index:IDX_mysql_texas_player_info_uid;comment:玩家uid"`                                                                   // @inject_tag: gorm:"column:uid;type:bigint;index:IDX_mysql_texas_player_info_uid;comment:玩家uid"
-	TableId       uint64                 `protobuf:"varint,3,opt,name=table_id,json=tableId,proto3" json:"table_id,omitempty" gorm:"column:table_id;type:bigint;index:IDX_mysql_texas_player_info_table_id;comment:牌桌id"`                                   // @inject_tag: gorm:"column:table_id;type:bigint;index:IDX_mysql_texas_player_info_table_id;comment:牌桌id"
-	Round         uint32                 `protobuf:"varint,4,opt,name=round,proto3" json:"round,omitempty" gorm:"column:round;type:int;index:IDX_mysql_texas_player_info_round;comment:第几轮"`                                                                // @inject_tag: gorm:"column:round;type:int;index:IDX_mysql_texas_player_info_round;comment:第几轮"
-	TotalPlayers  uint32                 `protobuf:"varint,5,opt,name=total_players,json=totalPlayers,proto3" json:"total_players,omitempty" gorm:"column:total_players;type:int;comment:总玩家数"`                                                             // @inject_tag: gorm:"column:total_players;type:int;comment:总玩家数"
-	GameType      GameTypeId             `protobuf:"varint,6,opt,name=game_type,json=gameType,proto3,enum=g1.protocol.GameTypeId" json:"game_type,omitempty" gorm:"column:game_type;type:int;index:IDX_mysql_texas_player_info_game_type;comment:房间模式"`     // @inject_tag: gorm:"column:game_type;type:int;index:IDX_mysql_texas_player_info_game_type;comment:房间模式"
-	RoomId        uint64                 `protobuf:"varint,7,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty" gorm:"column:room_id;type:bigint;index:IDX_mysql_texas_player_info_room_id;comment:房间id"`                                        // @inject_tag: gorm:"column:room_id;type:bigint;index:IDX_mysql_texas_player_info_room_id;comment:房间id"
-	RoomName      string                 `protobuf:"bytes,8,opt,name=room_name,json=roomName,proto3" json:"room_name,omitempty" gorm:"column:room_name;type:varchar(64);comment:房间名称"`                                                                      // @inject_tag: gorm:"column:room_name;type:varchar(64);comment:房间名称"
-	RoomStage     RoomStage              `protobuf:"varint,9,opt,name=room_stage,json=roomStage,proto3,enum=g1.protocol.RoomStage" json:"room_stage,omitempty" gorm:"column:room_stage;type:int;index:IDX_mysql_texas_player_info_room_stage;comment:房间阶段"` // @inject_tag: gorm:"column:room_stage;type:int;index:IDX_mysql_texas_player_info_room_stage;comment:房间阶段"
-	BeginTime     int64                  `protobuf:"varint,10,opt,name=begin_time,json=beginTime,proto3" json:"begin_time,omitempty" gorm:"column:begin_time;type:bigint;index:IDX_mysql_texas_player_info_begin_time;comment:开始时间"`                        // @inject_tag: gorm:"column:begin_time;type:bigint;index:IDX_mysql_texas_player_info_begin_time;comment:开始时间"
-	EndTime       int64                  `protobuf:"varint,11,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty" gorm:"column:end_time;type:bigint;index:IDX_mysql_texas_player_info_end_time;comment:结束时间"`                                  // @inject_tag: gorm:"column:end_time;type:bigint;index:IDX_mysql_texas_player_info_end_time;comment:结束时间"
-	Chips         int64                  `protobuf:"varint,12,opt,name=chips,proto3" json:"chips,omitempty" gorm:"column:chips;type:bigint;comment:当前筹码"`                                                                                                   // @inject_tag: gorm:"column:chips;type:bigint;comment:当前筹码"
-	ServiceChips  int64                  `protobuf:"varint,13,opt,name=service_chips,json=serviceChips,proto3" json:"service_chips,omitempty" gorm:"column:service_chips;type:bigint;comment:服务费"`                                                          // @inject_tag: gorm:"column:service_chips;type:bigint;comment:服务费"
-	WinChips      int64                  `protobuf:"varint,14,opt,name=win_chips,json=winChips,proto3" json:"win_chips,omitempty" gorm:"column:win_chips;type:bigint;comment:输赢"`                                                                           // @inject_tag: gorm:"column:win_chips;type:bigint;comment:输赢"
-	UpdateTime    int64                  `protobuf:"varint,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty" gorm:"column:update_time;type:bigint;comment:更新时间"`                                                                 // @inject_tag: gorm:"column:update_time;type:bigint;comment:更新时间"
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MysqlTexasPlayerInfo) Reset() {
-	*x = MysqlTexasPlayerInfo{}
-	mi := &file_core_database_proto_msgTypes[2]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MysqlTexasPlayerInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MysqlTexasPlayerInfo) ProtoMessage() {}
-
-func (x *MysqlTexasPlayerInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[2]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MysqlTexasPlayerInfo.ProtoReflect.Descriptor instead.
-func (*MysqlTexasPlayerInfo) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{2}
-}
-
-func (x *MysqlTexasPlayerInfo) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetUid() uint64 {
-	if x != nil {
-		return x.Uid
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetTableId() uint64 {
-	if x != nil {
-		return x.TableId
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetRound() uint32 {
-	if x != nil {
-		return x.Round
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetTotalPlayers() uint32 {
-	if x != nil {
-		return x.TotalPlayers
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetGameType() GameTypeId {
-	if x != nil {
-		return x.GameType
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *MysqlTexasPlayerInfo) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetRoomName() string {
-	if x != nil {
-		return x.RoomName
-	}
-	return ""
-}
-
-func (x *MysqlTexasPlayerInfo) GetRoomStage() RoomStage {
-	if x != nil {
-		return x.RoomStage
-	}
-	return RoomStage_Free
-}
-
-func (x *MysqlTexasPlayerInfo) GetBeginTime() int64 {
-	if x != nil {
-		return x.BeginTime
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetEndTime() int64 {
-	if x != nil {
-		return x.EndTime
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetChips() int64 {
-	if x != nil {
-		return x.Chips
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetServiceChips() int64 {
-	if x != nil {
-		return x.ServiceChips
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetWinChips() int64 {
-	if x != nil {
-		return x.WinChips
-	}
-	return 0
-}
-
-func (x *MysqlTexasPlayerInfo) GetUpdateTime() int64 {
-	if x != nil {
-		return x.UpdateTime
-	}
-	return 0
-}
-
-// 游戏牌桌数据
-type MysqlTexasGameInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        string                 `protobuf:"bytes,2,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty" gorm:"column:game_id;type:varchar(125);primaryKey;comment:游戏id"`                                                                // @inject_tag: gorm:"column:game_id;type:varchar(125);primaryKey;comment:游戏id"
-	TableId       uint64                 `protobuf:"varint,3,opt,name=table_id,json=tableId,proto3" json:"table_id,omitempty" gorm:"column:table_id;type:bigint;index:IDX_mysql_texas_game_info_table_id;comment:牌局id"`                                   // @inject_tag: gorm:"column:table_id;type:bigint;index:IDX_mysql_texas_game_info_table_id;comment:牌局id"
-	Round         uint32                 `protobuf:"varint,4,opt,name=round,proto3" json:"round,omitempty" gorm:"column:round;type:int;comment:当前回合"`                                                                                                     // @inject_tag: gorm:"column:round;type:int;comment:当前回合"
-	GameType      GameTypeId             `protobuf:"varint,5,opt,name=game_type,json=gameType,proto3,enum=g1.protocol.GameTypeId" json:"game_type,omitempty" gorm:"column:game_type;type:int;index:IDX_mysql_texas_game_info_game_type;comment:房间模式"`     // @inject_tag: gorm:"column:game_type;type:int;index:IDX_mysql_texas_game_info_game_type;comment:房间模式"
-	RoomId        uint64                 `protobuf:"varint,6,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty" gorm:"column:room_id;type:bigint;index:IDX_mysql_texas_game_info_room_id;comment:房间id"`                                        // @inject_tag: gorm:"column:room_id;type:bigint;index:IDX_mysql_texas_game_info_room_id;comment:房间id"
-	RoomName      string                 `protobuf:"bytes,7,opt,name=room_name,json=roomName,proto3" json:"room_name,omitempty" gorm:"column:room_name;type:varchar(64);comment:房间名称"`                                                                    // @inject_tag: gorm:"column:room_name;type:varchar(64);comment:房间名称"
-	RoomStage     RoomStage              `protobuf:"varint,8,opt,name=room_stage,json=roomStage,proto3,enum=g1.protocol.RoomStage" json:"room_stage,omitempty" gorm:"column:room_stage;type:int;index:IDX_mysql_texas_game_info_room_stage;comment:房间阶段"` // @inject_tag: gorm:"column:room_stage;type:int;index:IDX_mysql_texas_game_info_room_stage;comment:房间阶段"
-	Blind         string                 `protobuf:"bytes,9,opt,name=blind,proto3" json:"blind,omitempty" gorm:"column:blind;type:varchar(30);index:IDX_mysql_texas_game_info_blind;comment:小/大盲注"`                                                       // @inject_tag: gorm:"column:blind;type:varchar(30);index:IDX_mysql_texas_game_info_blind;comment:小/大盲注"
-	BeginTime     int64                  `protobuf:"varint,10,opt,name=begin_time,json=beginTime,proto3" json:"begin_time,omitempty" gorm:"column:begin_time;type:bigint;index:IDX_mysql_texas_game_info_begin_time;comment:创建房间时间"`                      // @inject_tag: gorm:"column:begin_time;type:bigint;index:IDX_mysql_texas_game_info_begin_time;comment:创建房间时间"
-	EndTime       int64                  `protobuf:"varint,11,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty" gorm:"column:end_time;type:bigint;index:IDX_mysql_texas_game_info_end_time;comment:房间结束时间"`                                // @inject_tag: gorm:"column:end_time;type:bigint;index:IDX_mysql_texas_game_info_end_time;comment:房间结束时间"
-	TotalPot      int64                  `protobuf:"varint,12,opt,name=total_pot,json=totalPot,proto3" json:"total_pot,omitempty" gorm:"column:total_pot;type:bigint;comment:底池"`                                                                         // @inject_tag: gorm:"column:total_pot;type:bigint;comment:底池"
-	TotalService  int64                  `protobuf:"varint,13,opt,name=total_service,json=totalService,proto3" json:"total_service,omitempty" gorm:"column:total_service;type:bigint;comment:玩家服务费"`                                                      // @inject_tag: gorm:"column:total_service;type:bigint;comment:玩家服务费"
-	GameDetail    []byte                 `protobuf:"bytes,14,opt,name=game_detail,json=gameDetail,proto3" json:"game_detail,omitempty" gorm:"column:game_detail;type:blob;comment:游戏记录详情"`                                                                // @inject_tag: gorm:"column:game_detail;type:blob;comment:游戏记录详情"
-	UpdateTime    int64                  `protobuf:"varint,15,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty" gorm:"column:update_time;type:bigint;comment:更新时间"`                                                               // @inject_tag: gorm:"column:update_time;type:bigint;comment:更新时间"
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MysqlTexasGameInfo) Reset() {
-	*x = MysqlTexasGameInfo{}
-	mi := &file_core_database_proto_msgTypes[3]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MysqlTexasGameInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MysqlTexasGameInfo) ProtoMessage() {}
-
-func (x *MysqlTexasGameInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[3]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MysqlTexasGameInfo.ProtoReflect.Descriptor instead.
-func (*MysqlTexasGameInfo) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{3}
-}
-
-func (x *MysqlTexasGameInfo) GetGameId() string {
-	if x != nil {
-		return x.GameId
-	}
-	return ""
-}
-
-func (x *MysqlTexasGameInfo) GetTableId() uint64 {
-	if x != nil {
-		return x.TableId
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetRound() uint32 {
-	if x != nil {
-		return x.Round
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetGameType() GameTypeId {
-	if x != nil {
-		return x.GameType
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *MysqlTexasGameInfo) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetRoomName() string {
-	if x != nil {
-		return x.RoomName
-	}
-	return ""
-}
-
-func (x *MysqlTexasGameInfo) GetRoomStage() RoomStage {
-	if x != nil {
-		return x.RoomStage
-	}
-	return RoomStage_Free
-}
-
-func (x *MysqlTexasGameInfo) GetBlind() string {
-	if x != nil {
-		return x.Blind
-	}
-	return ""
-}
-
-func (x *MysqlTexasGameInfo) GetBeginTime() int64 {
-	if x != nil {
-		return x.BeginTime
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetEndTime() int64 {
-	if x != nil {
-		return x.EndTime
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetTotalPot() int64 {
-	if x != nil {
-		return x.TotalPot
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetTotalService() int64 {
-	if x != nil {
-		return x.TotalService
-	}
-	return 0
-}
-
-func (x *MysqlTexasGameInfo) GetGameDetail() []byte {
-	if x != nil {
-		return x.GameDetail
-	}
-	return nil
-}
-
-func (x *MysqlTexasGameInfo) GetUpdateTime() int64 {
-	if x != nil {
-		return x.UpdateTime
-	}
-	return 0
-}
-
-// 游戏房间回合
-type TexasGameRecord struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TableId       uint64                 `protobuf:"varint,1,opt,name=table_id,json=tableId,proto3" json:"table_id,omitempty"`                                  // 牌局id(唯一)
-	GameType      GameTypeId             `protobuf:"varint,2,opt,name=game_type,json=gameType,proto3,enum=g1.protocol.GameTypeId" json:"game_type,omitempty"`   // 游戏类型
-	RoomStage     RoomStage              `protobuf:"varint,3,opt,name=room_stage,json=roomStage,proto3,enum=g1.protocol.RoomStage" json:"room_stage,omitempty"` // 房间阶段
-	Blind         string                 `protobuf:"bytes,4,opt,name=blind,proto3" json:"blind,omitempty"`                                                      // 小/大盲注
-	BeginTime     int64                  `protobuf:"varint,5,opt,name=begin_time,json=beginTime,proto3" json:"begin_time,omitempty"`                            // 开始时间
-	EndTime       int64                  `protobuf:"varint,6,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`                                  // 结束时间
-	TotalPot      int64                  `protobuf:"varint,7,opt,name=total_pot,json=totalPot,proto3" json:"total_pot,omitempty"`                               // 底池
-	TotalService  int64                  `protobuf:"varint,8,opt,name=total_service,json=totalService,proto3" json:"total_service,omitempty"`                   // 玩家服务费
-	Round         uint32                 `protobuf:"varint,9,opt,name=round,proto3" json:"round,omitempty"`                                                     // 当前回合
-	Detail        *TexasGameRecordDetail `protobuf:"bytes,10,opt,name=detail,proto3" json:"detail,omitempty"`                                                   // 游戏详细数据
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TexasGameRecord) Reset() {
-	*x = TexasGameRecord{}
-	mi := &file_core_database_proto_msgTypes[4]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TexasGameRecord) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TexasGameRecord) ProtoMessage() {}
-
-func (x *TexasGameRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[4]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TexasGameRecord.ProtoReflect.Descriptor instead.
-func (*TexasGameRecord) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{4}
-}
-
-func (x *TexasGameRecord) GetTableId() uint64 {
-	if x != nil {
-		return x.TableId
-	}
-	return 0
-}
-
-func (x *TexasGameRecord) GetGameType() GameTypeId {
-	if x != nil {
-		return x.GameType
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *TexasGameRecord) GetRoomStage() RoomStage {
-	if x != nil {
-		return x.RoomStage
-	}
-	return RoomStage_Free
-}
-
-func (x *TexasGameRecord) GetBlind() string {
-	if x != nil {
-		return x.Blind
-	}
-	return ""
-}
-
-func (x *TexasGameRecord) GetBeginTime() int64 {
-	if x != nil {
-		return x.BeginTime
-	}
-	return 0
-}
-
-func (x *TexasGameRecord) GetEndTime() int64 {
-	if x != nil {
-		return x.EndTime
-	}
-	return 0
-}
-
-func (x *TexasGameRecord) GetTotalPot() int64 {
-	if x != nil {
-		return x.TotalPot
-	}
-	return 0
-}
-
-func (x *TexasGameRecord) GetTotalService() int64 {
-	if x != nil {
-		return x.TotalService
-	}
-	return 0
-}
-
-func (x *TexasGameRecord) GetRound() uint32 {
-	if x != nil {
-		return x.Round
-	}
-	return 0
-}
-
-func (x *TexasGameRecord) GetDetail() *TexasGameRecordDetail {
-	if x != nil {
-		return x.Detail
-	}
-	return nil
-}
-
-type TexasGameRecordDetail struct {
-	state         protoimpl.MessageState      `protogen:"open.v1"`
-	DealList      []*TexasGamePokerDealRecord `protobuf:"bytes,1,rep,name=deal_list,json=dealList,proto3" json:"deal_list,omitempty"`          // 发牌记录
-	PlayerList    []*TexasGamePlayerRecord    `protobuf:"bytes,2,rep,name=player_list,json=playerList,proto3" json:"player_list,omitempty"`    // 玩家列表
-	OperateList   []*TexasGameOperateRecord   `protobuf:"bytes,3,rep,name=operate_list,json=operateList,proto3" json:"operate_list,omitempty"` // 玩家操作记录
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TexasGameRecordDetail) Reset() {
-	*x = TexasGameRecordDetail{}
-	mi := &file_core_database_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TexasGameRecordDetail) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TexasGameRecordDetail) ProtoMessage() {}
-
-func (x *TexasGameRecordDetail) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TexasGameRecordDetail.ProtoReflect.Descriptor instead.
-func (*TexasGameRecordDetail) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *TexasGameRecordDetail) GetDealList() []*TexasGamePokerDealRecord {
-	if x != nil {
-		return x.DealList
-	}
-	return nil
-}
-
-func (x *TexasGameRecordDetail) GetPlayerList() []*TexasGamePlayerRecord {
-	if x != nil {
-		return x.PlayerList
-	}
-	return nil
-}
-
-func (x *TexasGameRecordDetail) GetOperateList() []*TexasGameOperateRecord {
-	if x != nil {
-		return x.OperateList
-	}
-	return nil
-}
-
-type TexasGamePokerDealRecord struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	DealType      DealType               `protobuf:"varint,1,opt,name=deal_type,json=dealType,proto3,enum=g1.protocol.DealType" json:"deal_type,omitempty"`
-	Uid           uint64                 `protobuf:"varint,2,opt,name=uid,proto3" json:"uid,omitempty"`
-	Card          uint32                 `protobuf:"varint,3,opt,name=card,proto3" json:"card,omitempty"`
-	Cursor        uint32                 `protobuf:"varint,4,opt,name=cursor,proto3" json:"cursor,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TexasGamePokerDealRecord) Reset() {
-	*x = TexasGamePokerDealRecord{}
-	mi := &file_core_database_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TexasGamePokerDealRecord) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TexasGamePokerDealRecord) ProtoMessage() {}
-
-func (x *TexasGamePokerDealRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TexasGamePokerDealRecord.ProtoReflect.Descriptor instead.
-func (*TexasGamePokerDealRecord) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *TexasGamePokerDealRecord) GetDealType() DealType {
-	if x != nil {
-		return x.DealType
-	}
-	return DealType_DEAL_NONE
-}
-
-func (x *TexasGamePokerDealRecord) GetUid() uint64 {
-	if x != nil {
-		return x.Uid
-	}
-	return 0
-}
-
-func (x *TexasGamePokerDealRecord) GetCard() uint32 {
-	if x != nil {
-		return x.Card
-	}
-	return 0
-}
-
-func (x *TexasGamePokerDealRecord) GetCursor() uint32 {
-	if x != nil {
-		return x.Cursor
-	}
-	return 0
-}
-
-type TexasGamePlayerRecord struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uid           uint64                 `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`                              // 玩家座位号
-	Chips         int64                  `protobuf:"varint,3,opt,name=chips,proto3" json:"chips,omitempty"`                                                 // 玩家筹码
-	WinChips      int64                  `protobuf:"varint,4,opt,name=win_chips,json=winChips,proto3" json:"win_chips,omitempty"`                           // 玩家赢得筹码
-	CardType      CardType               `protobuf:"varint,5,opt,name=card_type,json=cardType,proto3,enum=g1.protocol.CardType" json:"card_type,omitempty"` // 玩家牌型
-	HandCardList  []uint32               `protobuf:"varint,6,rep,packed,name=hand_card_list,json=handCardList,proto3" json:"hand_card_list,omitempty"`      // 玩家手牌
-	BestCardList  []uint32               `protobuf:"varint,7,rep,packed,name=best_card_list,json=bestCardList,proto3" json:"best_card_list,omitempty"`      // 玩家最大牌
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TexasGamePlayerRecord) Reset() {
-	*x = TexasGamePlayerRecord{}
-	mi := &file_core_database_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TexasGamePlayerRecord) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TexasGamePlayerRecord) ProtoMessage() {}
-
-func (x *TexasGamePlayerRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TexasGamePlayerRecord.ProtoReflect.Descriptor instead.
-func (*TexasGamePlayerRecord) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *TexasGamePlayerRecord) GetUid() uint64 {
-	if x != nil {
-		return x.Uid
-	}
-	return 0
-}
-
-func (x *TexasGamePlayerRecord) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *TexasGamePlayerRecord) GetChips() int64 {
-	if x != nil {
-		return x.Chips
-	}
-	return 0
-}
-
-func (x *TexasGamePlayerRecord) GetWinChips() int64 {
-	if x != nil {
-		return x.WinChips
-	}
-	return 0
-}
-
-func (x *TexasGamePlayerRecord) GetCardType() CardType {
-	if x != nil {
-		return x.CardType
-	}
-	return CardType_CARD_TYPE_NONE
-}
-
-func (x *TexasGamePlayerRecord) GetHandCardList() []uint32 {
-	if x != nil {
-		return x.HandCardList
-	}
-	return nil
-}
-
-func (x *TexasGamePlayerRecord) GetBestCardList() []uint32 {
-	if x != nil {
-		return x.BestCardList
-	}
-	return nil
-}
-
-type TexasGameOperateRecord struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameState     GameState              `protobuf:"varint,1,opt,name=game_state,json=gameState,proto3,enum=g1.protocol.GameState" json:"game_state,omitempty"` // 游戏状态
-	Uid           uint64                 `protobuf:"varint,2,opt,name=uid,proto3" json:"uid,omitempty"`                                                         // 玩家id
-	Operate       OperateType            `protobuf:"varint,3,opt,name=operate,proto3,enum=g1.protocol.OperateType" json:"operate,omitempty"`                    // 玩家操作
-	BetChips      int64                  `protobuf:"varint,4,opt,name=bet_chips,json=betChips,proto3" json:"bet_chips,omitempty"`                               // 玩家下注筹码
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *TexasGameOperateRecord) Reset() {
-	*x = TexasGameOperateRecord{}
-	mi := &file_core_database_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *TexasGameOperateRecord) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*TexasGameOperateRecord) ProtoMessage() {}
-
-func (x *TexasGameOperateRecord) ProtoReflect() protoreflect.Message {
-	mi := &file_core_database_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use TexasGameOperateRecord.ProtoReflect.Descriptor instead.
-func (*TexasGameOperateRecord) Descriptor() ([]byte, []int) {
-	return file_core_database_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *TexasGameOperateRecord) GetGameState() GameState {
-	if x != nil {
-		return x.GameState
-	}
-	return GameState_STATE_INIT
-}
-
-func (x *TexasGameOperateRecord) GetUid() uint64 {
-	if x != nil {
-		return x.Uid
-	}
-	return 0
-}
-
-func (x *TexasGameOperateRecord) GetOperate() OperateType {
-	if x != nil {
-		return x.Operate
-	}
-	return OperateType_OPERATE_NONE
-}
-
-func (x *TexasGameOperateRecord) GetBetChips() int64 {
-	if x != nil {
-		return x.BetChips
 	}
 	return 0
 }
@@ -946,110 +141,15 @@ var File_core_database_proto protoreflect.FileDescriptor
 
 const file_core_database_proto_rawDesc = "" +
 	"\n" +
-	"\x13core/database.proto\x12\vg1.protocol\x1a\x14core/game_enum.proto\"5\n" +
+	"\x13core/database.proto\x12\vg1.protocol\"5\n" +
 	"\rMysqlRoleInfo\x12\x10\n" +
 	"\x03uid\x18\x01 \x01(\x04R\x03uid\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\"\xb0\x04\n" +
-	"\x12MysqlTexasRoomInfo\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x17\n" +
-	"\aroom_id\x18\x02 \x01(\x04R\x06roomId\x12\x1b\n" +
-	"\troom_name\x18\x03 \x01(\tR\broomName\x124\n" +
-	"\tgame_type\x18\x04 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\bgameType\x125\n" +
-	"\n" +
-	"room_stage\x18\x05 \x01(\x0e2\x16.g1.protocol.RoomStageR\troomStage\x12\x14\n" +
-	"\x05blind\x18\x06 \x01(\tR\x05blind\x12\x1f\n" +
-	"\vcreate_time\x18\a \x01(\x03R\n" +
-	"createTime\x12\x1f\n" +
-	"\vfinish_time\x18\b \x01(\x03R\n" +
-	"finishTime\x12\x19\n" +
-	"\btable_id\x18\t \x01(\x04R\atableId\x12\x1f\n" +
-	"\vtotal_round\x18\n" +
-	" \x01(\rR\n" +
-	"totalRound\x12*\n" +
-	"\x11total_buyin_chips\x18\v \x01(\x03R\x0ftotalBuyinChips\x12(\n" +
-	"\x10total_join_count\x18\f \x01(\rR\x0etotalJoinCount\x12.\n" +
-	"\x13total_service_chips\x18\r \x01(\x03R\x11totalServiceChips\x12,\n" +
-	"\x12total_runing_water\x18\x0e \x01(\x03R\x10totalRuningWater\x12\x1f\n" +
-	"\vupdate_time\x18\x0f \x01(\x03R\n" +
-	"updateTime\"\xe4\x03\n" +
-	"\x14MysqlTexasPlayerInfo\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x12\x10\n" +
-	"\x03uid\x18\x02 \x01(\x04R\x03uid\x12\x19\n" +
-	"\btable_id\x18\x03 \x01(\x04R\atableId\x12\x14\n" +
-	"\x05round\x18\x04 \x01(\rR\x05round\x12#\n" +
-	"\rtotal_players\x18\x05 \x01(\rR\ftotalPlayers\x124\n" +
-	"\tgame_type\x18\x06 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\bgameType\x12\x17\n" +
-	"\aroom_id\x18\a \x01(\x04R\x06roomId\x12\x1b\n" +
-	"\troom_name\x18\b \x01(\tR\broomName\x125\n" +
-	"\n" +
-	"room_stage\x18\t \x01(\x0e2\x16.g1.protocol.RoomStageR\troomStage\x12\x1d\n" +
-	"\n" +
-	"begin_time\x18\n" +
-	" \x01(\x03R\tbeginTime\x12\x19\n" +
-	"\bend_time\x18\v \x01(\x03R\aendTime\x12\x14\n" +
-	"\x05chips\x18\f \x01(\x03R\x05chips\x12#\n" +
-	"\rservice_chips\x18\r \x01(\x03R\fserviceChips\x12\x1b\n" +
-	"\twin_chips\x18\x0e \x01(\x03R\bwinChips\x12\x1f\n" +
-	"\vupdate_time\x18\x0f \x01(\x03R\n" +
-	"updateTime\"\xd5\x03\n" +
-	"\x12MysqlTexasGameInfo\x12\x17\n" +
-	"\agame_id\x18\x02 \x01(\tR\x06gameId\x12\x19\n" +
-	"\btable_id\x18\x03 \x01(\x04R\atableId\x12\x14\n" +
-	"\x05round\x18\x04 \x01(\rR\x05round\x124\n" +
-	"\tgame_type\x18\x05 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\bgameType\x12\x17\n" +
-	"\aroom_id\x18\x06 \x01(\x04R\x06roomId\x12\x1b\n" +
-	"\troom_name\x18\a \x01(\tR\broomName\x125\n" +
-	"\n" +
-	"room_stage\x18\b \x01(\x0e2\x16.g1.protocol.RoomStageR\troomStage\x12\x14\n" +
-	"\x05blind\x18\t \x01(\tR\x05blind\x12\x1d\n" +
-	"\n" +
-	"begin_time\x18\n" +
-	" \x01(\x03R\tbeginTime\x12\x19\n" +
-	"\bend_time\x18\v \x01(\x03R\aendTime\x12\x1b\n" +
-	"\ttotal_pot\x18\f \x01(\x03R\btotalPot\x12#\n" +
-	"\rtotal_service\x18\r \x01(\x03R\ftotalService\x12\x1f\n" +
-	"\vgame_detail\x18\x0e \x01(\fR\n" +
-	"gameDetail\x12\x1f\n" +
-	"\vupdate_time\x18\x0f \x01(\x03R\n" +
-	"updateTime\"\xfd\x02\n" +
-	"\x0fTexasGameRecord\x12\x19\n" +
-	"\btable_id\x18\x01 \x01(\x04R\atableId\x124\n" +
-	"\tgame_type\x18\x02 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\bgameType\x125\n" +
-	"\n" +
-	"room_stage\x18\x03 \x01(\x0e2\x16.g1.protocol.RoomStageR\troomStage\x12\x14\n" +
-	"\x05blind\x18\x04 \x01(\tR\x05blind\x12\x1d\n" +
-	"\n" +
-	"begin_time\x18\x05 \x01(\x03R\tbeginTime\x12\x19\n" +
-	"\bend_time\x18\x06 \x01(\x03R\aendTime\x12\x1b\n" +
-	"\ttotal_pot\x18\a \x01(\x03R\btotalPot\x12#\n" +
-	"\rtotal_service\x18\b \x01(\x03R\ftotalService\x12\x14\n" +
-	"\x05round\x18\t \x01(\rR\x05round\x12:\n" +
-	"\x06detail\x18\n" +
-	" \x01(\v2\".g1.protocol.TexasGameRecordDetailR\x06detail\"\xe8\x01\n" +
-	"\x15TexasGameRecordDetail\x12B\n" +
-	"\tdeal_list\x18\x01 \x03(\v2%.g1.protocol.TexasGamePokerDealRecordR\bdealList\x12C\n" +
-	"\vplayer_list\x18\x02 \x03(\v2\".g1.protocol.TexasGamePlayerRecordR\n" +
-	"playerList\x12F\n" +
-	"\foperate_list\x18\x03 \x03(\v2#.g1.protocol.TexasGameOperateRecordR\voperateList\"\x8c\x01\n" +
-	"\x18TexasGamePokerDealRecord\x122\n" +
-	"\tdeal_type\x18\x01 \x01(\x0e2\x15.g1.protocol.DealTypeR\bdealType\x12\x10\n" +
-	"\x03uid\x18\x02 \x01(\x04R\x03uid\x12\x12\n" +
-	"\x04card\x18\x03 \x01(\rR\x04card\x12\x16\n" +
-	"\x06cursor\x18\x04 \x01(\rR\x06cursor\"\xf7\x01\n" +
-	"\x15TexasGamePlayerRecord\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\x04R\x03uid\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\x12\x14\n" +
-	"\x05chips\x18\x03 \x01(\x03R\x05chips\x12\x1b\n" +
-	"\twin_chips\x18\x04 \x01(\x03R\bwinChips\x122\n" +
-	"\tcard_type\x18\x05 \x01(\x0e2\x15.g1.protocol.CardTypeR\bcardType\x12$\n" +
-	"\x0ehand_card_list\x18\x06 \x03(\rR\fhandCardList\x12$\n" +
-	"\x0ebest_card_list\x18\a \x03(\rR\fbestCardList\"\xb2\x01\n" +
-	"\x16TexasGameOperateRecord\x125\n" +
-	"\n" +
-	"game_state\x18\x01 \x01(\x0e2\x16.g1.protocol.GameStateR\tgameState\x12\x10\n" +
-	"\x03uid\x18\x02 \x01(\x04R\x03uid\x122\n" +
-	"\aoperate\x18\x03 \x01(\x0e2\x18.g1.protocol.OperateTypeR\aoperate\x12\x1b\n" +
-	"\tbet_chips\x18\x04 \x01(\x03R\bbetChipsB9Z7github.com/Iori372552686/g1_common/protocol;g1_protocolb\x06proto3"
+	"\x04name\x18\x02 \x01(\tR\x04name\"V\n" +
+	"\rMysqlRoleData\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x04R\x03uid\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\x12\x1f\n" +
+	"\vupdate_time\x18\x03 \x01(\x03R\n" +
+	"updateTimeB9Z7github.com/Iori372552686/g1_common/protocol;g1_protocolb\x06proto3"
 
 var (
 	file_core_database_proto_rawDescOnce sync.Once
@@ -1063,46 +163,17 @@ func file_core_database_proto_rawDescGZIP() []byte {
 	return file_core_database_proto_rawDescData
 }
 
-var file_core_database_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_core_database_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
 var file_core_database_proto_goTypes = []any{
-	(*MysqlRoleInfo)(nil),            // 0: g1.protocol.MysqlRoleInfo
-	(*MysqlTexasRoomInfo)(nil),       // 1: g1.protocol.MysqlTexasRoomInfo
-	(*MysqlTexasPlayerInfo)(nil),     // 2: g1.protocol.MysqlTexasPlayerInfo
-	(*MysqlTexasGameInfo)(nil),       // 3: g1.protocol.MysqlTexasGameInfo
-	(*TexasGameRecord)(nil),          // 4: g1.protocol.TexasGameRecord
-	(*TexasGameRecordDetail)(nil),    // 5: g1.protocol.TexasGameRecordDetail
-	(*TexasGamePokerDealRecord)(nil), // 6: g1.protocol.TexasGamePokerDealRecord
-	(*TexasGamePlayerRecord)(nil),    // 7: g1.protocol.TexasGamePlayerRecord
-	(*TexasGameOperateRecord)(nil),   // 8: g1.protocol.TexasGameOperateRecord
-	(GameTypeId)(0),                  // 9: g1.protocol.GameTypeId
-	(RoomStage)(0),                   // 10: g1.protocol.RoomStage
-	(DealType)(0),                    // 11: g1.protocol.DealType
-	(CardType)(0),                    // 12: g1.protocol.CardType
-	(GameState)(0),                   // 13: g1.protocol.GameState
-	(OperateType)(0),                 // 14: g1.protocol.OperateType
+	(*MysqlRoleInfo)(nil), // 0: g1.protocol.MysqlRoleInfo
+	(*MysqlRoleData)(nil), // 1: g1.protocol.MysqlRoleData
 }
 var file_core_database_proto_depIdxs = []int32{
-	9,  // 0: g1.protocol.MysqlTexasRoomInfo.game_type:type_name -> g1.protocol.GameTypeId
-	10, // 1: g1.protocol.MysqlTexasRoomInfo.room_stage:type_name -> g1.protocol.RoomStage
-	9,  // 2: g1.protocol.MysqlTexasPlayerInfo.game_type:type_name -> g1.protocol.GameTypeId
-	10, // 3: g1.protocol.MysqlTexasPlayerInfo.room_stage:type_name -> g1.protocol.RoomStage
-	9,  // 4: g1.protocol.MysqlTexasGameInfo.game_type:type_name -> g1.protocol.GameTypeId
-	10, // 5: g1.protocol.MysqlTexasGameInfo.room_stage:type_name -> g1.protocol.RoomStage
-	9,  // 6: g1.protocol.TexasGameRecord.game_type:type_name -> g1.protocol.GameTypeId
-	10, // 7: g1.protocol.TexasGameRecord.room_stage:type_name -> g1.protocol.RoomStage
-	5,  // 8: g1.protocol.TexasGameRecord.detail:type_name -> g1.protocol.TexasGameRecordDetail
-	6,  // 9: g1.protocol.TexasGameRecordDetail.deal_list:type_name -> g1.protocol.TexasGamePokerDealRecord
-	7,  // 10: g1.protocol.TexasGameRecordDetail.player_list:type_name -> g1.protocol.TexasGamePlayerRecord
-	8,  // 11: g1.protocol.TexasGameRecordDetail.operate_list:type_name -> g1.protocol.TexasGameOperateRecord
-	11, // 12: g1.protocol.TexasGamePokerDealRecord.deal_type:type_name -> g1.protocol.DealType
-	12, // 13: g1.protocol.TexasGamePlayerRecord.card_type:type_name -> g1.protocol.CardType
-	13, // 14: g1.protocol.TexasGameOperateRecord.game_state:type_name -> g1.protocol.GameState
-	14, // 15: g1.protocol.TexasGameOperateRecord.operate:type_name -> g1.protocol.OperateType
-	16, // [16:16] is the sub-list for method output_type
-	16, // [16:16] is the sub-list for method input_type
-	16, // [16:16] is the sub-list for extension type_name
-	16, // [16:16] is the sub-list for extension extendee
-	0,  // [0:16] is the sub-list for field type_name
+	0, // [0:0] is the sub-list for method output_type
+	0, // [0:0] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_core_database_proto_init() }
@@ -1110,14 +181,13 @@ func file_core_database_proto_init() {
 	if File_core_database_proto != nil {
 		return
 	}
-	file_core_game_enum_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_database_proto_rawDesc), len(file_core_database_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   2,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

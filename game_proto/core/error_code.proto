@@ -67,24 +67,6 @@ enum ErrorCode {
     ERR_GUIDE_IS_EXIST       = -10187; // 该引导已经存在
     ERR_FUNCTION_NOT_OPEN    = -10188; // 功能未开放
 
-    // 德州扑克错误码
-    ERR_TEXAS_FOLD_PARAMETERS         = -20000; // 弃牌参数错误
-    ERR_TEXAS_SEAT_OCCUPIED           = -20001; // 座位已经被占用
-    ERR_TEXAS_PLAYER_NOT_IN_GAME      = -20002; // 玩家不在游戏中
-    ERR_TEXAS_PLAYER_NOT_ACTIVE       = -20003; // 玩家不能操作
-    ERR_TEXAS_PLAYER_STATUS_INCORRECT = -20004; // 玩家状态不正确
-    ERR_TEXAS_PLAYER_IN_GAME          = -20005; // 玩家已经在游戏中
-    ERR_TEXAS_TABLE_FULL              = -20006; // 桌子数量已满
-    ERR_TEXAS_NOT_IN_TABLE            = -20007; // 玩家不在桌子中
-    ERR_TEXAS_STAND_UP_PARAMETERS     = -20008; // 站起参数错误
-    ERR_TEXAS_PLAYER_HAS_STAND_UP     = -20009; // 玩家已经站起
-    ERR_TEXAS_DO_BET_PARAMETERS       = -20010; // 下注参数错误
-    ERR_TEXAS_CHIPS_NOT_ENOUGH        = -20011; // 筹码不足
-    ERR_TEXAS_CALL_CHIPS_NOT_ENOUGH   = -20012; // 跟注筹码不足
-    ERR_TEXAS_RAISE_CHIPS_NOT_ENOUGH  = -20013; // 加注筹码不足
-    ERR_TEXAS_CONFIG_NOT_FOUND        = -20014; // 配置未找到
-    ERR_TEXAS_SEAT_NOT_FOUND          = -20015; // 座位未找到
-
     // 排行榜
     ERR_RANK_TYPE_ERROR = -90000; // 排行榜类型错误
 }

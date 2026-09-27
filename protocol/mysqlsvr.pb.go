@@ -253,6 +253,224 @@ func (x *MysqlInnerSearchRoleRsp) GetUid() uint64 {
 	return 0
 }
 
+// MYSQL_INNER_SAVE_ROLE_DATA_REQ — L3 全量快照写回（mainsvr 双写的异步落库路径）
+type MysqlInnerSaveRoleDataReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           uint64                 `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`                                // RoleInfo 整包序列化（ConnSvrInfo 已清空）
+	UpdateTime    int64                  `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"` // 服务器时钟 ms，陈旧写守卫用
+	IgnoreRsp     bool                   `protobuf:"varint,4,opt,name=ignore_rsp,json=ignoreRsp,proto3" json:"ignore_rsp,omitempty"`    // 运行期异步投递时不等 rsp
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MysqlInnerSaveRoleDataReq) Reset() {
+	*x = MysqlInnerSaveRoleDataReq{}
+	mi := &file_service_mysqlsvr_proto_msgTypes[4]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MysqlInnerSaveRoleDataReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MysqlInnerSaveRoleDataReq) ProtoMessage() {}
+
+func (x *MysqlInnerSaveRoleDataReq) ProtoReflect() protoreflect.Message {
+	mi := &file_service_mysqlsvr_proto_msgTypes[4]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MysqlInnerSaveRoleDataReq.ProtoReflect.Descriptor instead.
+func (*MysqlInnerSaveRoleDataReq) Descriptor() ([]byte, []int) {
+	return file_service_mysqlsvr_proto_rawDescGZIP(), []int{4}
+}
+
+func (x *MysqlInnerSaveRoleDataReq) GetUid() uint64 {
+	if x != nil {
+		return x.Uid
+	}
+	return 0
+}
+
+func (x *MysqlInnerSaveRoleDataReq) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *MysqlInnerSaveRoleDataReq) GetUpdateTime() int64 {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return 0
+}
+
+func (x *MysqlInnerSaveRoleDataReq) GetIgnoreRsp() bool {
+	if x != nil {
+		return x.IgnoreRsp
+	}
+	return false
+}
+
+type MysqlInnerSaveRoleDataRsp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MysqlInnerSaveRoleDataRsp) Reset() {
+	*x = MysqlInnerSaveRoleDataRsp{}
+	mi := &file_service_mysqlsvr_proto_msgTypes[5]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MysqlInnerSaveRoleDataRsp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MysqlInnerSaveRoleDataRsp) ProtoMessage() {}
+
+func (x *MysqlInnerSaveRoleDataRsp) ProtoReflect() protoreflect.Message {
+	mi := &file_service_mysqlsvr_proto_msgTypes[5]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MysqlInnerSaveRoleDataRsp.ProtoReflect.Descriptor instead.
+func (*MysqlInnerSaveRoleDataRsp) Descriptor() ([]byte, []int) {
+	return file_service_mysqlsvr_proto_rawDescGZIP(), []int{5}
+}
+
+func (x *MysqlInnerSaveRoleDataRsp) GetRet() *Ret {
+	if x != nil {
+		return x.Ret
+	}
+	return nil
+}
+
+// MYSQL_INNER_LOAD_ROLE_DATA_REQ — L2 miss 时的回源读（冷登录路径）
+type MysqlInnerLoadRoleDataReq struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Uid           uint64                 `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MysqlInnerLoadRoleDataReq) Reset() {
+	*x = MysqlInnerLoadRoleDataReq{}
+	mi := &file_service_mysqlsvr_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MysqlInnerLoadRoleDataReq) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MysqlInnerLoadRoleDataReq) ProtoMessage() {}
+
+func (x *MysqlInnerLoadRoleDataReq) ProtoReflect() protoreflect.Message {
+	mi := &file_service_mysqlsvr_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MysqlInnerLoadRoleDataReq.ProtoReflect.Descriptor instead.
+func (*MysqlInnerLoadRoleDataReq) Descriptor() ([]byte, []int) {
+	return file_service_mysqlsvr_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *MysqlInnerLoadRoleDataReq) GetUid() uint64 {
+	if x != nil {
+		return x.Uid
+	}
+	return 0
+}
+
+type MysqlInnerLoadRoleDataRsp struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
+	Data          []byte                 `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"` // 命中时为 RoleInfo 整包序列化，miss 时为空
+	UpdateTime    int64                  `protobuf:"varint,3,opt,name=update_time,json=updateTime,proto3" json:"update_time,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *MysqlInnerLoadRoleDataRsp) Reset() {
+	*x = MysqlInnerLoadRoleDataRsp{}
+	mi := &file_service_mysqlsvr_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *MysqlInnerLoadRoleDataRsp) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*MysqlInnerLoadRoleDataRsp) ProtoMessage() {}
+
+func (x *MysqlInnerLoadRoleDataRsp) ProtoReflect() protoreflect.Message {
+	mi := &file_service_mysqlsvr_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use MysqlInnerLoadRoleDataRsp.ProtoReflect.Descriptor instead.
+func (*MysqlInnerLoadRoleDataRsp) Descriptor() ([]byte, []int) {
+	return file_service_mysqlsvr_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *MysqlInnerLoadRoleDataRsp) GetRet() *Ret {
+	if x != nil {
+		return x.Ret
+	}
+	return nil
+}
+
+func (x *MysqlInnerLoadRoleDataRsp) GetData() []byte {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+func (x *MysqlInnerLoadRoleDataRsp) GetUpdateTime() int64 {
+	if x != nil {
+		return x.UpdateTime
+	}
+	return 0
+}
+
 var File_service_mysqlsvr_proto protoreflect.FileDescriptor
 
 const file_service_mysqlsvr_proto_rawDesc = "" +
@@ -266,7 +484,23 @@ const file_service_mysqlsvr_proto_rawDesc = "" +
 	"\rsearch_string\x18\x01 \x01(\tR\fsearchString\"O\n" +
 	"\x17MysqlInnerSearchRoleRsp\x12\"\n" +
 	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x10\n" +
-	"\x03uid\x18\x02 \x01(\x04R\x03uid*<\n" +
+	"\x03uid\x18\x02 \x01(\x04R\x03uid\"\x81\x01\n" +
+	"\x19MysqlInnerSaveRoleDataReq\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x04R\x03uid\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\x12\x1f\n" +
+	"\vupdate_time\x18\x03 \x01(\x03R\n" +
+	"updateTime\x12\x1d\n" +
+	"\n" +
+	"ignore_rsp\x18\x04 \x01(\bR\tignoreRsp\"?\n" +
+	"\x19MysqlInnerSaveRoleDataRsp\x12\"\n" +
+	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"-\n" +
+	"\x19MysqlInnerLoadRoleDataReq\x12\x10\n" +
+	"\x03uid\x18\x01 \x01(\x04R\x03uid\"t\n" +
+	"\x19MysqlInnerLoadRoleDataRsp\x12\"\n" +
+	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x12\n" +
+	"\x04data\x18\x02 \x01(\fR\x04data\x12\x1f\n" +
+	"\vupdate_time\x18\x03 \x01(\x03R\n" +
+	"updateTime*<\n" +
 	"\n" +
 	"EMysqlType\x12\x14\n" +
 	"\x10_MYSQL_TYPE_NONE\x10\x00\x12\x18\n" +
@@ -285,23 +519,29 @@ func file_service_mysqlsvr_proto_rawDescGZIP() []byte {
 }
 
 var file_service_mysqlsvr_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_service_mysqlsvr_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
+var file_service_mysqlsvr_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_service_mysqlsvr_proto_goTypes = []any{
 	(EMysqlType)(0),                     // 0: g1.protocol.EMysqlType
 	(*MysqlInnerUpdateRoleInfoReq)(nil), // 1: g1.protocol.MysqlInnerUpdateRoleInfoReq
 	(*MysqlInnerUpdateRoleInfoRsp)(nil), // 2: g1.protocol.MysqlInnerUpdateRoleInfoRsp
 	(*MysqlInnerSearchRoleReq)(nil),     // 3: g1.protocol.MysqlInnerSearchRoleReq
 	(*MysqlInnerSearchRoleRsp)(nil),     // 4: g1.protocol.MysqlInnerSearchRoleRsp
-	(*Ret)(nil),                         // 5: g1.protocol.Ret
+	(*MysqlInnerSaveRoleDataReq)(nil),   // 5: g1.protocol.MysqlInnerSaveRoleDataReq
+	(*MysqlInnerSaveRoleDataRsp)(nil),   // 6: g1.protocol.MysqlInnerSaveRoleDataRsp
+	(*MysqlInnerLoadRoleDataReq)(nil),   // 7: g1.protocol.MysqlInnerLoadRoleDataReq
+	(*MysqlInnerLoadRoleDataRsp)(nil),   // 8: g1.protocol.MysqlInnerLoadRoleDataRsp
+	(*Ret)(nil),                         // 9: g1.protocol.Ret
 }
 var file_service_mysqlsvr_proto_depIdxs = []int32{
-	5, // 0: g1.protocol.MysqlInnerUpdateRoleInfoRsp.ret:type_name -> g1.protocol.Ret
-	5, // 1: g1.protocol.MysqlInnerSearchRoleRsp.ret:type_name -> g1.protocol.Ret
-	2, // [2:2] is the sub-list for method output_type
-	2, // [2:2] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	9, // 0: g1.protocol.MysqlInnerUpdateRoleInfoRsp.ret:type_name -> g1.protocol.Ret
+	9, // 1: g1.protocol.MysqlInnerSearchRoleRsp.ret:type_name -> g1.protocol.Ret
+	9, // 2: g1.protocol.MysqlInnerSaveRoleDataRsp.ret:type_name -> g1.protocol.Ret
+	9, // 3: g1.protocol.MysqlInnerLoadRoleDataRsp.ret:type_name -> g1.protocol.Ret
+	4, // [4:4] is the sub-list for method output_type
+	4, // [4:4] is the sub-list for method input_type
+	4, // [4:4] is the sub-list for extension type_name
+	4, // [4:4] is the sub-list for extension extendee
+	0, // [0:4] is the sub-list for field type_name
 }
 
 func init() { file_service_mysqlsvr_proto_init() }
@@ -316,7 +556,7 @@ func file_service_mysqlsvr_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_service_mysqlsvr_proto_rawDesc), len(file_service_mysqlsvr_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   4,
+			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

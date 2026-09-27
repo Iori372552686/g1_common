@@ -4,8 +4,6 @@ package game.mysqlsvr.v1;
 
 import "goone/options/v1/options.proto";
 import "service/mysqlsvr.proto";
-import "core/client.proto";
-import "google/protobuf/empty.proto";
 
 option go_package = "github.com/Iori372552686/GoOne/api/gen/game/mysqlsvr/v1;mysqlsvrv1";
 
@@ -30,32 +28,20 @@ service MysqlService {
     };
   }
 
-  rpc Update(g1.protocol.MysqlInnerUpdateReq) returns (google.protobuf.Empty) {
+  // L3 全量快照写回：运行期经 IgnoreRsp 异步投递，停机路径同步等 ack。
+  rpc SaveRoleData(g1.protocol.MysqlInnerSaveRoleDataReq) returns (g1.protocol.MysqlInnerSaveRoleDataRsp) {
     option (goone.options.v1.ssrpc) = {
-      cmd_name: "CMD_MYSQL_INNER_UPDATE_REQ"
-      one_way: true
-      comment: "mysql async update"
+      cmd_name: "CMD_MYSQL_INNER_SAVE_ROLE_DATA_REQ"
+      comment: "mysql save role data snapshot"
     };
   }
 
-  rpc QueryRoomInfo(g1.protocol.QueryRoomInfoReq) returns (g1.protocol.QueryRoomInfoRsp) {
+  // L2 miss 回源读（冷登录）。miss 时 rsp.data 为空、ret 为 OK。
+  rpc LoadRoleData(g1.protocol.MysqlInnerLoadRoleDataReq) returns (g1.protocol.MysqlInnerLoadRoleDataRsp) {
     option (goone.options.v1.ssrpc) = {
-      cmd_name: "CMD_MYSQL_INNER_QUERY_ROOM_INFO_REQ"
-      comment: "mysql query room info"
+      cmd_name: "CMD_MYSQL_INNER_LOAD_ROLE_DATA_REQ"
+      comment: "mysql load role data snapshot"
     };
   }
 
-  rpc QueryPlayerInfo(g1.protocol.QueryPlayerInfoReq) returns (g1.protocol.QueryPlayerInfoRsp) {
-    option (goone.options.v1.ssrpc) = {
-      cmd_name: "CMD_MYSQL_INNER_QUERY_PLAYER_INFO_REQ"
-      comment: "mysql query player info"
-    };
-  }
-
-  rpc QueryGameInfo(g1.protocol.QueryGameInfoReq) returns (g1.protocol.QueryGameInfoRsp) {
-    option (goone.options.v1.ssrpc) = {
-      cmd_name: "CMD_MYSQL_INNER_QUERY_GAME_INFO_REQ"
-      comment: "mysql query game info"
-    };
-  }
 }

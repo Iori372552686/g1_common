@@ -21,83 +21,7 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type CardType int32
-
-const (
-	CardType_CARD_TYPE_NONE  CardType = 0  // 无效牌型
-	CardType_HIGH_CARD       CardType = 1  // 高牌
-	CardType_ONE_PAIR        CardType = 2  // 一对
-	CardType_TWO_PAIR        CardType = 3  // 两对
-	CardType_THREE_OF_A_KIND CardType = 4  // 三条
-	CardType_STRAIGHT        CardType = 5  // 顺子
-	CardType_FLUSH           CardType = 6  // 同花
-	CardType_FULL_HOUSE      CardType = 7  // 葫芦
-	CardType_FOUR_OF_A_KIND  CardType = 8  // 四条
-	CardType_STRAIGHT_FLUSH  CardType = 9  // 同花顺
-	CardType_ROYAL_FLUSH     CardType = 10 // 皇家同花顺
-	CardType_STRAIGHT_MASK   CardType = 31 // 顺子掩码
-)
-
-// Enum value maps for CardType.
-var (
-	CardType_name = map[int32]string{
-		0:  "CARD_TYPE_NONE",
-		1:  "HIGH_CARD",
-		2:  "ONE_PAIR",
-		3:  "TWO_PAIR",
-		4:  "THREE_OF_A_KIND",
-		5:  "STRAIGHT",
-		6:  "FLUSH",
-		7:  "FULL_HOUSE",
-		8:  "FOUR_OF_A_KIND",
-		9:  "STRAIGHT_FLUSH",
-		10: "ROYAL_FLUSH",
-		31: "STRAIGHT_MASK",
-	}
-	CardType_value = map[string]int32{
-		"CARD_TYPE_NONE":  0,
-		"HIGH_CARD":       1,
-		"ONE_PAIR":        2,
-		"TWO_PAIR":        3,
-		"THREE_OF_A_KIND": 4,
-		"STRAIGHT":        5,
-		"FLUSH":           6,
-		"FULL_HOUSE":      7,
-		"FOUR_OF_A_KIND":  8,
-		"STRAIGHT_FLUSH":  9,
-		"ROYAL_FLUSH":     10,
-		"STRAIGHT_MASK":   31,
-	}
-)
-
-func (x CardType) Enum() *CardType {
-	p := new(CardType)
-	*p = x
-	return p
-}
-
-func (x CardType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (CardType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[0].Descriptor()
-}
-
-func (CardType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[0]
-}
-
-func (x CardType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use CardType.Descriptor instead.
-func (CardType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{0}
-}
-
-// 花色定义
+// 花色定义（通用卡牌原语）
 type Color int32
 
 const (
@@ -137,11 +61,11 @@ func (x Color) String() string {
 }
 
 func (Color) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[1].Descriptor()
+	return file_core_game_enum_proto_enumTypes[0].Descriptor()
 }
 
 func (Color) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[1]
+	return &file_core_game_enum_proto_enumTypes[0]
 }
 
 func (x Color) Number() protoreflect.EnumNumber {
@@ -150,10 +74,10 @@ func (x Color) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Color.Descriptor instead.
 func (Color) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{1}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{0}
 }
 
-// 点数
+// 点数（通用卡牌原语）
 type Rank int32
 
 const (
@@ -223,11 +147,11 @@ func (x Rank) String() string {
 }
 
 func (Rank) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[2].Descriptor()
+	return file_core_game_enum_proto_enumTypes[1].Descriptor()
 }
 
 func (Rank) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[2]
+	return &file_core_game_enum_proto_enumTypes[1]
 }
 
 func (x Rank) Number() protoreflect.EnumNumber {
@@ -236,131 +160,13 @@ func (x Rank) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Rank.Descriptor instead.
 func (Rank) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{2}
-}
-
-type GameState int32
-
-const (
-	GameState_STATE_INIT        GameState = 0 // 初始化状态
-	GameState_STATE_START       GameState = 1 // 游戏开始阶段（包含底注和发底牌）
-	GameState_STATE_PRE_FLOP    GameState = 2 // 底牌前下注轮（Pre-Flop）
-	GameState_STATE_FLOP_ROUND  GameState = 3 // 翻牌圈（三张公共牌）
-	GameState_STATE_TURN_ROUND  GameState = 4 // 转牌圈（第四张公共牌）
-	GameState_STATE_RIVER_ROUND GameState = 5 // 河牌圈（第五张公共牌）
-	GameState_STATE_END         GameState = 6 // 结算阶段
-)
-
-// Enum value maps for GameState.
-var (
-	GameState_name = map[int32]string{
-		0: "STATE_INIT",
-		1: "STATE_START",
-		2: "STATE_PRE_FLOP",
-		3: "STATE_FLOP_ROUND",
-		4: "STATE_TURN_ROUND",
-		5: "STATE_RIVER_ROUND",
-		6: "STATE_END",
-	}
-	GameState_value = map[string]int32{
-		"STATE_INIT":        0,
-		"STATE_START":       1,
-		"STATE_PRE_FLOP":    2,
-		"STATE_FLOP_ROUND":  3,
-		"STATE_TURN_ROUND":  4,
-		"STATE_RIVER_ROUND": 5,
-		"STATE_END":         6,
-	}
-)
-
-func (x GameState) Enum() *GameState {
-	p := new(GameState)
-	*p = x
-	return p
-}
-
-func (x GameState) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (GameState) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[3].Descriptor()
-}
-
-func (GameState) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[3]
-}
-
-func (x GameState) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use GameState.Descriptor instead.
-func (GameState) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{3}
-}
-
-type GameCompetitionType int32
-
-const (
-	GameCompetitionType_NORMAL GameCompetitionType = 0 // 默认值，非赛事玩法
-	GameCompetitionType_SNG    GameCompetitionType = 1 // sng赛事
-	GameCompetitionType_MTT    GameCompetitionType = 2 // mtt赛事
-)
-
-// Enum value maps for GameCompetitionType.
-var (
-	GameCompetitionType_name = map[int32]string{
-		0: "NORMAL",
-		1: "SNG",
-		2: "MTT",
-	}
-	GameCompetitionType_value = map[string]int32{
-		"NORMAL": 0,
-		"SNG":    1,
-		"MTT":    2,
-	}
-)
-
-func (x GameCompetitionType) Enum() *GameCompetitionType {
-	p := new(GameCompetitionType)
-	*p = x
-	return p
-}
-
-func (x GameCompetitionType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (GameCompetitionType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[4].Descriptor()
-}
-
-func (GameCompetitionType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[4]
-}
-
-func (x GameCompetitionType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use GameCompetitionType.Descriptor instead.
-func (GameCompetitionType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{4}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{1}
 }
 
 type GameTypeId int32
 
 const (
-	// texas
-	GameTypeId_TEXAS_MODE_START GameTypeId = 0 // texas玩法开始
-	GameTypeId_TEXAS_NORMAL     GameTypeId = 1 // 德州常规玩法
-	GameTypeId_TEXAS_SHORT      GameTypeId = 2 // 德州短牌玩法
-	GameTypeId_TEXAS_AOF        GameTypeId = 3 // 德州AOF玩法
-	GameTypeId_TEXAS_PLO        GameTypeId = 4 // 德州omaha 4张
-	GameTypeId_TEXAS_PLO5       GameTypeId = 5 // 德州omaha 5张
-	GameTypeId_TEXAS_PLO6       GameTypeId = 6 // 德州omaha 6张
-	GameTypeId_TEXAS_MODE_END   GameTypeId = 7 // texas玩法结束
+	GameTypeId_GAME_TYPE_NONE GameTypeId = 0 // 无效玩法
 	// rummy
 	GameTypeId_RUMMY_MODE_START GameTypeId = 20 // RUMMY玩法开始
 	GameTypeId_RUMMY_NORMAL     GameTypeId = 21 // RUMMY常规玩法
@@ -369,26 +175,12 @@ const (
 // Enum value maps for GameTypeId.
 var (
 	GameTypeId_name = map[int32]string{
-		0:  "TEXAS_MODE_START",
-		1:  "TEXAS_NORMAL",
-		2:  "TEXAS_SHORT",
-		3:  "TEXAS_AOF",
-		4:  "TEXAS_PLO",
-		5:  "TEXAS_PLO5",
-		6:  "TEXAS_PLO6",
-		7:  "TEXAS_MODE_END",
+		0:  "GAME_TYPE_NONE",
 		20: "RUMMY_MODE_START",
 		21: "RUMMY_NORMAL",
 	}
 	GameTypeId_value = map[string]int32{
-		"TEXAS_MODE_START": 0,
-		"TEXAS_NORMAL":     1,
-		"TEXAS_SHORT":      2,
-		"TEXAS_AOF":        3,
-		"TEXAS_PLO":        4,
-		"TEXAS_PLO5":       5,
-		"TEXAS_PLO6":       6,
-		"TEXAS_MODE_END":   7,
+		"GAME_TYPE_NONE":   0,
 		"RUMMY_MODE_START": 20,
 		"RUMMY_NORMAL":     21,
 	}
@@ -405,11 +197,11 @@ func (x GameTypeId) String() string {
 }
 
 func (GameTypeId) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[5].Descriptor()
+	return file_core_game_enum_proto_enumTypes[2].Descriptor()
 }
 
 func (GameTypeId) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[5]
+	return &file_core_game_enum_proto_enumTypes[2]
 }
 
 func (x GameTypeId) Number() protoreflect.EnumNumber {
@@ -418,7 +210,7 @@ func (x GameTypeId) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use GameTypeId.Descriptor instead.
 func (GameTypeId) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{5}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{2}
 }
 
 type CoinType int32
@@ -457,11 +249,11 @@ func (x CoinType) String() string {
 }
 
 func (CoinType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[6].Descriptor()
+	return file_core_game_enum_proto_enumTypes[3].Descriptor()
 }
 
 func (CoinType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[6]
+	return &file_core_game_enum_proto_enumTypes[3]
 }
 
 func (x CoinType) Number() protoreflect.EnumNumber {
@@ -470,7 +262,7 @@ func (x CoinType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use CoinType.Descriptor instead.
 func (CoinType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{6}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{3}
 }
 
 type RoomStage int32
@@ -512,11 +304,11 @@ func (x RoomStage) String() string {
 }
 
 func (RoomStage) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[7].Descriptor()
+	return file_core_game_enum_proto_enumTypes[4].Descriptor()
 }
 
 func (RoomStage) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[7]
+	return &file_core_game_enum_proto_enumTypes[4]
 }
 
 func (x RoomStage) Number() protoreflect.EnumNumber {
@@ -525,7 +317,7 @@ func (x RoomStage) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RoomStage.Descriptor instead.
 func (RoomStage) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{7}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{4}
 }
 
 type RoomState int32
@@ -564,11 +356,11 @@ func (x RoomState) String() string {
 }
 
 func (RoomState) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[8].Descriptor()
+	return file_core_game_enum_proto_enumTypes[5].Descriptor()
 }
 
 func (RoomState) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[8]
+	return &file_core_game_enum_proto_enumTypes[5]
 }
 
 func (x RoomState) Number() protoreflect.EnumNumber {
@@ -577,66 +369,7 @@ func (x RoomState) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RoomState.Descriptor instead.
 func (RoomState) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{8}
-}
-
-// betting round enum
-type BettingRound int32
-
-const (
-	BettingRound_NULL    BettingRound = 0 // 默认值，表示未定义或无效的下注轮次
-	BettingRound_ANTE    BettingRound = 1 // 底注轮次，玩家在游戏开始前下底注
-	BettingRound_PREFLOP BettingRound = 2 // 翻牌前轮次，玩家在发出公共牌前下注
-	BettingRound_FLOP    BettingRound = 3 // 翻牌轮次，发出前三张公共牌后的下注轮次
-	BettingRound_TURN    BettingRound = 4 // 转牌轮次，发出第四张公共牌后的下注轮次
-	BettingRound_RIVER   BettingRound = 5 // 河牌轮次，发出第五张公共牌后的下注轮次
-)
-
-// Enum value maps for BettingRound.
-var (
-	BettingRound_name = map[int32]string{
-		0: "NULL",
-		1: "ANTE",
-		2: "PREFLOP",
-		3: "FLOP",
-		4: "TURN",
-		5: "RIVER",
-	}
-	BettingRound_value = map[string]int32{
-		"NULL":    0,
-		"ANTE":    1,
-		"PREFLOP": 2,
-		"FLOP":    3,
-		"TURN":    4,
-		"RIVER":   5,
-	}
-)
-
-func (x BettingRound) Enum() *BettingRound {
-	p := new(BettingRound)
-	*p = x
-	return p
-}
-
-func (x BettingRound) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (BettingRound) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[9].Descriptor()
-}
-
-func (BettingRound) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[9]
-}
-
-func (x BettingRound) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use BettingRound.Descriptor instead.
-func (BettingRound) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{9}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{5}
 }
 
 type RoomSortType int32
@@ -675,11 +408,11 @@ func (x RoomSortType) String() string {
 }
 
 func (RoomSortType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[10].Descriptor()
+	return file_core_game_enum_proto_enumTypes[6].Descriptor()
 }
 
 func (RoomSortType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[10]
+	return &file_core_game_enum_proto_enumTypes[6]
 }
 
 func (x RoomSortType) Number() protoreflect.EnumNumber {
@@ -688,375 +421,14 @@ func (x RoomSortType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use RoomSortType.Descriptor instead.
 func (RoomSortType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{10}
-}
-
-// 游戏状态操作type
-type OperateType int32
-
-const (
-	OperateType_OPERATE_NONE    OperateType = 0 // 无效操作
-	OperateType_BET             OperateType = 1 // 下注
-	OperateType_CALL            OperateType = 2 // 跟注
-	OperateType_RAISE           OperateType = 3 // 加注
-	OperateType_CHECK           OperateType = 4 // 看牌
-	OperateType_FOLD            OperateType = 5 // 弃牌
-	OperateType_ALL_IN          OperateType = 6 // 全下
-	OperateType_BET_BIG_BLIND   OperateType = 7 // 下大盲
-	OperateType_BET_SMALL_BLIND OperateType = 8 // 下小盲
-	OperateType_BET_ANTE        OperateType = 9 // 下前注
-)
-
-// Enum value maps for OperateType.
-var (
-	OperateType_name = map[int32]string{
-		0: "OPERATE_NONE",
-		1: "BET",
-		2: "CALL",
-		3: "RAISE",
-		4: "CHECK",
-		5: "FOLD",
-		6: "ALL_IN",
-		7: "BET_BIG_BLIND",
-		8: "BET_SMALL_BLIND",
-		9: "BET_ANTE",
-	}
-	OperateType_value = map[string]int32{
-		"OPERATE_NONE":    0,
-		"BET":             1,
-		"CALL":            2,
-		"RAISE":           3,
-		"CHECK":           4,
-		"FOLD":            5,
-		"ALL_IN":          6,
-		"BET_BIG_BLIND":   7,
-		"BET_SMALL_BLIND": 8,
-		"BET_ANTE":        9,
-	}
-)
-
-func (x OperateType) Enum() *OperateType {
-	p := new(OperateType)
-	*p = x
-	return p
-}
-
-func (x OperateType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (OperateType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[11].Descriptor()
-}
-
-func (OperateType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[11]
-}
-
-func (x OperateType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use OperateType.Descriptor instead.
-func (OperateType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{11}
-}
-
-// 游戏事件类型
-type GameNotifyType int32
-
-const (
-	GameNotifyType_EVENT_NONE            GameNotifyType = 0  // 缺省通知
-	GameNotifyType_EVENT_BET             GameNotifyType = 1  // 下注
-	GameNotifyType_EVENT_CALL            GameNotifyType = 2  // 跟注
-	GameNotifyType_EVENT_RAISE           GameNotifyType = 3  // 加注
-	GameNotifyType_EVENT_CHECK           GameNotifyType = 4  // 看牌
-	GameNotifyType_EVENT_FOLD            GameNotifyType = 5  // 弃牌
-	GameNotifyType_EVENT_BET_BIG_BLIND   GameNotifyType = 6  // 下大盲
-	GameNotifyType_EVENT_BET_SMALL_BLIND GameNotifyType = 7  // 下小盲
-	GameNotifyType_EVENT_BET_PRE_FOLP    GameNotifyType = 8  // 翻牌下前注
-	GameNotifyType_EVENT_DEAL            GameNotifyType = 9  // 发牌
-	GameNotifyType_EVENT_SIT_DOWN        GameNotifyType = 10 // 坐下
-	GameNotifyType_EVENT_STAND_UP        GameNotifyType = 11 // 站起
-	GameNotifyType_EVENT_LEAVE           GameNotifyType = 12 // 离开
-	GameNotifyType_EVENT_READY           GameNotifyType = 13 // 准备
-	GameNotifyType_EVENT_CANCEL_READY    GameNotifyType = 14 // 取消准备
-	GameNotifyType_EVENT_GAME_START      GameNotifyType = 15 // 游戏开始
-	GameNotifyType_EVENT_GAME_END        GameNotifyType = 16 // 游戏结束
-	GameNotifyType_EVENT_GAME_PAUSE      GameNotifyType = 17 // 游戏暂停
-	GameNotifyType_EVENT_GAME_RESUME     GameNotifyType = 18 // 游戏恢复
-	GameNotifyType_EVENT_GAME_RESET      GameNotifyType = 19 // 游戏重置
-	GameNotifyType_EVENT_BLIND           GameNotifyType = 20 // 涨盲
-	// EVENT_BET_FOLP        = 21; // 转牌后前注
-	// EVENT_BET_TURN        = 22; // 转牌后前注
-	// EVENT_BET_RIVER       = 23; // 河牌后前注
-	GameNotifyType_EVENT_FLOP_CARD GameNotifyType = 24 // 翻牌，翻转牌，翻和牌
-)
-
-// Enum value maps for GameNotifyType.
-var (
-	GameNotifyType_name = map[int32]string{
-		0:  "EVENT_NONE",
-		1:  "EVENT_BET",
-		2:  "EVENT_CALL",
-		3:  "EVENT_RAISE",
-		4:  "EVENT_CHECK",
-		5:  "EVENT_FOLD",
-		6:  "EVENT_BET_BIG_BLIND",
-		7:  "EVENT_BET_SMALL_BLIND",
-		8:  "EVENT_BET_PRE_FOLP",
-		9:  "EVENT_DEAL",
-		10: "EVENT_SIT_DOWN",
-		11: "EVENT_STAND_UP",
-		12: "EVENT_LEAVE",
-		13: "EVENT_READY",
-		14: "EVENT_CANCEL_READY",
-		15: "EVENT_GAME_START",
-		16: "EVENT_GAME_END",
-		17: "EVENT_GAME_PAUSE",
-		18: "EVENT_GAME_RESUME",
-		19: "EVENT_GAME_RESET",
-		20: "EVENT_BLIND",
-		24: "EVENT_FLOP_CARD",
-	}
-	GameNotifyType_value = map[string]int32{
-		"EVENT_NONE":            0,
-		"EVENT_BET":             1,
-		"EVENT_CALL":            2,
-		"EVENT_RAISE":           3,
-		"EVENT_CHECK":           4,
-		"EVENT_FOLD":            5,
-		"EVENT_BET_BIG_BLIND":   6,
-		"EVENT_BET_SMALL_BLIND": 7,
-		"EVENT_BET_PRE_FOLP":    8,
-		"EVENT_DEAL":            9,
-		"EVENT_SIT_DOWN":        10,
-		"EVENT_STAND_UP":        11,
-		"EVENT_LEAVE":           12,
-		"EVENT_READY":           13,
-		"EVENT_CANCEL_READY":    14,
-		"EVENT_GAME_START":      15,
-		"EVENT_GAME_END":        16,
-		"EVENT_GAME_PAUSE":      17,
-		"EVENT_GAME_RESUME":     18,
-		"EVENT_GAME_RESET":      19,
-		"EVENT_BLIND":           20,
-		"EVENT_FLOP_CARD":       24,
-	}
-)
-
-func (x GameNotifyType) Enum() *GameNotifyType {
-	p := new(GameNotifyType)
-	*p = x
-	return p
-}
-
-func (x GameNotifyType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (GameNotifyType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[12].Descriptor()
-}
-
-func (GameNotifyType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[12]
-}
-
-func (x GameNotifyType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use GameNotifyType.Descriptor instead.
-func (GameNotifyType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{12}
-}
-
-// 玩家状态(正在游戏中的玩家可以预操作：退出牌桌)
-type PlayerState int32
-
-const (
-	PlayerState_PLAYER_STATE_NONE PlayerState = 0
-	PlayerState_JOIN_ROOM         PlayerState = 1 // 加入房间
-	PlayerState_JOIN_TABLE        PlayerState = 2 // 加入牌桌
-	PlayerState_QUIT_TABLE        PlayerState = 3 // 退出牌桌(不在加入下一轮游戏)
-	PlayerState_QUIT_ROOM         PlayerState = 4 // 结算完成
-)
-
-// Enum value maps for PlayerState.
-var (
-	PlayerState_name = map[int32]string{
-		0: "PLAYER_STATE_NONE",
-		1: "JOIN_ROOM",
-		2: "JOIN_TABLE",
-		3: "QUIT_TABLE",
-		4: "QUIT_ROOM",
-	}
-	PlayerState_value = map[string]int32{
-		"PLAYER_STATE_NONE": 0,
-		"JOIN_ROOM":         1,
-		"JOIN_TABLE":        2,
-		"QUIT_TABLE":        3,
-		"QUIT_ROOM":         4,
-	}
-)
-
-func (x PlayerState) Enum() *PlayerState {
-	p := new(PlayerState)
-	*p = x
-	return p
-}
-
-func (x PlayerState) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (PlayerState) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[13].Descriptor()
-}
-
-func (PlayerState) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[13]
-}
-
-func (x PlayerState) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use PlayerState.Descriptor instead.
-func (PlayerState) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{13}
-}
-
-// 发牌类型
-type DealType int32
-
-const (
-	DealType_DEAL_NONE  DealType = 0 // 无效发牌
-	DealType_DEAL_HAND  DealType = 1 // 发手牌
-	DealType_DEAL_FLOP  DealType = 2 // 发翻牌
-	DealType_DEAL_TURN  DealType = 3 // 发转牌
-	DealType_DEAL_RIVER DealType = 4 // 发河牌
-)
-
-// Enum value maps for DealType.
-var (
-	DealType_name = map[int32]string{
-		0: "DEAL_NONE",
-		1: "DEAL_HAND",
-		2: "DEAL_FLOP",
-		3: "DEAL_TURN",
-		4: "DEAL_RIVER",
-	}
-	DealType_value = map[string]int32{
-		"DEAL_NONE":  0,
-		"DEAL_HAND":  1,
-		"DEAL_FLOP":  2,
-		"DEAL_TURN":  3,
-		"DEAL_RIVER": 4,
-	}
-)
-
-func (x DealType) Enum() *DealType {
-	p := new(DealType)
-	*p = x
-	return p
-}
-
-func (x DealType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (DealType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[14].Descriptor()
-}
-
-func (DealType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[14]
-}
-
-func (x DealType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use DealType.Descriptor instead.
-func (DealType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{14}
-}
-
-// 数据类型
-type DataType int32
-
-const (
-	DataType_DATA_TYPE_NONE              DataType = 0 // 无效数据
-	DataType_DATA_TYPE_TEXAS_GAME_RECORD DataType = 1 // 德州扑克游戏记录
-	DataType_DATA_TYPE_PLAYER_INFO       DataType = 2 // 玩家游戏信息
-	DataType_DATA_TYPE_TEXAS_ROOM_INFO   DataType = 3 // 德州扑克房间信息
-)
-
-// Enum value maps for DataType.
-var (
-	DataType_name = map[int32]string{
-		0: "DATA_TYPE_NONE",
-		1: "DATA_TYPE_TEXAS_GAME_RECORD",
-		2: "DATA_TYPE_PLAYER_INFO",
-		3: "DATA_TYPE_TEXAS_ROOM_INFO",
-	}
-	DataType_value = map[string]int32{
-		"DATA_TYPE_NONE":              0,
-		"DATA_TYPE_TEXAS_GAME_RECORD": 1,
-		"DATA_TYPE_PLAYER_INFO":       2,
-		"DATA_TYPE_TEXAS_ROOM_INFO":   3,
-	}
-)
-
-func (x DataType) Enum() *DataType {
-	p := new(DataType)
-	*p = x
-	return p
-}
-
-func (x DataType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (DataType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_game_enum_proto_enumTypes[15].Descriptor()
-}
-
-func (DataType) Type() protoreflect.EnumType {
-	return &file_core_game_enum_proto_enumTypes[15]
-}
-
-func (x DataType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use DataType.Descriptor instead.
-func (DataType) EnumDescriptor() ([]byte, []int) {
-	return file_core_game_enum_proto_rawDescGZIP(), []int{15}
+	return file_core_game_enum_proto_rawDescGZIP(), []int{6}
 }
 
 var File_core_game_enum_proto protoreflect.FileDescriptor
 
 const file_core_game_enum_proto_rawDesc = "" +
 	"\n" +
-	"\x14core/game_enum.proto\x12\vg1.protocol*\xd3\x01\n" +
-	"\bCardType\x12\x12\n" +
-	"\x0eCARD_TYPE_NONE\x10\x00\x12\r\n" +
-	"\tHIGH_CARD\x10\x01\x12\f\n" +
-	"\bONE_PAIR\x10\x02\x12\f\n" +
-	"\bTWO_PAIR\x10\x03\x12\x13\n" +
-	"\x0fTHREE_OF_A_KIND\x10\x04\x12\f\n" +
-	"\bSTRAIGHT\x10\x05\x12\t\n" +
-	"\x05FLUSH\x10\x06\x12\x0e\n" +
-	"\n" +
-	"FULL_HOUSE\x10\a\x12\x12\n" +
-	"\x0eFOUR_OF_A_KIND\x10\b\x12\x12\n" +
-	"\x0eSTRAIGHT_FLUSH\x10\t\x12\x0f\n" +
-	"\vROYAL_FLUSH\x10\n" +
-	"\x12\x11\n" +
-	"\rSTRAIGHT_MASK\x10\x1f*\\\n" +
+	"\x14core/game_enum.proto\x12\vg1.protocol*\\\n" +
 	"\x05Color\x12\x0e\n" +
 	"\n" +
 	"COLOR_NONE\x10\x00\x12\x11\n" +
@@ -1095,33 +467,10 @@ const file_core_game_enum_proto_rawDesc = "" +
 	"\n" +
 	"\x06RANK_K\x10\r\x12\n" +
 	"\n" +
-	"\x06RANK_A\x10\x0e*\x92\x01\n" +
-	"\tGameState\x12\x0e\n" +
+	"\x06RANK_A\x10\x0e*H\n" +
 	"\n" +
-	"STATE_INIT\x10\x00\x12\x0f\n" +
-	"\vSTATE_START\x10\x01\x12\x12\n" +
-	"\x0eSTATE_PRE_FLOP\x10\x02\x12\x14\n" +
-	"\x10STATE_FLOP_ROUND\x10\x03\x12\x14\n" +
-	"\x10STATE_TURN_ROUND\x10\x04\x12\x15\n" +
-	"\x11STATE_RIVER_ROUND\x10\x05\x12\r\n" +
-	"\tSTATE_END\x10\x06*3\n" +
-	"\x13GameCompetitionType\x12\n" +
-	"\n" +
-	"\x06NORMAL\x10\x00\x12\a\n" +
-	"\x03SNG\x10\x01\x12\a\n" +
-	"\x03MTT\x10\x02*\xbf\x01\n" +
-	"\n" +
-	"GameTypeId\x12\x14\n" +
-	"\x10TEXAS_MODE_START\x10\x00\x12\x10\n" +
-	"\fTEXAS_NORMAL\x10\x01\x12\x0f\n" +
-	"\vTEXAS_SHORT\x10\x02\x12\r\n" +
-	"\tTEXAS_AOF\x10\x03\x12\r\n" +
-	"\tTEXAS_PLO\x10\x04\x12\x0e\n" +
-	"\n" +
-	"TEXAS_PLO5\x10\x05\x12\x0e\n" +
-	"\n" +
-	"TEXAS_PLO6\x10\x06\x12\x12\n" +
-	"\x0eTEXAS_MODE_END\x10\a\x12\x14\n" +
+	"GameTypeId\x12\x12\n" +
+	"\x0eGAME_TYPE_NONE\x10\x00\x12\x14\n" +
 	"\x10RUMMY_MODE_START\x10\x14\x12\x10\n" +
 	"\fRUMMY_NORMAL\x10\x15*F\n" +
 	"\bCoinType\x12\r\n" +
@@ -1141,79 +490,12 @@ const file_core_game_enum_proto_rawDesc = "" +
 	"\tWAITSTART\x10\x00\x12\v\n" +
 	"\aPLAYING\x10\x01\x12\a\n" +
 	"\x03END\x10\x02\x12\t\n" +
-	"\x05PAUSE\x10\x03*N\n" +
-	"\fBettingRound\x12\b\n" +
-	"\x04NULL\x10\x00\x12\b\n" +
-	"\x04ANTE\x10\x01\x12\v\n" +
-	"\aPREFLOP\x10\x02\x12\b\n" +
-	"\x04FLOP\x10\x03\x12\b\n" +
-	"\x04TURN\x10\x04\x12\t\n" +
-	"\x05RIVER\x10\x05*^\n" +
+	"\x05PAUSE\x10\x03*^\n" +
 	"\fRoomSortType\x12\x12\n" +
 	"\x0eSORT_TYPE_NONE\x10\x00\x12\x10\n" +
 	"\fSORT_TYPE_ID\x10\x01\x12\x14\n" +
 	"\x10SORT_TYPE_PLAYER\x10\x02\x12\x12\n" +
-	"\x0eSORT_TYPE_TIME\x10\x03*\x94\x01\n" +
-	"\vOperateType\x12\x10\n" +
-	"\fOPERATE_NONE\x10\x00\x12\a\n" +
-	"\x03BET\x10\x01\x12\b\n" +
-	"\x04CALL\x10\x02\x12\t\n" +
-	"\x05RAISE\x10\x03\x12\t\n" +
-	"\x05CHECK\x10\x04\x12\b\n" +
-	"\x04FOLD\x10\x05\x12\n" +
-	"\n" +
-	"\x06ALL_IN\x10\x06\x12\x11\n" +
-	"\rBET_BIG_BLIND\x10\a\x12\x13\n" +
-	"\x0fBET_SMALL_BLIND\x10\b\x12\f\n" +
-	"\bBET_ANTE\x10\t*\xc2\x03\n" +
-	"\x0eGameNotifyType\x12\x0e\n" +
-	"\n" +
-	"EVENT_NONE\x10\x00\x12\r\n" +
-	"\tEVENT_BET\x10\x01\x12\x0e\n" +
-	"\n" +
-	"EVENT_CALL\x10\x02\x12\x0f\n" +
-	"\vEVENT_RAISE\x10\x03\x12\x0f\n" +
-	"\vEVENT_CHECK\x10\x04\x12\x0e\n" +
-	"\n" +
-	"EVENT_FOLD\x10\x05\x12\x17\n" +
-	"\x13EVENT_BET_BIG_BLIND\x10\x06\x12\x19\n" +
-	"\x15EVENT_BET_SMALL_BLIND\x10\a\x12\x16\n" +
-	"\x12EVENT_BET_PRE_FOLP\x10\b\x12\x0e\n" +
-	"\n" +
-	"EVENT_DEAL\x10\t\x12\x12\n" +
-	"\x0eEVENT_SIT_DOWN\x10\n" +
-	"\x12\x12\n" +
-	"\x0eEVENT_STAND_UP\x10\v\x12\x0f\n" +
-	"\vEVENT_LEAVE\x10\f\x12\x0f\n" +
-	"\vEVENT_READY\x10\r\x12\x16\n" +
-	"\x12EVENT_CANCEL_READY\x10\x0e\x12\x14\n" +
-	"\x10EVENT_GAME_START\x10\x0f\x12\x12\n" +
-	"\x0eEVENT_GAME_END\x10\x10\x12\x14\n" +
-	"\x10EVENT_GAME_PAUSE\x10\x11\x12\x15\n" +
-	"\x11EVENT_GAME_RESUME\x10\x12\x12\x14\n" +
-	"\x10EVENT_GAME_RESET\x10\x13\x12\x0f\n" +
-	"\vEVENT_BLIND\x10\x14\x12\x13\n" +
-	"\x0fEVENT_FLOP_CARD\x10\x18*b\n" +
-	"\vPlayerState\x12\x15\n" +
-	"\x11PLAYER_STATE_NONE\x10\x00\x12\r\n" +
-	"\tJOIN_ROOM\x10\x01\x12\x0e\n" +
-	"\n" +
-	"JOIN_TABLE\x10\x02\x12\x0e\n" +
-	"\n" +
-	"QUIT_TABLE\x10\x03\x12\r\n" +
-	"\tQUIT_ROOM\x10\x04*V\n" +
-	"\bDealType\x12\r\n" +
-	"\tDEAL_NONE\x10\x00\x12\r\n" +
-	"\tDEAL_HAND\x10\x01\x12\r\n" +
-	"\tDEAL_FLOP\x10\x02\x12\r\n" +
-	"\tDEAL_TURN\x10\x03\x12\x0e\n" +
-	"\n" +
-	"DEAL_RIVER\x10\x04*y\n" +
-	"\bDataType\x12\x12\n" +
-	"\x0eDATA_TYPE_NONE\x10\x00\x12\x1f\n" +
-	"\x1bDATA_TYPE_TEXAS_GAME_RECORD\x10\x01\x12\x19\n" +
-	"\x15DATA_TYPE_PLAYER_INFO\x10\x02\x12\x1d\n" +
-	"\x19DATA_TYPE_TEXAS_ROOM_INFO\x10\x03B9Z7github.com/Iori372552686/g1_common/protocol;g1_protocolb\x06proto3"
+	"\x0eSORT_TYPE_TIME\x10\x03B9Z7github.com/Iori372552686/g1_common/protocol;g1_protocolb\x06proto3"
 
 var (
 	file_core_game_enum_proto_rawDescOnce sync.Once
@@ -1227,24 +509,15 @@ func file_core_game_enum_proto_rawDescGZIP() []byte {
 	return file_core_game_enum_proto_rawDescData
 }
 
-var file_core_game_enum_proto_enumTypes = make([]protoimpl.EnumInfo, 16)
+var file_core_game_enum_proto_enumTypes = make([]protoimpl.EnumInfo, 7)
 var file_core_game_enum_proto_goTypes = []any{
-	(CardType)(0),            // 0: g1.protocol.CardType
-	(Color)(0),               // 1: g1.protocol.Color
-	(Rank)(0),                // 2: g1.protocol.Rank
-	(GameState)(0),           // 3: g1.protocol.GameState
-	(GameCompetitionType)(0), // 4: g1.protocol.GameCompetitionType
-	(GameTypeId)(0),          // 5: g1.protocol.GameTypeId
-	(CoinType)(0),            // 6: g1.protocol.CoinType
-	(RoomStage)(0),           // 7: g1.protocol.RoomStage
-	(RoomState)(0),           // 8: g1.protocol.RoomState
-	(BettingRound)(0),        // 9: g1.protocol.BettingRound
-	(RoomSortType)(0),        // 10: g1.protocol.RoomSortType
-	(OperateType)(0),         // 11: g1.protocol.OperateType
-	(GameNotifyType)(0),      // 12: g1.protocol.GameNotifyType
-	(PlayerState)(0),         // 13: g1.protocol.PlayerState
-	(DealType)(0),            // 14: g1.protocol.DealType
-	(DataType)(0),            // 15: g1.protocol.DataType
+	(Color)(0),        // 0: g1.protocol.Color
+	(Rank)(0),         // 1: g1.protocol.Rank
+	(GameTypeId)(0),   // 2: g1.protocol.GameTypeId
+	(CoinType)(0),     // 3: g1.protocol.CoinType
+	(RoomStage)(0),    // 4: g1.protocol.RoomStage
+	(RoomState)(0),    // 5: g1.protocol.RoomState
+	(RoomSortType)(0), // 6: g1.protocol.RoomSortType
 }
 var file_core_game_enum_proto_depIdxs = []int32{
 	0, // [0:0] is the sub-list for method output_type
@@ -1264,7 +537,7 @@ func file_core_game_enum_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_game_enum_proto_rawDesc), len(file_core_game_enum_proto_rawDesc)),
-			NumEnums:      16,
+			NumEnums:      7,
 			NumMessages:   0,
 			NumExtensions: 0,
 			NumServices:   0,

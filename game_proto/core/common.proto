@@ -22,8 +22,6 @@ enum DBType {
     DB_TYPE_MAIL             = 6;  // 邮件
     DB_TYPE_CHAT             = 7;  // 离线聊天数据
     DB_TYPE_FRIEND           = 8;  // 好友数据
-    DB_TYPE_ROOM_CENTER_INFO = 9;  // 房间中心数据
-    DB_TYPE_TEXAS_ROOM       = 10; // 德州房间缓存数据
     DB_TYPE_RUMMY_ROOM       = 11; // 拉米牌房间缓存数据
     DB_TYPE_MISC             = 99; // 一些单独的key
 }

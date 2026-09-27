@@ -1893,59 +1893,6 @@ func (x *ScDataChangeNotify) GetCmd() int32 {
 	return 0
 }
 
-// SC_GAME_EVENT_NOTIFY
-type GameUserEventNotify struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Event         GameNotifyType         `protobuf:"varint,1,opt,name=Event,proto3,enum=g1.protocol.GameNotifyType" json:"Event,omitempty"`
-	Content       []byte                 `protobuf:"bytes,2,opt,name=Content,proto3" json:"Content,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GameUserEventNotify) Reset() {
-	*x = GameUserEventNotify{}
-	mi := &file_core_client_proto_msgTypes[33]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GameUserEventNotify) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GameUserEventNotify) ProtoMessage() {}
-
-func (x *GameUserEventNotify) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[33]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GameUserEventNotify.ProtoReflect.Descriptor instead.
-func (*GameUserEventNotify) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{33}
-}
-
-func (x *GameUserEventNotify) GetEvent() GameNotifyType {
-	if x != nil {
-		return x.Event
-	}
-	return GameNotifyType_EVENT_NONE
-}
-
-func (x *GameUserEventNotify) GetContent() []byte {
-	if x != nil {
-		return x.Content
-	}
-	return nil
-}
-
 // MAIN_LOGIN_REQ
 type LoginReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1960,7 +1907,7 @@ type LoginReq struct {
 
 func (x *LoginReq) Reset() {
 	*x = LoginReq{}
-	mi := &file_core_client_proto_msgTypes[34]
+	mi := &file_core_client_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1972,7 +1919,7 @@ func (x *LoginReq) String() string {
 func (*LoginReq) ProtoMessage() {}
 
 func (x *LoginReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[34]
+	mi := &file_core_client_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1985,7 +1932,7 @@ func (x *LoginReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginReq.ProtoReflect.Descriptor instead.
 func (*LoginReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{34}
+	return file_core_client_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *LoginReq) GetAccount() string {
@@ -2034,7 +1981,7 @@ type LoginRsp struct {
 
 func (x *LoginRsp) Reset() {
 	*x = LoginRsp{}
-	mi := &file_core_client_proto_msgTypes[35]
+	mi := &file_core_client_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2046,7 +1993,7 @@ func (x *LoginRsp) String() string {
 func (*LoginRsp) ProtoMessage() {}
 
 func (x *LoginRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[35]
+	mi := &file_core_client_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2059,7 +2006,7 @@ func (x *LoginRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginRsp.ProtoReflect.Descriptor instead.
 func (*LoginRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{35}
+	return file_core_client_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *LoginRsp) GetRet() *Ret {
@@ -2094,7 +2041,7 @@ type LogoutReq struct {
 
 func (x *LogoutReq) Reset() {
 	*x = LogoutReq{}
-	mi := &file_core_client_proto_msgTypes[36]
+	mi := &file_core_client_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2106,7 +2053,7 @@ func (x *LogoutReq) String() string {
 func (*LogoutReq) ProtoMessage() {}
 
 func (x *LogoutReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[36]
+	mi := &file_core_client_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2119,7 +2066,7 @@ func (x *LogoutReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutReq.ProtoReflect.Descriptor instead.
 func (*LogoutReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{36}
+	return file_core_client_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *LogoutReq) GetByServer() bool {
@@ -2145,7 +2092,7 @@ type LogoutRsp struct {
 
 func (x *LogoutRsp) Reset() {
 	*x = LogoutRsp{}
-	mi := &file_core_client_proto_msgTypes[37]
+	mi := &file_core_client_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2157,7 +2104,7 @@ func (x *LogoutRsp) String() string {
 func (*LogoutRsp) ProtoMessage() {}
 
 func (x *LogoutRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[37]
+	mi := &file_core_client_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2170,7 +2117,7 @@ func (x *LogoutRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutRsp.ProtoReflect.Descriptor instead.
 func (*LogoutRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{37}
+	return file_core_client_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *LogoutRsp) GetRet() *Ret {
@@ -2190,7 +2137,7 @@ type HeartBeatReq struct {
 
 func (x *HeartBeatReq) Reset() {
 	*x = HeartBeatReq{}
-	mi := &file_core_client_proto_msgTypes[38]
+	mi := &file_core_client_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2202,7 +2149,7 @@ func (x *HeartBeatReq) String() string {
 func (*HeartBeatReq) ProtoMessage() {}
 
 func (x *HeartBeatReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[38]
+	mi := &file_core_client_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2215,7 +2162,7 @@ func (x *HeartBeatReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeartBeatReq.ProtoReflect.Descriptor instead.
 func (*HeartBeatReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{38}
+	return file_core_client_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *HeartBeatReq) GetClientNowMs() int64 {
@@ -2236,7 +2183,7 @@ type HeartBeatRsp struct {
 
 func (x *HeartBeatRsp) Reset() {
 	*x = HeartBeatRsp{}
-	mi := &file_core_client_proto_msgTypes[39]
+	mi := &file_core_client_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2248,7 +2195,7 @@ func (x *HeartBeatRsp) String() string {
 func (*HeartBeatRsp) ProtoMessage() {}
 
 func (x *HeartBeatRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[39]
+	mi := &file_core_client_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2261,7 +2208,7 @@ func (x *HeartBeatRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeartBeatRsp.ProtoReflect.Descriptor instead.
 func (*HeartBeatRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{39}
+	return file_core_client_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *HeartBeatRsp) GetRet() *Ret {
@@ -2295,7 +2242,7 @@ type ItemUseReq struct {
 
 func (x *ItemUseReq) Reset() {
 	*x = ItemUseReq{}
-	mi := &file_core_client_proto_msgTypes[40]
+	mi := &file_core_client_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2307,7 +2254,7 @@ func (x *ItemUseReq) String() string {
 func (*ItemUseReq) ProtoMessage() {}
 
 func (x *ItemUseReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[40]
+	mi := &file_core_client_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2320,7 +2267,7 @@ func (x *ItemUseReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemUseReq.ProtoReflect.Descriptor instead.
 func (*ItemUseReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{40}
+	return file_core_client_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *ItemUseReq) GetItemList() []*PbItem {
@@ -2340,7 +2287,7 @@ type ItemUseRsp struct {
 
 func (x *ItemUseRsp) Reset() {
 	*x = ItemUseRsp{}
-	mi := &file_core_client_proto_msgTypes[41]
+	mi := &file_core_client_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2352,7 +2299,7 @@ func (x *ItemUseRsp) String() string {
 func (*ItemUseRsp) ProtoMessage() {}
 
 func (x *ItemUseRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[41]
+	mi := &file_core_client_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2365,7 +2312,7 @@ func (x *ItemUseRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemUseRsp.ProtoReflect.Descriptor instead.
 func (*ItemUseRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{41}
+	return file_core_client_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *ItemUseRsp) GetRet() *Ret {
@@ -2392,7 +2339,7 @@ type ChangeNameReq struct {
 
 func (x *ChangeNameReq) Reset() {
 	*x = ChangeNameReq{}
-	mi := &file_core_client_proto_msgTypes[42]
+	mi := &file_core_client_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2404,7 +2351,7 @@ func (x *ChangeNameReq) String() string {
 func (*ChangeNameReq) ProtoMessage() {}
 
 func (x *ChangeNameReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[42]
+	mi := &file_core_client_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2417,7 +2364,7 @@ func (x *ChangeNameReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeNameReq.ProtoReflect.Descriptor instead.
 func (*ChangeNameReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{42}
+	return file_core_client_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *ChangeNameReq) GetName() string {
@@ -2436,7 +2383,7 @@ type ChangeNameRsp struct {
 
 func (x *ChangeNameRsp) Reset() {
 	*x = ChangeNameRsp{}
-	mi := &file_core_client_proto_msgTypes[43]
+	mi := &file_core_client_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2448,7 +2395,7 @@ func (x *ChangeNameRsp) String() string {
 func (*ChangeNameRsp) ProtoMessage() {}
 
 func (x *ChangeNameRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[43]
+	mi := &file_core_client_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2461,7 +2408,7 @@ func (x *ChangeNameRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeNameRsp.ProtoReflect.Descriptor instead.
 func (*ChangeNameRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{43}
+	return file_core_client_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *ChangeNameRsp) GetRet() *Ret {
@@ -2483,7 +2430,7 @@ type ChangeIconReq struct {
 
 func (x *ChangeIconReq) Reset() {
 	*x = ChangeIconReq{}
-	mi := &file_core_client_proto_msgTypes[44]
+	mi := &file_core_client_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2495,7 +2442,7 @@ func (x *ChangeIconReq) String() string {
 func (*ChangeIconReq) ProtoMessage() {}
 
 func (x *ChangeIconReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[44]
+	mi := &file_core_client_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2508,7 +2455,7 @@ func (x *ChangeIconReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeIconReq.ProtoReflect.Descriptor instead.
 func (*ChangeIconReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{44}
+	return file_core_client_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *ChangeIconReq) GetIconId() int32 {
@@ -2541,7 +2488,7 @@ type ChangeIconRsp struct {
 
 func (x *ChangeIconRsp) Reset() {
 	*x = ChangeIconRsp{}
-	mi := &file_core_client_proto_msgTypes[45]
+	mi := &file_core_client_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2553,7 +2500,7 @@ func (x *ChangeIconRsp) String() string {
 func (*ChangeIconRsp) ProtoMessage() {}
 
 func (x *ChangeIconRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[45]
+	mi := &file_core_client_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2566,7 +2513,7 @@ func (x *ChangeIconRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeIconRsp.ProtoReflect.Descriptor instead.
 func (*ChangeIconRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{45}
+	return file_core_client_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ChangeIconRsp) GetRet() *Ret {
@@ -2586,7 +2533,7 @@ type InfoGetBriefInfoReq struct {
 
 func (x *InfoGetBriefInfoReq) Reset() {
 	*x = InfoGetBriefInfoReq{}
-	mi := &file_core_client_proto_msgTypes[46]
+	mi := &file_core_client_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2598,7 +2545,7 @@ func (x *InfoGetBriefInfoReq) String() string {
 func (*InfoGetBriefInfoReq) ProtoMessage() {}
 
 func (x *InfoGetBriefInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[46]
+	mi := &file_core_client_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2611,7 +2558,7 @@ func (x *InfoGetBriefInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetBriefInfoReq.ProtoReflect.Descriptor instead.
 func (*InfoGetBriefInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{46}
+	return file_core_client_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *InfoGetBriefInfoReq) GetUidList() []uint64 {
@@ -2631,7 +2578,7 @@ type InfoGetBriefInfoRsp struct {
 
 func (x *InfoGetBriefInfoRsp) Reset() {
 	*x = InfoGetBriefInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[47]
+	mi := &file_core_client_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2643,7 +2590,7 @@ func (x *InfoGetBriefInfoRsp) String() string {
 func (*InfoGetBriefInfoRsp) ProtoMessage() {}
 
 func (x *InfoGetBriefInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[47]
+	mi := &file_core_client_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2656,7 +2603,7 @@ func (x *InfoGetBriefInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetBriefInfoRsp.ProtoReflect.Descriptor instead.
 func (*InfoGetBriefInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{47}
+	return file_core_client_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *InfoGetBriefInfoRsp) GetRet() *Ret {
@@ -2683,7 +2630,7 @@ type InfoGetIconDescReq struct {
 
 func (x *InfoGetIconDescReq) Reset() {
 	*x = InfoGetIconDescReq{}
-	mi := &file_core_client_proto_msgTypes[48]
+	mi := &file_core_client_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2695,7 +2642,7 @@ func (x *InfoGetIconDescReq) String() string {
 func (*InfoGetIconDescReq) ProtoMessage() {}
 
 func (x *InfoGetIconDescReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[48]
+	mi := &file_core_client_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2708,7 +2655,7 @@ func (x *InfoGetIconDescReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetIconDescReq.ProtoReflect.Descriptor instead.
 func (*InfoGetIconDescReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{48}
+	return file_core_client_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *InfoGetIconDescReq) GetUidList() []uint64 {
@@ -2728,7 +2675,7 @@ type InfoGetIconDescRsp struct {
 
 func (x *InfoGetIconDescRsp) Reset() {
 	*x = InfoGetIconDescRsp{}
-	mi := &file_core_client_proto_msgTypes[49]
+	mi := &file_core_client_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2740,7 +2687,7 @@ func (x *InfoGetIconDescRsp) String() string {
 func (*InfoGetIconDescRsp) ProtoMessage() {}
 
 func (x *InfoGetIconDescRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[49]
+	mi := &file_core_client_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2753,7 +2700,7 @@ func (x *InfoGetIconDescRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetIconDescRsp.ProtoReflect.Descriptor instead.
 func (*InfoGetIconDescRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{49}
+	return file_core_client_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *InfoGetIconDescRsp) GetRet() *Ret {
@@ -2780,7 +2727,7 @@ type GuideCompletedReq struct {
 
 func (x *GuideCompletedReq) Reset() {
 	*x = GuideCompletedReq{}
-	mi := &file_core_client_proto_msgTypes[50]
+	mi := &file_core_client_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2792,7 +2739,7 @@ func (x *GuideCompletedReq) String() string {
 func (*GuideCompletedReq) ProtoMessage() {}
 
 func (x *GuideCompletedReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[50]
+	mi := &file_core_client_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2805,7 +2752,7 @@ func (x *GuideCompletedReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideCompletedReq.ProtoReflect.Descriptor instead.
 func (*GuideCompletedReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{50}
+	return file_core_client_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *GuideCompletedReq) GetId() int32 {
@@ -2824,7 +2771,7 @@ type GuideCompletedRsp struct {
 
 func (x *GuideCompletedRsp) Reset() {
 	*x = GuideCompletedRsp{}
-	mi := &file_core_client_proto_msgTypes[51]
+	mi := &file_core_client_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2836,7 +2783,7 @@ func (x *GuideCompletedRsp) String() string {
 func (*GuideCompletedRsp) ProtoMessage() {}
 
 func (x *GuideCompletedRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[51]
+	mi := &file_core_client_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2849,7 +2796,7 @@ func (x *GuideCompletedRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideCompletedRsp.ProtoReflect.Descriptor instead.
 func (*GuideCompletedRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{51}
+	return file_core_client_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *GuideCompletedRsp) GetRet() *Ret {
@@ -2869,7 +2816,7 @@ type GuideInProgressReq struct {
 
 func (x *GuideInProgressReq) Reset() {
 	*x = GuideInProgressReq{}
-	mi := &file_core_client_proto_msgTypes[52]
+	mi := &file_core_client_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2881,7 +2828,7 @@ func (x *GuideInProgressReq) String() string {
 func (*GuideInProgressReq) ProtoMessage() {}
 
 func (x *GuideInProgressReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[52]
+	mi := &file_core_client_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2894,7 +2841,7 @@ func (x *GuideInProgressReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideInProgressReq.ProtoReflect.Descriptor instead.
 func (*GuideInProgressReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{52}
+	return file_core_client_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GuideInProgressReq) GetId() int32 {
@@ -2913,7 +2860,7 @@ type GuideInProgressRsp struct {
 
 func (x *GuideInProgressRsp) Reset() {
 	*x = GuideInProgressRsp{}
-	mi := &file_core_client_proto_msgTypes[53]
+	mi := &file_core_client_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2925,7 +2872,7 @@ func (x *GuideInProgressRsp) String() string {
 func (*GuideInProgressRsp) ProtoMessage() {}
 
 func (x *GuideInProgressRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[53]
+	mi := &file_core_client_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2938,7 +2885,7 @@ func (x *GuideInProgressRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideInProgressRsp.ProtoReflect.Descriptor instead.
 func (*GuideInProgressRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{53}
+	return file_core_client_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *GuideInProgressRsp) GetRet() *Ret {
@@ -2958,7 +2905,7 @@ type ExchangeGiftBagReq struct {
 
 func (x *ExchangeGiftBagReq) Reset() {
 	*x = ExchangeGiftBagReq{}
-	mi := &file_core_client_proto_msgTypes[54]
+	mi := &file_core_client_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2970,7 +2917,7 @@ func (x *ExchangeGiftBagReq) String() string {
 func (*ExchangeGiftBagReq) ProtoMessage() {}
 
 func (x *ExchangeGiftBagReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[54]
+	mi := &file_core_client_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2983,7 +2930,7 @@ func (x *ExchangeGiftBagReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeGiftBagReq.ProtoReflect.Descriptor instead.
 func (*ExchangeGiftBagReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{54}
+	return file_core_client_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *ExchangeGiftBagReq) GetCode() string {
@@ -3003,7 +2950,7 @@ type ExchangeGiftBagRsp struct {
 
 func (x *ExchangeGiftBagRsp) Reset() {
 	*x = ExchangeGiftBagRsp{}
-	mi := &file_core_client_proto_msgTypes[55]
+	mi := &file_core_client_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3015,7 +2962,7 @@ func (x *ExchangeGiftBagRsp) String() string {
 func (*ExchangeGiftBagRsp) ProtoMessage() {}
 
 func (x *ExchangeGiftBagRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[55]
+	mi := &file_core_client_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3028,7 +2975,7 @@ func (x *ExchangeGiftBagRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeGiftBagRsp.ProtoReflect.Descriptor instead.
 func (*ExchangeGiftBagRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{55}
+	return file_core_client_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ExchangeGiftBagRsp) GetRet() *Ret {
@@ -3054,7 +3001,7 @@ type GetMailListReq struct {
 
 func (x *GetMailListReq) Reset() {
 	*x = GetMailListReq{}
-	mi := &file_core_client_proto_msgTypes[56]
+	mi := &file_core_client_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3066,7 +3013,7 @@ func (x *GetMailListReq) String() string {
 func (*GetMailListReq) ProtoMessage() {}
 
 func (x *GetMailListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[56]
+	mi := &file_core_client_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3079,7 +3026,7 @@ func (x *GetMailListReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailListReq.ProtoReflect.Descriptor instead.
 func (*GetMailListReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{56}
+	return file_core_client_proto_rawDescGZIP(), []int{55}
 }
 
 type GetMailListRsp struct {
@@ -3092,7 +3039,7 @@ type GetMailListRsp struct {
 
 func (x *GetMailListRsp) Reset() {
 	*x = GetMailListRsp{}
-	mi := &file_core_client_proto_msgTypes[57]
+	mi := &file_core_client_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3104,7 +3051,7 @@ func (x *GetMailListRsp) String() string {
 func (*GetMailListRsp) ProtoMessage() {}
 
 func (x *GetMailListRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[57]
+	mi := &file_core_client_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3117,7 +3064,7 @@ func (x *GetMailListRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailListRsp.ProtoReflect.Descriptor instead.
 func (*GetMailListRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{57}
+	return file_core_client_proto_rawDescGZIP(), []int{56}
 }
 
 func (x *GetMailListRsp) GetRet() *Ret {
@@ -3144,7 +3091,7 @@ type ReadMailReq struct {
 
 func (x *ReadMailReq) Reset() {
 	*x = ReadMailReq{}
-	mi := &file_core_client_proto_msgTypes[58]
+	mi := &file_core_client_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3156,7 +3103,7 @@ func (x *ReadMailReq) String() string {
 func (*ReadMailReq) ProtoMessage() {}
 
 func (x *ReadMailReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[58]
+	mi := &file_core_client_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3169,7 +3116,7 @@ func (x *ReadMailReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadMailReq.ProtoReflect.Descriptor instead.
 func (*ReadMailReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{58}
+	return file_core_client_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *ReadMailReq) GetIdList() []int32 {
@@ -3189,7 +3136,7 @@ type ReadMailRsp struct {
 
 func (x *ReadMailRsp) Reset() {
 	*x = ReadMailRsp{}
-	mi := &file_core_client_proto_msgTypes[59]
+	mi := &file_core_client_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3201,7 +3148,7 @@ func (x *ReadMailRsp) String() string {
 func (*ReadMailRsp) ProtoMessage() {}
 
 func (x *ReadMailRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[59]
+	mi := &file_core_client_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3214,7 +3161,7 @@ func (x *ReadMailRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadMailRsp.ProtoReflect.Descriptor instead.
 func (*ReadMailRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{59}
+	return file_core_client_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ReadMailRsp) GetRet() *Ret {
@@ -3241,7 +3188,7 @@ type DelMailReq struct {
 
 func (x *DelMailReq) Reset() {
 	*x = DelMailReq{}
-	mi := &file_core_client_proto_msgTypes[60]
+	mi := &file_core_client_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3253,7 +3200,7 @@ func (x *DelMailReq) String() string {
 func (*DelMailReq) ProtoMessage() {}
 
 func (x *DelMailReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[60]
+	mi := &file_core_client_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3266,7 +3213,7 @@ func (x *DelMailReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelMailReq.ProtoReflect.Descriptor instead.
 func (*DelMailReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{60}
+	return file_core_client_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *DelMailReq) GetIdList() []int32 {
@@ -3286,7 +3233,7 @@ type DelMailRsp struct {
 
 func (x *DelMailRsp) Reset() {
 	*x = DelMailRsp{}
-	mi := &file_core_client_proto_msgTypes[61]
+	mi := &file_core_client_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3298,7 +3245,7 @@ func (x *DelMailRsp) String() string {
 func (*DelMailRsp) ProtoMessage() {}
 
 func (x *DelMailRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[61]
+	mi := &file_core_client_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3311,7 +3258,7 @@ func (x *DelMailRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelMailRsp.ProtoReflect.Descriptor instead.
 func (*DelMailRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{61}
+	return file_core_client_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *DelMailRsp) GetRet() *Ret {
@@ -3338,7 +3285,7 @@ type GetMailAttachReq struct {
 
 func (x *GetMailAttachReq) Reset() {
 	*x = GetMailAttachReq{}
-	mi := &file_core_client_proto_msgTypes[62]
+	mi := &file_core_client_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3350,7 +3297,7 @@ func (x *GetMailAttachReq) String() string {
 func (*GetMailAttachReq) ProtoMessage() {}
 
 func (x *GetMailAttachReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[62]
+	mi := &file_core_client_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3363,7 +3310,7 @@ func (x *GetMailAttachReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailAttachReq.ProtoReflect.Descriptor instead.
 func (*GetMailAttachReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{62}
+	return file_core_client_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *GetMailAttachReq) GetIdList() []int32 {
@@ -3384,7 +3331,7 @@ type GetMailAttachRsp struct {
 
 func (x *GetMailAttachRsp) Reset() {
 	*x = GetMailAttachRsp{}
-	mi := &file_core_client_proto_msgTypes[63]
+	mi := &file_core_client_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3396,7 +3343,7 @@ func (x *GetMailAttachRsp) String() string {
 func (*GetMailAttachRsp) ProtoMessage() {}
 
 func (x *GetMailAttachRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[63]
+	mi := &file_core_client_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3409,7 +3356,7 @@ func (x *GetMailAttachRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailAttachRsp.ProtoReflect.Descriptor instead.
 func (*GetMailAttachRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{63}
+	return file_core_client_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *GetMailAttachRsp) GetRet() *Ret {
@@ -3443,7 +3390,7 @@ type ChatChatReq struct {
 
 func (x *ChatChatReq) Reset() {
 	*x = ChatChatReq{}
-	mi := &file_core_client_proto_msgTypes[64]
+	mi := &file_core_client_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3455,7 +3402,7 @@ func (x *ChatChatReq) String() string {
 func (*ChatChatReq) ProtoMessage() {}
 
 func (x *ChatChatReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[64]
+	mi := &file_core_client_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3468,7 +3415,7 @@ func (x *ChatChatReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatChatReq.ProtoReflect.Descriptor instead.
 func (*ChatChatReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{64}
+	return file_core_client_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *ChatChatReq) GetMsg() *PbChatMsg {
@@ -3487,7 +3434,7 @@ type ChatChatRsp struct {
 
 func (x *ChatChatRsp) Reset() {
 	*x = ChatChatRsp{}
-	mi := &file_core_client_proto_msgTypes[65]
+	mi := &file_core_client_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3499,7 +3446,7 @@ func (x *ChatChatRsp) String() string {
 func (*ChatChatRsp) ProtoMessage() {}
 
 func (x *ChatChatRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[65]
+	mi := &file_core_client_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3512,7 +3459,7 @@ func (x *ChatChatRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatChatRsp.ProtoReflect.Descriptor instead.
 func (*ChatChatRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{65}
+	return file_core_client_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ChatChatRsp) GetRet() *Ret {
@@ -3531,7 +3478,7 @@ type ChatGetChatInfoReq struct {
 
 func (x *ChatGetChatInfoReq) Reset() {
 	*x = ChatGetChatInfoReq{}
-	mi := &file_core_client_proto_msgTypes[66]
+	mi := &file_core_client_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3543,7 +3490,7 @@ func (x *ChatGetChatInfoReq) String() string {
 func (*ChatGetChatInfoReq) ProtoMessage() {}
 
 func (x *ChatGetChatInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[66]
+	mi := &file_core_client_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3556,7 +3503,7 @@ func (x *ChatGetChatInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatGetChatInfoReq.ProtoReflect.Descriptor instead.
 func (*ChatGetChatInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{66}
+	return file_core_client_proto_rawDescGZIP(), []int{65}
 }
 
 type ChatGetChatInfoRsp struct {
@@ -3569,7 +3516,7 @@ type ChatGetChatInfoRsp struct {
 
 func (x *ChatGetChatInfoRsp) Reset() {
 	*x = ChatGetChatInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[67]
+	mi := &file_core_client_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3581,7 +3528,7 @@ func (x *ChatGetChatInfoRsp) String() string {
 func (*ChatGetChatInfoRsp) ProtoMessage() {}
 
 func (x *ChatGetChatInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[67]
+	mi := &file_core_client_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3594,7 +3541,7 @@ func (x *ChatGetChatInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatGetChatInfoRsp.ProtoReflect.Descriptor instead.
 func (*ChatGetChatInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{67}
+	return file_core_client_proto_rawDescGZIP(), []int{66}
 }
 
 func (x *ChatGetChatInfoRsp) GetRet() *Ret {
@@ -3621,7 +3568,7 @@ type ChatDelChatReq struct {
 
 func (x *ChatDelChatReq) Reset() {
 	*x = ChatDelChatReq{}
-	mi := &file_core_client_proto_msgTypes[68]
+	mi := &file_core_client_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3633,7 +3580,7 @@ func (x *ChatDelChatReq) String() string {
 func (*ChatDelChatReq) ProtoMessage() {}
 
 func (x *ChatDelChatReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[68]
+	mi := &file_core_client_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3646,7 +3593,7 @@ func (x *ChatDelChatReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatDelChatReq.ProtoReflect.Descriptor instead.
 func (*ChatDelChatReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{68}
+	return file_core_client_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ChatDelChatReq) GetFriendUid() uint64 {
@@ -3665,7 +3612,7 @@ type ChatDelChatRsp struct {
 
 func (x *ChatDelChatRsp) Reset() {
 	*x = ChatDelChatRsp{}
-	mi := &file_core_client_proto_msgTypes[69]
+	mi := &file_core_client_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3677,7 +3624,7 @@ func (x *ChatDelChatRsp) String() string {
 func (*ChatDelChatRsp) ProtoMessage() {}
 
 func (x *ChatDelChatRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[69]
+	mi := &file_core_client_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3690,7 +3637,7 @@ func (x *ChatDelChatRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatDelChatRsp.ProtoReflect.Descriptor instead.
 func (*ChatDelChatRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{69}
+	return file_core_client_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ChatDelChatRsp) GetRet() *Ret {
@@ -3709,7 +3656,7 @@ type FriendGetFriendInfoReq struct {
 
 func (x *FriendGetFriendInfoReq) Reset() {
 	*x = FriendGetFriendInfoReq{}
-	mi := &file_core_client_proto_msgTypes[70]
+	mi := &file_core_client_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3721,7 +3668,7 @@ func (x *FriendGetFriendInfoReq) String() string {
 func (*FriendGetFriendInfoReq) ProtoMessage() {}
 
 func (x *FriendGetFriendInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[70]
+	mi := &file_core_client_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3734,7 +3681,7 @@ func (x *FriendGetFriendInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendGetFriendInfoReq.ProtoReflect.Descriptor instead.
 func (*FriendGetFriendInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{70}
+	return file_core_client_proto_rawDescGZIP(), []int{69}
 }
 
 type FriendGetFriendInfoRsp struct {
@@ -3747,7 +3694,7 @@ type FriendGetFriendInfoRsp struct {
 
 func (x *FriendGetFriendInfoRsp) Reset() {
 	*x = FriendGetFriendInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[71]
+	mi := &file_core_client_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3759,7 +3706,7 @@ func (x *FriendGetFriendInfoRsp) String() string {
 func (*FriendGetFriendInfoRsp) ProtoMessage() {}
 
 func (x *FriendGetFriendInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[71]
+	mi := &file_core_client_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3772,7 +3719,7 @@ func (x *FriendGetFriendInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendGetFriendInfoRsp.ProtoReflect.Descriptor instead.
 func (*FriendGetFriendInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{71}
+	return file_core_client_proto_rawDescGZIP(), []int{70}
 }
 
 func (x *FriendGetFriendInfoRsp) GetRet() *Ret {
@@ -3800,7 +3747,7 @@ type FriendAddFriendReq struct {
 
 func (x *FriendAddFriendReq) Reset() {
 	*x = FriendAddFriendReq{}
-	mi := &file_core_client_proto_msgTypes[72]
+	mi := &file_core_client_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3812,7 +3759,7 @@ func (x *FriendAddFriendReq) String() string {
 func (*FriendAddFriendReq) ProtoMessage() {}
 
 func (x *FriendAddFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[72]
+	mi := &file_core_client_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3825,7 +3772,7 @@ func (x *FriendAddFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendAddFriendReq.ProtoReflect.Descriptor instead.
 func (*FriendAddFriendReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{72}
+	return file_core_client_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *FriendAddFriendReq) GetFriendUid() uint64 {
@@ -3853,7 +3800,7 @@ type FriendAddFriendRsp struct {
 
 func (x *FriendAddFriendRsp) Reset() {
 	*x = FriendAddFriendRsp{}
-	mi := &file_core_client_proto_msgTypes[73]
+	mi := &file_core_client_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3865,7 +3812,7 @@ func (x *FriendAddFriendRsp) String() string {
 func (*FriendAddFriendRsp) ProtoMessage() {}
 
 func (x *FriendAddFriendRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[73]
+	mi := &file_core_client_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3878,7 +3825,7 @@ func (x *FriendAddFriendRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendAddFriendRsp.ProtoReflect.Descriptor instead.
 func (*FriendAddFriendRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{73}
+	return file_core_client_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *FriendAddFriendRsp) GetRet() *Ret {
@@ -3914,7 +3861,7 @@ type FriendConfirmFriendReq struct {
 
 func (x *FriendConfirmFriendReq) Reset() {
 	*x = FriendConfirmFriendReq{}
-	mi := &file_core_client_proto_msgTypes[74]
+	mi := &file_core_client_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3926,7 +3873,7 @@ func (x *FriendConfirmFriendReq) String() string {
 func (*FriendConfirmFriendReq) ProtoMessage() {}
 
 func (x *FriendConfirmFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[74]
+	mi := &file_core_client_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3939,7 +3886,7 @@ func (x *FriendConfirmFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendConfirmFriendReq.ProtoReflect.Descriptor instead.
 func (*FriendConfirmFriendReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{74}
+	return file_core_client_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *FriendConfirmFriendReq) GetFriendUid() uint64 {
@@ -3975,7 +3922,7 @@ type FriendConfirmFriendRsp struct {
 
 func (x *FriendConfirmFriendRsp) Reset() {
 	*x = FriendConfirmFriendRsp{}
-	mi := &file_core_client_proto_msgTypes[75]
+	mi := &file_core_client_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3987,7 +3934,7 @@ func (x *FriendConfirmFriendRsp) String() string {
 func (*FriendConfirmFriendRsp) ProtoMessage() {}
 
 func (x *FriendConfirmFriendRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[75]
+	mi := &file_core_client_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4000,7 +3947,7 @@ func (x *FriendConfirmFriendRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendConfirmFriendRsp.ProtoReflect.Descriptor instead.
 func (*FriendConfirmFriendRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{75}
+	return file_core_client_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *FriendConfirmFriendRsp) GetRet() *Ret {
@@ -4042,7 +3989,7 @@ type FriendShieldUserReq struct {
 
 func (x *FriendShieldUserReq) Reset() {
 	*x = FriendShieldUserReq{}
-	mi := &file_core_client_proto_msgTypes[76]
+	mi := &file_core_client_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4054,7 +4001,7 @@ func (x *FriendShieldUserReq) String() string {
 func (*FriendShieldUserReq) ProtoMessage() {}
 
 func (x *FriendShieldUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[76]
+	mi := &file_core_client_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4067,7 +4014,7 @@ func (x *FriendShieldUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendShieldUserReq.ProtoReflect.Descriptor instead.
 func (*FriendShieldUserReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{76}
+	return file_core_client_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *FriendShieldUserReq) GetShieldUid() uint64 {
@@ -4095,7 +4042,7 @@ type FriendShieldUserRsp struct {
 
 func (x *FriendShieldUserRsp) Reset() {
 	*x = FriendShieldUserRsp{}
-	mi := &file_core_client_proto_msgTypes[77]
+	mi := &file_core_client_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4107,7 +4054,7 @@ func (x *FriendShieldUserRsp) String() string {
 func (*FriendShieldUserRsp) ProtoMessage() {}
 
 func (x *FriendShieldUserRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[77]
+	mi := &file_core_client_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4120,7 +4067,7 @@ func (x *FriendShieldUserRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendShieldUserRsp.ProtoReflect.Descriptor instead.
 func (*FriendShieldUserRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{77}
+	return file_core_client_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *FriendShieldUserRsp) GetRet() *Ret {
@@ -4154,7 +4101,7 @@ type FriendSearchRoleReq struct {
 
 func (x *FriendSearchRoleReq) Reset() {
 	*x = FriendSearchRoleReq{}
-	mi := &file_core_client_proto_msgTypes[78]
+	mi := &file_core_client_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4166,7 +4113,7 @@ func (x *FriendSearchRoleReq) String() string {
 func (*FriendSearchRoleReq) ProtoMessage() {}
 
 func (x *FriendSearchRoleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[78]
+	mi := &file_core_client_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4179,7 +4126,7 @@ func (x *FriendSearchRoleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendSearchRoleReq.ProtoReflect.Descriptor instead.
 func (*FriendSearchRoleReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{78}
+	return file_core_client_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *FriendSearchRoleReq) GetSearchString() string {
@@ -4199,7 +4146,7 @@ type FriendSearchRoleRsp struct {
 
 func (x *FriendSearchRoleRsp) Reset() {
 	*x = FriendSearchRoleRsp{}
-	mi := &file_core_client_proto_msgTypes[79]
+	mi := &file_core_client_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4211,7 +4158,7 @@ func (x *FriendSearchRoleRsp) String() string {
 func (*FriendSearchRoleRsp) ProtoMessage() {}
 
 func (x *FriendSearchRoleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[79]
+	mi := &file_core_client_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4224,7 +4171,7 @@ func (x *FriendSearchRoleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendSearchRoleRsp.ProtoReflect.Descriptor instead.
 func (*FriendSearchRoleRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{79}
+	return file_core_client_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *FriendSearchRoleRsp) GetRet() *Ret {
@@ -4241,4068 +4188,6 @@ func (x *FriendSearchRoleRsp) GetRoleList() []*PbIconDesc {
 	return nil
 }
 
-// MAIN_GAME_ROOM_LIST_REQ ,ROOM_CENTER_INNER_ROOM_LIST_REQ
-type RoomListReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        GameTypeId             `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`         // 游戏id
-	Stage         RoomStage              `protobuf:"varint,2,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                          // 房间等级规格
-	RoomIds       []uint32               `protobuf:"varint,3,rep,packed,name=room_ids,json=roomIds,proto3" json:"room_ids,omitempty"`                           // 查询指定房间ids，预留
-	PageSize      uint32                 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`                               // 显示数量
-	PageIndex     uint32                 `protobuf:"varint,5,opt,name=page_index,json=pageIndex,proto3" json:"page_index,omitempty"`                            // 第几页
-	SortType      RoomSortType           `protobuf:"varint,6,opt,name=sort_type,json=sortType,proto3,enum=g1.protocol.RoomSortType" json:"sort_type,omitempty"` // 排序类型
-	CoinType      CoinType               `protobuf:"varint,7,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"`     // 币种类型
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RoomListReq) Reset() {
-	*x = RoomListReq{}
-	mi := &file_core_client_proto_msgTypes[80]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RoomListReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoomListReq) ProtoMessage() {}
-
-func (x *RoomListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[80]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoomListReq.ProtoReflect.Descriptor instead.
-func (*RoomListReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{80}
-}
-
-func (x *RoomListReq) GetGameId() GameTypeId {
-	if x != nil {
-		return x.GameId
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *RoomListReq) GetStage() RoomStage {
-	if x != nil {
-		return x.Stage
-	}
-	return RoomStage_Free
-}
-
-func (x *RoomListReq) GetRoomIds() []uint32 {
-	if x != nil {
-		return x.RoomIds
-	}
-	return nil
-}
-
-func (x *RoomListReq) GetPageSize() uint32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *RoomListReq) GetPageIndex() uint32 {
-	if x != nil {
-		return x.PageIndex
-	}
-	return 0
-}
-
-func (x *RoomListReq) GetSortType() RoomSortType {
-	if x != nil {
-		return x.SortType
-	}
-	return RoomSortType_SORT_TYPE_NONE
-}
-
-func (x *RoomListReq) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-type RoomListRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	GameId        GameTypeId             `protobuf:"varint,2,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`     // 游戏id
-	Stage         RoomStage              `protobuf:"varint,3,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                      // 房间等级规格
-	PageSize      uint32                 `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`                           // 显示数量
-	PageIndex     uint32                 `protobuf:"varint,5,opt,name=page_index,json=pageIndex,proto3" json:"page_index,omitempty"`                        // 第几页
-	RoomList      []*RoomShowInfo        `protobuf:"bytes,6,rep,name=room_list,json=roomList,proto3" json:"room_list,omitempty"`                            // 房间信息
-	TotalCount    uint32                 `protobuf:"varint,7,opt,name=total_count,json=totalCount,proto3" json:"total_count,omitempty"`                     // 总房间数
-	CoinType      CoinType               `protobuf:"varint,8,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RoomListRsp) Reset() {
-	*x = RoomListRsp{}
-	mi := &file_core_client_proto_msgTypes[81]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RoomListRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoomListRsp) ProtoMessage() {}
-
-func (x *RoomListRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[81]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoomListRsp.ProtoReflect.Descriptor instead.
-func (*RoomListRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{81}
-}
-
-func (x *RoomListRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *RoomListRsp) GetGameId() GameTypeId {
-	if x != nil {
-		return x.GameId
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *RoomListRsp) GetStage() RoomStage {
-	if x != nil {
-		return x.Stage
-	}
-	return RoomStage_Free
-}
-
-func (x *RoomListRsp) GetPageSize() uint32 {
-	if x != nil {
-		return x.PageSize
-	}
-	return 0
-}
-
-func (x *RoomListRsp) GetPageIndex() uint32 {
-	if x != nil {
-		return x.PageIndex
-	}
-	return 0
-}
-
-func (x *RoomListRsp) GetRoomList() []*RoomShowInfo {
-	if x != nil {
-		return x.RoomList
-	}
-	return nil
-}
-
-func (x *RoomListRsp) GetTotalCount() uint32 {
-	if x != nil {
-		return x.TotalCount
-	}
-	return 0
-}
-
-func (x *RoomListRsp) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-// MAIN_GAME_DO_BET_REQ ,TEXAS_INNER_DO_BET_REQ
-type DoBetReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Chip          uint64                 `protobuf:"varint,1,opt,name=chip,proto3" json:"chip,omitempty"` // 0为 check看牌
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,3,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	OperateType   OperateType            `protobuf:"varint,4,opt,name=operate_type,json=operateType,proto3,enum=g1.protocol.OperateType" json:"operate_type,omitempty"` // 操作类型 enum OperateType
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DoBetReq) Reset() {
-	*x = DoBetReq{}
-	mi := &file_core_client_proto_msgTypes[82]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DoBetReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DoBetReq) ProtoMessage() {}
-
-func (x *DoBetReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[82]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DoBetReq.ProtoReflect.Descriptor instead.
-func (*DoBetReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{82}
-}
-
-func (x *DoBetReq) GetChip() uint64 {
-	if x != nil {
-		return x.Chip
-	}
-	return 0
-}
-
-func (x *DoBetReq) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *DoBetReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *DoBetReq) GetOperateType() OperateType {
-	if x != nil {
-		return x.OperateType
-	}
-	return OperateType_OPERATE_NONE
-}
-
-type DoBetRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoundId       uint32                 `protobuf:"varint,2,opt,name=round_id,json=roundId,proto3" json:"round_id,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,3,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`                           // 操作者椅子 id
-	OpType        OperateType            `protobuf:"varint,4,opt,name=op_type,json=opType,proto3,enum=g1.protocol.OperateType" json:"op_type,omitempty"` // 操作类型 enum OperateType
-	Chip          uint64                 `protobuf:"varint,5,opt,name=chip,proto3" json:"chip,omitempty"`                                                // 下注金额
-	BankRoll      uint64                 `protobuf:"varint,6,opt,name=bank_roll,json=bankRoll,proto3" json:"bank_roll,omitempty"`                        // 当前剩余金额
-	TotalBet      uint64                 `protobuf:"varint,7,opt,name=total_bet,json=totalBet,proto3" json:"total_bet,omitempty"`                        // 此局游戏总下注
-	RoomId        uint64                 `protobuf:"varint,8,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *DoBetRsp) Reset() {
-	*x = DoBetRsp{}
-	mi := &file_core_client_proto_msgTypes[83]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *DoBetRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*DoBetRsp) ProtoMessage() {}
-
-func (x *DoBetRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[83]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use DoBetRsp.ProtoReflect.Descriptor instead.
-func (*DoBetRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{83}
-}
-
-func (x *DoBetRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *DoBetRsp) GetRoundId() uint32 {
-	if x != nil {
-		return x.RoundId
-	}
-	return 0
-}
-
-func (x *DoBetRsp) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *DoBetRsp) GetOpType() OperateType {
-	if x != nil {
-		return x.OpType
-	}
-	return OperateType_OPERATE_NONE
-}
-
-func (x *DoBetRsp) GetChip() uint64 {
-	if x != nil {
-		return x.Chip
-	}
-	return 0
-}
-
-func (x *DoBetRsp) GetBankRoll() uint64 {
-	if x != nil {
-		return x.BankRoll
-	}
-	return 0
-}
-
-func (x *DoBetRsp) GetTotalBet() uint64 {
-	if x != nil {
-		return x.TotalBet
-	}
-	return 0
-}
-
-func (x *DoBetRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-// MAIN_GAME_FOLD_REQ
-type FoldReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"` // 操作者椅子 id
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *FoldReq) Reset() {
-	*x = FoldReq{}
-	mi := &file_core_client_proto_msgTypes[84]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FoldReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FoldReq) ProtoMessage() {}
-
-func (x *FoldReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[84]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FoldReq.ProtoReflect.Descriptor instead.
-func (*FoldReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{84}
-}
-
-func (x *FoldReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *FoldReq) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-type FoldRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,3,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *FoldRsp) Reset() {
-	*x = FoldRsp{}
-	mi := &file_core_client_proto_msgTypes[85]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *FoldRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*FoldRsp) ProtoMessage() {}
-
-func (x *FoldRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[85]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use FoldRsp.ProtoReflect.Descriptor instead.
-func (*FoldRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{85}
-}
-
-func (x *FoldRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *FoldRsp) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *FoldRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-// MAIN_GAME_GET_LOOKERS_REQ
-type GetLookersReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetLookersReq) Reset() {
-	*x = GetLookersReq{}
-	mi := &file_core_client_proto_msgTypes[86]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLookersReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLookersReq) ProtoMessage() {}
-
-func (x *GetLookersReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[86]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLookersReq.ProtoReflect.Descriptor instead.
-func (*GetLookersReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{86}
-}
-
-func (x *GetLookersReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type GetLookersRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	Lookers       []*PbIconDesc          `protobuf:"bytes,3,rep,name=lookers,proto3" json:"lookers,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetLookersRsp) Reset() {
-	*x = GetLookersRsp{}
-	mi := &file_core_client_proto_msgTypes[87]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetLookersRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetLookersRsp) ProtoMessage() {}
-
-func (x *GetLookersRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[87]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetLookersRsp.ProtoReflect.Descriptor instead.
-func (*GetLookersRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{87}
-}
-
-func (x *GetLookersRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *GetLookersRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *GetLookersRsp) GetLookers() []*PbIconDesc {
-	if x != nil {
-		return x.Lookers
-	}
-	return nil
-}
-
-// MAIN_GAME_SIT_DOWN_REQ
-type SitDownReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	BuyinChips    uint32                 `protobuf:"varint,3,opt,name=buyin_chips,json=buyinChips,proto3" json:"buyin_chips,omitempty"`
-	RoleIcon      *PbIconDesc            `protobuf:"bytes,4,opt,name=role_icon,json=roleIcon,proto3" json:"role_icon,omitempty"` //Inner server use
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SitDownReq) Reset() {
-	*x = SitDownReq{}
-	mi := &file_core_client_proto_msgTypes[88]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SitDownReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SitDownReq) ProtoMessage() {}
-
-func (x *SitDownReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[88]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SitDownReq.ProtoReflect.Descriptor instead.
-func (*SitDownReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{88}
-}
-
-func (x *SitDownReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *SitDownReq) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *SitDownReq) GetBuyinChips() uint32 {
-	if x != nil {
-		return x.BuyinChips
-	}
-	return 0
-}
-
-func (x *SitDownReq) GetRoleIcon() *PbIconDesc {
-	if x != nil {
-		return x.RoleIcon
-	}
-	return nil
-}
-
-type SitDownRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,3,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"` // SeatStatus seat_status = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SitDownRsp) Reset() {
-	*x = SitDownRsp{}
-	mi := &file_core_client_proto_msgTypes[89]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SitDownRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SitDownRsp) ProtoMessage() {}
-
-func (x *SitDownRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[89]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SitDownRsp.ProtoReflect.Descriptor instead.
-func (*SitDownRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{89}
-}
-
-func (x *SitDownRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *SitDownRsp) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *SitDownRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-// MAIN_GAME_STAND_UP_REQ
-type StandUpReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StandUpReq) Reset() {
-	*x = StandUpReq{}
-	mi := &file_core_client_proto_msgTypes[90]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StandUpReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StandUpReq) ProtoMessage() {}
-
-func (x *StandUpReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[90]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StandUpReq.ProtoReflect.Descriptor instead.
-func (*StandUpReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{90}
-}
-
-func (x *StandUpReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *StandUpReq) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-type StandUpRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,2,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,3,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *StandUpRsp) Reset() {
-	*x = StandUpRsp{}
-	mi := &file_core_client_proto_msgTypes[91]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *StandUpRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*StandUpRsp) ProtoMessage() {}
-
-func (x *StandUpRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[91]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use StandUpRsp.ProtoReflect.Descriptor instead.
-func (*StandUpRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{91}
-}
-
-func (x *StandUpRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *StandUpRsp) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *StandUpRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-// MAIN_GAME_LEAVE_GAME_REQ
-type LeaveGameReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LeaveGameReq) Reset() {
-	*x = LeaveGameReq{}
-	mi := &file_core_client_proto_msgTypes[92]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LeaveGameReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LeaveGameReq) ProtoMessage() {}
-
-func (x *LeaveGameReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[92]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LeaveGameReq.ProtoReflect.Descriptor instead.
-func (*LeaveGameReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{92}
-}
-
-func (x *LeaveGameReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type LeaveGameRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *LeaveGameRsp) Reset() {
-	*x = LeaveGameRsp{}
-	mi := &file_core_client_proto_msgTypes[93]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *LeaveGameRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*LeaveGameRsp) ProtoMessage() {}
-
-func (x *LeaveGameRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[93]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use LeaveGameRsp.ProtoReflect.Descriptor instead.
-func (*LeaveGameRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{93}
-}
-
-func (x *LeaveGameRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *LeaveGameRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-// MAIN_GAME_MILITARY_SUCCESS_REQ
-type MilitarySuccessReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MilitarySuccessReq) Reset() {
-	*x = MilitarySuccessReq{}
-	mi := &file_core_client_proto_msgTypes[94]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MilitarySuccessReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MilitarySuccessReq) ProtoMessage() {}
-
-func (x *MilitarySuccessReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[94]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MilitarySuccessReq.ProtoReflect.Descriptor instead.
-func (*MilitarySuccessReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{94}
-}
-
-func (x *MilitarySuccessReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type MilitarySuccessRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // repeated MilitaryRecord records = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MilitarySuccessRsp) Reset() {
-	*x = MilitarySuccessRsp{}
-	mi := &file_core_client_proto_msgTypes[95]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MilitarySuccessRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MilitarySuccessRsp) ProtoMessage() {}
-
-func (x *MilitarySuccessRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[95]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MilitarySuccessRsp.ProtoReflect.Descriptor instead.
-func (*MilitarySuccessRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{95}
-}
-
-func (x *MilitarySuccessRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_GET_GAME_LOG_REQ
-type GetGameLogReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetGameLogReq) Reset() {
-	*x = GetGameLogReq{}
-	mi := &file_core_client_proto_msgTypes[96]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetGameLogReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGameLogReq) ProtoMessage() {}
-
-func (x *GetGameLogReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[96]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGameLogReq.ProtoReflect.Descriptor instead.
-func (*GetGameLogReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{96}
-}
-
-func (x *GetGameLogReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type GetGameLogRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // GameLogDetail log = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetGameLogRsp) Reset() {
-	*x = GetGameLogRsp{}
-	mi := &file_core_client_proto_msgTypes[97]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetGameLogRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGameLogRsp) ProtoMessage() {}
-
-func (x *GetGameLogRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[97]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGameLogRsp.ProtoReflect.Descriptor instead.
-func (*GetGameLogRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{97}
-}
-
-func (x *GetGameLogRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_GET_TIME_LEFT_REQ
-type GetTimeLeftReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTimeLeftReq) Reset() {
-	*x = GetTimeLeftReq{}
-	mi := &file_core_client_proto_msgTypes[98]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTimeLeftReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTimeLeftReq) ProtoMessage() {}
-
-func (x *GetTimeLeftReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[98]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTimeLeftReq.ProtoReflect.Descriptor instead.
-func (*GetTimeLeftReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{98}
-}
-
-func (x *GetTimeLeftReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type GetTimeLeftRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	Seconds       int32                  `protobuf:"varint,2,opt,name=seconds,proto3" json:"seconds,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetTimeLeftRsp) Reset() {
-	*x = GetTimeLeftRsp{}
-	mi := &file_core_client_proto_msgTypes[99]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetTimeLeftRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetTimeLeftRsp) ProtoMessage() {}
-
-func (x *GetTimeLeftRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[99]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetTimeLeftRsp.ProtoReflect.Descriptor instead.
-func (*GetTimeLeftRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{99}
-}
-
-func (x *GetTimeLeftRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *GetTimeLeftRsp) GetSeconds() int32 {
-	if x != nil {
-		return x.Seconds
-	}
-	return 0
-}
-
-// MAIN_GAME_VOICE_CALL_REQ
-type VoiceCallReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VoiceCallReq) Reset() {
-	*x = VoiceCallReq{}
-	mi := &file_core_client_proto_msgTypes[100]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VoiceCallReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VoiceCallReq) ProtoMessage() {}
-
-func (x *VoiceCallReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[100]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VoiceCallReq.ProtoReflect.Descriptor instead.
-func (*VoiceCallReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{100}
-}
-
-func (x *VoiceCallReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type VoiceCallRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	FromPlayer    uint64                 `protobuf:"varint,2,opt,name=from_player,json=fromPlayer,proto3" json:"from_player,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *VoiceCallRsp) Reset() {
-	*x = VoiceCallRsp{}
-	mi := &file_core_client_proto_msgTypes[101]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *VoiceCallRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*VoiceCallRsp) ProtoMessage() {}
-
-func (x *VoiceCallRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[101]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use VoiceCallRsp.ProtoReflect.Descriptor instead.
-func (*VoiceCallRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{101}
-}
-
-func (x *VoiceCallRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *VoiceCallRsp) GetFromPlayer() uint64 {
-	if x != nil {
-		return x.FromPlayer
-	}
-	return 0
-}
-
-// MAIN_GAME_BUY_THINK_TIME_REQ
-type BuyThinkTimeReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	BuyTimes      int32                  `protobuf:"varint,1,opt,name=buy_times,json=buyTimes,proto3" json:"buy_times,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BuyThinkTimeReq) Reset() {
-	*x = BuyThinkTimeReq{}
-	mi := &file_core_client_proto_msgTypes[102]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BuyThinkTimeReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BuyThinkTimeReq) ProtoMessage() {}
-
-func (x *BuyThinkTimeReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[102]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BuyThinkTimeReq.ProtoReflect.Descriptor instead.
-func (*BuyThinkTimeReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{102}
-}
-
-func (x *BuyThinkTimeReq) GetBuyTimes() int32 {
-	if x != nil {
-		return x.BuyTimes
-	}
-	return 0
-}
-
-type BuyThinkTimeRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RemainSeconds int32                  `protobuf:"varint,2,opt,name=remain_seconds,json=remainSeconds,proto3" json:"remain_seconds,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BuyThinkTimeRsp) Reset() {
-	*x = BuyThinkTimeRsp{}
-	mi := &file_core_client_proto_msgTypes[103]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BuyThinkTimeRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BuyThinkTimeRsp) ProtoMessage() {}
-
-func (x *BuyThinkTimeRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[103]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BuyThinkTimeRsp.ProtoReflect.Descriptor instead.
-func (*BuyThinkTimeRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{103}
-}
-
-func (x *BuyThinkTimeRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *BuyThinkTimeRsp) GetRemainSeconds() int32 {
-	if x != nil {
-		return x.RemainSeconds
-	}
-	return 0
-}
-
-// MAIN_GAME_AUTO_BUYIN_REQ
-type AutoBuyinReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Enable        bool                   `protobuf:"varint,1,opt,name=enable,proto3" json:"enable,omitempty"`
-	TriggerChips  int32                  `protobuf:"varint,2,opt,name=trigger_chips,json=triggerChips,proto3" json:"trigger_chips,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AutoBuyinReq) Reset() {
-	*x = AutoBuyinReq{}
-	mi := &file_core_client_proto_msgTypes[104]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AutoBuyinReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AutoBuyinReq) ProtoMessage() {}
-
-func (x *AutoBuyinReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[104]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AutoBuyinReq.ProtoReflect.Descriptor instead.
-func (*AutoBuyinReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{104}
-}
-
-func (x *AutoBuyinReq) GetEnable() bool {
-	if x != nil {
-		return x.Enable
-	}
-	return false
-}
-
-func (x *AutoBuyinReq) GetTriggerChips() int32 {
-	if x != nil {
-		return x.TriggerChips
-	}
-	return 0
-}
-
-type AutoBuyinRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // AutoBuyinConfig config = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AutoBuyinRsp) Reset() {
-	*x = AutoBuyinRsp{}
-	mi := &file_core_client_proto_msgTypes[105]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AutoBuyinRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AutoBuyinRsp) ProtoMessage() {}
-
-func (x *AutoBuyinRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[105]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AutoBuyinRsp.ProtoReflect.Descriptor instead.
-func (*AutoBuyinRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{105}
-}
-
-func (x *AutoBuyinRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_INTERACTION_REQ
-type InteractionReq struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// InteractionType type = 1;
-	TargetPlayer  uint64 `protobuf:"varint,2,opt,name=target_player,json=targetPlayer,proto3" json:"target_player,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InteractionReq) Reset() {
-	*x = InteractionReq{}
-	mi := &file_core_client_proto_msgTypes[106]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InteractionReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InteractionReq) ProtoMessage() {}
-
-func (x *InteractionReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[106]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InteractionReq.ProtoReflect.Descriptor instead.
-func (*InteractionReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{106}
-}
-
-func (x *InteractionReq) GetTargetPlayer() uint64 {
-	if x != nil {
-		return x.TargetPlayer
-	}
-	return 0
-}
-
-type InteractionRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // InteractionAction action = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InteractionRsp) Reset() {
-	*x = InteractionRsp{}
-	mi := &file_core_client_proto_msgTypes[107]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InteractionRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InteractionRsp) ProtoMessage() {}
-
-func (x *InteractionRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[107]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InteractionRsp.ProtoReflect.Descriptor instead.
-func (*InteractionRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{107}
-}
-
-func (x *InteractionRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_EMOTICON_REQ
-type EmoticonReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	EmoticonId    int32                  `protobuf:"varint,1,opt,name=emoticon_id,json=emoticonId,proto3" json:"emoticon_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmoticonReq) Reset() {
-	*x = EmoticonReq{}
-	mi := &file_core_client_proto_msgTypes[108]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmoticonReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmoticonReq) ProtoMessage() {}
-
-func (x *EmoticonReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[108]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmoticonReq.ProtoReflect.Descriptor instead.
-func (*EmoticonReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{108}
-}
-
-func (x *EmoticonReq) GetEmoticonId() int32 {
-	if x != nil {
-		return x.EmoticonId
-	}
-	return 0
-}
-
-type EmoticonRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	FromPlayer    uint64                 `protobuf:"varint,2,opt,name=from_player,json=fromPlayer,proto3" json:"from_player,omitempty"`
-	EmoticonId    int32                  `protobuf:"varint,3,opt,name=emoticon_id,json=emoticonId,proto3" json:"emoticon_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmoticonRsp) Reset() {
-	*x = EmoticonRsp{}
-	mi := &file_core_client_proto_msgTypes[109]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmoticonRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmoticonRsp) ProtoMessage() {}
-
-func (x *EmoticonRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[109]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmoticonRsp.ProtoReflect.Descriptor instead.
-func (*EmoticonRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{109}
-}
-
-func (x *EmoticonRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *EmoticonRsp) GetFromPlayer() uint64 {
-	if x != nil {
-		return x.FromPlayer
-	}
-	return 0
-}
-
-func (x *EmoticonRsp) GetEmoticonId() int32 {
-	if x != nil {
-		return x.EmoticonId
-	}
-	return 0
-}
-
-// MAIN_GAME_BUY_IN_REQ ,TEXAS_INNER_BUY_IN_REQ
-type BuyInReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	Chip          int64                  `protobuf:"varint,2,opt,name=chip,proto3" json:"chip,omitempty"`
-	CoinType      CoinType               `protobuf:"varint,3,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BuyInReq) Reset() {
-	*x = BuyInReq{}
-	mi := &file_core_client_proto_msgTypes[110]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BuyInReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BuyInReq) ProtoMessage() {}
-
-func (x *BuyInReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[110]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BuyInReq.ProtoReflect.Descriptor instead.
-func (*BuyInReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{110}
-}
-
-func (x *BuyInReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *BuyInReq) GetChip() int64 {
-	if x != nil {
-		return x.Chip
-	}
-	return 0
-}
-
-func (x *BuyInReq) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-type BuyInRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	Chip          int64                  `protobuf:"varint,3,opt,name=chip,proto3" json:"chip,omitempty"`
-	CoinType      CoinType               `protobuf:"varint,4,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *BuyInRsp) Reset() {
-	*x = BuyInRsp{}
-	mi := &file_core_client_proto_msgTypes[111]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *BuyInRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*BuyInRsp) ProtoMessage() {}
-
-func (x *BuyInRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[111]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use BuyInRsp.ProtoReflect.Descriptor instead.
-func (*BuyInRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{111}
-}
-
-func (x *BuyInRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *BuyInRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *BuyInRsp) GetChip() int64 {
-	if x != nil {
-		return x.Chip
-	}
-	return 0
-}
-
-func (x *BuyInRsp) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-type MainBuyInDetailReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomStage     int32                  `protobuf:"varint,1,opt,name=room_stage,json=roomStage,proto3" json:"room_stage,omitempty"`                        // 房间等级
-	CoinType      CoinType               `protobuf:"varint,2,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MainBuyInDetailReq) Reset() {
-	*x = MainBuyInDetailReq{}
-	mi := &file_core_client_proto_msgTypes[112]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MainBuyInDetailReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MainBuyInDetailReq) ProtoMessage() {}
-
-func (x *MainBuyInDetailReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[112]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MainBuyInDetailReq.ProtoReflect.Descriptor instead.
-func (*MainBuyInDetailReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{112}
-}
-
-func (x *MainBuyInDetailReq) GetRoomStage() int32 {
-	if x != nil {
-		return x.RoomStage
-	}
-	return 0
-}
-
-func (x *MainBuyInDetailReq) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-type MainBuyInDetailRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	SmallBlind    int64                  `protobuf:"varint,2,opt,name=SmallBlind,proto3" json:"SmallBlind,omitempty"`             // 小盲注
-	BigBlind      int64                  `protobuf:"varint,3,opt,name=BigBlind,proto3" json:"BigBlind,omitempty"`                 // 大盲注
-	MinBuyin      int32                  `protobuf:"varint,4,opt,name=min_buyin,json=minBuyin,proto3" json:"min_buyin,omitempty"` // 最小买入
-	MaxBuyin      int32                  `protobuf:"varint,5,opt,name=max_buyin,json=maxBuyin,proto3" json:"max_buyin,omitempty"` // 最大买入
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MainBuyInDetailRsp) Reset() {
-	*x = MainBuyInDetailRsp{}
-	mi := &file_core_client_proto_msgTypes[113]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MainBuyInDetailRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MainBuyInDetailRsp) ProtoMessage() {}
-
-func (x *MainBuyInDetailRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[113]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MainBuyInDetailRsp.ProtoReflect.Descriptor instead.
-func (*MainBuyInDetailRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{113}
-}
-
-func (x *MainBuyInDetailRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *MainBuyInDetailRsp) GetSmallBlind() int64 {
-	if x != nil {
-		return x.SmallBlind
-	}
-	return 0
-}
-
-func (x *MainBuyInDetailRsp) GetBigBlind() int64 {
-	if x != nil {
-		return x.BigBlind
-	}
-	return 0
-}
-
-func (x *MainBuyInDetailRsp) GetMinBuyin() int32 {
-	if x != nil {
-		return x.MinBuyin
-	}
-	return 0
-}
-
-func (x *MainBuyInDetailRsp) GetMaxBuyin() int32 {
-	if x != nil {
-		return x.MaxBuyin
-	}
-	return 0
-}
-
-// MAIN_GAME_GET_MILITARY_DIAGRAM_REQ
-type GetMilitaryDiagramReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RangeType     int32                  `protobuf:"varint,1,opt,name=range_type,json=rangeType,proto3" json:"range_type,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetMilitaryDiagramReq) Reset() {
-	*x = GetMilitaryDiagramReq{}
-	mi := &file_core_client_proto_msgTypes[114]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetMilitaryDiagramReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetMilitaryDiagramReq) ProtoMessage() {}
-
-func (x *GetMilitaryDiagramReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[114]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetMilitaryDiagramReq.ProtoReflect.Descriptor instead.
-func (*GetMilitaryDiagramReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{114}
-}
-
-func (x *GetMilitaryDiagramReq) GetRangeType() int32 {
-	if x != nil {
-		return x.RangeType
-	}
-	return 0
-}
-
-type GetMilitaryDiagramRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // MilitaryDiagram diagram = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetMilitaryDiagramRsp) Reset() {
-	*x = GetMilitaryDiagramRsp{}
-	mi := &file_core_client_proto_msgTypes[115]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetMilitaryDiagramRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetMilitaryDiagramRsp) ProtoMessage() {}
-
-func (x *GetMilitaryDiagramRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[115]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetMilitaryDiagramRsp.ProtoReflect.Descriptor instead.
-func (*GetMilitaryDiagramRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{115}
-}
-
-func (x *GetMilitaryDiagramRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_SHOW_CARD_REQ
-type ShowCardReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	CardIds       []int32                `protobuf:"varint,1,rep,packed,name=card_ids,json=cardIds,proto3" json:"card_ids,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ShowCardReq) Reset() {
-	*x = ShowCardReq{}
-	mi := &file_core_client_proto_msgTypes[116]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ShowCardReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ShowCardReq) ProtoMessage() {}
-
-func (x *ShowCardReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[116]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ShowCardReq.ProtoReflect.Descriptor instead.
-func (*ShowCardReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{116}
-}
-
-func (x *ShowCardReq) GetCardIds() []int32 {
-	if x != nil {
-		return x.CardIds
-	}
-	return nil
-}
-
-type ShowCardRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // CardShowInfo card_info = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ShowCardRsp) Reset() {
-	*x = ShowCardRsp{}
-	mi := &file_core_client_proto_msgTypes[117]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ShowCardRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ShowCardRsp) ProtoMessage() {}
-
-func (x *ShowCardRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[117]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ShowCardRsp.ProtoReflect.Descriptor instead.
-func (*ShowCardRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{117}
-}
-
-func (x *ShowCardRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_GET_ROLE_INFO_REQ
-type GetPlayerInfoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlayerId      uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetPlayerInfoReq) Reset() {
-	*x = GetPlayerInfoReq{}
-	mi := &file_core_client_proto_msgTypes[118]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetPlayerInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetPlayerInfoReq) ProtoMessage() {}
-
-func (x *GetPlayerInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[118]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetPlayerInfoReq.ProtoReflect.Descriptor instead.
-func (*GetPlayerInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{118}
-}
-
-func (x *GetPlayerInfoReq) GetPlayerId() uint64 {
-	if x != nil {
-		return x.PlayerId
-	}
-	return 0
-}
-
-type GetPlayerInfoRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // PlayerDetail detail = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetPlayerInfoRsp) Reset() {
-	*x = GetPlayerInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[119]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetPlayerInfoRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetPlayerInfoRsp) ProtoMessage() {}
-
-func (x *GetPlayerInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[119]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetPlayerInfoRsp.ProtoReflect.Descriptor instead.
-func (*GetPlayerInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{119}
-}
-
-func (x *GetPlayerInfoRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_MARK_PLAYER_REQ
-type MarkPlayerReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	PlayerId      uint64                 `protobuf:"varint,1,opt,name=player_id,json=playerId,proto3" json:"player_id,omitempty"`
-	MarkTag       string                 `protobuf:"bytes,2,opt,name=mark_tag,json=markTag,proto3" json:"mark_tag,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MarkPlayerReq) Reset() {
-	*x = MarkPlayerReq{}
-	mi := &file_core_client_proto_msgTypes[120]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MarkPlayerReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MarkPlayerReq) ProtoMessage() {}
-
-func (x *MarkPlayerReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[120]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MarkPlayerReq.ProtoReflect.Descriptor instead.
-func (*MarkPlayerReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{120}
-}
-
-func (x *MarkPlayerReq) GetPlayerId() uint64 {
-	if x != nil {
-		return x.PlayerId
-	}
-	return 0
-}
-
-func (x *MarkPlayerReq) GetMarkTag() string {
-	if x != nil {
-		return x.MarkTag
-	}
-	return ""
-}
-
-type MarkPlayerRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // PlayerMarkInfo mark_info = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MarkPlayerRsp) Reset() {
-	*x = MarkPlayerRsp{}
-	mi := &file_core_client_proto_msgTypes[121]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MarkPlayerRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MarkPlayerRsp) ProtoMessage() {}
-
-func (x *MarkPlayerRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[121]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MarkPlayerRsp.ProtoReflect.Descriptor instead.
-func (*MarkPlayerRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{121}
-}
-
-func (x *MarkPlayerRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_INSURANCE_BUY_REQ
-type InsuranceBuyReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	InsuranceType int32                  `protobuf:"varint,1,opt,name=insurance_type,json=insuranceType,proto3" json:"insurance_type,omitempty"`
-	Amount        int32                  `protobuf:"varint,2,opt,name=amount,proto3" json:"amount,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsuranceBuyReq) Reset() {
-	*x = InsuranceBuyReq{}
-	mi := &file_core_client_proto_msgTypes[122]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsuranceBuyReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsuranceBuyReq) ProtoMessage() {}
-
-func (x *InsuranceBuyReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[122]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsuranceBuyReq.ProtoReflect.Descriptor instead.
-func (*InsuranceBuyReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{122}
-}
-
-func (x *InsuranceBuyReq) GetInsuranceType() int32 {
-	if x != nil {
-		return x.InsuranceType
-	}
-	return 0
-}
-
-func (x *InsuranceBuyReq) GetAmount() int32 {
-	if x != nil {
-		return x.Amount
-	}
-	return 0
-}
-
-type InsuranceBuyRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // InsuranceResult result = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsuranceBuyRsp) Reset() {
-	*x = InsuranceBuyRsp{}
-	mi := &file_core_client_proto_msgTypes[123]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsuranceBuyRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsuranceBuyRsp) ProtoMessage() {}
-
-func (x *InsuranceBuyRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[123]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsuranceBuyRsp.ProtoReflect.Descriptor instead.
-func (*InsuranceBuyRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{123}
-}
-
-func (x *InsuranceBuyRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_ROOM_SET_REQ
-type RoomSetReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Settings      map[string]string      `protobuf:"bytes,1,rep,name=settings,proto3" json:"settings,omitempty" protobuf_key:"bytes,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RoomSetReq) Reset() {
-	*x = RoomSetReq{}
-	mi := &file_core_client_proto_msgTypes[124]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RoomSetReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoomSetReq) ProtoMessage() {}
-
-func (x *RoomSetReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[124]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoomSetReq.ProtoReflect.Descriptor instead.
-func (*RoomSetReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{124}
-}
-
-func (x *RoomSetReq) GetSettings() map[string]string {
-	if x != nil {
-		return x.Settings
-	}
-	return nil
-}
-
-type RoomSetRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // RoomSettings new_settings = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RoomSetRsp) Reset() {
-	*x = RoomSetRsp{}
-	mi := &file_core_client_proto_msgTypes[125]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RoomSetRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoomSetRsp) ProtoMessage() {}
-
-func (x *RoomSetRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[125]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoomSetRsp.ProtoReflect.Descriptor instead.
-func (*RoomSetRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{125}
-}
-
-func (x *RoomSetRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_SNG_GET_BLIND_LEVEL_REQ
-type SngGetBlindLevelReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SngGetBlindLevelReq) Reset() {
-	*x = SngGetBlindLevelReq{}
-	mi := &file_core_client_proto_msgTypes[126]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SngGetBlindLevelReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SngGetBlindLevelReq) ProtoMessage() {}
-
-func (x *SngGetBlindLevelReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[126]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SngGetBlindLevelReq.ProtoReflect.Descriptor instead.
-func (*SngGetBlindLevelReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{126}
-}
-
-type SngGetBlindLevelRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // repeated BlindLevel levels = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *SngGetBlindLevelRsp) Reset() {
-	*x = SngGetBlindLevelRsp{}
-	mi := &file_core_client_proto_msgTypes[127]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *SngGetBlindLevelRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*SngGetBlindLevelRsp) ProtoMessage() {}
-
-func (x *SngGetBlindLevelRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[127]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use SngGetBlindLevelRsp.ProtoReflect.Descriptor instead.
-func (*SngGetBlindLevelRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{127}
-}
-
-func (x *SngGetBlindLevelRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_GET_ROOM_INFO_REQ
-type GetRoomInfoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetRoomInfoReq) Reset() {
-	*x = GetRoomInfoReq{}
-	mi := &file_core_client_proto_msgTypes[128]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetRoomInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetRoomInfoReq) ProtoMessage() {}
-
-func (x *GetRoomInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[128]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetRoomInfoReq.ProtoReflect.Descriptor instead.
-func (*GetRoomInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{128}
-}
-
-func (x *GetRoomInfoReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type GetRoomInfoRsp struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Ret           *Ret                     `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	Base          *RoomBaseInfo            `protobuf:"bytes,2,opt,name=base,proto3" json:"base,omitempty"`
-	TableInfo     *TableTexasGameData      `protobuf:"bytes,3,opt,name=table_info,json=tableInfo,proto3" json:"table_info,omitempty"`
-	HandInfo      *PlayerTexasGameCardData `protobuf:"bytes,4,opt,name=hand_info,json=handInfo,proto3" json:"hand_info,omitempty"` // 玩家手牌信息
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetRoomInfoRsp) Reset() {
-	*x = GetRoomInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[129]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetRoomInfoRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetRoomInfoRsp) ProtoMessage() {}
-
-func (x *GetRoomInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[129]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetRoomInfoRsp.ProtoReflect.Descriptor instead.
-func (*GetRoomInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{129}
-}
-
-func (x *GetRoomInfoRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *GetRoomInfoRsp) GetBase() *RoomBaseInfo {
-	if x != nil {
-		return x.Base
-	}
-	return nil
-}
-
-func (x *GetRoomInfoRsp) GetTableInfo() *TableTexasGameData {
-	if x != nil {
-		return x.TableInfo
-	}
-	return nil
-}
-
-func (x *GetRoomInfoRsp) GetHandInfo() *PlayerTexasGameCardData {
-	if x != nil {
-		return x.HandInfo
-	}
-	return nil
-}
-
-// MAIN_GAME_INSURANCE_THINK_TIME_REQ
-type InsuranceThinkTimeReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsuranceThinkTimeReq) Reset() {
-	*x = InsuranceThinkTimeReq{}
-	mi := &file_core_client_proto_msgTypes[130]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsuranceThinkTimeReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsuranceThinkTimeReq) ProtoMessage() {}
-
-func (x *InsuranceThinkTimeReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[130]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsuranceThinkTimeReq.ProtoReflect.Descriptor instead.
-func (*InsuranceThinkTimeReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{130}
-}
-
-type InsuranceThinkTimeRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RemainSeconds int32                  `protobuf:"varint,2,opt,name=remain_seconds,json=remainSeconds,proto3" json:"remain_seconds,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsuranceThinkTimeRsp) Reset() {
-	*x = InsuranceThinkTimeRsp{}
-	mi := &file_core_client_proto_msgTypes[131]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsuranceThinkTimeRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsuranceThinkTimeRsp) ProtoMessage() {}
-
-func (x *InsuranceThinkTimeRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[131]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsuranceThinkTimeRsp.ProtoReflect.Descriptor instead.
-func (*InsuranceThinkTimeRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{131}
-}
-
-func (x *InsuranceThinkTimeRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *InsuranceThinkTimeRsp) GetRemainSeconds() int32 {
-	if x != nil {
-		return x.RemainSeconds
-	}
-	return 0
-}
-
-// MAIN_GAME_INSURANCE_OP_REQ
-type InsuranceOpReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsuranceOpReq) Reset() {
-	*x = InsuranceOpReq{}
-	mi := &file_core_client_proto_msgTypes[132]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsuranceOpReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsuranceOpReq) ProtoMessage() {}
-
-func (x *InsuranceOpReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[132]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsuranceOpReq.ProtoReflect.Descriptor instead.
-func (*InsuranceOpReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{132}
-}
-
-type InsuranceOpRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // InsuranceStatus status = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *InsuranceOpRsp) Reset() {
-	*x = InsuranceOpRsp{}
-	mi := &file_core_client_proto_msgTypes[133]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *InsuranceOpRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*InsuranceOpRsp) ProtoMessage() {}
-
-func (x *InsuranceOpRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[133]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use InsuranceOpRsp.ProtoReflect.Descriptor instead.
-func (*InsuranceOpRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{133}
-}
-
-func (x *InsuranceOpRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_GET_GAME_INFO_REQ
-type GetGameInfoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetGameInfoReq) Reset() {
-	*x = GetGameInfoReq{}
-	mi := &file_core_client_proto_msgTypes[134]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetGameInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGameInfoReq) ProtoMessage() {}
-
-func (x *GetGameInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[134]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGameInfoReq.ProtoReflect.Descriptor instead.
-func (*GetGameInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{134}
-}
-
-func (x *GetGameInfoReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type GetGameInfoRsp struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Ret           *Ret                     `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomId        uint64                   `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	TableInfo     *TableTexasGameData      `protobuf:"bytes,3,opt,name=table_info,json=tableInfo,proto3" json:"table_info,omitempty"` // 游戏牌座数据
-	HandInfo      *PlayerTexasGameCardData `protobuf:"bytes,4,opt,name=hand_info,json=handInfo,proto3" json:"hand_info,omitempty"`    // 玩家手牌信息
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *GetGameInfoRsp) Reset() {
-	*x = GetGameInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[135]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *GetGameInfoRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*GetGameInfoRsp) ProtoMessage() {}
-
-func (x *GetGameInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[135]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use GetGameInfoRsp.ProtoReflect.Descriptor instead.
-func (*GetGameInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{135}
-}
-
-func (x *GetGameInfoRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *GetGameInfoRsp) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *GetGameInfoRsp) GetTableInfo() *TableTexasGameData {
-	if x != nil {
-		return x.TableInfo
-	}
-	return nil
-}
-
-func (x *GetGameInfoRsp) GetHandInfo() *PlayerTexasGameCardData {
-	if x != nil {
-		return x.HandInfo
-	}
-	return nil
-}
-
-// MAIN_GAME_ADD_TO_FAVORITE_REQ
-type AddToFavoriteReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TargetId      uint64                 `protobuf:"varint,1,opt,name=target_id,json=targetId,proto3" json:"target_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddToFavoriteReq) Reset() {
-	*x = AddToFavoriteReq{}
-	mi := &file_core_client_proto_msgTypes[136]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddToFavoriteReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddToFavoriteReq) ProtoMessage() {}
-
-func (x *AddToFavoriteReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[136]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddToFavoriteReq.ProtoReflect.Descriptor instead.
-func (*AddToFavoriteReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{136}
-}
-
-func (x *AddToFavoriteReq) GetTargetId() uint64 {
-	if x != nil {
-		return x.TargetId
-	}
-	return 0
-}
-
-type AddToFavoriteRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	Favorites     []uint64               `protobuf:"varint,2,rep,packed,name=favorites,proto3" json:"favorites,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *AddToFavoriteRsp) Reset() {
-	*x = AddToFavoriteRsp{}
-	mi := &file_core_client_proto_msgTypes[137]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *AddToFavoriteRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*AddToFavoriteRsp) ProtoMessage() {}
-
-func (x *AddToFavoriteRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[137]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use AddToFavoriteRsp.ProtoReflect.Descriptor instead.
-func (*AddToFavoriteRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{137}
-}
-
-func (x *AddToFavoriteRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *AddToFavoriteRsp) GetFavorites() []uint64 {
-	if x != nil {
-		return x.Favorites
-	}
-	return nil
-}
-
-// MAIN_GAME_CHANGE_SKIN_REQ
-type ChangeSkinReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	SkinId        string                 `protobuf:"bytes,1,opt,name=skin_id,json=skinId,proto3" json:"skin_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChangeSkinReq) Reset() {
-	*x = ChangeSkinReq{}
-	mi := &file_core_client_proto_msgTypes[138]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChangeSkinReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChangeSkinReq) ProtoMessage() {}
-
-func (x *ChangeSkinReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[138]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChangeSkinReq.ProtoReflect.Descriptor instead.
-func (*ChangeSkinReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{138}
-}
-
-func (x *ChangeSkinReq) GetSkinId() string {
-	if x != nil {
-		return x.SkinId
-	}
-	return ""
-}
-
-type ChangeSkinRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // SkinInfo skin = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *ChangeSkinRsp) Reset() {
-	*x = ChangeSkinRsp{}
-	mi := &file_core_client_proto_msgTypes[139]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *ChangeSkinRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*ChangeSkinRsp) ProtoMessage() {}
-
-func (x *ChangeSkinRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[139]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use ChangeSkinRsp.ProtoReflect.Descriptor instead.
-func (*ChangeSkinRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{139}
-}
-
-func (x *ChangeSkinRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_PREOPERATION_REQ
-type PreOperationReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	OperateType   OperateType            `protobuf:"varint,1,opt,name=operate_type,json=operateType,proto3,enum=g1.protocol.OperateType" json:"operate_type,omitempty"`
-	RoomId        uint64                 `protobuf:"varint,2,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	ChairId       uint32                 `protobuf:"varint,3,opt,name=chair_id,json=chairId,proto3" json:"chair_id,omitempty"`
-	Chip          int64                  `protobuf:"varint,4,opt,name=chip,proto3" json:"chip,omitempty"` // 筹码
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PreOperationReq) Reset() {
-	*x = PreOperationReq{}
-	mi := &file_core_client_proto_msgTypes[140]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PreOperationReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PreOperationReq) ProtoMessage() {}
-
-func (x *PreOperationReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[140]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PreOperationReq.ProtoReflect.Descriptor instead.
-func (*PreOperationReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{140}
-}
-
-func (x *PreOperationReq) GetOperateType() OperateType {
-	if x != nil {
-		return x.OperateType
-	}
-	return OperateType_OPERATE_NONE
-}
-
-func (x *PreOperationReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *PreOperationReq) GetChairId() uint32 {
-	if x != nil {
-		return x.ChairId
-	}
-	return 0
-}
-
-func (x *PreOperationReq) GetChip() int64 {
-	if x != nil {
-		return x.Chip
-	}
-	return 0
-}
-
-type PreOperationRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *PreOperationRsp) Reset() {
-	*x = PreOperationRsp{}
-	mi := &file_core_client_proto_msgTypes[141]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *PreOperationRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*PreOperationRsp) ProtoMessage() {}
-
-func (x *PreOperationRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[141]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use PreOperationRsp.ProtoReflect.Descriptor instead.
-func (*PreOperationRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{141}
-}
-
-func (x *PreOperationRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_RABBIT_HUNTING_REQ
-type RabbitHuntingReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	ActivityId    int32                  `protobuf:"varint,1,opt,name=activity_id,json=activityId,proto3" json:"activity_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RabbitHuntingReq) Reset() {
-	*x = RabbitHuntingReq{}
-	mi := &file_core_client_proto_msgTypes[142]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RabbitHuntingReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RabbitHuntingReq) ProtoMessage() {}
-
-func (x *RabbitHuntingReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[142]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RabbitHuntingReq.ProtoReflect.Descriptor instead.
-func (*RabbitHuntingReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{142}
-}
-
-func (x *RabbitHuntingReq) GetActivityId() int32 {
-	if x != nil {
-		return x.ActivityId
-	}
-	return 0
-}
-
-type RabbitHuntingRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // ActivityData data = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RabbitHuntingRsp) Reset() {
-	*x = RabbitHuntingRsp{}
-	mi := &file_core_client_proto_msgTypes[143]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RabbitHuntingRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RabbitHuntingRsp) ProtoMessage() {}
-
-func (x *RabbitHuntingRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[143]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RabbitHuntingRsp.ProtoReflect.Descriptor instead.
-func (*RabbitHuntingRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{143}
-}
-
-func (x *RabbitHuntingRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// MAIN_GAME_EARLY_SETTLE_REQ
-type EarlySettleReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EarlySettleReq) Reset() {
-	*x = EarlySettleReq{}
-	mi := &file_core_client_proto_msgTypes[144]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EarlySettleReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EarlySettleReq) ProtoMessage() {}
-
-func (x *EarlySettleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[144]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EarlySettleReq.ProtoReflect.Descriptor instead.
-func (*EarlySettleReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{144}
-}
-
-type EarlySettleRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"` // SettlementResult result = 2;
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EarlySettleRsp) Reset() {
-	*x = EarlySettleRsp{}
-	mi := &file_core_client_proto_msgTypes[145]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EarlySettleRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EarlySettleRsp) ProtoMessage() {}
-
-func (x *EarlySettleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[145]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EarlySettleRsp.ProtoReflect.Descriptor instead.
-func (*EarlySettleRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{145}
-}
-
-func (x *EarlySettleRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-// 创建房间 MAIN_GAME_CREATE_ROOM_REQ
-type CreateRoomReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        GameTypeId             `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`      // 游戏id
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`                                                     // 房间名字
-	IsPrivate     bool                   `protobuf:"varint,3,opt,name=is_private,json=isPrivate,proto3" json:"is_private,omitempty"`                         // 是否私人局(1==私人局，0==公共局)
-	Blind         string                 `protobuf:"bytes,4,opt,name=blind,proto3" json:"blind,omitempty"`                                                   // 小/大盲注 例如: 1/2 小盲1 大盲2 SNG表示报名费 1000/100 报名费/服务费
-	Ante          uint32                 `protobuf:"varint,5,opt,name=ante,proto3" json:"ante,omitempty"`                                                    // 前注,为0 或没有该字段表示没有前注
-	GameTime      int64                  `protobuf:"varint,6,opt,name=game_time,json=gameTime,proto3" json:"game_time,omitempty"`                            // 总时间单位秒, /SNG表示涨盲时间
-	ChairNum      uint32                 `protobuf:"varint,7,opt,name=chair_num,json=chairNum,proto3" json:"chair_num,omitempty"`                            // 普通场椅子数 //SNG表示必须坐满开局的人数,MTT最大报名人数
-	IsAuth        bool                   `protobuf:"varint,8,opt,name=is_auth,json=isAuth,proto3" json:"is_auth,omitempty"`                                  // 是否授权带入,sng授权报名
-	Stage         RoomStage              `protobuf:"varint,9,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                       // stage
-	StartBb       uint32                 `protobuf:"varint,10,opt,name=start_bb,json=startBb,proto3" json:"start_bb,omitempty"`                              // 起始筹码
-	StartTime     int64                  `protobuf:"varint,11,opt,name=start_time,json=startTime,proto3" json:"start_time,omitempty"`                        // 开启时间
-	CoinType      CoinType               `protobuf:"varint,12,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	IsRebuy       bool                   `protobuf:"varint,13,opt,name=is_rebuy,json=isRebuy,proto3" json:"is_rebuy,omitempty"`                              // MTT 是否rebuy
-	IsAddon       bool                   `protobuf:"varint,14,opt,name=is_addon,json=isAddon,proto3" json:"is_addon,omitempty"`                              // MTT 是否 Addon
-	ClubId        uint32                 `protobuf:"varint,15,opt,name=club_id,json=clubId,proto3" json:"club_id,omitempty"`                                 // 俱乐部id,非俱乐部成员不允许加入
-	IsInsure      bool                   `protobuf:"varint,16,opt,name=is_insure,json=isInsure,proto3" json:"is_insure,omitempty"`                           // 是否开启保险
-	Straddle      int32                  `protobuf:"varint,17,opt,name=straddle,proto3" json:"straddle,omitempty"`                                           // 是否Straddle
-	IpLimit       bool                   `protobuf:"varint,18,opt,name=ip_limit,json=ipLimit,proto3" json:"ip_limit,omitempty"`                              // 是否ip限制
-	AllianceId    uint32                 `protobuf:"varint,19,opt,name=alliance_id,json=allianceId,proto3" json:"alliance_id,omitempty"`                     // 联盟id
-	GpsLimit      bool                   `protobuf:"varint,20,opt,name=gps_limit,json=gpsLimit,proto3" json:"gps_limit,omitempty"`                           // Gps 限制
-	RoomId        uint64                 `protobuf:"varint,21,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                 // 房间id,server inner use
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateRoomReq) Reset() {
-	*x = CreateRoomReq{}
-	mi := &file_core_client_proto_msgTypes[146]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateRoomReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateRoomReq) ProtoMessage() {}
-
-func (x *CreateRoomReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[146]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateRoomReq.ProtoReflect.Descriptor instead.
-func (*CreateRoomReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{146}
-}
-
-func (x *CreateRoomReq) GetGameId() GameTypeId {
-	if x != nil {
-		return x.GameId
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *CreateRoomReq) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CreateRoomReq) GetIsPrivate() bool {
-	if x != nil {
-		return x.IsPrivate
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetBlind() string {
-	if x != nil {
-		return x.Blind
-	}
-	return ""
-}
-
-func (x *CreateRoomReq) GetAnte() uint32 {
-	if x != nil {
-		return x.Ante
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetGameTime() int64 {
-	if x != nil {
-		return x.GameTime
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetChairNum() uint32 {
-	if x != nil {
-		return x.ChairNum
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetIsAuth() bool {
-	if x != nil {
-		return x.IsAuth
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetStage() RoomStage {
-	if x != nil {
-		return x.Stage
-	}
-	return RoomStage_Free
-}
-
-func (x *CreateRoomReq) GetStartBb() uint32 {
-	if x != nil {
-		return x.StartBb
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetStartTime() int64 {
-	if x != nil {
-		return x.StartTime
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-func (x *CreateRoomReq) GetIsRebuy() bool {
-	if x != nil {
-		return x.IsRebuy
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetIsAddon() bool {
-	if x != nil {
-		return x.IsAddon
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetClubId() uint32 {
-	if x != nil {
-		return x.ClubId
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetIsInsure() bool {
-	if x != nil {
-		return x.IsInsure
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetStraddle() int32 {
-	if x != nil {
-		return x.Straddle
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetIpLimit() bool {
-	if x != nil {
-		return x.IpLimit
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetAllianceId() uint32 {
-	if x != nil {
-		return x.AllianceId
-	}
-	return 0
-}
-
-func (x *CreateRoomReq) GetGpsLimit() bool {
-	if x != nil {
-		return x.GpsLimit
-	}
-	return false
-}
-
-func (x *CreateRoomReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-type CreateRoomRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomInfo      *RoomBaseInfo          `protobuf:"bytes,2,opt,name=room_info,json=roomInfo,proto3" json:"room_info,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CreateRoomRsp) Reset() {
-	*x = CreateRoomRsp{}
-	mi := &file_core_client_proto_msgTypes[147]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CreateRoomRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CreateRoomRsp) ProtoMessage() {}
-
-func (x *CreateRoomRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[147]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CreateRoomRsp.ProtoReflect.Descriptor instead.
-func (*CreateRoomRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{147}
-}
-
-func (x *CreateRoomRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *CreateRoomRsp) GetRoomInfo() *RoomBaseInfo {
-	if x != nil {
-		return x.RoomInfo
-	}
-	return nil
-}
-
-// 进入房间 MAIN_GAME_JOIN_ROOM_REQ
-type JoinRoomReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`
-	ConnBusId     uint32                 `protobuf:"varint,2,opt,name=conn_busId,json=connBusId,proto3" json:"conn_busId,omitempty"` //ser inner
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *JoinRoomReq) Reset() {
-	*x = JoinRoomReq{}
-	mi := &file_core_client_proto_msgTypes[148]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *JoinRoomReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*JoinRoomReq) ProtoMessage() {}
-
-func (x *JoinRoomReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[148]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use JoinRoomReq.ProtoReflect.Descriptor instead.
-func (*JoinRoomReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{148}
-}
-
-func (x *JoinRoomReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *JoinRoomReq) GetConnBusId() uint32 {
-	if x != nil {
-		return x.ConnBusId
-	}
-	return 0
-}
-
-type JoinRoomRsp struct {
-	state         protoimpl.MessageState   `protogen:"open.v1"`
-	Ret           *Ret                     `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomInfo      *RoomBaseInfo            `protobuf:"bytes,2,opt,name=room_info,json=roomInfo,proto3" json:"room_info,omitempty"`
-	TableInfo     *TableTexasGameData      `protobuf:"bytes,3,opt,name=table_info,json=tableInfo,proto3" json:"table_info,omitempty"`                                                                         // PrivateData一定为空
-	RoleInfo      map[uint64]*PbIconDesc   `protobuf:"bytes,4,rep,name=role_info,json=roleInfo,proto3" json:"role_info,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 玩家头像信息
-	HandInfo      *PlayerTexasGameCardData `protobuf:"bytes,5,opt,name=hand_info,json=handInfo,proto3" json:"hand_info,omitempty"`                                                                            // 玩家手牌信息
-	Duration      int64                    `protobuf:"varint,6,opt,name=duration,proto3" json:"duration,omitempty"`                                                                                           // 时间戳
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *JoinRoomRsp) Reset() {
-	*x = JoinRoomRsp{}
-	mi := &file_core_client_proto_msgTypes[149]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *JoinRoomRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*JoinRoomRsp) ProtoMessage() {}
-
-func (x *JoinRoomRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[149]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use JoinRoomRsp.ProtoReflect.Descriptor instead.
-func (*JoinRoomRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{149}
-}
-
-func (x *JoinRoomRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *JoinRoomRsp) GetRoomInfo() *RoomBaseInfo {
-	if x != nil {
-		return x.RoomInfo
-	}
-	return nil
-}
-
-func (x *JoinRoomRsp) GetTableInfo() *TableTexasGameData {
-	if x != nil {
-		return x.TableInfo
-	}
-	return nil
-}
-
-func (x *JoinRoomRsp) GetRoleInfo() map[uint64]*PbIconDesc {
-	if x != nil {
-		return x.RoleInfo
-	}
-	return nil
-}
-
-func (x *JoinRoomRsp) GetHandInfo() *PlayerTexasGameCardData {
-	if x != nil {
-		return x.HandInfo
-	}
-	return nil
-}
-
-func (x *JoinRoomRsp) GetDuration() int64 {
-	if x != nil {
-		return x.Duration
-	}
-	return 0
-}
-
-// 快速开始 MAIN_GAME_QUICK_START_REQ
-type QuickStartReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        GameTypeId             `protobuf:"varint,1,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`     // 游戏id
-	CoinType      CoinType               `protobuf:"varint,2,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	Stage         RoomStage              `protobuf:"varint,3,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                      // stage
-	ConnBusId     uint32                 `protobuf:"varint,10,opt,name=conn_bus_id,json=connBusId,proto3" json:"conn_bus_id,omitempty"`                     // ser inner
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QuickStartReq) Reset() {
-	*x = QuickStartReq{}
-	mi := &file_core_client_proto_msgTypes[150]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QuickStartReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QuickStartReq) ProtoMessage() {}
-
-func (x *QuickStartReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[150]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QuickStartReq.ProtoReflect.Descriptor instead.
-func (*QuickStartReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{150}
-}
-
-func (x *QuickStartReq) GetGameId() GameTypeId {
-	if x != nil {
-		return x.GameId
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *QuickStartReq) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-func (x *QuickStartReq) GetStage() RoomStage {
-	if x != nil {
-		return x.Stage
-	}
-	return RoomStage_Free
-}
-
-func (x *QuickStartReq) GetConnBusId() uint32 {
-	if x != nil {
-		return x.ConnBusId
-	}
-	return 0
-}
-
-type QuickStartRsp struct {
-	state     protoimpl.MessageState   `protogen:"open.v1"`
-	Ret       *Ret                     `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	RoomInfo  *RoomBaseInfo            `protobuf:"bytes,2,opt,name=room_info,json=roomInfo,proto3" json:"room_info,omitempty"`
-	TableInfo *TableTexasGameData      `protobuf:"bytes,3,opt,name=table_info,json=tableInfo,proto3" json:"table_info,omitempty"`                                                                         // PrivateData一定为空
-	RoleInfo  map[uint64]*PbIconDesc   `protobuf:"bytes,4,rep,name=role_info,json=roleInfo,proto3" json:"role_info,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"bytes,2,opt,name=value"` // 玩家头像信息
-	HandInfo  *PlayerTexasGameCardData `protobuf:"bytes,5,opt,name=hand_info,json=handInfo,proto3" json:"hand_info,omitempty"`                                                                            // 玩家手牌信息
-	// 本次座位占位的预约票据：回滚（QuickStartRollbackReq）必须携带，
-	// 同一票据至多释放一次（F03 幂等）；0 表示旧版调用方未携带。
-	ReservationId uint64 `protobuf:"varint,6,opt,name=reservation_id,json=reservationId,proto3" json:"reservation_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QuickStartRsp) Reset() {
-	*x = QuickStartRsp{}
-	mi := &file_core_client_proto_msgTypes[151]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QuickStartRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QuickStartRsp) ProtoMessage() {}
-
-func (x *QuickStartRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[151]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QuickStartRsp.ProtoReflect.Descriptor instead.
-func (*QuickStartRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{151}
-}
-
-func (x *QuickStartRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *QuickStartRsp) GetRoomInfo() *RoomBaseInfo {
-	if x != nil {
-		return x.RoomInfo
-	}
-	return nil
-}
-
-func (x *QuickStartRsp) GetTableInfo() *TableTexasGameData {
-	if x != nil {
-		return x.TableInfo
-	}
-	return nil
-}
-
-func (x *QuickStartRsp) GetRoleInfo() map[uint64]*PbIconDesc {
-	if x != nil {
-		return x.RoleInfo
-	}
-	return nil
-}
-
-func (x *QuickStartRsp) GetHandInfo() *PlayerTexasGameCardData {
-	if x != nil {
-		return x.HandInfo
-	}
-	return nil
-}
-
-func (x *QuickStartRsp) GetReservationId() uint64 {
-	if x != nil {
-		return x.ReservationId
-	}
-	return 0
-}
-
-// CMD_ROOM_CENTER_INNER_QUICK_START_ROLLBACK_REQ 快速开始占位回滚
-// （mainsvr 调游戏服加入对局失败时，归还 roomcenter 侧的座位占位）
-type QuickStartRollbackReq struct {
-	state    protoimpl.MessageState `protogen:"open.v1"`
-	RoomId   uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                 // 房间ID
-	GameId   GameTypeId             `protobuf:"varint,2,opt,name=game_id,json=gameId,proto3,enum=g1.protocol.GameTypeId" json:"game_id,omitempty"`     // 游戏id
-	CoinType CoinType               `protobuf:"varint,3,opt,name=coin_type,json=coinType,proto3,enum=g1.protocol.CoinType" json:"coin_type,omitempty"` // 币种类型
-	Stage    RoomStage              `protobuf:"varint,4,opt,name=stage,proto3,enum=g1.protocol.RoomStage" json:"stage,omitempty"`                      // stage
-	// 预约票据（来自 QuickStartRsp.reservation_id）：同一票据至多释放一次；
-	// 未携带（旧版）时退回按房间计数回滚的旧行为。
-	ReservationId uint64 `protobuf:"varint,5,opt,name=reservation_id,json=reservationId,proto3" json:"reservation_id,omitempty"` // 预约票据
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QuickStartRollbackReq) Reset() {
-	*x = QuickStartRollbackReq{}
-	mi := &file_core_client_proto_msgTypes[152]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QuickStartRollbackReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QuickStartRollbackReq) ProtoMessage() {}
-
-func (x *QuickStartRollbackReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[152]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QuickStartRollbackReq.ProtoReflect.Descriptor instead.
-func (*QuickStartRollbackReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{152}
-}
-
-func (x *QuickStartRollbackReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *QuickStartRollbackReq) GetGameId() GameTypeId {
-	if x != nil {
-		return x.GameId
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *QuickStartRollbackReq) GetCoinType() CoinType {
-	if x != nil {
-		return x.CoinType
-	}
-	return CoinType_COIN_NONE
-}
-
-func (x *QuickStartRollbackReq) GetStage() RoomStage {
-	if x != nil {
-		return x.Stage
-	}
-	return RoomStage_Free
-}
-
-func (x *QuickStartRollbackReq) GetReservationId() uint64 {
-	if x != nil {
-		return x.ReservationId
-	}
-	return 0
-}
-
 // MAIN_MALL_BUY_PACKAGE_REQ
 type MallBuyPackageReq struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -8313,7 +4198,7 @@ type MallBuyPackageReq struct {
 
 func (x *MallBuyPackageReq) Reset() {
 	*x = MallBuyPackageReq{}
-	mi := &file_core_client_proto_msgTypes[153]
+	mi := &file_core_client_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8325,7 +4210,7 @@ func (x *MallBuyPackageReq) String() string {
 func (*MallBuyPackageReq) ProtoMessage() {}
 
 func (x *MallBuyPackageReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[153]
+	mi := &file_core_client_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8338,7 +4223,7 @@ func (x *MallBuyPackageReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallBuyPackageReq.ProtoReflect.Descriptor instead.
 func (*MallBuyPackageReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{153}
+	return file_core_client_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *MallBuyPackageReq) GetConfId() int32 {
@@ -8357,7 +4242,7 @@ type MallBuyPackageRsp struct {
 
 func (x *MallBuyPackageRsp) Reset() {
 	*x = MallBuyPackageRsp{}
-	mi := &file_core_client_proto_msgTypes[154]
+	mi := &file_core_client_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8369,7 +4254,7 @@ func (x *MallBuyPackageRsp) String() string {
 func (*MallBuyPackageRsp) ProtoMessage() {}
 
 func (x *MallBuyPackageRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[154]
+	mi := &file_core_client_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8382,7 +4267,7 @@ func (x *MallBuyPackageRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallBuyPackageRsp.ProtoReflect.Descriptor instead.
 func (*MallBuyPackageRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{154}
+	return file_core_client_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *MallBuyPackageRsp) GetRet() *Ret {
@@ -8403,7 +4288,7 @@ type MallRechargeReq struct {
 
 func (x *MallRechargeReq) Reset() {
 	*x = MallRechargeReq{}
-	mi := &file_core_client_proto_msgTypes[155]
+	mi := &file_core_client_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8415,7 +4300,7 @@ func (x *MallRechargeReq) String() string {
 func (*MallRechargeReq) ProtoMessage() {}
 
 func (x *MallRechargeReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[155]
+	mi := &file_core_client_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8428,7 +4313,7 @@ func (x *MallRechargeReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallRechargeReq.ProtoReflect.Descriptor instead.
 func (*MallRechargeReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{155}
+	return file_core_client_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *MallRechargeReq) GetConfId() int32 {
@@ -8454,7 +4339,7 @@ type MallRechargeRsp struct {
 
 func (x *MallRechargeRsp) Reset() {
 	*x = MallRechargeRsp{}
-	mi := &file_core_client_proto_msgTypes[156]
+	mi := &file_core_client_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -8466,7 +4351,7 @@ func (x *MallRechargeRsp) String() string {
 func (*MallRechargeRsp) ProtoMessage() {}
 
 func (x *MallRechargeRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[156]
+	mi := &file_core_client_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -8479,509 +4364,12 @@ func (x *MallRechargeRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallRechargeRsp.ProtoReflect.Descriptor instead.
 func (*MallRechargeRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{156}
+	return file_core_client_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *MallRechargeRsp) GetRet() *Ret {
 	if x != nil {
 		return x.Ret
-	}
-	return nil
-}
-
-// 更新数据库 MYSQL_INNER_UPDATE_REQ = 0x041006; MYSQL_INNER_UPDATE_RSP = 0x041007;
-type MysqlInnerUpdateReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            uint64                 `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`                                                       // id
-	DataType      DataType               `protobuf:"varint,2,opt,name=data_type,json=dataType,proto3,enum=g1.protocol.DataType" json:"data_type,omitempty"` // 数据类型
-	Data          []byte                 `protobuf:"bytes,3,opt,name=data,proto3" json:"data,omitempty"`                                                    // 数据
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MysqlInnerUpdateReq) Reset() {
-	*x = MysqlInnerUpdateReq{}
-	mi := &file_core_client_proto_msgTypes[157]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MysqlInnerUpdateReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MysqlInnerUpdateReq) ProtoMessage() {}
-
-func (x *MysqlInnerUpdateReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[157]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MysqlInnerUpdateReq.ProtoReflect.Descriptor instead.
-func (*MysqlInnerUpdateReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{157}
-}
-
-func (x *MysqlInnerUpdateReq) GetId() uint64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *MysqlInnerUpdateReq) GetDataType() DataType {
-	if x != nil {
-		return x.DataType
-	}
-	return DataType_DATA_TYPE_NONE
-}
-
-func (x *MysqlInnerUpdateReq) GetData() []byte {
-	if x != nil {
-		return x.Data
-	}
-	return nil
-}
-
-type MysqlInnerUpdateRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *MysqlInnerUpdateRsp) Reset() {
-	*x = MysqlInnerUpdateRsp{}
-	mi := &file_core_client_proto_msgTypes[158]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *MysqlInnerUpdateRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*MysqlInnerUpdateRsp) ProtoMessage() {}
-
-func (x *MysqlInnerUpdateRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[158]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use MysqlInnerUpdateRsp.ProtoReflect.Descriptor instead.
-func (*MysqlInnerUpdateRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{158}
-}
-
-func (x *MysqlInnerUpdateRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-type QueryRoomInfoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	RoomId        uint64                 `protobuf:"varint,1,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                     // 房间id
-	TableId       uint64                 `protobuf:"varint,2,opt,name=table_id,json=tableId,proto3" json:"table_id,omitempty"`                                  // 牌局id
-	GameType      GameTypeId             `protobuf:"varint,3,opt,name=game_type,json=gameType,proto3,enum=g1.protocol.GameTypeId" json:"game_type,omitempty"`   // 游戏类型
-	RoomStage     RoomStage              `protobuf:"varint,4,opt,name=room_stage,json=roomStage,proto3,enum=g1.protocol.RoomStage" json:"room_stage,omitempty"` // 房间阶段
-	Blind         string                 `protobuf:"bytes,5,opt,name=blind,proto3" json:"blind,omitempty"`                                                      // 小/大盲注
-	BeginTime     int64                  `protobuf:"varint,6,opt,name=begin_time,json=beginTime,proto3" json:"begin_time,omitempty"`                            // 开始时间
-	EndTime       int64                  `protobuf:"varint,7,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`                                  // 结束时间
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QueryRoomInfoReq) Reset() {
-	*x = QueryRoomInfoReq{}
-	mi := &file_core_client_proto_msgTypes[159]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QueryRoomInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryRoomInfoReq) ProtoMessage() {}
-
-func (x *QueryRoomInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[159]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QueryRoomInfoReq.ProtoReflect.Descriptor instead.
-func (*QueryRoomInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{159}
-}
-
-func (x *QueryRoomInfoReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *QueryRoomInfoReq) GetTableId() uint64 {
-	if x != nil {
-		return x.TableId
-	}
-	return 0
-}
-
-func (x *QueryRoomInfoReq) GetGameType() GameTypeId {
-	if x != nil {
-		return x.GameType
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *QueryRoomInfoReq) GetRoomStage() RoomStage {
-	if x != nil {
-		return x.RoomStage
-	}
-	return RoomStage_Free
-}
-
-func (x *QueryRoomInfoReq) GetBlind() string {
-	if x != nil {
-		return x.Blind
-	}
-	return ""
-}
-
-func (x *QueryRoomInfoReq) GetBeginTime() int64 {
-	if x != nil {
-		return x.BeginTime
-	}
-	return 0
-}
-
-func (x *QueryRoomInfoReq) GetEndTime() int64 {
-	if x != nil {
-		return x.EndTime
-	}
-	return 0
-}
-
-type QueryRoomInfoRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	List          []*MysqlTexasRoomInfo  `protobuf:"bytes,2,rep,name=list,proto3" json:"list,omitempty"` // 房间列表
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QueryRoomInfoRsp) Reset() {
-	*x = QueryRoomInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[160]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QueryRoomInfoRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryRoomInfoRsp) ProtoMessage() {}
-
-func (x *QueryRoomInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[160]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QueryRoomInfoRsp.ProtoReflect.Descriptor instead.
-func (*QueryRoomInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{160}
-}
-
-func (x *QueryRoomInfoRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *QueryRoomInfoRsp) GetList() []*MysqlTexasRoomInfo {
-	if x != nil {
-		return x.List
-	}
-	return nil
-}
-
-type QueryPlayerInfoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Uid           uint64                 `protobuf:"varint,1,opt,name=uid,proto3" json:"uid,omitempty"`                                                         // 玩家uid
-	TableId       uint64                 `protobuf:"varint,2,opt,name=table_id,json=tableId,proto3" json:"table_id,omitempty"`                                  // 牌局id
-	RoomId        uint64                 `protobuf:"varint,3,opt,name=room_id,json=roomId,proto3" json:"room_id,omitempty"`                                     // 房间id
-	GameType      GameTypeId             `protobuf:"varint,4,opt,name=game_type,json=gameType,proto3,enum=g1.protocol.GameTypeId" json:"game_type,omitempty"`   // 游戏类型
-	RoomStage     RoomStage              `protobuf:"varint,5,opt,name=room_stage,json=roomStage,proto3,enum=g1.protocol.RoomStage" json:"room_stage,omitempty"` // 房间阶段
-	Blind         string                 `protobuf:"bytes,6,opt,name=blind,proto3" json:"blind,omitempty"`                                                      // 小/大盲注
-	BeginTime     int64                  `protobuf:"varint,7,opt,name=begin_time,json=beginTime,proto3" json:"begin_time,omitempty"`                            // 开始时间
-	EndTime       int64                  `protobuf:"varint,8,opt,name=end_time,json=endTime,proto3" json:"end_time,omitempty"`                                  // 结束时间
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QueryPlayerInfoReq) Reset() {
-	*x = QueryPlayerInfoReq{}
-	mi := &file_core_client_proto_msgTypes[161]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QueryPlayerInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryPlayerInfoReq) ProtoMessage() {}
-
-func (x *QueryPlayerInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[161]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QueryPlayerInfoReq.ProtoReflect.Descriptor instead.
-func (*QueryPlayerInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{161}
-}
-
-func (x *QueryPlayerInfoReq) GetUid() uint64 {
-	if x != nil {
-		return x.Uid
-	}
-	return 0
-}
-
-func (x *QueryPlayerInfoReq) GetTableId() uint64 {
-	if x != nil {
-		return x.TableId
-	}
-	return 0
-}
-
-func (x *QueryPlayerInfoReq) GetRoomId() uint64 {
-	if x != nil {
-		return x.RoomId
-	}
-	return 0
-}
-
-func (x *QueryPlayerInfoReq) GetGameType() GameTypeId {
-	if x != nil {
-		return x.GameType
-	}
-	return GameTypeId_TEXAS_MODE_START
-}
-
-func (x *QueryPlayerInfoReq) GetRoomStage() RoomStage {
-	if x != nil {
-		return x.RoomStage
-	}
-	return RoomStage_Free
-}
-
-func (x *QueryPlayerInfoReq) GetBlind() string {
-	if x != nil {
-		return x.Blind
-	}
-	return ""
-}
-
-func (x *QueryPlayerInfoReq) GetBeginTime() int64 {
-	if x != nil {
-		return x.BeginTime
-	}
-	return 0
-}
-
-func (x *QueryPlayerInfoReq) GetEndTime() int64 {
-	if x != nil {
-		return x.EndTime
-	}
-	return 0
-}
-
-type QueryPlayerInfoRsp struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Ret           *Ret                    `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	List          []*MysqlTexasPlayerInfo `protobuf:"bytes,2,rep,name=list,proto3" json:"list,omitempty"` // 玩家列表
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QueryPlayerInfoRsp) Reset() {
-	*x = QueryPlayerInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[162]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QueryPlayerInfoRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryPlayerInfoRsp) ProtoMessage() {}
-
-func (x *QueryPlayerInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[162]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QueryPlayerInfoRsp.ProtoReflect.Descriptor instead.
-func (*QueryPlayerInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{162}
-}
-
-func (x *QueryPlayerInfoRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *QueryPlayerInfoRsp) GetList() []*MysqlTexasPlayerInfo {
-	if x != nil {
-		return x.List
-	}
-	return nil
-}
-
-type QueryGameInfoReq struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	GameId        string                 `protobuf:"bytes,1,opt,name=game_id,json=gameId,proto3" json:"game_id,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QueryGameInfoReq) Reset() {
-	*x = QueryGameInfoReq{}
-	mi := &file_core_client_proto_msgTypes[163]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QueryGameInfoReq) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGameInfoReq) ProtoMessage() {}
-
-func (x *QueryGameInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[163]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QueryGameInfoReq.ProtoReflect.Descriptor instead.
-func (*QueryGameInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{163}
-}
-
-func (x *QueryGameInfoReq) GetGameId() string {
-	if x != nil {
-		return x.GameId
-	}
-	return ""
-}
-
-type QueryGameInfoRsp struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Ret           *Ret                   `protobuf:"bytes,1,opt,name=ret,proto3" json:"ret,omitempty"`
-	Data          *TexasGameRecord       `protobuf:"bytes,2,opt,name=data,proto3" json:"data,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *QueryGameInfoRsp) Reset() {
-	*x = QueryGameInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[164]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *QueryGameInfoRsp) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*QueryGameInfoRsp) ProtoMessage() {}
-
-func (x *QueryGameInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[164]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use QueryGameInfoRsp.ProtoReflect.Descriptor instead.
-func (*QueryGameInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{164}
-}
-
-func (x *QueryGameInfoRsp) GetRet() *Ret {
-	if x != nil {
-		return x.Ret
-	}
-	return nil
-}
-
-func (x *QueryGameInfoRsp) GetData() *TexasGameRecord {
-	if x != nil {
-		return x.Data
 	}
 	return nil
 }
@@ -8997,7 +4385,7 @@ type UseItemReq struct {
 
 func (x *UseItemReq) Reset() {
 	*x = UseItemReq{}
-	mi := &file_core_client_proto_msgTypes[165]
+	mi := &file_core_client_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9009,7 +4397,7 @@ func (x *UseItemReq) String() string {
 func (*UseItemReq) ProtoMessage() {}
 
 func (x *UseItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[165]
+	mi := &file_core_client_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9022,7 +4410,7 @@ func (x *UseItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UseItemReq.ProtoReflect.Descriptor instead.
 func (*UseItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{165}
+	return file_core_client_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *UseItemReq) GetItemId() int32 {
@@ -9048,7 +4436,7 @@ type UseItemRsp struct {
 
 func (x *UseItemRsp) Reset() {
 	*x = UseItemRsp{}
-	mi := &file_core_client_proto_msgTypes[166]
+	mi := &file_core_client_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9060,7 +4448,7 @@ func (x *UseItemRsp) String() string {
 func (*UseItemRsp) ProtoMessage() {}
 
 func (x *UseItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[166]
+	mi := &file_core_client_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9073,7 +4461,7 @@ func (x *UseItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UseItemRsp.ProtoReflect.Descriptor instead.
 func (*UseItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{166}
+	return file_core_client_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *UseItemRsp) GetRet() *Ret {
@@ -9094,7 +4482,7 @@ type SellItemReq struct {
 
 func (x *SellItemReq) Reset() {
 	*x = SellItemReq{}
-	mi := &file_core_client_proto_msgTypes[167]
+	mi := &file_core_client_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9106,7 +4494,7 @@ func (x *SellItemReq) String() string {
 func (*SellItemReq) ProtoMessage() {}
 
 func (x *SellItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[167]
+	mi := &file_core_client_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9119,7 +4507,7 @@ func (x *SellItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SellItemReq.ProtoReflect.Descriptor instead.
 func (*SellItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{167}
+	return file_core_client_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *SellItemReq) GetItemId() int32 {
@@ -9145,7 +4533,7 @@ type SellItemRsp struct {
 
 func (x *SellItemRsp) Reset() {
 	*x = SellItemRsp{}
-	mi := &file_core_client_proto_msgTypes[168]
+	mi := &file_core_client_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9157,7 +4545,7 @@ func (x *SellItemRsp) String() string {
 func (*SellItemRsp) ProtoMessage() {}
 
 func (x *SellItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[168]
+	mi := &file_core_client_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9170,7 +4558,7 @@ func (x *SellItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SellItemRsp.ProtoReflect.Descriptor instead.
 func (*SellItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{168}
+	return file_core_client_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *SellItemRsp) GetRet() *Ret {
@@ -9191,7 +4579,7 @@ type DecomposeItemReq struct {
 
 func (x *DecomposeItemReq) Reset() {
 	*x = DecomposeItemReq{}
-	mi := &file_core_client_proto_msgTypes[169]
+	mi := &file_core_client_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9203,7 +4591,7 @@ func (x *DecomposeItemReq) String() string {
 func (*DecomposeItemReq) ProtoMessage() {}
 
 func (x *DecomposeItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[169]
+	mi := &file_core_client_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9216,7 +4604,7 @@ func (x *DecomposeItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecomposeItemReq.ProtoReflect.Descriptor instead.
 func (*DecomposeItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{169}
+	return file_core_client_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *DecomposeItemReq) GetItemId() int32 {
@@ -9243,7 +4631,7 @@ type DecomposeItemRsp struct {
 
 func (x *DecomposeItemRsp) Reset() {
 	*x = DecomposeItemRsp{}
-	mi := &file_core_client_proto_msgTypes[170]
+	mi := &file_core_client_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9255,7 +4643,7 @@ func (x *DecomposeItemRsp) String() string {
 func (*DecomposeItemRsp) ProtoMessage() {}
 
 func (x *DecomposeItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[170]
+	mi := &file_core_client_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9268,7 +4656,7 @@ func (x *DecomposeItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecomposeItemRsp.ProtoReflect.Descriptor instead.
 func (*DecomposeItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{170}
+	return file_core_client_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *DecomposeItemRsp) GetRet() *Ret {
@@ -9297,7 +4685,7 @@ type QueryBackpackReq struct {
 
 func (x *QueryBackpackReq) Reset() {
 	*x = QueryBackpackReq{}
-	mi := &file_core_client_proto_msgTypes[171]
+	mi := &file_core_client_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9309,7 +4697,7 @@ func (x *QueryBackpackReq) String() string {
 func (*QueryBackpackReq) ProtoMessage() {}
 
 func (x *QueryBackpackReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[171]
+	mi := &file_core_client_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9322,7 +4710,7 @@ func (x *QueryBackpackReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryBackpackReq.ProtoReflect.Descriptor instead.
 func (*QueryBackpackReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{171}
+	return file_core_client_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *QueryBackpackReq) GetBagType() int32 {
@@ -9360,7 +4748,7 @@ type QueryBackpackRsp struct {
 
 func (x *QueryBackpackRsp) Reset() {
 	*x = QueryBackpackRsp{}
-	mi := &file_core_client_proto_msgTypes[172]
+	mi := &file_core_client_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9372,7 +4760,7 @@ func (x *QueryBackpackRsp) String() string {
 func (*QueryBackpackRsp) ProtoMessage() {}
 
 func (x *QueryBackpackRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[172]
+	mi := &file_core_client_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9385,7 +4773,7 @@ func (x *QueryBackpackRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryBackpackRsp.ProtoReflect.Descriptor instead.
 func (*QueryBackpackRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{172}
+	return file_core_client_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *QueryBackpackRsp) GetRet() *Ret {
@@ -9440,7 +4828,7 @@ type BatchAddItemReq struct {
 
 func (x *BatchAddItemReq) Reset() {
 	*x = BatchAddItemReq{}
-	mi := &file_core_client_proto_msgTypes[173]
+	mi := &file_core_client_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9452,7 +4840,7 @@ func (x *BatchAddItemReq) String() string {
 func (*BatchAddItemReq) ProtoMessage() {}
 
 func (x *BatchAddItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[173]
+	mi := &file_core_client_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9465,7 +4853,7 @@ func (x *BatchAddItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BatchAddItemReq.ProtoReflect.Descriptor instead.
 func (*BatchAddItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{173}
+	return file_core_client_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *BatchAddItemReq) GetItems() []*PbItem {
@@ -9484,7 +4872,7 @@ type BatchAddItemRsp struct {
 
 func (x *BatchAddItemRsp) Reset() {
 	*x = BatchAddItemRsp{}
-	mi := &file_core_client_proto_msgTypes[174]
+	mi := &file_core_client_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9496,7 +4884,7 @@ func (x *BatchAddItemRsp) String() string {
 func (*BatchAddItemRsp) ProtoMessage() {}
 
 func (x *BatchAddItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[174]
+	mi := &file_core_client_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9509,7 +4897,7 @@ func (x *BatchAddItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BatchAddItemRsp.ProtoReflect.Descriptor instead.
 func (*BatchAddItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{174}
+	return file_core_client_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *BatchAddItemRsp) GetRet() *Ret {
@@ -9535,7 +4923,7 @@ type ObtainRewardItem struct {
 
 func (x *ObtainRewardItem) Reset() {
 	*x = ObtainRewardItem{}
-	mi := &file_core_client_proto_msgTypes[175]
+	mi := &file_core_client_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9547,7 +4935,7 @@ func (x *ObtainRewardItem) String() string {
 func (*ObtainRewardItem) ProtoMessage() {}
 
 func (x *ObtainRewardItem) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[175]
+	mi := &file_core_client_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9560,7 +4948,7 @@ func (x *ObtainRewardItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObtainRewardItem.ProtoReflect.Descriptor instead.
 func (*ObtainRewardItem) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{175}
+	return file_core_client_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *ObtainRewardItem) GetRewardType() int32 {
@@ -9629,7 +5017,7 @@ type S2CObtainNotice struct {
 
 func (x *S2CObtainNotice) Reset() {
 	*x = S2CObtainNotice{}
-	mi := &file_core_client_proto_msgTypes[176]
+	mi := &file_core_client_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -9641,7 +5029,7 @@ func (x *S2CObtainNotice) String() string {
 func (*S2CObtainNotice) ProtoMessage() {}
 
 func (x *S2CObtainNotice) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[176]
+	mi := &file_core_client_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -9654,7 +5042,7 @@ func (x *S2CObtainNotice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use S2CObtainNotice.ProtoReflect.Descriptor instead.
 func (*S2CObtainNotice) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{176}
+	return file_core_client_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *S2CObtainNotice) GetRequestId() string {
@@ -9717,7 +5105,7 @@ var File_core_client_proto protoreflect.FileDescriptor
 
 const file_core_client_proto_rawDesc = "" +
 	"\n" +
-	"\x11core/client.proto\x12\vg1.protocol\x1a\x11core/common.proto\x1a\x0fcore/role.proto\x1a\x15service/infosvr.proto\x1a\x0fcore/room.proto\x1a\x14core/game_enum.proto\x1a\x11core/struct.proto\x1a\x13core/database.proto\"\xa5\x01\n" +
+	"\x11core/client.proto\x12\vg1.protocol\x1a\x11core/common.proto\x1a\x0fcore/role.proto\x1a\x15service/infosvr.proto\"\xa5\x01\n" +
 	"\tPbChatMsg\x12\x18\n" +
 	"\achannel\x18\x01 \x01(\x05R\achannel\x12\x16\n" +
 	"\x06sender\x18\x02 \x01(\x04R\x06sender\x128\n" +
@@ -9842,10 +5230,7 @@ const file_core_client_proto_rawDesc = "" +
 	"\x06ScChat\x12(\n" +
 	"\x03msg\x18\x01 \x01(\v2\x16.g1.protocol.PbChatMsgR\x03msg\"&\n" +
 	"\x12ScDataChangeNotify\x12\x10\n" +
-	"\x03cmd\x18\x01 \x01(\x05R\x03cmd\"b\n" +
-	"\x13GameUserEventNotify\x121\n" +
-	"\x05Event\x18\x01 \x01(\x0e2\x1b.g1.protocol.GameNotifyTypeR\x05Event\x12\x18\n" +
-	"\aContent\x18\x02 \x01(\fR\aContent\"\x95\x01\n" +
+	"\x03cmd\x18\x01 \x01(\x05R\x03cmd\"\x95\x01\n" +
 	"\bLoginReq\x12\x18\n" +
 	"\aaccount\x18\x01 \x01(\tR\aaccount\x12\x14\n" +
 	"\x05token\x18\x02 \x01(\tR\x05token\x12\x1d\n" +
@@ -9982,292 +5367,7 @@ const file_core_client_proto_rawDesc = "" +
 	"\rsearch_string\x18\x01 \x01(\tR\fsearchString\"o\n" +
 	"\x13FriendSearchRoleRsp\x12\"\n" +
 	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x124\n" +
-	"\trole_list\x18\x02 \x03(\v2\x17.g1.protocol.PbIconDescR\broleList\"\xb0\x02\n" +
-	"\vRoomListReq\x120\n" +
-	"\agame_id\x18\x01 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x12,\n" +
-	"\x05stage\x18\x02 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12\x19\n" +
-	"\broom_ids\x18\x03 \x03(\rR\aroomIds\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\rR\bpageSize\x12\x1d\n" +
-	"\n" +
-	"page_index\x18\x05 \x01(\rR\tpageIndex\x126\n" +
-	"\tsort_type\x18\x06 \x01(\x0e2\x19.g1.protocol.RoomSortTypeR\bsortType\x122\n" +
-	"\tcoin_type\x18\a \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\"\xda\x02\n" +
-	"\vRoomListRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x120\n" +
-	"\agame_id\x18\x02 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x12,\n" +
-	"\x05stage\x18\x03 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12\x1b\n" +
-	"\tpage_size\x18\x04 \x01(\rR\bpageSize\x12\x1d\n" +
-	"\n" +
-	"page_index\x18\x05 \x01(\rR\tpageIndex\x126\n" +
-	"\troom_list\x18\x06 \x03(\v2\x19.g1.protocol.RoomShowInfoR\broomList\x12\x1f\n" +
-	"\vtotal_count\x18\a \x01(\rR\n" +
-	"totalCount\x122\n" +
-	"\tcoin_type\x18\b \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\"\x8f\x01\n" +
-	"\bDoBetReq\x12\x12\n" +
-	"\x04chip\x18\x01 \x01(\x04R\x04chip\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\x12\x17\n" +
-	"\aroom_id\x18\x03 \x01(\x04R\x06roomId\x12;\n" +
-	"\foperate_type\x18\x04 \x01(\x0e2\x18.g1.protocol.OperateTypeR\voperateType\"\xfe\x01\n" +
-	"\bDoBetRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x19\n" +
-	"\bround_id\x18\x02 \x01(\rR\aroundId\x12\x19\n" +
-	"\bchair_id\x18\x03 \x01(\rR\achairId\x121\n" +
-	"\aop_type\x18\x04 \x01(\x0e2\x18.g1.protocol.OperateTypeR\x06opType\x12\x12\n" +
-	"\x04chip\x18\x05 \x01(\x04R\x04chip\x12\x1b\n" +
-	"\tbank_roll\x18\x06 \x01(\x04R\bbankRoll\x12\x1b\n" +
-	"\ttotal_bet\x18\a \x01(\x04R\btotalBet\x12\x17\n" +
-	"\aroom_id\x18\b \x01(\x04R\x06roomId\"=\n" +
-	"\aFoldReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\"a\n" +
-	"\aFoldRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\x12\x17\n" +
-	"\aroom_id\x18\x03 \x01(\x04R\x06roomId\"(\n" +
-	"\rGetLookersReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"\x7f\n" +
-	"\rGetLookersRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x17\n" +
-	"\aroom_id\x18\x02 \x01(\x04R\x06roomId\x121\n" +
-	"\alookers\x18\x03 \x03(\v2\x17.g1.protocol.PbIconDescR\alookers\"\x97\x01\n" +
-	"\n" +
-	"SitDownReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\x12\x1f\n" +
-	"\vbuyin_chips\x18\x03 \x01(\rR\n" +
-	"buyinChips\x124\n" +
-	"\trole_icon\x18\x04 \x01(\v2\x17.g1.protocol.PbIconDescR\broleIcon\"d\n" +
-	"\n" +
-	"SitDownRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\x12\x17\n" +
-	"\aroom_id\x18\x03 \x01(\x04R\x06roomId\"@\n" +
-	"\n" +
-	"StandUpReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\"d\n" +
-	"\n" +
-	"StandUpRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x19\n" +
-	"\bchair_id\x18\x02 \x01(\rR\achairId\x12\x17\n" +
-	"\aroom_id\x18\x03 \x01(\x04R\x06roomId\"'\n" +
-	"\fLeaveGameReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"K\n" +
-	"\fLeaveGameRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x17\n" +
-	"\aroom_id\x18\x02 \x01(\x04R\x06roomId\"-\n" +
-	"\x12MilitarySuccessReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"8\n" +
-	"\x12MilitarySuccessRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"(\n" +
-	"\rGetGameLogReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"3\n" +
-	"\rGetGameLogRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\")\n" +
-	"\x0eGetTimeLeftReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"N\n" +
-	"\x0eGetTimeLeftRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x18\n" +
-	"\aseconds\x18\x02 \x01(\x05R\aseconds\"'\n" +
-	"\fVoiceCallReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"S\n" +
-	"\fVoiceCallRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x1f\n" +
-	"\vfrom_player\x18\x02 \x01(\x04R\n" +
-	"fromPlayer\".\n" +
-	"\x0fBuyThinkTimeReq\x12\x1b\n" +
-	"\tbuy_times\x18\x01 \x01(\x05R\bbuyTimes\"\\\n" +
-	"\x0fBuyThinkTimeRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12%\n" +
-	"\x0eremain_seconds\x18\x02 \x01(\x05R\rremainSeconds\"K\n" +
-	"\fAutoBuyinReq\x12\x16\n" +
-	"\x06enable\x18\x01 \x01(\bR\x06enable\x12#\n" +
-	"\rtrigger_chips\x18\x02 \x01(\x05R\ftriggerChips\"2\n" +
-	"\fAutoBuyinRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"5\n" +
-	"\x0eInteractionReq\x12#\n" +
-	"\rtarget_player\x18\x02 \x01(\x04R\ftargetPlayer\"4\n" +
-	"\x0eInteractionRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\".\n" +
-	"\vEmoticonReq\x12\x1f\n" +
-	"\vemoticon_id\x18\x01 \x01(\x05R\n" +
-	"emoticonId\"s\n" +
-	"\vEmoticonRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x1f\n" +
-	"\vfrom_player\x18\x02 \x01(\x04R\n" +
-	"fromPlayer\x12\x1f\n" +
-	"\vemoticon_id\x18\x03 \x01(\x05R\n" +
-	"emoticonId\"k\n" +
-	"\bBuyInReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x12\x12\n" +
-	"\x04chip\x18\x02 \x01(\x03R\x04chip\x122\n" +
-	"\tcoin_type\x18\x03 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\"\x8f\x01\n" +
-	"\bBuyInRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x17\n" +
-	"\aroom_id\x18\x02 \x01(\x04R\x06roomId\x12\x12\n" +
-	"\x04chip\x18\x03 \x01(\x03R\x04chip\x122\n" +
-	"\tcoin_type\x18\x04 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\"g\n" +
-	"\x12MainBuyInDetailReq\x12\x1d\n" +
-	"\n" +
-	"room_stage\x18\x01 \x01(\x05R\troomStage\x122\n" +
-	"\tcoin_type\x18\x02 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\"\xae\x01\n" +
-	"\x12MainBuyInDetailRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x1e\n" +
-	"\n" +
-	"SmallBlind\x18\x02 \x01(\x03R\n" +
-	"SmallBlind\x12\x1a\n" +
-	"\bBigBlind\x18\x03 \x01(\x03R\bBigBlind\x12\x1b\n" +
-	"\tmin_buyin\x18\x04 \x01(\x05R\bminBuyin\x12\x1b\n" +
-	"\tmax_buyin\x18\x05 \x01(\x05R\bmaxBuyin\"6\n" +
-	"\x15GetMilitaryDiagramReq\x12\x1d\n" +
-	"\n" +
-	"range_type\x18\x01 \x01(\x05R\trangeType\";\n" +
-	"\x15GetMilitaryDiagramRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"(\n" +
-	"\vShowCardReq\x12\x19\n" +
-	"\bcard_ids\x18\x01 \x03(\x05R\acardIds\"1\n" +
-	"\vShowCardRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"/\n" +
-	"\x10GetPlayerInfoReq\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\x04R\bplayerId\"6\n" +
-	"\x10GetPlayerInfoRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"G\n" +
-	"\rMarkPlayerReq\x12\x1b\n" +
-	"\tplayer_id\x18\x01 \x01(\x04R\bplayerId\x12\x19\n" +
-	"\bmark_tag\x18\x02 \x01(\tR\amarkTag\"3\n" +
-	"\rMarkPlayerRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"P\n" +
-	"\x0fInsuranceBuyReq\x12%\n" +
-	"\x0einsurance_type\x18\x01 \x01(\x05R\rinsuranceType\x12\x16\n" +
-	"\x06amount\x18\x02 \x01(\x05R\x06amount\"5\n" +
-	"\x0fInsuranceBuyRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"\x8c\x01\n" +
-	"\n" +
-	"RoomSetReq\x12A\n" +
-	"\bsettings\x18\x01 \x03(\v2%.g1.protocol.RoomSetReq.SettingsEntryR\bsettings\x1a;\n" +
-	"\rSettingsEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\tR\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\tR\x05value:\x028\x01\"0\n" +
-	"\n" +
-	"RoomSetRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"\x15\n" +
-	"\x13SngGetBlindLevelReq\"9\n" +
-	"\x13SngGetBlindLevelRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\")\n" +
-	"\x0eGetRoomInfoReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"\xe6\x01\n" +
-	"\x0eGetRoomInfoRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12-\n" +
-	"\x04base\x18\x02 \x01(\v2\x19.g1.protocol.RoomBaseInfoR\x04base\x12>\n" +
-	"\n" +
-	"table_info\x18\x03 \x01(\v2\x1f.g1.protocol.TableTexasGameDataR\ttableInfo\x12A\n" +
-	"\thand_info\x18\x04 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\"\x17\n" +
-	"\x15InsuranceThinkTimeReq\"b\n" +
-	"\x15InsuranceThinkTimeRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12%\n" +
-	"\x0eremain_seconds\x18\x02 \x01(\x05R\rremainSeconds\"\x10\n" +
-	"\x0eInsuranceOpReq\"4\n" +
-	"\x0eInsuranceOpRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\")\n" +
-	"\x0eGetGameInfoReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\"\xd0\x01\n" +
-	"\x0eGetGameInfoRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x17\n" +
-	"\aroom_id\x18\x02 \x01(\x04R\x06roomId\x12>\n" +
-	"\n" +
-	"table_info\x18\x03 \x01(\v2\x1f.g1.protocol.TableTexasGameDataR\ttableInfo\x12A\n" +
-	"\thand_info\x18\x04 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\"/\n" +
-	"\x10AddToFavoriteReq\x12\x1b\n" +
-	"\ttarget_id\x18\x01 \x01(\x04R\btargetId\"T\n" +
-	"\x10AddToFavoriteRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x12\x1c\n" +
-	"\tfavorites\x18\x02 \x03(\x04R\tfavorites\"(\n" +
-	"\rChangeSkinReq\x12\x17\n" +
-	"\askin_id\x18\x01 \x01(\tR\x06skinId\"3\n" +
-	"\rChangeSkinRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"\x96\x01\n" +
-	"\x0fPreOperationReq\x12;\n" +
-	"\foperate_type\x18\x01 \x01(\x0e2\x18.g1.protocol.OperateTypeR\voperateType\x12\x17\n" +
-	"\aroom_id\x18\x02 \x01(\x04R\x06roomId\x12\x19\n" +
-	"\bchair_id\x18\x03 \x01(\rR\achairId\x12\x12\n" +
-	"\x04chip\x18\x04 \x01(\x03R\x04chip\"5\n" +
-	"\x0fPreOperationRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"3\n" +
-	"\x10RabbitHuntingReq\x12\x1f\n" +
-	"\vactivity_id\x18\x01 \x01(\x05R\n" +
-	"activityId\"6\n" +
-	"\x10RabbitHuntingRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"\x10\n" +
-	"\x0eEarlySettleReq\"4\n" +
-	"\x0eEarlySettleRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"\x87\x05\n" +
-	"\rCreateRoomReq\x120\n" +
-	"\agame_id\x18\x01 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1d\n" +
-	"\n" +
-	"is_private\x18\x03 \x01(\bR\tisPrivate\x12\x14\n" +
-	"\x05blind\x18\x04 \x01(\tR\x05blind\x12\x12\n" +
-	"\x04ante\x18\x05 \x01(\rR\x04ante\x12\x1b\n" +
-	"\tgame_time\x18\x06 \x01(\x03R\bgameTime\x12\x1b\n" +
-	"\tchair_num\x18\a \x01(\rR\bchairNum\x12\x17\n" +
-	"\ais_auth\x18\b \x01(\bR\x06isAuth\x12,\n" +
-	"\x05stage\x18\t \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12\x19\n" +
-	"\bstart_bb\x18\n" +
-	" \x01(\rR\astartBb\x12\x1d\n" +
-	"\n" +
-	"start_time\x18\v \x01(\x03R\tstartTime\x122\n" +
-	"\tcoin_type\x18\f \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\x12\x19\n" +
-	"\bis_rebuy\x18\r \x01(\bR\aisRebuy\x12\x19\n" +
-	"\bis_addon\x18\x0e \x01(\bR\aisAddon\x12\x17\n" +
-	"\aclub_id\x18\x0f \x01(\rR\x06clubId\x12\x1b\n" +
-	"\tis_insure\x18\x10 \x01(\bR\bisInsure\x12\x1a\n" +
-	"\bstraddle\x18\x11 \x01(\x05R\bstraddle\x12\x19\n" +
-	"\bip_limit\x18\x12 \x01(\bR\aipLimit\x12\x1f\n" +
-	"\valliance_id\x18\x13 \x01(\rR\n" +
-	"allianceId\x12\x1b\n" +
-	"\tgps_limit\x18\x14 \x01(\bR\bgpsLimit\x12\x17\n" +
-	"\aroom_id\x18\x15 \x01(\x04R\x06roomId\"k\n" +
-	"\rCreateRoomRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x126\n" +
-	"\troom_info\x18\x02 \x01(\v2\x19.g1.protocol.RoomBaseInfoR\broomInfo\"E\n" +
-	"\vJoinRoomReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x12\x1d\n" +
-	"\n" +
-	"conn_busId\x18\x02 \x01(\rR\tconnBusId\"\xa3\x03\n" +
-	"\vJoinRoomRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x126\n" +
-	"\troom_info\x18\x02 \x01(\v2\x19.g1.protocol.RoomBaseInfoR\broomInfo\x12>\n" +
-	"\n" +
-	"table_info\x18\x03 \x01(\v2\x1f.g1.protocol.TableTexasGameDataR\ttableInfo\x12C\n" +
-	"\trole_info\x18\x04 \x03(\v2&.g1.protocol.JoinRoomRsp.RoleInfoEntryR\broleInfo\x12A\n" +
-	"\thand_info\x18\x05 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\x12\x1a\n" +
-	"\bduration\x18\x06 \x01(\x03R\bduration\x1aT\n" +
-	"\rRoleInfoEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x04R\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.g1.protocol.PbIconDescR\x05value:\x028\x01\"\xc3\x01\n" +
-	"\rQuickStartReq\x120\n" +
-	"\agame_id\x18\x01 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x122\n" +
-	"\tcoin_type\x18\x02 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\x12,\n" +
-	"\x05stage\x18\x03 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12\x1e\n" +
-	"\vconn_bus_id\x18\n" +
-	" \x01(\rR\tconnBusId\"\xb2\x03\n" +
-	"\rQuickStartRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x126\n" +
-	"\troom_info\x18\x02 \x01(\v2\x19.g1.protocol.RoomBaseInfoR\broomInfo\x12>\n" +
-	"\n" +
-	"table_info\x18\x03 \x01(\v2\x1f.g1.protocol.TableTexasGameDataR\ttableInfo\x12E\n" +
-	"\trole_info\x18\x04 \x03(\v2(.g1.protocol.QuickStartRsp.RoleInfoEntryR\broleInfo\x12A\n" +
-	"\thand_info\x18\x05 \x01(\v2$.g1.protocol.PlayerTexasGameCardDataR\bhandInfo\x12%\n" +
-	"\x0ereservation_id\x18\x06 \x01(\x04R\rreservationId\x1aT\n" +
-	"\rRoleInfoEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x04R\x03key\x12-\n" +
-	"\x05value\x18\x02 \x01(\v2\x17.g1.protocol.PbIconDescR\x05value:\x028\x01\"\xeb\x01\n" +
-	"\x15QuickStartRollbackReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x120\n" +
-	"\agame_id\x18\x02 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\x06gameId\x122\n" +
-	"\tcoin_type\x18\x03 \x01(\x0e2\x15.g1.protocol.CoinTypeR\bcoinType\x12,\n" +
-	"\x05stage\x18\x04 \x01(\x0e2\x16.g1.protocol.RoomStageR\x05stage\x12%\n" +
-	"\x0ereservation_id\x18\x05 \x01(\x04R\rreservationId\",\n" +
+	"\trole_list\x18\x02 \x03(\v2\x17.g1.protocol.PbIconDescR\broleList\",\n" +
 	"\x11MallBuyPackageReq\x12\x17\n" +
 	"\aconf_id\x18\x01 \x01(\x05R\x06confId\"7\n" +
 	"\x11MallBuyPackageRsp\x12\"\n" +
@@ -10276,45 +5376,7 @@ const file_core_client_proto_rawDesc = "" +
 	"\aconf_id\x18\x01 \x01(\x05R\x06confId\x12\x18\n" +
 	"\achannel\x18\x02 \x01(\x05R\achannel\"5\n" +
 	"\x0fMallRechargeRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"m\n" +
-	"\x13MysqlInnerUpdateReq\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x04R\x02id\x122\n" +
-	"\tdata_type\x18\x02 \x01(\x0e2\x15.g1.protocol.DataTypeR\bdataType\x12\x12\n" +
-	"\x04data\x18\x03 \x01(\fR\x04data\"9\n" +
-	"\x13MysqlInnerUpdateRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\"\x83\x02\n" +
-	"\x10QueryRoomInfoReq\x12\x17\n" +
-	"\aroom_id\x18\x01 \x01(\x04R\x06roomId\x12\x19\n" +
-	"\btable_id\x18\x02 \x01(\x04R\atableId\x124\n" +
-	"\tgame_type\x18\x03 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\bgameType\x125\n" +
-	"\n" +
-	"room_stage\x18\x04 \x01(\x0e2\x16.g1.protocol.RoomStageR\troomStage\x12\x14\n" +
-	"\x05blind\x18\x05 \x01(\tR\x05blind\x12\x1d\n" +
-	"\n" +
-	"begin_time\x18\x06 \x01(\x03R\tbeginTime\x12\x19\n" +
-	"\bend_time\x18\a \x01(\x03R\aendTime\"k\n" +
-	"\x10QueryRoomInfoRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x123\n" +
-	"\x04list\x18\x02 \x03(\v2\x1f.g1.protocol.MysqlTexasRoomInfoR\x04list\"\x97\x02\n" +
-	"\x12QueryPlayerInfoReq\x12\x10\n" +
-	"\x03uid\x18\x01 \x01(\x04R\x03uid\x12\x19\n" +
-	"\btable_id\x18\x02 \x01(\x04R\atableId\x12\x17\n" +
-	"\aroom_id\x18\x03 \x01(\x04R\x06roomId\x124\n" +
-	"\tgame_type\x18\x04 \x01(\x0e2\x17.g1.protocol.GameTypeIdR\bgameType\x125\n" +
-	"\n" +
-	"room_stage\x18\x05 \x01(\x0e2\x16.g1.protocol.RoomStageR\troomStage\x12\x14\n" +
-	"\x05blind\x18\x06 \x01(\tR\x05blind\x12\x1d\n" +
-	"\n" +
-	"begin_time\x18\a \x01(\x03R\tbeginTime\x12\x19\n" +
-	"\bend_time\x18\b \x01(\x03R\aendTime\"o\n" +
-	"\x12QueryPlayerInfoRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x125\n" +
-	"\x04list\x18\x02 \x03(\v2!.g1.protocol.MysqlTexasPlayerInfoR\x04list\"+\n" +
-	"\x10QueryGameInfoReq\x12\x17\n" +
-	"\agame_id\x18\x01 \x01(\tR\x06gameId\"h\n" +
-	"\x10QueryGameInfoRsp\x12\"\n" +
-	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\x120\n" +
-	"\x04data\x18\x02 \x01(\v2\x1c.g1.protocol.TexasGameRecordR\x04data\";\n" +
+	"\x03ret\x18\x01 \x01(\v2\x10.g1.protocol.RetR\x03ret\";\n" +
 	"\n" +
 	"UseItemReq\x12\x17\n" +
 	"\aitem_id\x18\x01 \x01(\x05R\x06itemId\x12\x14\n" +
@@ -10387,7 +5449,7 @@ func file_core_client_proto_rawDescGZIP() []byte {
 }
 
 var file_core_client_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_core_client_proto_msgTypes = make([]protoimpl.MessageInfo, 180)
+var file_core_client_proto_msgTypes = make([]protoimpl.MessageInfo, 95)
 var file_core_client_proto_goTypes = []any{
 	(ObtainDisplayMode)(0),              // 0: g1.protocol.ObtainDisplayMode
 	(*PbChatMsg)(nil),                   // 1: g1.protocol.PbChatMsg
@@ -10423,353 +5485,163 @@ var file_core_client_proto_goTypes = []any{
 	(*ScSyncUserDataV2)(nil),            // 31: g1.protocol.ScSyncUserDataV2
 	(*ScChat)(nil),                      // 32: g1.protocol.ScChat
 	(*ScDataChangeNotify)(nil),          // 33: g1.protocol.ScDataChangeNotify
-	(*GameUserEventNotify)(nil),         // 34: g1.protocol.GameUserEventNotify
-	(*LoginReq)(nil),                    // 35: g1.protocol.LoginReq
-	(*LoginRsp)(nil),                    // 36: g1.protocol.LoginRsp
-	(*LogoutReq)(nil),                   // 37: g1.protocol.LogoutReq
-	(*LogoutRsp)(nil),                   // 38: g1.protocol.LogoutRsp
-	(*HeartBeatReq)(nil),                // 39: g1.protocol.HeartBeatReq
-	(*HeartBeatRsp)(nil),                // 40: g1.protocol.HeartBeatRsp
-	(*ItemUseReq)(nil),                  // 41: g1.protocol.ItemUseReq
-	(*ItemUseRsp)(nil),                  // 42: g1.protocol.ItemUseRsp
-	(*ChangeNameReq)(nil),               // 43: g1.protocol.ChangeNameReq
-	(*ChangeNameRsp)(nil),               // 44: g1.protocol.ChangeNameRsp
-	(*ChangeIconReq)(nil),               // 45: g1.protocol.ChangeIconReq
-	(*ChangeIconRsp)(nil),               // 46: g1.protocol.ChangeIconRsp
-	(*InfoGetBriefInfoReq)(nil),         // 47: g1.protocol.InfoGetBriefInfoReq
-	(*InfoGetBriefInfoRsp)(nil),         // 48: g1.protocol.InfoGetBriefInfoRsp
-	(*InfoGetIconDescReq)(nil),          // 49: g1.protocol.InfoGetIconDescReq
-	(*InfoGetIconDescRsp)(nil),          // 50: g1.protocol.InfoGetIconDescRsp
-	(*GuideCompletedReq)(nil),           // 51: g1.protocol.GuideCompletedReq
-	(*GuideCompletedRsp)(nil),           // 52: g1.protocol.GuideCompletedRsp
-	(*GuideInProgressReq)(nil),          // 53: g1.protocol.GuideInProgressReq
-	(*GuideInProgressRsp)(nil),          // 54: g1.protocol.GuideInProgressRsp
-	(*ExchangeGiftBagReq)(nil),          // 55: g1.protocol.ExchangeGiftBagReq
-	(*ExchangeGiftBagRsp)(nil),          // 56: g1.protocol.ExchangeGiftBagRsp
-	(*GetMailListReq)(nil),              // 57: g1.protocol.GetMailListReq
-	(*GetMailListRsp)(nil),              // 58: g1.protocol.GetMailListRsp
-	(*ReadMailReq)(nil),                 // 59: g1.protocol.ReadMailReq
-	(*ReadMailRsp)(nil),                 // 60: g1.protocol.ReadMailRsp
-	(*DelMailReq)(nil),                  // 61: g1.protocol.DelMailReq
-	(*DelMailRsp)(nil),                  // 62: g1.protocol.DelMailRsp
-	(*GetMailAttachReq)(nil),            // 63: g1.protocol.GetMailAttachReq
-	(*GetMailAttachRsp)(nil),            // 64: g1.protocol.GetMailAttachRsp
-	(*ChatChatReq)(nil),                 // 65: g1.protocol.ChatChatReq
-	(*ChatChatRsp)(nil),                 // 66: g1.protocol.ChatChatRsp
-	(*ChatGetChatInfoReq)(nil),          // 67: g1.protocol.ChatGetChatInfoReq
-	(*ChatGetChatInfoRsp)(nil),          // 68: g1.protocol.ChatGetChatInfoRsp
-	(*ChatDelChatReq)(nil),              // 69: g1.protocol.ChatDelChatReq
-	(*ChatDelChatRsp)(nil),              // 70: g1.protocol.ChatDelChatRsp
-	(*FriendGetFriendInfoReq)(nil),      // 71: g1.protocol.FriendGetFriendInfoReq
-	(*FriendGetFriendInfoRsp)(nil),      // 72: g1.protocol.FriendGetFriendInfoRsp
-	(*FriendAddFriendReq)(nil),          // 73: g1.protocol.FriendAddFriendReq
-	(*FriendAddFriendRsp)(nil),          // 74: g1.protocol.FriendAddFriendRsp
-	(*FriendConfirmFriendReq)(nil),      // 75: g1.protocol.FriendConfirmFriendReq
-	(*FriendConfirmFriendRsp)(nil),      // 76: g1.protocol.FriendConfirmFriendRsp
-	(*FriendShieldUserReq)(nil),         // 77: g1.protocol.FriendShieldUserReq
-	(*FriendShieldUserRsp)(nil),         // 78: g1.protocol.FriendShieldUserRsp
-	(*FriendSearchRoleReq)(nil),         // 79: g1.protocol.FriendSearchRoleReq
-	(*FriendSearchRoleRsp)(nil),         // 80: g1.protocol.FriendSearchRoleRsp
-	(*RoomListReq)(nil),                 // 81: g1.protocol.RoomListReq
-	(*RoomListRsp)(nil),                 // 82: g1.protocol.RoomListRsp
-	(*DoBetReq)(nil),                    // 83: g1.protocol.DoBetReq
-	(*DoBetRsp)(nil),                    // 84: g1.protocol.DoBetRsp
-	(*FoldReq)(nil),                     // 85: g1.protocol.FoldReq
-	(*FoldRsp)(nil),                     // 86: g1.protocol.FoldRsp
-	(*GetLookersReq)(nil),               // 87: g1.protocol.GetLookersReq
-	(*GetLookersRsp)(nil),               // 88: g1.protocol.GetLookersRsp
-	(*SitDownReq)(nil),                  // 89: g1.protocol.SitDownReq
-	(*SitDownRsp)(nil),                  // 90: g1.protocol.SitDownRsp
-	(*StandUpReq)(nil),                  // 91: g1.protocol.StandUpReq
-	(*StandUpRsp)(nil),                  // 92: g1.protocol.StandUpRsp
-	(*LeaveGameReq)(nil),                // 93: g1.protocol.LeaveGameReq
-	(*LeaveGameRsp)(nil),                // 94: g1.protocol.LeaveGameRsp
-	(*MilitarySuccessReq)(nil),          // 95: g1.protocol.MilitarySuccessReq
-	(*MilitarySuccessRsp)(nil),          // 96: g1.protocol.MilitarySuccessRsp
-	(*GetGameLogReq)(nil),               // 97: g1.protocol.GetGameLogReq
-	(*GetGameLogRsp)(nil),               // 98: g1.protocol.GetGameLogRsp
-	(*GetTimeLeftReq)(nil),              // 99: g1.protocol.GetTimeLeftReq
-	(*GetTimeLeftRsp)(nil),              // 100: g1.protocol.GetTimeLeftRsp
-	(*VoiceCallReq)(nil),                // 101: g1.protocol.VoiceCallReq
-	(*VoiceCallRsp)(nil),                // 102: g1.protocol.VoiceCallRsp
-	(*BuyThinkTimeReq)(nil),             // 103: g1.protocol.BuyThinkTimeReq
-	(*BuyThinkTimeRsp)(nil),             // 104: g1.protocol.BuyThinkTimeRsp
-	(*AutoBuyinReq)(nil),                // 105: g1.protocol.AutoBuyinReq
-	(*AutoBuyinRsp)(nil),                // 106: g1.protocol.AutoBuyinRsp
-	(*InteractionReq)(nil),              // 107: g1.protocol.InteractionReq
-	(*InteractionRsp)(nil),              // 108: g1.protocol.InteractionRsp
-	(*EmoticonReq)(nil),                 // 109: g1.protocol.EmoticonReq
-	(*EmoticonRsp)(nil),                 // 110: g1.protocol.EmoticonRsp
-	(*BuyInReq)(nil),                    // 111: g1.protocol.BuyInReq
-	(*BuyInRsp)(nil),                    // 112: g1.protocol.BuyInRsp
-	(*MainBuyInDetailReq)(nil),          // 113: g1.protocol.MainBuyInDetailReq
-	(*MainBuyInDetailRsp)(nil),          // 114: g1.protocol.MainBuyInDetailRsp
-	(*GetMilitaryDiagramReq)(nil),       // 115: g1.protocol.GetMilitaryDiagramReq
-	(*GetMilitaryDiagramRsp)(nil),       // 116: g1.protocol.GetMilitaryDiagramRsp
-	(*ShowCardReq)(nil),                 // 117: g1.protocol.ShowCardReq
-	(*ShowCardRsp)(nil),                 // 118: g1.protocol.ShowCardRsp
-	(*GetPlayerInfoReq)(nil),            // 119: g1.protocol.GetPlayerInfoReq
-	(*GetPlayerInfoRsp)(nil),            // 120: g1.protocol.GetPlayerInfoRsp
-	(*MarkPlayerReq)(nil),               // 121: g1.protocol.MarkPlayerReq
-	(*MarkPlayerRsp)(nil),               // 122: g1.protocol.MarkPlayerRsp
-	(*InsuranceBuyReq)(nil),             // 123: g1.protocol.InsuranceBuyReq
-	(*InsuranceBuyRsp)(nil),             // 124: g1.protocol.InsuranceBuyRsp
-	(*RoomSetReq)(nil),                  // 125: g1.protocol.RoomSetReq
-	(*RoomSetRsp)(nil),                  // 126: g1.protocol.RoomSetRsp
-	(*SngGetBlindLevelReq)(nil),         // 127: g1.protocol.SngGetBlindLevelReq
-	(*SngGetBlindLevelRsp)(nil),         // 128: g1.protocol.SngGetBlindLevelRsp
-	(*GetRoomInfoReq)(nil),              // 129: g1.protocol.GetRoomInfoReq
-	(*GetRoomInfoRsp)(nil),              // 130: g1.protocol.GetRoomInfoRsp
-	(*InsuranceThinkTimeReq)(nil),       // 131: g1.protocol.InsuranceThinkTimeReq
-	(*InsuranceThinkTimeRsp)(nil),       // 132: g1.protocol.InsuranceThinkTimeRsp
-	(*InsuranceOpReq)(nil),              // 133: g1.protocol.InsuranceOpReq
-	(*InsuranceOpRsp)(nil),              // 134: g1.protocol.InsuranceOpRsp
-	(*GetGameInfoReq)(nil),              // 135: g1.protocol.GetGameInfoReq
-	(*GetGameInfoRsp)(nil),              // 136: g1.protocol.GetGameInfoRsp
-	(*AddToFavoriteReq)(nil),            // 137: g1.protocol.AddToFavoriteReq
-	(*AddToFavoriteRsp)(nil),            // 138: g1.protocol.AddToFavoriteRsp
-	(*ChangeSkinReq)(nil),               // 139: g1.protocol.ChangeSkinReq
-	(*ChangeSkinRsp)(nil),               // 140: g1.protocol.ChangeSkinRsp
-	(*PreOperationReq)(nil),             // 141: g1.protocol.PreOperationReq
-	(*PreOperationRsp)(nil),             // 142: g1.protocol.PreOperationRsp
-	(*RabbitHuntingReq)(nil),            // 143: g1.protocol.RabbitHuntingReq
-	(*RabbitHuntingRsp)(nil),            // 144: g1.protocol.RabbitHuntingRsp
-	(*EarlySettleReq)(nil),              // 145: g1.protocol.EarlySettleReq
-	(*EarlySettleRsp)(nil),              // 146: g1.protocol.EarlySettleRsp
-	(*CreateRoomReq)(nil),               // 147: g1.protocol.CreateRoomReq
-	(*CreateRoomRsp)(nil),               // 148: g1.protocol.CreateRoomRsp
-	(*JoinRoomReq)(nil),                 // 149: g1.protocol.JoinRoomReq
-	(*JoinRoomRsp)(nil),                 // 150: g1.protocol.JoinRoomRsp
-	(*QuickStartReq)(nil),               // 151: g1.protocol.QuickStartReq
-	(*QuickStartRsp)(nil),               // 152: g1.protocol.QuickStartRsp
-	(*QuickStartRollbackReq)(nil),       // 153: g1.protocol.QuickStartRollbackReq
-	(*MallBuyPackageReq)(nil),           // 154: g1.protocol.MallBuyPackageReq
-	(*MallBuyPackageRsp)(nil),           // 155: g1.protocol.MallBuyPackageRsp
-	(*MallRechargeReq)(nil),             // 156: g1.protocol.MallRechargeReq
-	(*MallRechargeRsp)(nil),             // 157: g1.protocol.MallRechargeRsp
-	(*MysqlInnerUpdateReq)(nil),         // 158: g1.protocol.MysqlInnerUpdateReq
-	(*MysqlInnerUpdateRsp)(nil),         // 159: g1.protocol.MysqlInnerUpdateRsp
-	(*QueryRoomInfoReq)(nil),            // 160: g1.protocol.QueryRoomInfoReq
-	(*QueryRoomInfoRsp)(nil),            // 161: g1.protocol.QueryRoomInfoRsp
-	(*QueryPlayerInfoReq)(nil),          // 162: g1.protocol.QueryPlayerInfoReq
-	(*QueryPlayerInfoRsp)(nil),          // 163: g1.protocol.QueryPlayerInfoRsp
-	(*QueryGameInfoReq)(nil),            // 164: g1.protocol.QueryGameInfoReq
-	(*QueryGameInfoRsp)(nil),            // 165: g1.protocol.QueryGameInfoRsp
-	(*UseItemReq)(nil),                  // 166: g1.protocol.UseItemReq
-	(*UseItemRsp)(nil),                  // 167: g1.protocol.UseItemRsp
-	(*SellItemReq)(nil),                 // 168: g1.protocol.SellItemReq
-	(*SellItemRsp)(nil),                 // 169: g1.protocol.SellItemRsp
-	(*DecomposeItemReq)(nil),            // 170: g1.protocol.DecomposeItemReq
-	(*DecomposeItemRsp)(nil),            // 171: g1.protocol.DecomposeItemRsp
-	(*QueryBackpackReq)(nil),            // 172: g1.protocol.QueryBackpackReq
-	(*QueryBackpackRsp)(nil),            // 173: g1.protocol.QueryBackpackRsp
-	(*BatchAddItemReq)(nil),             // 174: g1.protocol.BatchAddItemReq
-	(*BatchAddItemRsp)(nil),             // 175: g1.protocol.BatchAddItemRsp
-	(*ObtainRewardItem)(nil),            // 176: g1.protocol.ObtainRewardItem
-	(*S2CObtainNotice)(nil),             // 177: g1.protocol.S2CObtainNotice
-	nil,                                 // 178: g1.protocol.RoomSetReq.SettingsEntry
-	nil,                                 // 179: g1.protocol.JoinRoomRsp.RoleInfoEntry
-	nil,                                 // 180: g1.protocol.QuickStartRsp.RoleInfoEntry
-	(*PbIconDesc)(nil),                  // 181: g1.protocol.PbIconDesc
-	(*PbItem)(nil),                      // 182: g1.protocol.PbItem
-	(*Ret)(nil),                         // 183: g1.protocol.Ret
-	(*RoleInfo)(nil),                    // 184: g1.protocol.RoleInfo
-	(EKickOutReason)(0),                 // 185: g1.protocol.EKickOutReason
-	(*PbMallItem)(nil),                  // 186: g1.protocol.PbMallItem
-	(*PbIcon)(nil),                      // 187: g1.protocol.PbIcon
-	(*PbFrame)(nil),                     // 188: g1.protocol.PbFrame
-	(*PbTask)(nil),                      // 189: g1.protocol.PbTask
-	(GameNotifyType)(0),                 // 190: g1.protocol.GameNotifyType
-	(*PbRoleBriefInfo)(nil),             // 191: g1.protocol.PbRoleBriefInfo
-	(GameTypeId)(0),                     // 192: g1.protocol.GameTypeId
-	(RoomStage)(0),                      // 193: g1.protocol.RoomStage
-	(RoomSortType)(0),                   // 194: g1.protocol.RoomSortType
-	(CoinType)(0),                       // 195: g1.protocol.CoinType
-	(*RoomShowInfo)(nil),                // 196: g1.protocol.RoomShowInfo
-	(OperateType)(0),                    // 197: g1.protocol.OperateType
-	(*RoomBaseInfo)(nil),                // 198: g1.protocol.RoomBaseInfo
-	(*TableTexasGameData)(nil),          // 199: g1.protocol.TableTexasGameData
-	(*PlayerTexasGameCardData)(nil),     // 200: g1.protocol.PlayerTexasGameCardData
-	(DataType)(0),                       // 201: g1.protocol.DataType
-	(*MysqlTexasRoomInfo)(nil),          // 202: g1.protocol.MysqlTexasRoomInfo
-	(*MysqlTexasPlayerInfo)(nil),        // 203: g1.protocol.MysqlTexasPlayerInfo
-	(*TexasGameRecord)(nil),             // 204: g1.protocol.TexasGameRecord
+	(*LoginReq)(nil),                    // 34: g1.protocol.LoginReq
+	(*LoginRsp)(nil),                    // 35: g1.protocol.LoginRsp
+	(*LogoutReq)(nil),                   // 36: g1.protocol.LogoutReq
+	(*LogoutRsp)(nil),                   // 37: g1.protocol.LogoutRsp
+	(*HeartBeatReq)(nil),                // 38: g1.protocol.HeartBeatReq
+	(*HeartBeatRsp)(nil),                // 39: g1.protocol.HeartBeatRsp
+	(*ItemUseReq)(nil),                  // 40: g1.protocol.ItemUseReq
+	(*ItemUseRsp)(nil),                  // 41: g1.protocol.ItemUseRsp
+	(*ChangeNameReq)(nil),               // 42: g1.protocol.ChangeNameReq
+	(*ChangeNameRsp)(nil),               // 43: g1.protocol.ChangeNameRsp
+	(*ChangeIconReq)(nil),               // 44: g1.protocol.ChangeIconReq
+	(*ChangeIconRsp)(nil),               // 45: g1.protocol.ChangeIconRsp
+	(*InfoGetBriefInfoReq)(nil),         // 46: g1.protocol.InfoGetBriefInfoReq
+	(*InfoGetBriefInfoRsp)(nil),         // 47: g1.protocol.InfoGetBriefInfoRsp
+	(*InfoGetIconDescReq)(nil),          // 48: g1.protocol.InfoGetIconDescReq
+	(*InfoGetIconDescRsp)(nil),          // 49: g1.protocol.InfoGetIconDescRsp
+	(*GuideCompletedReq)(nil),           // 50: g1.protocol.GuideCompletedReq
+	(*GuideCompletedRsp)(nil),           // 51: g1.protocol.GuideCompletedRsp
+	(*GuideInProgressReq)(nil),          // 52: g1.protocol.GuideInProgressReq
+	(*GuideInProgressRsp)(nil),          // 53: g1.protocol.GuideInProgressRsp
+	(*ExchangeGiftBagReq)(nil),          // 54: g1.protocol.ExchangeGiftBagReq
+	(*ExchangeGiftBagRsp)(nil),          // 55: g1.protocol.ExchangeGiftBagRsp
+	(*GetMailListReq)(nil),              // 56: g1.protocol.GetMailListReq
+	(*GetMailListRsp)(nil),              // 57: g1.protocol.GetMailListRsp
+	(*ReadMailReq)(nil),                 // 58: g1.protocol.ReadMailReq
+	(*ReadMailRsp)(nil),                 // 59: g1.protocol.ReadMailRsp
+	(*DelMailReq)(nil),                  // 60: g1.protocol.DelMailReq
+	(*DelMailRsp)(nil),                  // 61: g1.protocol.DelMailRsp
+	(*GetMailAttachReq)(nil),            // 62: g1.protocol.GetMailAttachReq
+	(*GetMailAttachRsp)(nil),            // 63: g1.protocol.GetMailAttachRsp
+	(*ChatChatReq)(nil),                 // 64: g1.protocol.ChatChatReq
+	(*ChatChatRsp)(nil),                 // 65: g1.protocol.ChatChatRsp
+	(*ChatGetChatInfoReq)(nil),          // 66: g1.protocol.ChatGetChatInfoReq
+	(*ChatGetChatInfoRsp)(nil),          // 67: g1.protocol.ChatGetChatInfoRsp
+	(*ChatDelChatReq)(nil),              // 68: g1.protocol.ChatDelChatReq
+	(*ChatDelChatRsp)(nil),              // 69: g1.protocol.ChatDelChatRsp
+	(*FriendGetFriendInfoReq)(nil),      // 70: g1.protocol.FriendGetFriendInfoReq
+	(*FriendGetFriendInfoRsp)(nil),      // 71: g1.protocol.FriendGetFriendInfoRsp
+	(*FriendAddFriendReq)(nil),          // 72: g1.protocol.FriendAddFriendReq
+	(*FriendAddFriendRsp)(nil),          // 73: g1.protocol.FriendAddFriendRsp
+	(*FriendConfirmFriendReq)(nil),      // 74: g1.protocol.FriendConfirmFriendReq
+	(*FriendConfirmFriendRsp)(nil),      // 75: g1.protocol.FriendConfirmFriendRsp
+	(*FriendShieldUserReq)(nil),         // 76: g1.protocol.FriendShieldUserReq
+	(*FriendShieldUserRsp)(nil),         // 77: g1.protocol.FriendShieldUserRsp
+	(*FriendSearchRoleReq)(nil),         // 78: g1.protocol.FriendSearchRoleReq
+	(*FriendSearchRoleRsp)(nil),         // 79: g1.protocol.FriendSearchRoleRsp
+	(*MallBuyPackageReq)(nil),           // 80: g1.protocol.MallBuyPackageReq
+	(*MallBuyPackageRsp)(nil),           // 81: g1.protocol.MallBuyPackageRsp
+	(*MallRechargeReq)(nil),             // 82: g1.protocol.MallRechargeReq
+	(*MallRechargeRsp)(nil),             // 83: g1.protocol.MallRechargeRsp
+	(*UseItemReq)(nil),                  // 84: g1.protocol.UseItemReq
+	(*UseItemRsp)(nil),                  // 85: g1.protocol.UseItemRsp
+	(*SellItemReq)(nil),                 // 86: g1.protocol.SellItemReq
+	(*SellItemRsp)(nil),                 // 87: g1.protocol.SellItemRsp
+	(*DecomposeItemReq)(nil),            // 88: g1.protocol.DecomposeItemReq
+	(*DecomposeItemRsp)(nil),            // 89: g1.protocol.DecomposeItemRsp
+	(*QueryBackpackReq)(nil),            // 90: g1.protocol.QueryBackpackReq
+	(*QueryBackpackRsp)(nil),            // 91: g1.protocol.QueryBackpackRsp
+	(*BatchAddItemReq)(nil),             // 92: g1.protocol.BatchAddItemReq
+	(*BatchAddItemRsp)(nil),             // 93: g1.protocol.BatchAddItemRsp
+	(*ObtainRewardItem)(nil),            // 94: g1.protocol.ObtainRewardItem
+	(*S2CObtainNotice)(nil),             // 95: g1.protocol.S2CObtainNotice
+	(*PbIconDesc)(nil),                  // 96: g1.protocol.PbIconDesc
+	(*PbItem)(nil),                      // 97: g1.protocol.PbItem
+	(*Ret)(nil),                         // 98: g1.protocol.Ret
+	(*RoleInfo)(nil),                    // 99: g1.protocol.RoleInfo
+	(EKickOutReason)(0),                 // 100: g1.protocol.EKickOutReason
+	(*PbMallItem)(nil),                  // 101: g1.protocol.PbMallItem
+	(*PbIcon)(nil),                      // 102: g1.protocol.PbIcon
+	(*PbFrame)(nil),                     // 103: g1.protocol.PbFrame
+	(*PbTask)(nil),                      // 104: g1.protocol.PbTask
+	(*PbRoleBriefInfo)(nil),             // 105: g1.protocol.PbRoleBriefInfo
 }
 var file_core_client_proto_depIdxs = []int32{
-	181, // 0: g1.protocol.PbChatMsg.sender_icon:type_name -> g1.protocol.PbIconDesc
+	96,  // 0: g1.protocol.PbChatMsg.sender_icon:type_name -> g1.protocol.PbIconDesc
 	1,   // 1: g1.protocol.PbChatFriendMsg.msg_list:type_name -> g1.protocol.PbChatMsg
 	2,   // 2: g1.protocol.PbChatInfo.friend_msg_list:type_name -> g1.protocol.PbChatFriendMsg
-	182, // 3: g1.protocol.PbMail.attach_list:type_name -> g1.protocol.PbItem
+	97,  // 3: g1.protocol.PbMail.attach_list:type_name -> g1.protocol.PbItem
 	4,   // 4: g1.protocol.MailInfo.mail_list:type_name -> g1.protocol.PbMail
 	4,   // 5: g1.protocol.MailInnerAddMailReq.mail_list:type_name -> g1.protocol.PbMail
-	183, // 6: g1.protocol.MailInnerAddMailRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 6: g1.protocol.MailInnerAddMailRsp.ret:type_name -> g1.protocol.Ret
 	8,   // 7: g1.protocol.RoleFriendInfo.friend_list:type_name -> g1.protocol.PbFriend
 	9,   // 8: g1.protocol.RoleFriendInfo.invitation_list:type_name -> g1.protocol.PbFriendInvitation
-	183, // 9: g1.protocol.FriendInnerAddFriendRsp.ret:type_name -> g1.protocol.Ret
-	183, // 10: g1.protocol.FriendInnerConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
-	183, // 11: g1.protocol.GMGetRoleRsp.ret:type_name -> g1.protocol.Ret
-	184, // 12: g1.protocol.GMGetRoleRsp.role_info:type_name -> g1.protocol.RoleInfo
-	184, // 13: g1.protocol.GMSetRoleReq.role_info:type_name -> g1.protocol.RoleInfo
-	183, // 14: g1.protocol.GMSetRoleRsp.ret:type_name -> g1.protocol.Ret
-	183, // 15: g1.protocol.GMAddItemRsp.ret:type_name -> g1.protocol.Ret
-	185, // 16: g1.protocol.ScKickOut.reason:type_name -> g1.protocol.EKickOutReason
-	185, // 17: g1.protocol.ConnKickOutReq.reason:type_name -> g1.protocol.EKickOutReason
-	183, // 18: g1.protocol.ConnKickOutRsp.ret:type_name -> g1.protocol.Ret
-	184, // 19: g1.protocol.ScSyncUserData.role_info:type_name -> g1.protocol.RoleInfo
-	182, // 20: g1.protocol.RoleInventoryPatch.upsert_items:type_name -> g1.protocol.PbItem
-	186, // 21: g1.protocol.RoleMallPatch.upsert_items:type_name -> g1.protocol.PbMallItem
-	187, // 22: g1.protocol.RoleIconPatch.upsert_icons:type_name -> g1.protocol.PbIcon
-	188, // 23: g1.protocol.RoleIconPatch.upsert_frames:type_name -> g1.protocol.PbFrame
-	189, // 24: g1.protocol.RoleActvityTaskPatch.upsert_tasks:type_name -> g1.protocol.PbTask
-	184, // 25: g1.protocol.ScSyncUserDataV2.role_info:type_name -> g1.protocol.RoleInfo
+	98,  // 9: g1.protocol.FriendInnerAddFriendRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 10: g1.protocol.FriendInnerConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 11: g1.protocol.GMGetRoleRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 12: g1.protocol.GMGetRoleRsp.role_info:type_name -> g1.protocol.RoleInfo
+	99,  // 13: g1.protocol.GMSetRoleReq.role_info:type_name -> g1.protocol.RoleInfo
+	98,  // 14: g1.protocol.GMSetRoleRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 15: g1.protocol.GMAddItemRsp.ret:type_name -> g1.protocol.Ret
+	100, // 16: g1.protocol.ScKickOut.reason:type_name -> g1.protocol.EKickOutReason
+	100, // 17: g1.protocol.ConnKickOutReq.reason:type_name -> g1.protocol.EKickOutReason
+	98,  // 18: g1.protocol.ConnKickOutRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 19: g1.protocol.ScSyncUserData.role_info:type_name -> g1.protocol.RoleInfo
+	97,  // 20: g1.protocol.RoleInventoryPatch.upsert_items:type_name -> g1.protocol.PbItem
+	101, // 21: g1.protocol.RoleMallPatch.upsert_items:type_name -> g1.protocol.PbMallItem
+	102, // 22: g1.protocol.RoleIconPatch.upsert_icons:type_name -> g1.protocol.PbIcon
+	103, // 23: g1.protocol.RoleIconPatch.upsert_frames:type_name -> g1.protocol.PbFrame
+	104, // 24: g1.protocol.RoleActvityTaskPatch.upsert_tasks:type_name -> g1.protocol.PbTask
+	99,  // 25: g1.protocol.ScSyncUserDataV2.role_info:type_name -> g1.protocol.RoleInfo
 	27,  // 26: g1.protocol.ScSyncUserDataV2.inventory_patch:type_name -> g1.protocol.RoleInventoryPatch
 	28,  // 27: g1.protocol.ScSyncUserDataV2.mall_patch:type_name -> g1.protocol.RoleMallPatch
 	29,  // 28: g1.protocol.ScSyncUserDataV2.icon_patch:type_name -> g1.protocol.RoleIconPatch
 	30,  // 29: g1.protocol.ScSyncUserDataV2.actvity_task_patch:type_name -> g1.protocol.RoleActvityTaskPatch
 	1,   // 30: g1.protocol.ScChat.msg:type_name -> g1.protocol.PbChatMsg
-	190, // 31: g1.protocol.GameUserEventNotify.Event:type_name -> g1.protocol.GameNotifyType
-	183, // 32: g1.protocol.LoginRsp.ret:type_name -> g1.protocol.Ret
-	184, // 33: g1.protocol.LoginRsp.role_info:type_name -> g1.protocol.RoleInfo
-	183, // 34: g1.protocol.LogoutRsp.ret:type_name -> g1.protocol.Ret
-	183, // 35: g1.protocol.HeartBeatRsp.ret:type_name -> g1.protocol.Ret
-	182, // 36: g1.protocol.ItemUseReq.item_list:type_name -> g1.protocol.PbItem
-	183, // 37: g1.protocol.ItemUseRsp.ret:type_name -> g1.protocol.Ret
-	182, // 38: g1.protocol.ItemUseRsp.real_add_item_list:type_name -> g1.protocol.PbItem
-	183, // 39: g1.protocol.ChangeNameRsp.ret:type_name -> g1.protocol.Ret
-	183, // 40: g1.protocol.ChangeIconRsp.ret:type_name -> g1.protocol.Ret
-	183, // 41: g1.protocol.InfoGetBriefInfoRsp.ret:type_name -> g1.protocol.Ret
-	191, // 42: g1.protocol.InfoGetBriefInfoRsp.info_list:type_name -> g1.protocol.PbRoleBriefInfo
-	183, // 43: g1.protocol.InfoGetIconDescRsp.ret:type_name -> g1.protocol.Ret
-	181, // 44: g1.protocol.InfoGetIconDescRsp.icon_list:type_name -> g1.protocol.PbIconDesc
-	183, // 45: g1.protocol.GuideCompletedRsp.ret:type_name -> g1.protocol.Ret
-	183, // 46: g1.protocol.GuideInProgressRsp.ret:type_name -> g1.protocol.Ret
-	183, // 47: g1.protocol.ExchangeGiftBagRsp.ret:type_name -> g1.protocol.Ret
-	182, // 48: g1.protocol.ExchangeGiftBagRsp.item_list:type_name -> g1.protocol.PbItem
-	183, // 49: g1.protocol.GetMailListRsp.ret:type_name -> g1.protocol.Ret
-	5,   // 50: g1.protocol.GetMailListRsp.mail_info:type_name -> g1.protocol.MailInfo
-	183, // 51: g1.protocol.ReadMailRsp.ret:type_name -> g1.protocol.Ret
-	183, // 52: g1.protocol.DelMailRsp.ret:type_name -> g1.protocol.Ret
-	183, // 53: g1.protocol.GetMailAttachRsp.ret:type_name -> g1.protocol.Ret
-	182, // 54: g1.protocol.GetMailAttachRsp.item_list:type_name -> g1.protocol.PbItem
-	1,   // 55: g1.protocol.ChatChatReq.msg:type_name -> g1.protocol.PbChatMsg
-	183, // 56: g1.protocol.ChatChatRsp.ret:type_name -> g1.protocol.Ret
-	183, // 57: g1.protocol.ChatGetChatInfoRsp.ret:type_name -> g1.protocol.Ret
-	3,   // 58: g1.protocol.ChatGetChatInfoRsp.chat_info:type_name -> g1.protocol.PbChatInfo
-	183, // 59: g1.protocol.ChatDelChatRsp.ret:type_name -> g1.protocol.Ret
-	183, // 60: g1.protocol.FriendGetFriendInfoRsp.ret:type_name -> g1.protocol.Ret
-	10,  // 61: g1.protocol.FriendGetFriendInfoRsp.friend_info:type_name -> g1.protocol.RoleFriendInfo
-	183, // 62: g1.protocol.FriendAddFriendRsp.ret:type_name -> g1.protocol.Ret
-	183, // 63: g1.protocol.FriendConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
-	183, // 64: g1.protocol.FriendShieldUserRsp.ret:type_name -> g1.protocol.Ret
-	183, // 65: g1.protocol.FriendSearchRoleRsp.ret:type_name -> g1.protocol.Ret
-	181, // 66: g1.protocol.FriendSearchRoleRsp.role_list:type_name -> g1.protocol.PbIconDesc
-	192, // 67: g1.protocol.RoomListReq.game_id:type_name -> g1.protocol.GameTypeId
-	193, // 68: g1.protocol.RoomListReq.stage:type_name -> g1.protocol.RoomStage
-	194, // 69: g1.protocol.RoomListReq.sort_type:type_name -> g1.protocol.RoomSortType
-	195, // 70: g1.protocol.RoomListReq.coin_type:type_name -> g1.protocol.CoinType
-	183, // 71: g1.protocol.RoomListRsp.ret:type_name -> g1.protocol.Ret
-	192, // 72: g1.protocol.RoomListRsp.game_id:type_name -> g1.protocol.GameTypeId
-	193, // 73: g1.protocol.RoomListRsp.stage:type_name -> g1.protocol.RoomStage
-	196, // 74: g1.protocol.RoomListRsp.room_list:type_name -> g1.protocol.RoomShowInfo
-	195, // 75: g1.protocol.RoomListRsp.coin_type:type_name -> g1.protocol.CoinType
-	197, // 76: g1.protocol.DoBetReq.operate_type:type_name -> g1.protocol.OperateType
-	183, // 77: g1.protocol.DoBetRsp.ret:type_name -> g1.protocol.Ret
-	197, // 78: g1.protocol.DoBetRsp.op_type:type_name -> g1.protocol.OperateType
-	183, // 79: g1.protocol.FoldRsp.ret:type_name -> g1.protocol.Ret
-	183, // 80: g1.protocol.GetLookersRsp.ret:type_name -> g1.protocol.Ret
-	181, // 81: g1.protocol.GetLookersRsp.lookers:type_name -> g1.protocol.PbIconDesc
-	181, // 82: g1.protocol.SitDownReq.role_icon:type_name -> g1.protocol.PbIconDesc
-	183, // 83: g1.protocol.SitDownRsp.ret:type_name -> g1.protocol.Ret
-	183, // 84: g1.protocol.StandUpRsp.ret:type_name -> g1.protocol.Ret
-	183, // 85: g1.protocol.LeaveGameRsp.ret:type_name -> g1.protocol.Ret
-	183, // 86: g1.protocol.MilitarySuccessRsp.ret:type_name -> g1.protocol.Ret
-	183, // 87: g1.protocol.GetGameLogRsp.ret:type_name -> g1.protocol.Ret
-	183, // 88: g1.protocol.GetTimeLeftRsp.ret:type_name -> g1.protocol.Ret
-	183, // 89: g1.protocol.VoiceCallRsp.ret:type_name -> g1.protocol.Ret
-	183, // 90: g1.protocol.BuyThinkTimeRsp.ret:type_name -> g1.protocol.Ret
-	183, // 91: g1.protocol.AutoBuyinRsp.ret:type_name -> g1.protocol.Ret
-	183, // 92: g1.protocol.InteractionRsp.ret:type_name -> g1.protocol.Ret
-	183, // 93: g1.protocol.EmoticonRsp.ret:type_name -> g1.protocol.Ret
-	195, // 94: g1.protocol.BuyInReq.coin_type:type_name -> g1.protocol.CoinType
-	183, // 95: g1.protocol.BuyInRsp.ret:type_name -> g1.protocol.Ret
-	195, // 96: g1.protocol.BuyInRsp.coin_type:type_name -> g1.protocol.CoinType
-	195, // 97: g1.protocol.MainBuyInDetailReq.coin_type:type_name -> g1.protocol.CoinType
-	183, // 98: g1.protocol.MainBuyInDetailRsp.ret:type_name -> g1.protocol.Ret
-	183, // 99: g1.protocol.GetMilitaryDiagramRsp.ret:type_name -> g1.protocol.Ret
-	183, // 100: g1.protocol.ShowCardRsp.ret:type_name -> g1.protocol.Ret
-	183, // 101: g1.protocol.GetPlayerInfoRsp.ret:type_name -> g1.protocol.Ret
-	183, // 102: g1.protocol.MarkPlayerRsp.ret:type_name -> g1.protocol.Ret
-	183, // 103: g1.protocol.InsuranceBuyRsp.ret:type_name -> g1.protocol.Ret
-	178, // 104: g1.protocol.RoomSetReq.settings:type_name -> g1.protocol.RoomSetReq.SettingsEntry
-	183, // 105: g1.protocol.RoomSetRsp.ret:type_name -> g1.protocol.Ret
-	183, // 106: g1.protocol.SngGetBlindLevelRsp.ret:type_name -> g1.protocol.Ret
-	183, // 107: g1.protocol.GetRoomInfoRsp.ret:type_name -> g1.protocol.Ret
-	198, // 108: g1.protocol.GetRoomInfoRsp.base:type_name -> g1.protocol.RoomBaseInfo
-	199, // 109: g1.protocol.GetRoomInfoRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	200, // 110: g1.protocol.GetRoomInfoRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	183, // 111: g1.protocol.InsuranceThinkTimeRsp.ret:type_name -> g1.protocol.Ret
-	183, // 112: g1.protocol.InsuranceOpRsp.ret:type_name -> g1.protocol.Ret
-	183, // 113: g1.protocol.GetGameInfoRsp.ret:type_name -> g1.protocol.Ret
-	199, // 114: g1.protocol.GetGameInfoRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	200, // 115: g1.protocol.GetGameInfoRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	183, // 116: g1.protocol.AddToFavoriteRsp.ret:type_name -> g1.protocol.Ret
-	183, // 117: g1.protocol.ChangeSkinRsp.ret:type_name -> g1.protocol.Ret
-	197, // 118: g1.protocol.PreOperationReq.operate_type:type_name -> g1.protocol.OperateType
-	183, // 119: g1.protocol.PreOperationRsp.ret:type_name -> g1.protocol.Ret
-	183, // 120: g1.protocol.RabbitHuntingRsp.ret:type_name -> g1.protocol.Ret
-	183, // 121: g1.protocol.EarlySettleRsp.ret:type_name -> g1.protocol.Ret
-	192, // 122: g1.protocol.CreateRoomReq.game_id:type_name -> g1.protocol.GameTypeId
-	193, // 123: g1.protocol.CreateRoomReq.stage:type_name -> g1.protocol.RoomStage
-	195, // 124: g1.protocol.CreateRoomReq.coin_type:type_name -> g1.protocol.CoinType
-	183, // 125: g1.protocol.CreateRoomRsp.ret:type_name -> g1.protocol.Ret
-	198, // 126: g1.protocol.CreateRoomRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
-	183, // 127: g1.protocol.JoinRoomRsp.ret:type_name -> g1.protocol.Ret
-	198, // 128: g1.protocol.JoinRoomRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
-	199, // 129: g1.protocol.JoinRoomRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	179, // 130: g1.protocol.JoinRoomRsp.role_info:type_name -> g1.protocol.JoinRoomRsp.RoleInfoEntry
-	200, // 131: g1.protocol.JoinRoomRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	192, // 132: g1.protocol.QuickStartReq.game_id:type_name -> g1.protocol.GameTypeId
-	195, // 133: g1.protocol.QuickStartReq.coin_type:type_name -> g1.protocol.CoinType
-	193, // 134: g1.protocol.QuickStartReq.stage:type_name -> g1.protocol.RoomStage
-	183, // 135: g1.protocol.QuickStartRsp.ret:type_name -> g1.protocol.Ret
-	198, // 136: g1.protocol.QuickStartRsp.room_info:type_name -> g1.protocol.RoomBaseInfo
-	199, // 137: g1.protocol.QuickStartRsp.table_info:type_name -> g1.protocol.TableTexasGameData
-	180, // 138: g1.protocol.QuickStartRsp.role_info:type_name -> g1.protocol.QuickStartRsp.RoleInfoEntry
-	200, // 139: g1.protocol.QuickStartRsp.hand_info:type_name -> g1.protocol.PlayerTexasGameCardData
-	192, // 140: g1.protocol.QuickStartRollbackReq.game_id:type_name -> g1.protocol.GameTypeId
-	195, // 141: g1.protocol.QuickStartRollbackReq.coin_type:type_name -> g1.protocol.CoinType
-	193, // 142: g1.protocol.QuickStartRollbackReq.stage:type_name -> g1.protocol.RoomStage
-	183, // 143: g1.protocol.MallBuyPackageRsp.ret:type_name -> g1.protocol.Ret
-	183, // 144: g1.protocol.MallRechargeRsp.ret:type_name -> g1.protocol.Ret
-	201, // 145: g1.protocol.MysqlInnerUpdateReq.data_type:type_name -> g1.protocol.DataType
-	183, // 146: g1.protocol.MysqlInnerUpdateRsp.ret:type_name -> g1.protocol.Ret
-	192, // 147: g1.protocol.QueryRoomInfoReq.game_type:type_name -> g1.protocol.GameTypeId
-	193, // 148: g1.protocol.QueryRoomInfoReq.room_stage:type_name -> g1.protocol.RoomStage
-	183, // 149: g1.protocol.QueryRoomInfoRsp.ret:type_name -> g1.protocol.Ret
-	202, // 150: g1.protocol.QueryRoomInfoRsp.list:type_name -> g1.protocol.MysqlTexasRoomInfo
-	192, // 151: g1.protocol.QueryPlayerInfoReq.game_type:type_name -> g1.protocol.GameTypeId
-	193, // 152: g1.protocol.QueryPlayerInfoReq.room_stage:type_name -> g1.protocol.RoomStage
-	183, // 153: g1.protocol.QueryPlayerInfoRsp.ret:type_name -> g1.protocol.Ret
-	203, // 154: g1.protocol.QueryPlayerInfoRsp.list:type_name -> g1.protocol.MysqlTexasPlayerInfo
-	183, // 155: g1.protocol.QueryGameInfoRsp.ret:type_name -> g1.protocol.Ret
-	204, // 156: g1.protocol.QueryGameInfoRsp.data:type_name -> g1.protocol.TexasGameRecord
-	183, // 157: g1.protocol.UseItemRsp.ret:type_name -> g1.protocol.Ret
-	183, // 158: g1.protocol.SellItemRsp.ret:type_name -> g1.protocol.Ret
-	183, // 159: g1.protocol.DecomposeItemRsp.ret:type_name -> g1.protocol.Ret
-	182, // 160: g1.protocol.DecomposeItemRsp.rewards:type_name -> g1.protocol.PbItem
-	183, // 161: g1.protocol.QueryBackpackRsp.ret:type_name -> g1.protocol.Ret
-	182, // 162: g1.protocol.QueryBackpackRsp.items:type_name -> g1.protocol.PbItem
-	182, // 163: g1.protocol.BatchAddItemReq.items:type_name -> g1.protocol.PbItem
-	183, // 164: g1.protocol.BatchAddItemRsp.ret:type_name -> g1.protocol.Ret
-	0,   // 165: g1.protocol.S2CObtainNotice.display_mode:type_name -> g1.protocol.ObtainDisplayMode
-	176, // 166: g1.protocol.S2CObtainNotice.items:type_name -> g1.protocol.ObtainRewardItem
-	181, // 167: g1.protocol.JoinRoomRsp.RoleInfoEntry.value:type_name -> g1.protocol.PbIconDesc
-	181, // 168: g1.protocol.QuickStartRsp.RoleInfoEntry.value:type_name -> g1.protocol.PbIconDesc
-	169, // [169:169] is the sub-list for method output_type
-	169, // [169:169] is the sub-list for method input_type
-	169, // [169:169] is the sub-list for extension type_name
-	169, // [169:169] is the sub-list for extension extendee
-	0,   // [0:169] is the sub-list for field type_name
+	98,  // 31: g1.protocol.LoginRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 32: g1.protocol.LoginRsp.role_info:type_name -> g1.protocol.RoleInfo
+	98,  // 33: g1.protocol.LogoutRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 34: g1.protocol.HeartBeatRsp.ret:type_name -> g1.protocol.Ret
+	97,  // 35: g1.protocol.ItemUseReq.item_list:type_name -> g1.protocol.PbItem
+	98,  // 36: g1.protocol.ItemUseRsp.ret:type_name -> g1.protocol.Ret
+	97,  // 37: g1.protocol.ItemUseRsp.real_add_item_list:type_name -> g1.protocol.PbItem
+	98,  // 38: g1.protocol.ChangeNameRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 39: g1.protocol.ChangeIconRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 40: g1.protocol.InfoGetBriefInfoRsp.ret:type_name -> g1.protocol.Ret
+	105, // 41: g1.protocol.InfoGetBriefInfoRsp.info_list:type_name -> g1.protocol.PbRoleBriefInfo
+	98,  // 42: g1.protocol.InfoGetIconDescRsp.ret:type_name -> g1.protocol.Ret
+	96,  // 43: g1.protocol.InfoGetIconDescRsp.icon_list:type_name -> g1.protocol.PbIconDesc
+	98,  // 44: g1.protocol.GuideCompletedRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 45: g1.protocol.GuideInProgressRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 46: g1.protocol.ExchangeGiftBagRsp.ret:type_name -> g1.protocol.Ret
+	97,  // 47: g1.protocol.ExchangeGiftBagRsp.item_list:type_name -> g1.protocol.PbItem
+	98,  // 48: g1.protocol.GetMailListRsp.ret:type_name -> g1.protocol.Ret
+	5,   // 49: g1.protocol.GetMailListRsp.mail_info:type_name -> g1.protocol.MailInfo
+	98,  // 50: g1.protocol.ReadMailRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 51: g1.protocol.DelMailRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 52: g1.protocol.GetMailAttachRsp.ret:type_name -> g1.protocol.Ret
+	97,  // 53: g1.protocol.GetMailAttachRsp.item_list:type_name -> g1.protocol.PbItem
+	1,   // 54: g1.protocol.ChatChatReq.msg:type_name -> g1.protocol.PbChatMsg
+	98,  // 55: g1.protocol.ChatChatRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 56: g1.protocol.ChatGetChatInfoRsp.ret:type_name -> g1.protocol.Ret
+	3,   // 57: g1.protocol.ChatGetChatInfoRsp.chat_info:type_name -> g1.protocol.PbChatInfo
+	98,  // 58: g1.protocol.ChatDelChatRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 59: g1.protocol.FriendGetFriendInfoRsp.ret:type_name -> g1.protocol.Ret
+	10,  // 60: g1.protocol.FriendGetFriendInfoRsp.friend_info:type_name -> g1.protocol.RoleFriendInfo
+	98,  // 61: g1.protocol.FriendAddFriendRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 62: g1.protocol.FriendConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 63: g1.protocol.FriendShieldUserRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 64: g1.protocol.FriendSearchRoleRsp.ret:type_name -> g1.protocol.Ret
+	96,  // 65: g1.protocol.FriendSearchRoleRsp.role_list:type_name -> g1.protocol.PbIconDesc
+	98,  // 66: g1.protocol.MallBuyPackageRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 67: g1.protocol.MallRechargeRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 68: g1.protocol.UseItemRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 69: g1.protocol.SellItemRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 70: g1.protocol.DecomposeItemRsp.ret:type_name -> g1.protocol.Ret
+	97,  // 71: g1.protocol.DecomposeItemRsp.rewards:type_name -> g1.protocol.PbItem
+	98,  // 72: g1.protocol.QueryBackpackRsp.ret:type_name -> g1.protocol.Ret
+	97,  // 73: g1.protocol.QueryBackpackRsp.items:type_name -> g1.protocol.PbItem
+	97,  // 74: g1.protocol.BatchAddItemReq.items:type_name -> g1.protocol.PbItem
+	98,  // 75: g1.protocol.BatchAddItemRsp.ret:type_name -> g1.protocol.Ret
+	0,   // 76: g1.protocol.S2CObtainNotice.display_mode:type_name -> g1.protocol.ObtainDisplayMode
+	94,  // 77: g1.protocol.S2CObtainNotice.items:type_name -> g1.protocol.ObtainRewardItem
+	78,  // [78:78] is the sub-list for method output_type
+	78,  // [78:78] is the sub-list for method input_type
+	78,  // [78:78] is the sub-list for extension type_name
+	78,  // [78:78] is the sub-list for extension extendee
+	0,   // [0:78] is the sub-list for field type_name
 }
 
 func init() { file_core_client_proto_init() }
@@ -10780,17 +5652,13 @@ func file_core_client_proto_init() {
 	file_core_common_proto_init()
 	file_core_role_proto_init()
 	file_service_infosvr_proto_init()
-	file_core_room_proto_init()
-	file_core_game_enum_proto_init()
-	file_core_struct_proto_init()
-	file_core_database_proto_init()
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_client_proto_rawDesc), len(file_core_client_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   180,
+			NumMessages:   95,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
