@@ -207,15 +207,13 @@ type RoleBasicInfo struct {
 	Level int32                  `protobuf:"varint,2,opt,name=level,proto3" json:"level,omitempty"` // 等级
 	// 以下货币/资源字段已废弃（迁移至 RoleCurrencyInfo.currency_map，按 EItemID
 	// 货币段 key 存储）。字段号保留占位防止复用；服务端已停写停读。
-	Exp           int64  `protobuf:"varint,3,opt,name=exp,proto3" json:"exp,omitempty"`                                    // [deprecated] 经验 → currency_map[EItemID.EXP]
-	Gold          int64  `protobuf:"varint,4,opt,name=gold,proto3" json:"gold,omitempty"`                                  // [deprecated] 金币 → currency_map[EItemID.GOLD]
-	Diamond       int64  `protobuf:"varint,5,opt,name=diamond,proto3" json:"diamond,omitempty"`                            // [deprecated] 钻石 → currency_map[EItemID.DIAMOND]
-	Credit        int64  `protobuf:"varint,6,opt,name=credit,proto3" json:"credit,omitempty"`                              // [deprecated] 信用 → currency_map[EItemID.CREDIT]
-	Liveness      int64  `protobuf:"varint,7,opt,name=liveness,proto3" json:"liveness,omitempty"`                          // [deprecated] 活跃度 → currency_map[EItemID.LIVENESS]
-	GuildCoin     int64  `protobuf:"varint,8,opt,name=guild_coin,json=guildCoin,proto3" json:"guild_coin,omitempty"`       // [deprecated] 公会币 → currency_map[EItemID.GUILD_COIN]
-	FreeCnt       uint32 `protobuf:"varint,9,opt,name=free_cnt,json=freeCnt,proto3" json:"free_cnt,omitempty"`             // 免费改名次数
-	AceCoin       int64  `protobuf:"varint,10,opt,name=ace_coin,json=aceCoin,proto3" json:"ace_coin,omitempty"`            // [deprecated] ace币 → currency_map[EItemID.ACECOIN]
-	WinAceCoin    int64  `protobuf:"varint,11,opt,name=win_ace_coin,json=winAceCoin,proto3" json:"win_ace_coin,omitempty"` // [deprecated] Win ace币 → currency_map[EItemID.WIN_ACECOIN]
+	Exp           int64  `protobuf:"varint,3,opt,name=exp,proto3" json:"exp,omitempty"`                              // [deprecated] 经验 → currency_map[EItemID.EXP]
+	Gold          int64  `protobuf:"varint,4,opt,name=gold,proto3" json:"gold,omitempty"`                            // [deprecated] 金币 → currency_map[EItemID.GOLD]
+	Diamond       int64  `protobuf:"varint,5,opt,name=diamond,proto3" json:"diamond,omitempty"`                      // [deprecated] 钻石 → currency_map[EItemID.DIAMOND]
+	Credit        int64  `protobuf:"varint,6,opt,name=credit,proto3" json:"credit,omitempty"`                        // [deprecated] 信用 → currency_map[EItemID.CREDIT]
+	Liveness      int64  `protobuf:"varint,7,opt,name=liveness,proto3" json:"liveness,omitempty"`                    // [deprecated] 活跃度 → currency_map[EItemID.LIVENESS]
+	GuildCoin     int64  `protobuf:"varint,8,opt,name=guild_coin,json=guildCoin,proto3" json:"guild_coin,omitempty"` // [deprecated] 公会币 → currency_map[EItemID.GUILD_COIN]
+	FreeCnt       uint32 `protobuf:"varint,9,opt,name=free_cnt,json=freeCnt,proto3" json:"free_cnt,omitempty"`       // 免费改名次数
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -309,20 +307,6 @@ func (x *RoleBasicInfo) GetGuildCoin() int64 {
 func (x *RoleBasicInfo) GetFreeCnt() uint32 {
 	if x != nil {
 		return x.FreeCnt
-	}
-	return 0
-}
-
-func (x *RoleBasicInfo) GetAceCoin() int64 {
-	if x != nil {
-		return x.AceCoin
-	}
-	return 0
-}
-
-func (x *RoleBasicInfo) GetWinAceCoin() int64 {
-	if x != nil {
-		return x.WinAceCoin
 	}
 	return 0
 }
@@ -1077,51 +1061,6 @@ func (x *RoleOpenFunction) GetIsAllOpen() bool {
 	return false
 }
 
-// 礼包码
-type RoleGiftExchangeInfo struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	TypeMap       map[int32]int32        `protobuf:"bytes,1,rep,name=type_map,json=typeMap,proto3" json:"type_map,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"` // 已经领取过的礼包  key:类型id,val: 数量
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *RoleGiftExchangeInfo) Reset() {
-	*x = RoleGiftExchangeInfo{}
-	mi := &file_core_role_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *RoleGiftExchangeInfo) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*RoleGiftExchangeInfo) ProtoMessage() {}
-
-func (x *RoleGiftExchangeInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_role_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use RoleGiftExchangeInfo.ProtoReflect.Descriptor instead.
-func (*RoleGiftExchangeInfo) Descriptor() ([]byte, []int) {
-	return file_core_role_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *RoleGiftExchangeInfo) GetTypeMap() map[int32]int32 {
-	if x != nil {
-		return x.TypeMap
-	}
-	return nil
-}
-
 // 活动任务,日常，成就等
 type RoleActvityTaskInfo struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1132,7 +1071,7 @@ type RoleActvityTaskInfo struct {
 
 func (x *RoleActvityTaskInfo) Reset() {
 	*x = RoleActvityTaskInfo{}
-	mi := &file_core_role_proto_msgTypes[18]
+	mi := &file_core_role_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1144,7 +1083,7 @@ func (x *RoleActvityTaskInfo) String() string {
 func (*RoleActvityTaskInfo) ProtoMessage() {}
 
 func (x *RoleActvityTaskInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_role_proto_msgTypes[18]
+	mi := &file_core_role_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1157,7 +1096,7 @@ func (x *RoleActvityTaskInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleActvityTaskInfo.ProtoReflect.Descriptor instead.
 func (*RoleActvityTaskInfo) Descriptor() ([]byte, []int) {
-	return file_core_role_proto_rawDescGZIP(), []int{18}
+	return file_core_role_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *RoleActvityTaskInfo) GetTaskMap() map[int32]*PbTask {
@@ -1181,7 +1120,6 @@ type RoleInfo struct {
 	GuildInfo     *RoleGuildInfo         `protobuf:"bytes,9,opt,name=guild_info,json=guildInfo,proto3" json:"guild_info,omitempty"`             // 公会
 	GuideInfo     *RoleGuideInfo         `protobuf:"bytes,10,opt,name=guide_info,json=guideInfo,proto3" json:"guide_info,omitempty"`            // 引导数据
 	OpenFunInfo   *RoleOpenFunction      `protobuf:"bytes,11,opt,name=open_fun_info,json=openFunInfo,proto3" json:"open_fun_info,omitempty"`    // 功能开放
-	GiftInfo      *RoleGiftExchangeInfo  `protobuf:"bytes,12,opt,name=gift_info,json=giftInfo,proto3" json:"gift_info,omitempty"`               // 礼包兑换
 	Actvity_Info  *RoleActvityTaskInfo   `protobuf:"bytes,13,opt,name=actvity_Info,json=actvityInfo,proto3" json:"actvity_Info,omitempty"`      // 活动任务，日常等
 	CurrencyInfo  *RoleCurrencyInfo      `protobuf:"bytes,14,opt,name=currency_info,json=currencyInfo,proto3" json:"currency_info,omitempty"`   // 货币/资源（1-9999 段）
 	ConnSvrInfo   *ConnSvrInfo           `protobuf:"bytes,100,opt,name=conn_svr_info,json=connSvrInfo,proto3" json:"conn_svr_info,omitempty"`   // 服务器用，客户端不用管
@@ -1191,7 +1129,7 @@ type RoleInfo struct {
 
 func (x *RoleInfo) Reset() {
 	*x = RoleInfo{}
-	mi := &file_core_role_proto_msgTypes[19]
+	mi := &file_core_role_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1203,7 +1141,7 @@ func (x *RoleInfo) String() string {
 func (*RoleInfo) ProtoMessage() {}
 
 func (x *RoleInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_role_proto_msgTypes[19]
+	mi := &file_core_role_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1216,7 +1154,7 @@ func (x *RoleInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleInfo.ProtoReflect.Descriptor instead.
 func (*RoleInfo) Descriptor() ([]byte, []int) {
-	return file_core_role_proto_rawDescGZIP(), []int{19}
+	return file_core_role_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *RoleInfo) GetRegisterInfo() *RoleRegisterInfo {
@@ -1296,13 +1234,6 @@ func (x *RoleInfo) GetOpenFunInfo() *RoleOpenFunction {
 	return nil
 }
 
-func (x *RoleInfo) GetGiftInfo() *RoleGiftExchangeInfo {
-	if x != nil {
-		return x.GiftInfo
-	}
-	return nil
-}
-
 func (x *RoleInfo) GetActvity_Info() *RoleActvityTaskInfo {
 	if x != nil {
 		return x.Actvity_Info
@@ -1335,7 +1266,7 @@ type RoleCurrencyInfo struct {
 
 func (x *RoleCurrencyInfo) Reset() {
 	*x = RoleCurrencyInfo{}
-	mi := &file_core_role_proto_msgTypes[20]
+	mi := &file_core_role_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1347,7 +1278,7 @@ func (x *RoleCurrencyInfo) String() string {
 func (*RoleCurrencyInfo) ProtoMessage() {}
 
 func (x *RoleCurrencyInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_role_proto_msgTypes[20]
+	mi := &file_core_role_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1360,7 +1291,7 @@ func (x *RoleCurrencyInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use RoleCurrencyInfo.ProtoReflect.Descriptor instead.
 func (*RoleCurrencyInfo) Descriptor() ([]byte, []int) {
-	return file_core_role_proto_rawDescGZIP(), []int{20}
+	return file_core_role_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *RoleCurrencyInfo) GetCurrencyMap() map[int32]int64 {
@@ -1381,7 +1312,7 @@ type ConnSvrInfo struct {
 
 func (x *ConnSvrInfo) Reset() {
 	*x = ConnSvrInfo{}
-	mi := &file_core_role_proto_msgTypes[21]
+	mi := &file_core_role_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1393,7 +1324,7 @@ func (x *ConnSvrInfo) String() string {
 func (*ConnSvrInfo) ProtoMessage() {}
 
 func (x *ConnSvrInfo) ProtoReflect() protoreflect.Message {
-	mi := &file_core_role_proto_msgTypes[21]
+	mi := &file_core_role_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1406,7 +1337,7 @@ func (x *ConnSvrInfo) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ConnSvrInfo.ProtoReflect.Descriptor instead.
 func (*ConnSvrInfo) Descriptor() ([]byte, []int) {
-	return file_core_role_proto_rawDescGZIP(), []int{21}
+	return file_core_role_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *ConnSvrInfo) GetBusId() uint32 {
@@ -1447,7 +1378,7 @@ type PbIconDesc struct {
 
 func (x *PbIconDesc) Reset() {
 	*x = PbIconDesc{}
-	mi := &file_core_role_proto_msgTypes[22]
+	mi := &file_core_role_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1459,7 +1390,7 @@ func (x *PbIconDesc) String() string {
 func (*PbIconDesc) ProtoMessage() {}
 
 func (x *PbIconDesc) ProtoReflect() protoreflect.Message {
-	mi := &file_core_role_proto_msgTypes[22]
+	mi := &file_core_role_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1472,7 +1403,7 @@ func (x *PbIconDesc) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use PbIconDesc.ProtoReflect.Descriptor instead.
 func (*PbIconDesc) Descriptor() ([]byte, []int) {
-	return file_core_role_proto_rawDescGZIP(), []int{22}
+	return file_core_role_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *PbIconDesc) GetUid() uint64 {
@@ -1547,7 +1478,7 @@ const file_core_role_proto_rawDesc = "" +
 	"\x13last_hart_beat_time\x18\x03 \x01(\x05R\x10lastHartBeatTime\x12$\n" +
 	"\x0enow_login_time\x18\x04 \x01(\x05R\fnowLoginTime\"2\n" +
 	"\fRoleGameInfo\x12\"\n" +
-	"\rplay_room_ids\x18\x01 \x03(\x04R\vplayRoomIds\"\xa4\x02\n" +
+	"\rplay_room_ids\x18\x01 \x03(\x04R\vplayRoomIds\"\xf3\x01\n" +
 	"\rRoleBasicInfo\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05level\x18\x02 \x01(\x05R\x05level\x12\x10\n" +
@@ -1558,11 +1489,8 @@ const file_core_role_proto_rawDesc = "" +
 	"\bliveness\x18\a \x01(\x03R\bliveness\x12\x1d\n" +
 	"\n" +
 	"guild_coin\x18\b \x01(\x03R\tguildCoin\x12\x19\n" +
-	"\bfree_cnt\x18\t \x01(\rR\afreeCnt\x12\x19\n" +
-	"\bace_coin\x18\n" +
-	" \x01(\x03R\aaceCoin\x12 \n" +
-	"\fwin_ace_coin\x18\v \x01(\x03R\n" +
-	"winAceCoin\"B\n" +
+	"\bfree_cnt\x18\t \x01(\rR\afreeCntJ\x04\b\n" +
+	"\x10\vJ\x04\b\v\x10\f\"B\n" +
 	"\x06PbItem\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x05R\x02id\x12\x14\n" +
 	"\x05count\x18\x02 \x01(\x03R\x05count\x12\x12\n" +
@@ -1626,17 +1554,12 @@ const file_core_role_proto_rawDesc = "" +
 	"\x06cur_id\x18\x02 \x01(\x05R\x05curId\"F\n" +
 	"\x10RoleOpenFunction\x12\x12\n" +
 	"\x04data\x18\x01 \x03(\x05R\x04data\x12\x1e\n" +
-	"\vis_all_open\x18\x02 \x01(\bR\tisAllOpen\"\x9d\x01\n" +
-	"\x14RoleGiftExchangeInfo\x12I\n" +
-	"\btype_map\x18\x01 \x03(\v2..g1.protocol.RoleGiftExchangeInfo.TypeMapEntryR\atypeMap\x1a:\n" +
-	"\fTypeMapEntry\x12\x10\n" +
-	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
-	"\x05value\x18\x02 \x01(\x05R\x05value:\x028\x01\"\xb0\x01\n" +
+	"\vis_all_open\x18\x02 \x01(\bR\tisAllOpen\"\xb0\x01\n" +
 	"\x13RoleActvityTaskInfo\x12H\n" +
 	"\btask_map\x18\x01 \x03(\v2-.g1.protocol.RoleActvityTaskInfo.TaskMapEntryR\ataskMap\x1aO\n" +
 	"\fTaskMapEntry\x12\x10\n" +
 	"\x03key\x18\x01 \x01(\x05R\x03key\x12)\n" +
-	"\x05value\x18\x02 \x01(\v2\x13.g1.protocol.PbTaskR\x05value:\x028\x01\"\xb8\a\n" +
+	"\x05value\x18\x02 \x01(\v2\x13.g1.protocol.PbTaskR\x05value:\x028\x01\"\xfe\x06\n" +
 	"\bRoleInfo\x12B\n" +
 	"\rregister_info\x18\x01 \x01(\v2\x1d.g1.protocol.RoleRegisterInfoR\fregisterInfo\x129\n" +
 	"\n" +
@@ -1653,11 +1576,10 @@ const file_core_role_proto_rawDesc = "" +
 	"\n" +
 	"guide_info\x18\n" +
 	" \x01(\v2\x1a.g1.protocol.RoleGuideInfoR\tguideInfo\x12A\n" +
-	"\ropen_fun_info\x18\v \x01(\v2\x1d.g1.protocol.RoleOpenFunctionR\vopenFunInfo\x12>\n" +
-	"\tgift_info\x18\f \x01(\v2!.g1.protocol.RoleGiftExchangeInfoR\bgiftInfo\x12C\n" +
+	"\ropen_fun_info\x18\v \x01(\v2\x1d.g1.protocol.RoleOpenFunctionR\vopenFunInfo\x12C\n" +
 	"\factvity_Info\x18\r \x01(\v2 .g1.protocol.RoleActvityTaskInfoR\vactvityInfo\x12B\n" +
 	"\rcurrency_info\x18\x0e \x01(\v2\x1d.g1.protocol.RoleCurrencyInfoR\fcurrencyInfo\x12<\n" +
-	"\rconn_svr_info\x18d \x01(\v2\x18.g1.protocol.ConnSvrInfoR\vconnSvrInfo\"\xa5\x01\n" +
+	"\rconn_svr_info\x18d \x01(\v2\x18.g1.protocol.ConnSvrInfoR\vconnSvrInfoJ\x04\b\f\x10\r\"\xa5\x01\n" +
 	"\x10RoleCurrencyInfo\x12Q\n" +
 	"\fcurrency_map\x18\x01 \x03(\v2..g1.protocol.RoleCurrencyInfo.CurrencyMapEntryR\vcurrencyMap\x1a>\n" +
 	"\x10CurrencyMapEntry\x12\x10\n" +
@@ -1691,75 +1613,71 @@ func file_core_role_proto_rawDescGZIP() []byte {
 	return file_core_role_proto_rawDescData
 }
 
-var file_core_role_proto_msgTypes = make([]protoimpl.MessageInfo, 31)
+var file_core_role_proto_msgTypes = make([]protoimpl.MessageInfo, 29)
 var file_core_role_proto_goTypes = []any{
-	(*RoleRegisterInfo)(nil),     // 0: g1.protocol.RoleRegisterInfo
-	(*RoleLoginInfo)(nil),        // 1: g1.protocol.RoleLoginInfo
-	(*RoleGameInfo)(nil),         // 2: g1.protocol.RoleGameInfo
-	(*RoleBasicInfo)(nil),        // 3: g1.protocol.RoleBasicInfo
-	(*PbItem)(nil),               // 4: g1.protocol.PbItem
-	(*RoleInventoryInfo)(nil),    // 5: g1.protocol.RoleInventoryInfo
-	(*PbIcon)(nil),               // 6: g1.protocol.PbIcon
-	(*PbFrame)(nil),              // 7: g1.protocol.PbFrame
-	(*RoleIconInfo)(nil),         // 8: g1.protocol.RoleIconInfo
-	(*PbMallItem)(nil),           // 9: g1.protocol.PbMallItem
-	(*RoleMallInfo)(nil),         // 10: g1.protocol.RoleMallInfo
-	(*PbTask)(nil),               // 11: g1.protocol.PbTask
-	(*RoleTaskInfo)(nil),         // 12: g1.protocol.RoleTaskInfo
-	(*RoleMainTaskInfo)(nil),     // 13: g1.protocol.RoleMainTaskInfo
-	(*RoleGuildInfo)(nil),        // 14: g1.protocol.RoleGuildInfo
-	(*RoleGuideInfo)(nil),        // 15: g1.protocol.RoleGuideInfo
-	(*RoleOpenFunction)(nil),     // 16: g1.protocol.RoleOpenFunction
-	(*RoleGiftExchangeInfo)(nil), // 17: g1.protocol.RoleGiftExchangeInfo
-	(*RoleActvityTaskInfo)(nil),  // 18: g1.protocol.RoleActvityTaskInfo
-	(*RoleInfo)(nil),             // 19: g1.protocol.RoleInfo
-	(*RoleCurrencyInfo)(nil),     // 20: g1.protocol.RoleCurrencyInfo
-	(*ConnSvrInfo)(nil),          // 21: g1.protocol.ConnSvrInfo
-	(*PbIconDesc)(nil),           // 22: g1.protocol.PbIconDesc
-	nil,                          // 23: g1.protocol.RoleInventoryInfo.ItemMapEntry
-	nil,                          // 24: g1.protocol.RoleIconInfo.IconMapEntry
-	nil,                          // 25: g1.protocol.RoleIconInfo.FrameMapEntry
-	nil,                          // 26: g1.protocol.RoleMallInfo.ItemMapEntry
-	nil,                          // 27: g1.protocol.RoleTaskInfo.TaskMapEntry
-	nil,                          // 28: g1.protocol.RoleGiftExchangeInfo.TypeMapEntry
-	nil,                          // 29: g1.protocol.RoleActvityTaskInfo.TaskMapEntry
-	nil,                          // 30: g1.protocol.RoleCurrencyInfo.CurrencyMapEntry
+	(*RoleRegisterInfo)(nil),    // 0: g1.protocol.RoleRegisterInfo
+	(*RoleLoginInfo)(nil),       // 1: g1.protocol.RoleLoginInfo
+	(*RoleGameInfo)(nil),        // 2: g1.protocol.RoleGameInfo
+	(*RoleBasicInfo)(nil),       // 3: g1.protocol.RoleBasicInfo
+	(*PbItem)(nil),              // 4: g1.protocol.PbItem
+	(*RoleInventoryInfo)(nil),   // 5: g1.protocol.RoleInventoryInfo
+	(*PbIcon)(nil),              // 6: g1.protocol.PbIcon
+	(*PbFrame)(nil),             // 7: g1.protocol.PbFrame
+	(*RoleIconInfo)(nil),        // 8: g1.protocol.RoleIconInfo
+	(*PbMallItem)(nil),          // 9: g1.protocol.PbMallItem
+	(*RoleMallInfo)(nil),        // 10: g1.protocol.RoleMallInfo
+	(*PbTask)(nil),              // 11: g1.protocol.PbTask
+	(*RoleTaskInfo)(nil),        // 12: g1.protocol.RoleTaskInfo
+	(*RoleMainTaskInfo)(nil),    // 13: g1.protocol.RoleMainTaskInfo
+	(*RoleGuildInfo)(nil),       // 14: g1.protocol.RoleGuildInfo
+	(*RoleGuideInfo)(nil),       // 15: g1.protocol.RoleGuideInfo
+	(*RoleOpenFunction)(nil),    // 16: g1.protocol.RoleOpenFunction
+	(*RoleActvityTaskInfo)(nil), // 17: g1.protocol.RoleActvityTaskInfo
+	(*RoleInfo)(nil),            // 18: g1.protocol.RoleInfo
+	(*RoleCurrencyInfo)(nil),    // 19: g1.protocol.RoleCurrencyInfo
+	(*ConnSvrInfo)(nil),         // 20: g1.protocol.ConnSvrInfo
+	(*PbIconDesc)(nil),          // 21: g1.protocol.PbIconDesc
+	nil,                         // 22: g1.protocol.RoleInventoryInfo.ItemMapEntry
+	nil,                         // 23: g1.protocol.RoleIconInfo.IconMapEntry
+	nil,                         // 24: g1.protocol.RoleIconInfo.FrameMapEntry
+	nil,                         // 25: g1.protocol.RoleMallInfo.ItemMapEntry
+	nil,                         // 26: g1.protocol.RoleTaskInfo.TaskMapEntry
+	nil,                         // 27: g1.protocol.RoleActvityTaskInfo.TaskMapEntry
+	nil,                         // 28: g1.protocol.RoleCurrencyInfo.CurrencyMapEntry
 }
 var file_core_role_proto_depIdxs = []int32{
-	23, // 0: g1.protocol.RoleInventoryInfo.item_map:type_name -> g1.protocol.RoleInventoryInfo.ItemMapEntry
-	24, // 1: g1.protocol.RoleIconInfo.icon_map:type_name -> g1.protocol.RoleIconInfo.IconMapEntry
-	25, // 2: g1.protocol.RoleIconInfo.frame_map:type_name -> g1.protocol.RoleIconInfo.FrameMapEntry
-	26, // 3: g1.protocol.RoleMallInfo.item_map:type_name -> g1.protocol.RoleMallInfo.ItemMapEntry
-	27, // 4: g1.protocol.RoleTaskInfo.task_map:type_name -> g1.protocol.RoleTaskInfo.TaskMapEntry
-	28, // 5: g1.protocol.RoleGiftExchangeInfo.type_map:type_name -> g1.protocol.RoleGiftExchangeInfo.TypeMapEntry
-	29, // 6: g1.protocol.RoleActvityTaskInfo.task_map:type_name -> g1.protocol.RoleActvityTaskInfo.TaskMapEntry
-	0,  // 7: g1.protocol.RoleInfo.register_info:type_name -> g1.protocol.RoleRegisterInfo
-	1,  // 8: g1.protocol.RoleInfo.login_info:type_name -> g1.protocol.RoleLoginInfo
-	2,  // 9: g1.protocol.RoleInfo.game_info:type_name -> g1.protocol.RoleGameInfo
-	3,  // 10: g1.protocol.RoleInfo.basic_info:type_name -> g1.protocol.RoleBasicInfo
-	5,  // 11: g1.protocol.RoleInfo.inventory_info:type_name -> g1.protocol.RoleInventoryInfo
-	8,  // 12: g1.protocol.RoleInfo.icon_info:type_name -> g1.protocol.RoleIconInfo
-	10, // 13: g1.protocol.RoleInfo.mall_info:type_name -> g1.protocol.RoleMallInfo
-	13, // 14: g1.protocol.RoleInfo.main_task_info:type_name -> g1.protocol.RoleMainTaskInfo
-	14, // 15: g1.protocol.RoleInfo.guild_info:type_name -> g1.protocol.RoleGuildInfo
-	15, // 16: g1.protocol.RoleInfo.guide_info:type_name -> g1.protocol.RoleGuideInfo
-	16, // 17: g1.protocol.RoleInfo.open_fun_info:type_name -> g1.protocol.RoleOpenFunction
-	17, // 18: g1.protocol.RoleInfo.gift_info:type_name -> g1.protocol.RoleGiftExchangeInfo
-	18, // 19: g1.protocol.RoleInfo.actvity_Info:type_name -> g1.protocol.RoleActvityTaskInfo
-	20, // 20: g1.protocol.RoleInfo.currency_info:type_name -> g1.protocol.RoleCurrencyInfo
-	21, // 21: g1.protocol.RoleInfo.conn_svr_info:type_name -> g1.protocol.ConnSvrInfo
-	30, // 22: g1.protocol.RoleCurrencyInfo.currency_map:type_name -> g1.protocol.RoleCurrencyInfo.CurrencyMapEntry
-	4,  // 23: g1.protocol.RoleInventoryInfo.ItemMapEntry.value:type_name -> g1.protocol.PbItem
-	6,  // 24: g1.protocol.RoleIconInfo.IconMapEntry.value:type_name -> g1.protocol.PbIcon
-	7,  // 25: g1.protocol.RoleIconInfo.FrameMapEntry.value:type_name -> g1.protocol.PbFrame
-	9,  // 26: g1.protocol.RoleMallInfo.ItemMapEntry.value:type_name -> g1.protocol.PbMallItem
-	11, // 27: g1.protocol.RoleTaskInfo.TaskMapEntry.value:type_name -> g1.protocol.PbTask
-	11, // 28: g1.protocol.RoleActvityTaskInfo.TaskMapEntry.value:type_name -> g1.protocol.PbTask
-	29, // [29:29] is the sub-list for method output_type
-	29, // [29:29] is the sub-list for method input_type
-	29, // [29:29] is the sub-list for extension type_name
-	29, // [29:29] is the sub-list for extension extendee
-	0,  // [0:29] is the sub-list for field type_name
+	22, // 0: g1.protocol.RoleInventoryInfo.item_map:type_name -> g1.protocol.RoleInventoryInfo.ItemMapEntry
+	23, // 1: g1.protocol.RoleIconInfo.icon_map:type_name -> g1.protocol.RoleIconInfo.IconMapEntry
+	24, // 2: g1.protocol.RoleIconInfo.frame_map:type_name -> g1.protocol.RoleIconInfo.FrameMapEntry
+	25, // 3: g1.protocol.RoleMallInfo.item_map:type_name -> g1.protocol.RoleMallInfo.ItemMapEntry
+	26, // 4: g1.protocol.RoleTaskInfo.task_map:type_name -> g1.protocol.RoleTaskInfo.TaskMapEntry
+	27, // 5: g1.protocol.RoleActvityTaskInfo.task_map:type_name -> g1.protocol.RoleActvityTaskInfo.TaskMapEntry
+	0,  // 6: g1.protocol.RoleInfo.register_info:type_name -> g1.protocol.RoleRegisterInfo
+	1,  // 7: g1.protocol.RoleInfo.login_info:type_name -> g1.protocol.RoleLoginInfo
+	2,  // 8: g1.protocol.RoleInfo.game_info:type_name -> g1.protocol.RoleGameInfo
+	3,  // 9: g1.protocol.RoleInfo.basic_info:type_name -> g1.protocol.RoleBasicInfo
+	5,  // 10: g1.protocol.RoleInfo.inventory_info:type_name -> g1.protocol.RoleInventoryInfo
+	8,  // 11: g1.protocol.RoleInfo.icon_info:type_name -> g1.protocol.RoleIconInfo
+	10, // 12: g1.protocol.RoleInfo.mall_info:type_name -> g1.protocol.RoleMallInfo
+	13, // 13: g1.protocol.RoleInfo.main_task_info:type_name -> g1.protocol.RoleMainTaskInfo
+	14, // 14: g1.protocol.RoleInfo.guild_info:type_name -> g1.protocol.RoleGuildInfo
+	15, // 15: g1.protocol.RoleInfo.guide_info:type_name -> g1.protocol.RoleGuideInfo
+	16, // 16: g1.protocol.RoleInfo.open_fun_info:type_name -> g1.protocol.RoleOpenFunction
+	17, // 17: g1.protocol.RoleInfo.actvity_Info:type_name -> g1.protocol.RoleActvityTaskInfo
+	19, // 18: g1.protocol.RoleInfo.currency_info:type_name -> g1.protocol.RoleCurrencyInfo
+	20, // 19: g1.protocol.RoleInfo.conn_svr_info:type_name -> g1.protocol.ConnSvrInfo
+	28, // 20: g1.protocol.RoleCurrencyInfo.currency_map:type_name -> g1.protocol.RoleCurrencyInfo.CurrencyMapEntry
+	4,  // 21: g1.protocol.RoleInventoryInfo.ItemMapEntry.value:type_name -> g1.protocol.PbItem
+	6,  // 22: g1.protocol.RoleIconInfo.IconMapEntry.value:type_name -> g1.protocol.PbIcon
+	7,  // 23: g1.protocol.RoleIconInfo.FrameMapEntry.value:type_name -> g1.protocol.PbFrame
+	9,  // 24: g1.protocol.RoleMallInfo.ItemMapEntry.value:type_name -> g1.protocol.PbMallItem
+	11, // 25: g1.protocol.RoleTaskInfo.TaskMapEntry.value:type_name -> g1.protocol.PbTask
+	11, // 26: g1.protocol.RoleActvityTaskInfo.TaskMapEntry.value:type_name -> g1.protocol.PbTask
+	27, // [27:27] is the sub-list for method output_type
+	27, // [27:27] is the sub-list for method input_type
+	27, // [27:27] is the sub-list for extension type_name
+	27, // [27:27] is the sub-list for extension extendee
+	0,  // [0:27] is the sub-list for field type_name
 }
 
 func init() { file_core_role_proto_init() }
@@ -1773,7 +1691,7 @@ func file_core_role_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_role_proto_rawDesc), len(file_core_role_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   31,
+			NumMessages:   29,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

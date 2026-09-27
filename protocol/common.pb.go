@@ -251,8 +251,6 @@ const (
 	EItemID_LIVENESS     EItemID = 100 // 活跃度
 	EItemID_GUILD_COIN   EItemID = 101 // 公会币
 	EItemID_GUILD_EXP    EItemID = 102 // 公会经验
-	EItemID_ACECOIN      EItemID = 103 // Ace币
-	EItemID_WINACECOIN   EItemID = 104 // Win Ace币
 	EItemID_MEDAL        EItemID = 105 // 勋章
 	EItemID_HONOR        EItemID = 106 // 荣誉
 	EItemID_REPUTATION   EItemID = 107 // 声望
@@ -281,8 +279,6 @@ var (
 		100:   "LIVENESS",
 		101:   "GUILD_COIN",
 		102:   "GUILD_EXP",
-		103:   "ACECOIN",
-		104:   "WINACECOIN",
 		105:   "MEDAL",
 		106:   "HONOR",
 		107:   "REPUTATION",
@@ -307,8 +303,6 @@ var (
 		"LIVENESS":         100,
 		"GUILD_COIN":       101,
 		"GUILD_EXP":        102,
-		"ACECOIN":          103,
-		"WINACECOIN":       104,
 		"MEDAL":            105,
 		"HONOR":            106,
 		"REPUTATION":       107,
@@ -1234,7 +1228,7 @@ const file_core_common_proto_rawDesc = "" +
 	"GUIDE_INFO\x10\x80\x04\x12\x13\n" +
 	"\x0eOPEN_FUNC_INFO\x10\x80\b\x12\x16\n" +
 	"\x11ACTVITY_TASK_INFO\x10\x80\x10\x12\x12\n" +
-	"\rCURRENCY_INFO\x10\x80 *\xdf\x02\n" +
+	"\rCURRENCY_INFO\x10\x80 *\xe3\x02\n" +
 	"\aEItemID\x12\x11\n" +
 	"\r_ITEM_ID_NONE\x10\x00\x12\b\n" +
 	"\x04GOLD\x10\x01\x12\v\n" +
@@ -1247,10 +1241,7 @@ const file_core_common_proto_rawDesc = "" +
 	"\bLIVENESS\x10d\x12\x0e\n" +
 	"\n" +
 	"GUILD_COIN\x10e\x12\r\n" +
-	"\tGUILD_EXP\x10f\x12\v\n" +
-	"\aACECOIN\x10g\x12\x0e\n" +
-	"\n" +
-	"WINACECOIN\x10h\x12\t\n" +
+	"\tGUILD_EXP\x10f\x12\t\n" +
 	"\x05MEDAL\x10i\x12\t\n" +
 	"\x05HONOR\x10j\x12\x0e\n" +
 	"\n" +
@@ -1264,7 +1255,8 @@ const file_core_common_proto_rawDesc = "" +
 	"\bSTARDUST\x10q\x12\t\n" +
 	"\x05CHARM\x10r\x12\x0f\n" +
 	"\vMATCH_POINT\x10s\x12\x15\n" +
-	"\x10CHANGE_NAME_CARD\x10\x91N**\n" +
+	"\x10CHANGE_NAME_CARD\x10\x91N\"\x04\bg\x10g\"\x04\bh\x10h*\aACECOIN*\n" +
+	"WINACECOIN**\n" +
 	"\tEItemType\x12\x13\n" +
 	"\x0f_ITEM_TYPE_NONE\x10\x00\x12\b\n" +
 	"\x04DROP\x10\t*Q\n" +

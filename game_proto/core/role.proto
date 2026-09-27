@@ -33,8 +33,9 @@ message RoleBasicInfo {
     int64  liveness     = 7;  // [deprecated] 活跃度 → currency_map[EItemID.LIVENESS]
     int64  guild_coin   = 8;  // [deprecated] 公会币 → currency_map[EItemID.GUILD_COIN]
     uint32 free_cnt     = 9;  // 免费改名次数
-    int64  ace_coin     = 10; // [deprecated] ace币 → currency_map[EItemID.ACECOIN]
-    int64  win_ace_coin = 11; // [deprecated] Win ace币 → currency_map[EItemID.WIN_ACECOIN]
+
+    // 10/11 曾为 ace_coin/win_ace_coin，随 EItemID 103/104 一并废弃，编号保留不复用。
+    reserved 10, 11;
 }
 
 // 道具信息
@@ -120,11 +121,6 @@ message RoleOpenFunction {
     bool           is_all_open = 2; // 测试用,上线后删除该字段
 }
 
-// 礼包码
-message RoleGiftExchangeInfo {
-    map<int32, int32> type_map = 1; // 已经领取过的礼包  key:类型id,val: 数量
-}
-
 //活动任务,日常，成就等
 message RoleActvityTaskInfo {
     map<int32, PbTask> task_map = 1;
@@ -143,7 +139,10 @@ message RoleInfo {
     RoleGuildInfo        guild_info     = 9;   // 公会
     RoleGuideInfo        guide_info     = 10;  // 引导数据
     RoleOpenFunction     open_fun_info  = 11;  // 功能开放
-    RoleGiftExchangeInfo gift_info      = 12;  // 礼包兑换
+
+    // 12 曾为 gift_info（礼包码兑换），已随 GiftComponent 一并移除，编号保留不复用。
+    reserved 12;
+
     RoleActvityTaskInfo  actvity_Info   = 13;  // 活动任务，日常等
     RoleCurrencyInfo     currency_info  = 14;  // 货币/资源（1-9999 段）
     ConnSvrInfo          conn_svr_info  = 100; // 服务器用，客户端不用管

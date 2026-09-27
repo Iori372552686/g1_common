@@ -72,8 +72,6 @@ enum EItemID {
     LIVENESS         = 100;  // 活跃度
     GUILD_COIN       = 101;  // 公会币
     GUILD_EXP        = 102;  // 公会经验
-    ACECOIN          = 103;  // Ace币
-    WINACECOIN       = 104;  // Win Ace币
     MEDAL            = 105;  // 勋章
     HONOR            = 106;  // 荣誉
     REPUTATION       = 107;  // 声望
@@ -90,35 +88,6 @@ enum EItemID {
     CHANGE_NAME_CARD = 10001; // 改名卡（消耗品段）
 }
 
-enum EItemType {
-    _ITEM_TYPE_NONE = 0;
-    DROP            = 9;
-}
-
-// 道具掉落方式
-enum EItemDropWay {
-    _ITEM_DROP_WAY_NONE = 0;
-    CERTAIN             = 1;
-    PROBABILITY         = 2;
-    WEIGHT              = 3;
-}
-
-// 道具类型
-enum EItemMainType {
-    _ITEM_MAIN_TYPE_NONE = 0;
-    ICON                 = 701;
-    HERO_CARD            = 401;
-    EQUIP                = 501;
-    ARTIFACT             = 601;
-    PACKAGE              = 901;
-}
-
-enum EItemSubType {
-    _ITEM_SUB_TYPE_NONE = 0;
-
-    ICON_ICON  = 70101;
-    ICON_FRAME = 70102;
-}
 
 // 红点系统枚举
 enum ERedPointSystem {
