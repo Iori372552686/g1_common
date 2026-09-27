@@ -161,6 +161,7 @@ const (
 	ERoleSectionFlag_GUIDE_INFO             ERoleSectionFlag = 512
 	ERoleSectionFlag_OPEN_FUNC_INFO         ERoleSectionFlag = 1024
 	ERoleSectionFlag_ACTVITY_TASK_INFO      ERoleSectionFlag = 2048
+	ERoleSectionFlag_CURRENCY_INFO          ERoleSectionFlag = 4096 // 货币/资源段
 )
 
 // Enum value maps for ERoleSectionFlag.
@@ -180,6 +181,7 @@ var (
 		512:  "GUIDE_INFO",
 		1024: "OPEN_FUNC_INFO",
 		2048: "ACTVITY_TASK_INFO",
+		4096: "CURRENCY_INFO",
 	}
 	ERoleSectionFlag_value = map[string]int32{
 		"_ERoleSectionFlag_ZERO": 0,
@@ -196,6 +198,7 @@ var (
 		"GUIDE_INFO":             512,
 		"OPEN_FUNC_INFO":         1024,
 		"ACTVITY_TASK_INFO":      2048,
+		"CURRENCY_INFO":          4096,
 	}
 )
 
@@ -226,50 +229,98 @@ func (ERoleSectionFlag) EnumDescriptor() ([]byte, []int) {
 	return file_core_common_proto_rawDescGZIP(), []int{2}
 }
 
-// 一些常用的道具ID
+// 道具/货币 ID 分段规划（唯一权威约定，配置表与代码一律遵循）：
+//
+//	1-9999     货币/资源段——全部入 RoleCurrencyInfo（currency_map），不入背包。
+//	           1-99 核心货币（长期稳定）；100-999 系统玩法；1000-9999 活动运营预留。
+//	10000+     游戏道具段——入 InventoryInfo（背包）。
+//	           10000-19999 消耗品；20000-29999 材料/兑换物；30000-39999 礼包/宝箱；
+//	           40000-49999 掉落包 DropId；50000-59999 掉落组 Groupid；
+//	           70000-79999 外观（头像/头像框）；90000+ GM/测试。
 type EItemID int32
 
 const (
-	EItemID__ITEM_ID_NONE    EItemID = 0
-	EItemID_EXP              EItemID = 10101001
-	EItemID_GOLD             EItemID = 10101002
-	EItemID_DIAMOND          EItemID = 10101003
-	EItemID_WINACECOIN       EItemID = 10101004
-	EItemID_CREDIT           EItemID = 10101005
-	EItemID_GUILDGOLD        EItemID = 10101006
-	EItemID_GUILDEXP         EItemID = 10101007
-	EItemID_LIVENESS         EItemID = 10101008
-	EItemID_ACECOIN          EItemID = 10101009
-	EItemID_CHANGE_NAME_CARD EItemID = 20101001
+	EItemID__ITEM_ID_NONE EItemID = 0
+	// ===== 货币/资源段（1-9999）=====
+	EItemID_GOLD         EItemID = 1   // 金币
+	EItemID_DIAMOND      EItemID = 2   // 钻石
+	EItemID_BIND_DIAMOND EItemID = 3   // 绑定钻石
+	EItemID_EXP          EItemID = 4   // 经验
+	EItemID_STAMINA      EItemID = 5   // 体力
+	EItemID_CREDIT       EItemID = 6   // 信用分
+	EItemID_LIVENESS     EItemID = 100 // 活跃度
+	EItemID_GUILD_COIN   EItemID = 101 // 公会币
+	EItemID_GUILD_EXP    EItemID = 102 // 公会经验
+	EItemID_ACECOIN      EItemID = 103 // Ace币
+	EItemID_WINACECOIN   EItemID = 104 // Win Ace币
+	EItemID_MEDAL        EItemID = 105 // 勋章
+	EItemID_HONOR        EItemID = 106 // 荣誉
+	EItemID_REPUTATION   EItemID = 107 // 声望
+	EItemID_ARENA_COIN   EItemID = 108 // 竞技场币
+	EItemID_FRIEND_PT    EItemID = 109 // 友情点
+	EItemID_VIP_EXP      EItemID = 110 // VIP经验
+	EItemID_SKILL_POINT  EItemID = 111 // 技能点
+	EItemID_SOUL         EItemID = 112 // 灵魂精华
+	EItemID_STARDUST     EItemID = 113 // 星尘
+	EItemID_CHARM        EItemID = 114 // 魅力值
+	EItemID_MATCH_POINT  EItemID = 115 // 对局积分
+	// ===== 道具段（10000+）=====
+	EItemID_CHANGE_NAME_CARD EItemID = 10001 // 改名卡（消耗品段）
 )
 
 // Enum value maps for EItemID.
 var (
 	EItemID_name = map[int32]string{
-		0:        "_ITEM_ID_NONE",
-		10101001: "EXP",
-		10101002: "GOLD",
-		10101003: "DIAMOND",
-		10101004: "WINACECOIN",
-		10101005: "CREDIT",
-		10101006: "GUILDGOLD",
-		10101007: "GUILDEXP",
-		10101008: "LIVENESS",
-		10101009: "ACECOIN",
-		20101001: "CHANGE_NAME_CARD",
+		0:     "_ITEM_ID_NONE",
+		1:     "GOLD",
+		2:     "DIAMOND",
+		3:     "BIND_DIAMOND",
+		4:     "EXP",
+		5:     "STAMINA",
+		6:     "CREDIT",
+		100:   "LIVENESS",
+		101:   "GUILD_COIN",
+		102:   "GUILD_EXP",
+		103:   "ACECOIN",
+		104:   "WINACECOIN",
+		105:   "MEDAL",
+		106:   "HONOR",
+		107:   "REPUTATION",
+		108:   "ARENA_COIN",
+		109:   "FRIEND_PT",
+		110:   "VIP_EXP",
+		111:   "SKILL_POINT",
+		112:   "SOUL",
+		113:   "STARDUST",
+		114:   "CHARM",
+		115:   "MATCH_POINT",
+		10001: "CHANGE_NAME_CARD",
 	}
 	EItemID_value = map[string]int32{
 		"_ITEM_ID_NONE":    0,
-		"EXP":              10101001,
-		"GOLD":             10101002,
-		"DIAMOND":          10101003,
-		"WINACECOIN":       10101004,
-		"CREDIT":           10101005,
-		"GUILDGOLD":        10101006,
-		"GUILDEXP":         10101007,
-		"LIVENESS":         10101008,
-		"ACECOIN":          10101009,
-		"CHANGE_NAME_CARD": 20101001,
+		"GOLD":             1,
+		"DIAMOND":          2,
+		"BIND_DIAMOND":     3,
+		"EXP":              4,
+		"STAMINA":          5,
+		"CREDIT":           6,
+		"LIVENESS":         100,
+		"GUILD_COIN":       101,
+		"GUILD_EXP":        102,
+		"ACECOIN":          103,
+		"WINACECOIN":       104,
+		"MEDAL":            105,
+		"HONOR":            106,
+		"REPUTATION":       107,
+		"ARENA_COIN":       108,
+		"FRIEND_PT":        109,
+		"VIP_EXP":          110,
+		"SKILL_POINT":      111,
+		"SOUL":             112,
+		"STARDUST":         113,
+		"CHARM":            114,
+		"MATCH_POINT":      115,
+		"CHANGE_NAME_CARD": 10001,
 	}
 )
 
@@ -1163,7 +1214,7 @@ const file_core_common_proto_rawDesc = "" +
 	"\x0eEKickOutReason\x12\v\n" +
 	"\aUNKNOWN\x10\x00\x12\x15\n" +
 	"\x11HEARTBEAT_TIMEOUT\x10\x01\x12\x15\n" +
-	"\x11MULTI_PLACE_LOGIN\x10\x02*\x98\x02\n" +
+	"\x11MULTI_PLACE_LOGIN\x10\x02*\xac\x02\n" +
 	"\x10ERoleSectionFlag\x12\x1a\n" +
 	"\x16_ERoleSectionFlag_ZERO\x10\x00\x12\x10\n" +
 	"\x03ALL\x10\xff\xff\xff\xff\xff\xff\xff\xff\xff\x01\x12\x11\n" +
@@ -1182,21 +1233,38 @@ const file_core_common_proto_rawDesc = "" +
 	"\n" +
 	"GUIDE_INFO\x10\x80\x04\x12\x13\n" +
 	"\x0eOPEN_FUNC_INFO\x10\x80\b\x12\x16\n" +
-	"\x11ACTVITY_TASK_INFO\x10\x80\x10*\xc4\x01\n" +
+	"\x11ACTVITY_TASK_INFO\x10\x80\x10\x12\x12\n" +
+	"\rCURRENCY_INFO\x10\x80 *\xdf\x02\n" +
 	"\aEItemID\x12\x11\n" +
-	"\r_ITEM_ID_NONE\x10\x00\x12\n" +
+	"\r_ITEM_ID_NONE\x10\x00\x12\b\n" +
+	"\x04GOLD\x10\x01\x12\v\n" +
+	"\aDIAMOND\x10\x02\x12\x10\n" +
+	"\fBIND_DIAMOND\x10\x03\x12\a\n" +
+	"\x03EXP\x10\x04\x12\v\n" +
+	"\aSTAMINA\x10\x05\x12\n" +
 	"\n" +
-	"\x03EXP\x10\x89\xc2\xe8\x04\x12\v\n" +
-	"\x04GOLD\x10\x8a\xc2\xe8\x04\x12\x0e\n" +
-	"\aDIAMOND\x10\x8b\xc2\xe8\x04\x12\x11\n" +
+	"\x06CREDIT\x10\x06\x12\f\n" +
+	"\bLIVENESS\x10d\x12\x0e\n" +
 	"\n" +
-	"WINACECOIN\x10\x8c\xc2\xe8\x04\x12\r\n" +
-	"\x06CREDIT\x10\x8d\xc2\xe8\x04\x12\x10\n" +
-	"\tGUILDGOLD\x10\x8e\xc2\xe8\x04\x12\x0f\n" +
-	"\bGUILDEXP\x10\x8f\xc2\xe8\x04\x12\x0f\n" +
-	"\bLIVENESS\x10\x90\xc2\xe8\x04\x12\x0e\n" +
-	"\aACECOIN\x10\x91\xc2\xe8\x04\x12\x17\n" +
-	"\x10CHANGE_NAME_CARD\x10\x89\xef\xca\t**\n" +
+	"GUILD_COIN\x10e\x12\r\n" +
+	"\tGUILD_EXP\x10f\x12\v\n" +
+	"\aACECOIN\x10g\x12\x0e\n" +
+	"\n" +
+	"WINACECOIN\x10h\x12\t\n" +
+	"\x05MEDAL\x10i\x12\t\n" +
+	"\x05HONOR\x10j\x12\x0e\n" +
+	"\n" +
+	"REPUTATION\x10k\x12\x0e\n" +
+	"\n" +
+	"ARENA_COIN\x10l\x12\r\n" +
+	"\tFRIEND_PT\x10m\x12\v\n" +
+	"\aVIP_EXP\x10n\x12\x0f\n" +
+	"\vSKILL_POINT\x10o\x12\b\n" +
+	"\x04SOUL\x10p\x12\f\n" +
+	"\bSTARDUST\x10q\x12\t\n" +
+	"\x05CHARM\x10r\x12\x0f\n" +
+	"\vMATCH_POINT\x10s\x12\x15\n" +
+	"\x10CHANGE_NAME_CARD\x10\x91N**\n" +
 	"\tEItemType\x12\x13\n" +
 	"\x0f_ITEM_TYPE_NONE\x10\x00\x12\b\n" +
 	"\x04DROP\x10\t*Q\n" +

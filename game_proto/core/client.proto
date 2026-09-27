@@ -170,6 +170,11 @@ message RoleActvityTaskPatch {
     repeated int32  delete_task_ids = 2;
 }
 
+// 货币增量：value 为变更币种的最新余额（货币无删除语义）。
+message RoleCurrencyPatch {
+    map<int32, int64> changed = 1;
+}
+
 // SC_SYNC_USER_DATA_V2: full_section_mask 携带完整 RoleInfo 子集；patch_* 为对应板块的增量。
 message ScSyncUserDataV2 {
     int32                  full_section_mask  = 1;
@@ -179,6 +184,7 @@ message ScSyncUserDataV2 {
     RoleMallPatch          mall_patch         = 5;
     RoleIconPatch          icon_patch         = 6;
     RoleActvityTaskPatch   actvity_task_patch = 7;
+    RoleCurrencyPatch      currency_patch     = 8;
 }
 
 // SC_CHAT

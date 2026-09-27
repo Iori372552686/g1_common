@@ -24,15 +24,17 @@ message RoleGameInfo {
 message RoleBasicInfo {
     string name         = 1;  // 角色名称
     int32  level        = 2;  // 等级
-    int64  exp          = 3;  // 经验
-    int64  gold         = 4;  // 金币
-    int64  diamond      = 5;  // 钻石
-    int64  credit       = 6;  // 信用
-    int64  liveness     = 7;  // 活跃度
-    int64  guild_coin   = 8;  // 公会币
+    // 以下货币/资源字段已废弃（迁移至 RoleCurrencyInfo.currency_map，按 EItemID
+    // 货币段 key 存储）。字段号保留占位防止复用；服务端已停写停读。
+    int64  exp          = 3;  // [deprecated] 经验 → currency_map[EItemID.EXP]
+    int64  gold         = 4;  // [deprecated] 金币 → currency_map[EItemID.GOLD]
+    int64  diamond      = 5;  // [deprecated] 钻石 → currency_map[EItemID.DIAMOND]
+    int64  credit       = 6;  // [deprecated] 信用 → currency_map[EItemID.CREDIT]
+    int64  liveness     = 7;  // [deprecated] 活跃度 → currency_map[EItemID.LIVENESS]
+    int64  guild_coin   = 8;  // [deprecated] 公会币 → currency_map[EItemID.GUILD_COIN]
     uint32 free_cnt     = 9;  // 免费改名次数
-    int64  ace_coin     = 10; // ace币
-    int64  win_ace_coin = 11; // Win ace币
+    int64  ace_coin     = 10; // [deprecated] ace币 → currency_map[EItemID.ACECOIN]
+    int64  win_ace_coin = 11; // [deprecated] Win ace币 → currency_map[EItemID.WIN_ACECOIN]
 }
 
 // 道具信息
@@ -143,7 +145,14 @@ message RoleInfo {
     RoleOpenFunction     open_fun_info  = 11;  // 功能开放
     RoleGiftExchangeInfo gift_info      = 12;  // 礼包兑换
     RoleActvityTaskInfo  actvity_Info   = 13;  // 活动任务，日常等
+    RoleCurrencyInfo     currency_info  = 14;  // 货币/资源（1-9999 段）
     ConnSvrInfo          conn_svr_info  = 100; // 服务器用，客户端不用管
+}
+
+// 货币/资源余额。key 为货币 ID（EItemID 货币段，1-9999）；
+// 全部资源（金币/钻石/体力/经验等）集中于此，加新货币零 proto 改动。
+message RoleCurrencyInfo {
+    map<int32, int64> currency_map = 1;
 }
 
 message ConnSvrInfo {

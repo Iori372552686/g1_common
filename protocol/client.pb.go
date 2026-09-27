@@ -1710,6 +1710,51 @@ func (x *RoleActvityTaskPatch) GetDeleteTaskIds() []int32 {
 	return nil
 }
 
+// 货币增量：value 为变更币种的最新余额（货币无删除语义）。
+type RoleCurrencyPatch struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Changed       map[int32]int64        `protobuf:"bytes,1,rep,name=changed,proto3" json:"changed,omitempty" protobuf_key:"varint,1,opt,name=key" protobuf_val:"varint,2,opt,name=value"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *RoleCurrencyPatch) Reset() {
+	*x = RoleCurrencyPatch{}
+	mi := &file_core_client_proto_msgTypes[30]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *RoleCurrencyPatch) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RoleCurrencyPatch) ProtoMessage() {}
+
+func (x *RoleCurrencyPatch) ProtoReflect() protoreflect.Message {
+	mi := &file_core_client_proto_msgTypes[30]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RoleCurrencyPatch.ProtoReflect.Descriptor instead.
+func (*RoleCurrencyPatch) Descriptor() ([]byte, []int) {
+	return file_core_client_proto_rawDescGZIP(), []int{30}
+}
+
+func (x *RoleCurrencyPatch) GetChanged() map[int32]int64 {
+	if x != nil {
+		return x.Changed
+	}
+	return nil
+}
+
 // SC_SYNC_USER_DATA_V2: full_section_mask 携带完整 RoleInfo 子集；patch_* 为对应板块的增量。
 type ScSyncUserDataV2 struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
@@ -1720,13 +1765,14 @@ type ScSyncUserDataV2 struct {
 	MallPatch        *RoleMallPatch         `protobuf:"bytes,5,opt,name=mall_patch,json=mallPatch,proto3" json:"mall_patch,omitempty"`
 	IconPatch        *RoleIconPatch         `protobuf:"bytes,6,opt,name=icon_patch,json=iconPatch,proto3" json:"icon_patch,omitempty"`
 	ActvityTaskPatch *RoleActvityTaskPatch  `protobuf:"bytes,7,opt,name=actvity_task_patch,json=actvityTaskPatch,proto3" json:"actvity_task_patch,omitempty"`
+	CurrencyPatch    *RoleCurrencyPatch     `protobuf:"bytes,8,opt,name=currency_patch,json=currencyPatch,proto3" json:"currency_patch,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
 
 func (x *ScSyncUserDataV2) Reset() {
 	*x = ScSyncUserDataV2{}
-	mi := &file_core_client_proto_msgTypes[30]
+	mi := &file_core_client_proto_msgTypes[31]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1738,7 +1784,7 @@ func (x *ScSyncUserDataV2) String() string {
 func (*ScSyncUserDataV2) ProtoMessage() {}
 
 func (x *ScSyncUserDataV2) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[30]
+	mi := &file_core_client_proto_msgTypes[31]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1751,7 +1797,7 @@ func (x *ScSyncUserDataV2) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScSyncUserDataV2.ProtoReflect.Descriptor instead.
 func (*ScSyncUserDataV2) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{30}
+	return file_core_client_proto_rawDescGZIP(), []int{31}
 }
 
 func (x *ScSyncUserDataV2) GetFullSectionMask() int32 {
@@ -1803,6 +1849,13 @@ func (x *ScSyncUserDataV2) GetActvityTaskPatch() *RoleActvityTaskPatch {
 	return nil
 }
 
+func (x *ScSyncUserDataV2) GetCurrencyPatch() *RoleCurrencyPatch {
+	if x != nil {
+		return x.CurrencyPatch
+	}
+	return nil
+}
+
 // SC_CHAT
 type ScChat struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
@@ -1813,7 +1866,7 @@ type ScChat struct {
 
 func (x *ScChat) Reset() {
 	*x = ScChat{}
-	mi := &file_core_client_proto_msgTypes[31]
+	mi := &file_core_client_proto_msgTypes[32]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1825,7 +1878,7 @@ func (x *ScChat) String() string {
 func (*ScChat) ProtoMessage() {}
 
 func (x *ScChat) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[31]
+	mi := &file_core_client_proto_msgTypes[32]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1838,7 +1891,7 @@ func (x *ScChat) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScChat.ProtoReflect.Descriptor instead.
 func (*ScChat) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{31}
+	return file_core_client_proto_rawDescGZIP(), []int{32}
 }
 
 func (x *ScChat) GetMsg() *PbChatMsg {
@@ -1858,7 +1911,7 @@ type ScDataChangeNotify struct {
 
 func (x *ScDataChangeNotify) Reset() {
 	*x = ScDataChangeNotify{}
-	mi := &file_core_client_proto_msgTypes[32]
+	mi := &file_core_client_proto_msgTypes[33]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1870,7 +1923,7 @@ func (x *ScDataChangeNotify) String() string {
 func (*ScDataChangeNotify) ProtoMessage() {}
 
 func (x *ScDataChangeNotify) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[32]
+	mi := &file_core_client_proto_msgTypes[33]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1883,7 +1936,7 @@ func (x *ScDataChangeNotify) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ScDataChangeNotify.ProtoReflect.Descriptor instead.
 func (*ScDataChangeNotify) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{32}
+	return file_core_client_proto_rawDescGZIP(), []int{33}
 }
 
 func (x *ScDataChangeNotify) GetCmd() int32 {
@@ -1907,7 +1960,7 @@ type LoginReq struct {
 
 func (x *LoginReq) Reset() {
 	*x = LoginReq{}
-	mi := &file_core_client_proto_msgTypes[33]
+	mi := &file_core_client_proto_msgTypes[34]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1919,7 +1972,7 @@ func (x *LoginReq) String() string {
 func (*LoginReq) ProtoMessage() {}
 
 func (x *LoginReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[33]
+	mi := &file_core_client_proto_msgTypes[34]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1932,7 +1985,7 @@ func (x *LoginReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginReq.ProtoReflect.Descriptor instead.
 func (*LoginReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{33}
+	return file_core_client_proto_rawDescGZIP(), []int{34}
 }
 
 func (x *LoginReq) GetAccount() string {
@@ -1981,7 +2034,7 @@ type LoginRsp struct {
 
 func (x *LoginRsp) Reset() {
 	*x = LoginRsp{}
-	mi := &file_core_client_proto_msgTypes[34]
+	mi := &file_core_client_proto_msgTypes[35]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1993,7 +2046,7 @@ func (x *LoginRsp) String() string {
 func (*LoginRsp) ProtoMessage() {}
 
 func (x *LoginRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[34]
+	mi := &file_core_client_proto_msgTypes[35]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2006,7 +2059,7 @@ func (x *LoginRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LoginRsp.ProtoReflect.Descriptor instead.
 func (*LoginRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{34}
+	return file_core_client_proto_rawDescGZIP(), []int{35}
 }
 
 func (x *LoginRsp) GetRet() *Ret {
@@ -2041,7 +2094,7 @@ type LogoutReq struct {
 
 func (x *LogoutReq) Reset() {
 	*x = LogoutReq{}
-	mi := &file_core_client_proto_msgTypes[35]
+	mi := &file_core_client_proto_msgTypes[36]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2053,7 +2106,7 @@ func (x *LogoutReq) String() string {
 func (*LogoutReq) ProtoMessage() {}
 
 func (x *LogoutReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[35]
+	mi := &file_core_client_proto_msgTypes[36]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2066,7 +2119,7 @@ func (x *LogoutReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutReq.ProtoReflect.Descriptor instead.
 func (*LogoutReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{35}
+	return file_core_client_proto_rawDescGZIP(), []int{36}
 }
 
 func (x *LogoutReq) GetByServer() bool {
@@ -2092,7 +2145,7 @@ type LogoutRsp struct {
 
 func (x *LogoutRsp) Reset() {
 	*x = LogoutRsp{}
-	mi := &file_core_client_proto_msgTypes[36]
+	mi := &file_core_client_proto_msgTypes[37]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2104,7 +2157,7 @@ func (x *LogoutRsp) String() string {
 func (*LogoutRsp) ProtoMessage() {}
 
 func (x *LogoutRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[36]
+	mi := &file_core_client_proto_msgTypes[37]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2117,7 +2170,7 @@ func (x *LogoutRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use LogoutRsp.ProtoReflect.Descriptor instead.
 func (*LogoutRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{36}
+	return file_core_client_proto_rawDescGZIP(), []int{37}
 }
 
 func (x *LogoutRsp) GetRet() *Ret {
@@ -2137,7 +2190,7 @@ type HeartBeatReq struct {
 
 func (x *HeartBeatReq) Reset() {
 	*x = HeartBeatReq{}
-	mi := &file_core_client_proto_msgTypes[37]
+	mi := &file_core_client_proto_msgTypes[38]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2149,7 +2202,7 @@ func (x *HeartBeatReq) String() string {
 func (*HeartBeatReq) ProtoMessage() {}
 
 func (x *HeartBeatReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[37]
+	mi := &file_core_client_proto_msgTypes[38]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2162,7 +2215,7 @@ func (x *HeartBeatReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeartBeatReq.ProtoReflect.Descriptor instead.
 func (*HeartBeatReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{37}
+	return file_core_client_proto_rawDescGZIP(), []int{38}
 }
 
 func (x *HeartBeatReq) GetClientNowMs() int64 {
@@ -2183,7 +2236,7 @@ type HeartBeatRsp struct {
 
 func (x *HeartBeatRsp) Reset() {
 	*x = HeartBeatRsp{}
-	mi := &file_core_client_proto_msgTypes[38]
+	mi := &file_core_client_proto_msgTypes[39]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2195,7 +2248,7 @@ func (x *HeartBeatRsp) String() string {
 func (*HeartBeatRsp) ProtoMessage() {}
 
 func (x *HeartBeatRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[38]
+	mi := &file_core_client_proto_msgTypes[39]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2208,7 +2261,7 @@ func (x *HeartBeatRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HeartBeatRsp.ProtoReflect.Descriptor instead.
 func (*HeartBeatRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{38}
+	return file_core_client_proto_rawDescGZIP(), []int{39}
 }
 
 func (x *HeartBeatRsp) GetRet() *Ret {
@@ -2242,7 +2295,7 @@ type ItemUseReq struct {
 
 func (x *ItemUseReq) Reset() {
 	*x = ItemUseReq{}
-	mi := &file_core_client_proto_msgTypes[39]
+	mi := &file_core_client_proto_msgTypes[40]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2254,7 +2307,7 @@ func (x *ItemUseReq) String() string {
 func (*ItemUseReq) ProtoMessage() {}
 
 func (x *ItemUseReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[39]
+	mi := &file_core_client_proto_msgTypes[40]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2267,7 +2320,7 @@ func (x *ItemUseReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemUseReq.ProtoReflect.Descriptor instead.
 func (*ItemUseReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{39}
+	return file_core_client_proto_rawDescGZIP(), []int{40}
 }
 
 func (x *ItemUseReq) GetItemList() []*PbItem {
@@ -2287,7 +2340,7 @@ type ItemUseRsp struct {
 
 func (x *ItemUseRsp) Reset() {
 	*x = ItemUseRsp{}
-	mi := &file_core_client_proto_msgTypes[40]
+	mi := &file_core_client_proto_msgTypes[41]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2299,7 +2352,7 @@ func (x *ItemUseRsp) String() string {
 func (*ItemUseRsp) ProtoMessage() {}
 
 func (x *ItemUseRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[40]
+	mi := &file_core_client_proto_msgTypes[41]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2312,7 +2365,7 @@ func (x *ItemUseRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ItemUseRsp.ProtoReflect.Descriptor instead.
 func (*ItemUseRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{40}
+	return file_core_client_proto_rawDescGZIP(), []int{41}
 }
 
 func (x *ItemUseRsp) GetRet() *Ret {
@@ -2339,7 +2392,7 @@ type ChangeNameReq struct {
 
 func (x *ChangeNameReq) Reset() {
 	*x = ChangeNameReq{}
-	mi := &file_core_client_proto_msgTypes[41]
+	mi := &file_core_client_proto_msgTypes[42]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2351,7 +2404,7 @@ func (x *ChangeNameReq) String() string {
 func (*ChangeNameReq) ProtoMessage() {}
 
 func (x *ChangeNameReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[41]
+	mi := &file_core_client_proto_msgTypes[42]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2364,7 +2417,7 @@ func (x *ChangeNameReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeNameReq.ProtoReflect.Descriptor instead.
 func (*ChangeNameReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{41}
+	return file_core_client_proto_rawDescGZIP(), []int{42}
 }
 
 func (x *ChangeNameReq) GetName() string {
@@ -2383,7 +2436,7 @@ type ChangeNameRsp struct {
 
 func (x *ChangeNameRsp) Reset() {
 	*x = ChangeNameRsp{}
-	mi := &file_core_client_proto_msgTypes[42]
+	mi := &file_core_client_proto_msgTypes[43]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2395,7 +2448,7 @@ func (x *ChangeNameRsp) String() string {
 func (*ChangeNameRsp) ProtoMessage() {}
 
 func (x *ChangeNameRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[42]
+	mi := &file_core_client_proto_msgTypes[43]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2408,7 +2461,7 @@ func (x *ChangeNameRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeNameRsp.ProtoReflect.Descriptor instead.
 func (*ChangeNameRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{42}
+	return file_core_client_proto_rawDescGZIP(), []int{43}
 }
 
 func (x *ChangeNameRsp) GetRet() *Ret {
@@ -2430,7 +2483,7 @@ type ChangeIconReq struct {
 
 func (x *ChangeIconReq) Reset() {
 	*x = ChangeIconReq{}
-	mi := &file_core_client_proto_msgTypes[43]
+	mi := &file_core_client_proto_msgTypes[44]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2442,7 +2495,7 @@ func (x *ChangeIconReq) String() string {
 func (*ChangeIconReq) ProtoMessage() {}
 
 func (x *ChangeIconReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[43]
+	mi := &file_core_client_proto_msgTypes[44]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2455,7 +2508,7 @@ func (x *ChangeIconReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeIconReq.ProtoReflect.Descriptor instead.
 func (*ChangeIconReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{43}
+	return file_core_client_proto_rawDescGZIP(), []int{44}
 }
 
 func (x *ChangeIconReq) GetIconId() int32 {
@@ -2488,7 +2541,7 @@ type ChangeIconRsp struct {
 
 func (x *ChangeIconRsp) Reset() {
 	*x = ChangeIconRsp{}
-	mi := &file_core_client_proto_msgTypes[44]
+	mi := &file_core_client_proto_msgTypes[45]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2500,7 +2553,7 @@ func (x *ChangeIconRsp) String() string {
 func (*ChangeIconRsp) ProtoMessage() {}
 
 func (x *ChangeIconRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[44]
+	mi := &file_core_client_proto_msgTypes[45]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2513,7 +2566,7 @@ func (x *ChangeIconRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChangeIconRsp.ProtoReflect.Descriptor instead.
 func (*ChangeIconRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{44}
+	return file_core_client_proto_rawDescGZIP(), []int{45}
 }
 
 func (x *ChangeIconRsp) GetRet() *Ret {
@@ -2533,7 +2586,7 @@ type InfoGetBriefInfoReq struct {
 
 func (x *InfoGetBriefInfoReq) Reset() {
 	*x = InfoGetBriefInfoReq{}
-	mi := &file_core_client_proto_msgTypes[45]
+	mi := &file_core_client_proto_msgTypes[46]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2545,7 +2598,7 @@ func (x *InfoGetBriefInfoReq) String() string {
 func (*InfoGetBriefInfoReq) ProtoMessage() {}
 
 func (x *InfoGetBriefInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[45]
+	mi := &file_core_client_proto_msgTypes[46]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2558,7 +2611,7 @@ func (x *InfoGetBriefInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetBriefInfoReq.ProtoReflect.Descriptor instead.
 func (*InfoGetBriefInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{45}
+	return file_core_client_proto_rawDescGZIP(), []int{46}
 }
 
 func (x *InfoGetBriefInfoReq) GetUidList() []uint64 {
@@ -2578,7 +2631,7 @@ type InfoGetBriefInfoRsp struct {
 
 func (x *InfoGetBriefInfoRsp) Reset() {
 	*x = InfoGetBriefInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[46]
+	mi := &file_core_client_proto_msgTypes[47]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2590,7 +2643,7 @@ func (x *InfoGetBriefInfoRsp) String() string {
 func (*InfoGetBriefInfoRsp) ProtoMessage() {}
 
 func (x *InfoGetBriefInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[46]
+	mi := &file_core_client_proto_msgTypes[47]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2603,7 +2656,7 @@ func (x *InfoGetBriefInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetBriefInfoRsp.ProtoReflect.Descriptor instead.
 func (*InfoGetBriefInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{46}
+	return file_core_client_proto_rawDescGZIP(), []int{47}
 }
 
 func (x *InfoGetBriefInfoRsp) GetRet() *Ret {
@@ -2630,7 +2683,7 @@ type InfoGetIconDescReq struct {
 
 func (x *InfoGetIconDescReq) Reset() {
 	*x = InfoGetIconDescReq{}
-	mi := &file_core_client_proto_msgTypes[47]
+	mi := &file_core_client_proto_msgTypes[48]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2642,7 +2695,7 @@ func (x *InfoGetIconDescReq) String() string {
 func (*InfoGetIconDescReq) ProtoMessage() {}
 
 func (x *InfoGetIconDescReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[47]
+	mi := &file_core_client_proto_msgTypes[48]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2655,7 +2708,7 @@ func (x *InfoGetIconDescReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetIconDescReq.ProtoReflect.Descriptor instead.
 func (*InfoGetIconDescReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{47}
+	return file_core_client_proto_rawDescGZIP(), []int{48}
 }
 
 func (x *InfoGetIconDescReq) GetUidList() []uint64 {
@@ -2675,7 +2728,7 @@ type InfoGetIconDescRsp struct {
 
 func (x *InfoGetIconDescRsp) Reset() {
 	*x = InfoGetIconDescRsp{}
-	mi := &file_core_client_proto_msgTypes[48]
+	mi := &file_core_client_proto_msgTypes[49]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2687,7 +2740,7 @@ func (x *InfoGetIconDescRsp) String() string {
 func (*InfoGetIconDescRsp) ProtoMessage() {}
 
 func (x *InfoGetIconDescRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[48]
+	mi := &file_core_client_proto_msgTypes[49]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2700,7 +2753,7 @@ func (x *InfoGetIconDescRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InfoGetIconDescRsp.ProtoReflect.Descriptor instead.
 func (*InfoGetIconDescRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{48}
+	return file_core_client_proto_rawDescGZIP(), []int{49}
 }
 
 func (x *InfoGetIconDescRsp) GetRet() *Ret {
@@ -2727,7 +2780,7 @@ type GuideCompletedReq struct {
 
 func (x *GuideCompletedReq) Reset() {
 	*x = GuideCompletedReq{}
-	mi := &file_core_client_proto_msgTypes[49]
+	mi := &file_core_client_proto_msgTypes[50]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2739,7 +2792,7 @@ func (x *GuideCompletedReq) String() string {
 func (*GuideCompletedReq) ProtoMessage() {}
 
 func (x *GuideCompletedReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[49]
+	mi := &file_core_client_proto_msgTypes[50]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2752,7 +2805,7 @@ func (x *GuideCompletedReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideCompletedReq.ProtoReflect.Descriptor instead.
 func (*GuideCompletedReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{49}
+	return file_core_client_proto_rawDescGZIP(), []int{50}
 }
 
 func (x *GuideCompletedReq) GetId() int32 {
@@ -2771,7 +2824,7 @@ type GuideCompletedRsp struct {
 
 func (x *GuideCompletedRsp) Reset() {
 	*x = GuideCompletedRsp{}
-	mi := &file_core_client_proto_msgTypes[50]
+	mi := &file_core_client_proto_msgTypes[51]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2783,7 +2836,7 @@ func (x *GuideCompletedRsp) String() string {
 func (*GuideCompletedRsp) ProtoMessage() {}
 
 func (x *GuideCompletedRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[50]
+	mi := &file_core_client_proto_msgTypes[51]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2796,7 +2849,7 @@ func (x *GuideCompletedRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideCompletedRsp.ProtoReflect.Descriptor instead.
 func (*GuideCompletedRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{50}
+	return file_core_client_proto_rawDescGZIP(), []int{51}
 }
 
 func (x *GuideCompletedRsp) GetRet() *Ret {
@@ -2816,7 +2869,7 @@ type GuideInProgressReq struct {
 
 func (x *GuideInProgressReq) Reset() {
 	*x = GuideInProgressReq{}
-	mi := &file_core_client_proto_msgTypes[51]
+	mi := &file_core_client_proto_msgTypes[52]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2828,7 +2881,7 @@ func (x *GuideInProgressReq) String() string {
 func (*GuideInProgressReq) ProtoMessage() {}
 
 func (x *GuideInProgressReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[51]
+	mi := &file_core_client_proto_msgTypes[52]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2841,7 +2894,7 @@ func (x *GuideInProgressReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideInProgressReq.ProtoReflect.Descriptor instead.
 func (*GuideInProgressReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{51}
+	return file_core_client_proto_rawDescGZIP(), []int{52}
 }
 
 func (x *GuideInProgressReq) GetId() int32 {
@@ -2860,7 +2913,7 @@ type GuideInProgressRsp struct {
 
 func (x *GuideInProgressRsp) Reset() {
 	*x = GuideInProgressRsp{}
-	mi := &file_core_client_proto_msgTypes[52]
+	mi := &file_core_client_proto_msgTypes[53]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2872,7 +2925,7 @@ func (x *GuideInProgressRsp) String() string {
 func (*GuideInProgressRsp) ProtoMessage() {}
 
 func (x *GuideInProgressRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[52]
+	mi := &file_core_client_proto_msgTypes[53]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2885,7 +2938,7 @@ func (x *GuideInProgressRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GuideInProgressRsp.ProtoReflect.Descriptor instead.
 func (*GuideInProgressRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{52}
+	return file_core_client_proto_rawDescGZIP(), []int{53}
 }
 
 func (x *GuideInProgressRsp) GetRet() *Ret {
@@ -2905,7 +2958,7 @@ type ExchangeGiftBagReq struct {
 
 func (x *ExchangeGiftBagReq) Reset() {
 	*x = ExchangeGiftBagReq{}
-	mi := &file_core_client_proto_msgTypes[53]
+	mi := &file_core_client_proto_msgTypes[54]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2917,7 +2970,7 @@ func (x *ExchangeGiftBagReq) String() string {
 func (*ExchangeGiftBagReq) ProtoMessage() {}
 
 func (x *ExchangeGiftBagReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[53]
+	mi := &file_core_client_proto_msgTypes[54]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2930,7 +2983,7 @@ func (x *ExchangeGiftBagReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeGiftBagReq.ProtoReflect.Descriptor instead.
 func (*ExchangeGiftBagReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{53}
+	return file_core_client_proto_rawDescGZIP(), []int{54}
 }
 
 func (x *ExchangeGiftBagReq) GetCode() string {
@@ -2950,7 +3003,7 @@ type ExchangeGiftBagRsp struct {
 
 func (x *ExchangeGiftBagRsp) Reset() {
 	*x = ExchangeGiftBagRsp{}
-	mi := &file_core_client_proto_msgTypes[54]
+	mi := &file_core_client_proto_msgTypes[55]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2962,7 +3015,7 @@ func (x *ExchangeGiftBagRsp) String() string {
 func (*ExchangeGiftBagRsp) ProtoMessage() {}
 
 func (x *ExchangeGiftBagRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[54]
+	mi := &file_core_client_proto_msgTypes[55]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2975,7 +3028,7 @@ func (x *ExchangeGiftBagRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ExchangeGiftBagRsp.ProtoReflect.Descriptor instead.
 func (*ExchangeGiftBagRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{54}
+	return file_core_client_proto_rawDescGZIP(), []int{55}
 }
 
 func (x *ExchangeGiftBagRsp) GetRet() *Ret {
@@ -3001,7 +3054,7 @@ type GetMailListReq struct {
 
 func (x *GetMailListReq) Reset() {
 	*x = GetMailListReq{}
-	mi := &file_core_client_proto_msgTypes[55]
+	mi := &file_core_client_proto_msgTypes[56]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3013,7 +3066,7 @@ func (x *GetMailListReq) String() string {
 func (*GetMailListReq) ProtoMessage() {}
 
 func (x *GetMailListReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[55]
+	mi := &file_core_client_proto_msgTypes[56]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3026,7 +3079,7 @@ func (x *GetMailListReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailListReq.ProtoReflect.Descriptor instead.
 func (*GetMailListReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{55}
+	return file_core_client_proto_rawDescGZIP(), []int{56}
 }
 
 type GetMailListRsp struct {
@@ -3039,7 +3092,7 @@ type GetMailListRsp struct {
 
 func (x *GetMailListRsp) Reset() {
 	*x = GetMailListRsp{}
-	mi := &file_core_client_proto_msgTypes[56]
+	mi := &file_core_client_proto_msgTypes[57]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3051,7 +3104,7 @@ func (x *GetMailListRsp) String() string {
 func (*GetMailListRsp) ProtoMessage() {}
 
 func (x *GetMailListRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[56]
+	mi := &file_core_client_proto_msgTypes[57]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3064,7 +3117,7 @@ func (x *GetMailListRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailListRsp.ProtoReflect.Descriptor instead.
 func (*GetMailListRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{56}
+	return file_core_client_proto_rawDescGZIP(), []int{57}
 }
 
 func (x *GetMailListRsp) GetRet() *Ret {
@@ -3091,7 +3144,7 @@ type ReadMailReq struct {
 
 func (x *ReadMailReq) Reset() {
 	*x = ReadMailReq{}
-	mi := &file_core_client_proto_msgTypes[57]
+	mi := &file_core_client_proto_msgTypes[58]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3103,7 +3156,7 @@ func (x *ReadMailReq) String() string {
 func (*ReadMailReq) ProtoMessage() {}
 
 func (x *ReadMailReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[57]
+	mi := &file_core_client_proto_msgTypes[58]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3116,7 +3169,7 @@ func (x *ReadMailReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadMailReq.ProtoReflect.Descriptor instead.
 func (*ReadMailReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{57}
+	return file_core_client_proto_rawDescGZIP(), []int{58}
 }
 
 func (x *ReadMailReq) GetIdList() []int32 {
@@ -3136,7 +3189,7 @@ type ReadMailRsp struct {
 
 func (x *ReadMailRsp) Reset() {
 	*x = ReadMailRsp{}
-	mi := &file_core_client_proto_msgTypes[58]
+	mi := &file_core_client_proto_msgTypes[59]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3148,7 +3201,7 @@ func (x *ReadMailRsp) String() string {
 func (*ReadMailRsp) ProtoMessage() {}
 
 func (x *ReadMailRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[58]
+	mi := &file_core_client_proto_msgTypes[59]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3161,7 +3214,7 @@ func (x *ReadMailRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ReadMailRsp.ProtoReflect.Descriptor instead.
 func (*ReadMailRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{58}
+	return file_core_client_proto_rawDescGZIP(), []int{59}
 }
 
 func (x *ReadMailRsp) GetRet() *Ret {
@@ -3188,7 +3241,7 @@ type DelMailReq struct {
 
 func (x *DelMailReq) Reset() {
 	*x = DelMailReq{}
-	mi := &file_core_client_proto_msgTypes[59]
+	mi := &file_core_client_proto_msgTypes[60]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3200,7 +3253,7 @@ func (x *DelMailReq) String() string {
 func (*DelMailReq) ProtoMessage() {}
 
 func (x *DelMailReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[59]
+	mi := &file_core_client_proto_msgTypes[60]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3213,7 +3266,7 @@ func (x *DelMailReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelMailReq.ProtoReflect.Descriptor instead.
 func (*DelMailReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{59}
+	return file_core_client_proto_rawDescGZIP(), []int{60}
 }
 
 func (x *DelMailReq) GetIdList() []int32 {
@@ -3233,7 +3286,7 @@ type DelMailRsp struct {
 
 func (x *DelMailRsp) Reset() {
 	*x = DelMailRsp{}
-	mi := &file_core_client_proto_msgTypes[60]
+	mi := &file_core_client_proto_msgTypes[61]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3245,7 +3298,7 @@ func (x *DelMailRsp) String() string {
 func (*DelMailRsp) ProtoMessage() {}
 
 func (x *DelMailRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[60]
+	mi := &file_core_client_proto_msgTypes[61]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3258,7 +3311,7 @@ func (x *DelMailRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DelMailRsp.ProtoReflect.Descriptor instead.
 func (*DelMailRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{60}
+	return file_core_client_proto_rawDescGZIP(), []int{61}
 }
 
 func (x *DelMailRsp) GetRet() *Ret {
@@ -3285,7 +3338,7 @@ type GetMailAttachReq struct {
 
 func (x *GetMailAttachReq) Reset() {
 	*x = GetMailAttachReq{}
-	mi := &file_core_client_proto_msgTypes[61]
+	mi := &file_core_client_proto_msgTypes[62]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3297,7 +3350,7 @@ func (x *GetMailAttachReq) String() string {
 func (*GetMailAttachReq) ProtoMessage() {}
 
 func (x *GetMailAttachReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[61]
+	mi := &file_core_client_proto_msgTypes[62]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3310,7 +3363,7 @@ func (x *GetMailAttachReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailAttachReq.ProtoReflect.Descriptor instead.
 func (*GetMailAttachReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{61}
+	return file_core_client_proto_rawDescGZIP(), []int{62}
 }
 
 func (x *GetMailAttachReq) GetIdList() []int32 {
@@ -3331,7 +3384,7 @@ type GetMailAttachRsp struct {
 
 func (x *GetMailAttachRsp) Reset() {
 	*x = GetMailAttachRsp{}
-	mi := &file_core_client_proto_msgTypes[62]
+	mi := &file_core_client_proto_msgTypes[63]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3343,7 +3396,7 @@ func (x *GetMailAttachRsp) String() string {
 func (*GetMailAttachRsp) ProtoMessage() {}
 
 func (x *GetMailAttachRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[62]
+	mi := &file_core_client_proto_msgTypes[63]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3356,7 +3409,7 @@ func (x *GetMailAttachRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetMailAttachRsp.ProtoReflect.Descriptor instead.
 func (*GetMailAttachRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{62}
+	return file_core_client_proto_rawDescGZIP(), []int{63}
 }
 
 func (x *GetMailAttachRsp) GetRet() *Ret {
@@ -3390,7 +3443,7 @@ type ChatChatReq struct {
 
 func (x *ChatChatReq) Reset() {
 	*x = ChatChatReq{}
-	mi := &file_core_client_proto_msgTypes[63]
+	mi := &file_core_client_proto_msgTypes[64]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3402,7 +3455,7 @@ func (x *ChatChatReq) String() string {
 func (*ChatChatReq) ProtoMessage() {}
 
 func (x *ChatChatReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[63]
+	mi := &file_core_client_proto_msgTypes[64]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3415,7 +3468,7 @@ func (x *ChatChatReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatChatReq.ProtoReflect.Descriptor instead.
 func (*ChatChatReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{63}
+	return file_core_client_proto_rawDescGZIP(), []int{64}
 }
 
 func (x *ChatChatReq) GetMsg() *PbChatMsg {
@@ -3434,7 +3487,7 @@ type ChatChatRsp struct {
 
 func (x *ChatChatRsp) Reset() {
 	*x = ChatChatRsp{}
-	mi := &file_core_client_proto_msgTypes[64]
+	mi := &file_core_client_proto_msgTypes[65]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3446,7 +3499,7 @@ func (x *ChatChatRsp) String() string {
 func (*ChatChatRsp) ProtoMessage() {}
 
 func (x *ChatChatRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[64]
+	mi := &file_core_client_proto_msgTypes[65]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3459,7 +3512,7 @@ func (x *ChatChatRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatChatRsp.ProtoReflect.Descriptor instead.
 func (*ChatChatRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{64}
+	return file_core_client_proto_rawDescGZIP(), []int{65}
 }
 
 func (x *ChatChatRsp) GetRet() *Ret {
@@ -3478,7 +3531,7 @@ type ChatGetChatInfoReq struct {
 
 func (x *ChatGetChatInfoReq) Reset() {
 	*x = ChatGetChatInfoReq{}
-	mi := &file_core_client_proto_msgTypes[65]
+	mi := &file_core_client_proto_msgTypes[66]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3490,7 +3543,7 @@ func (x *ChatGetChatInfoReq) String() string {
 func (*ChatGetChatInfoReq) ProtoMessage() {}
 
 func (x *ChatGetChatInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[65]
+	mi := &file_core_client_proto_msgTypes[66]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3503,7 +3556,7 @@ func (x *ChatGetChatInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatGetChatInfoReq.ProtoReflect.Descriptor instead.
 func (*ChatGetChatInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{65}
+	return file_core_client_proto_rawDescGZIP(), []int{66}
 }
 
 type ChatGetChatInfoRsp struct {
@@ -3516,7 +3569,7 @@ type ChatGetChatInfoRsp struct {
 
 func (x *ChatGetChatInfoRsp) Reset() {
 	*x = ChatGetChatInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[66]
+	mi := &file_core_client_proto_msgTypes[67]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3528,7 +3581,7 @@ func (x *ChatGetChatInfoRsp) String() string {
 func (*ChatGetChatInfoRsp) ProtoMessage() {}
 
 func (x *ChatGetChatInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[66]
+	mi := &file_core_client_proto_msgTypes[67]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3541,7 +3594,7 @@ func (x *ChatGetChatInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatGetChatInfoRsp.ProtoReflect.Descriptor instead.
 func (*ChatGetChatInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{66}
+	return file_core_client_proto_rawDescGZIP(), []int{67}
 }
 
 func (x *ChatGetChatInfoRsp) GetRet() *Ret {
@@ -3568,7 +3621,7 @@ type ChatDelChatReq struct {
 
 func (x *ChatDelChatReq) Reset() {
 	*x = ChatDelChatReq{}
-	mi := &file_core_client_proto_msgTypes[67]
+	mi := &file_core_client_proto_msgTypes[68]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3580,7 +3633,7 @@ func (x *ChatDelChatReq) String() string {
 func (*ChatDelChatReq) ProtoMessage() {}
 
 func (x *ChatDelChatReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[67]
+	mi := &file_core_client_proto_msgTypes[68]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3593,7 +3646,7 @@ func (x *ChatDelChatReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatDelChatReq.ProtoReflect.Descriptor instead.
 func (*ChatDelChatReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{67}
+	return file_core_client_proto_rawDescGZIP(), []int{68}
 }
 
 func (x *ChatDelChatReq) GetFriendUid() uint64 {
@@ -3612,7 +3665,7 @@ type ChatDelChatRsp struct {
 
 func (x *ChatDelChatRsp) Reset() {
 	*x = ChatDelChatRsp{}
-	mi := &file_core_client_proto_msgTypes[68]
+	mi := &file_core_client_proto_msgTypes[69]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3624,7 +3677,7 @@ func (x *ChatDelChatRsp) String() string {
 func (*ChatDelChatRsp) ProtoMessage() {}
 
 func (x *ChatDelChatRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[68]
+	mi := &file_core_client_proto_msgTypes[69]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3637,7 +3690,7 @@ func (x *ChatDelChatRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ChatDelChatRsp.ProtoReflect.Descriptor instead.
 func (*ChatDelChatRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{68}
+	return file_core_client_proto_rawDescGZIP(), []int{69}
 }
 
 func (x *ChatDelChatRsp) GetRet() *Ret {
@@ -3656,7 +3709,7 @@ type FriendGetFriendInfoReq struct {
 
 func (x *FriendGetFriendInfoReq) Reset() {
 	*x = FriendGetFriendInfoReq{}
-	mi := &file_core_client_proto_msgTypes[69]
+	mi := &file_core_client_proto_msgTypes[70]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3668,7 +3721,7 @@ func (x *FriendGetFriendInfoReq) String() string {
 func (*FriendGetFriendInfoReq) ProtoMessage() {}
 
 func (x *FriendGetFriendInfoReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[69]
+	mi := &file_core_client_proto_msgTypes[70]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3681,7 +3734,7 @@ func (x *FriendGetFriendInfoReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendGetFriendInfoReq.ProtoReflect.Descriptor instead.
 func (*FriendGetFriendInfoReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{69}
+	return file_core_client_proto_rawDescGZIP(), []int{70}
 }
 
 type FriendGetFriendInfoRsp struct {
@@ -3694,7 +3747,7 @@ type FriendGetFriendInfoRsp struct {
 
 func (x *FriendGetFriendInfoRsp) Reset() {
 	*x = FriendGetFriendInfoRsp{}
-	mi := &file_core_client_proto_msgTypes[70]
+	mi := &file_core_client_proto_msgTypes[71]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3706,7 +3759,7 @@ func (x *FriendGetFriendInfoRsp) String() string {
 func (*FriendGetFriendInfoRsp) ProtoMessage() {}
 
 func (x *FriendGetFriendInfoRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[70]
+	mi := &file_core_client_proto_msgTypes[71]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3719,7 +3772,7 @@ func (x *FriendGetFriendInfoRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendGetFriendInfoRsp.ProtoReflect.Descriptor instead.
 func (*FriendGetFriendInfoRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{70}
+	return file_core_client_proto_rawDescGZIP(), []int{71}
 }
 
 func (x *FriendGetFriendInfoRsp) GetRet() *Ret {
@@ -3747,7 +3800,7 @@ type FriendAddFriendReq struct {
 
 func (x *FriendAddFriendReq) Reset() {
 	*x = FriendAddFriendReq{}
-	mi := &file_core_client_proto_msgTypes[71]
+	mi := &file_core_client_proto_msgTypes[72]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3759,7 +3812,7 @@ func (x *FriendAddFriendReq) String() string {
 func (*FriendAddFriendReq) ProtoMessage() {}
 
 func (x *FriendAddFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[71]
+	mi := &file_core_client_proto_msgTypes[72]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3772,7 +3825,7 @@ func (x *FriendAddFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendAddFriendReq.ProtoReflect.Descriptor instead.
 func (*FriendAddFriendReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{71}
+	return file_core_client_proto_rawDescGZIP(), []int{72}
 }
 
 func (x *FriendAddFriendReq) GetFriendUid() uint64 {
@@ -3800,7 +3853,7 @@ type FriendAddFriendRsp struct {
 
 func (x *FriendAddFriendRsp) Reset() {
 	*x = FriendAddFriendRsp{}
-	mi := &file_core_client_proto_msgTypes[72]
+	mi := &file_core_client_proto_msgTypes[73]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3812,7 +3865,7 @@ func (x *FriendAddFriendRsp) String() string {
 func (*FriendAddFriendRsp) ProtoMessage() {}
 
 func (x *FriendAddFriendRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[72]
+	mi := &file_core_client_proto_msgTypes[73]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3825,7 +3878,7 @@ func (x *FriendAddFriendRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendAddFriendRsp.ProtoReflect.Descriptor instead.
 func (*FriendAddFriendRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{72}
+	return file_core_client_proto_rawDescGZIP(), []int{73}
 }
 
 func (x *FriendAddFriendRsp) GetRet() *Ret {
@@ -3861,7 +3914,7 @@ type FriendConfirmFriendReq struct {
 
 func (x *FriendConfirmFriendReq) Reset() {
 	*x = FriendConfirmFriendReq{}
-	mi := &file_core_client_proto_msgTypes[73]
+	mi := &file_core_client_proto_msgTypes[74]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3873,7 +3926,7 @@ func (x *FriendConfirmFriendReq) String() string {
 func (*FriendConfirmFriendReq) ProtoMessage() {}
 
 func (x *FriendConfirmFriendReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[73]
+	mi := &file_core_client_proto_msgTypes[74]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3886,7 +3939,7 @@ func (x *FriendConfirmFriendReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendConfirmFriendReq.ProtoReflect.Descriptor instead.
 func (*FriendConfirmFriendReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{73}
+	return file_core_client_proto_rawDescGZIP(), []int{74}
 }
 
 func (x *FriendConfirmFriendReq) GetFriendUid() uint64 {
@@ -3922,7 +3975,7 @@ type FriendConfirmFriendRsp struct {
 
 func (x *FriendConfirmFriendRsp) Reset() {
 	*x = FriendConfirmFriendRsp{}
-	mi := &file_core_client_proto_msgTypes[74]
+	mi := &file_core_client_proto_msgTypes[75]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -3934,7 +3987,7 @@ func (x *FriendConfirmFriendRsp) String() string {
 func (*FriendConfirmFriendRsp) ProtoMessage() {}
 
 func (x *FriendConfirmFriendRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[74]
+	mi := &file_core_client_proto_msgTypes[75]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -3947,7 +4000,7 @@ func (x *FriendConfirmFriendRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendConfirmFriendRsp.ProtoReflect.Descriptor instead.
 func (*FriendConfirmFriendRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{74}
+	return file_core_client_proto_rawDescGZIP(), []int{75}
 }
 
 func (x *FriendConfirmFriendRsp) GetRet() *Ret {
@@ -3989,7 +4042,7 @@ type FriendShieldUserReq struct {
 
 func (x *FriendShieldUserReq) Reset() {
 	*x = FriendShieldUserReq{}
-	mi := &file_core_client_proto_msgTypes[75]
+	mi := &file_core_client_proto_msgTypes[76]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4001,7 +4054,7 @@ func (x *FriendShieldUserReq) String() string {
 func (*FriendShieldUserReq) ProtoMessage() {}
 
 func (x *FriendShieldUserReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[75]
+	mi := &file_core_client_proto_msgTypes[76]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4014,7 +4067,7 @@ func (x *FriendShieldUserReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendShieldUserReq.ProtoReflect.Descriptor instead.
 func (*FriendShieldUserReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{75}
+	return file_core_client_proto_rawDescGZIP(), []int{76}
 }
 
 func (x *FriendShieldUserReq) GetShieldUid() uint64 {
@@ -4042,7 +4095,7 @@ type FriendShieldUserRsp struct {
 
 func (x *FriendShieldUserRsp) Reset() {
 	*x = FriendShieldUserRsp{}
-	mi := &file_core_client_proto_msgTypes[76]
+	mi := &file_core_client_proto_msgTypes[77]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4054,7 +4107,7 @@ func (x *FriendShieldUserRsp) String() string {
 func (*FriendShieldUserRsp) ProtoMessage() {}
 
 func (x *FriendShieldUserRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[76]
+	mi := &file_core_client_proto_msgTypes[77]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4067,7 +4120,7 @@ func (x *FriendShieldUserRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendShieldUserRsp.ProtoReflect.Descriptor instead.
 func (*FriendShieldUserRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{76}
+	return file_core_client_proto_rawDescGZIP(), []int{77}
 }
 
 func (x *FriendShieldUserRsp) GetRet() *Ret {
@@ -4101,7 +4154,7 @@ type FriendSearchRoleReq struct {
 
 func (x *FriendSearchRoleReq) Reset() {
 	*x = FriendSearchRoleReq{}
-	mi := &file_core_client_proto_msgTypes[77]
+	mi := &file_core_client_proto_msgTypes[78]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4113,7 +4166,7 @@ func (x *FriendSearchRoleReq) String() string {
 func (*FriendSearchRoleReq) ProtoMessage() {}
 
 func (x *FriendSearchRoleReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[77]
+	mi := &file_core_client_proto_msgTypes[78]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4126,7 +4179,7 @@ func (x *FriendSearchRoleReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendSearchRoleReq.ProtoReflect.Descriptor instead.
 func (*FriendSearchRoleReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{77}
+	return file_core_client_proto_rawDescGZIP(), []int{78}
 }
 
 func (x *FriendSearchRoleReq) GetSearchString() string {
@@ -4146,7 +4199,7 @@ type FriendSearchRoleRsp struct {
 
 func (x *FriendSearchRoleRsp) Reset() {
 	*x = FriendSearchRoleRsp{}
-	mi := &file_core_client_proto_msgTypes[78]
+	mi := &file_core_client_proto_msgTypes[79]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4158,7 +4211,7 @@ func (x *FriendSearchRoleRsp) String() string {
 func (*FriendSearchRoleRsp) ProtoMessage() {}
 
 func (x *FriendSearchRoleRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[78]
+	mi := &file_core_client_proto_msgTypes[79]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4171,7 +4224,7 @@ func (x *FriendSearchRoleRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FriendSearchRoleRsp.ProtoReflect.Descriptor instead.
 func (*FriendSearchRoleRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{78}
+	return file_core_client_proto_rawDescGZIP(), []int{79}
 }
 
 func (x *FriendSearchRoleRsp) GetRet() *Ret {
@@ -4198,7 +4251,7 @@ type MallBuyPackageReq struct {
 
 func (x *MallBuyPackageReq) Reset() {
 	*x = MallBuyPackageReq{}
-	mi := &file_core_client_proto_msgTypes[79]
+	mi := &file_core_client_proto_msgTypes[80]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4210,7 +4263,7 @@ func (x *MallBuyPackageReq) String() string {
 func (*MallBuyPackageReq) ProtoMessage() {}
 
 func (x *MallBuyPackageReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[79]
+	mi := &file_core_client_proto_msgTypes[80]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4223,7 +4276,7 @@ func (x *MallBuyPackageReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallBuyPackageReq.ProtoReflect.Descriptor instead.
 func (*MallBuyPackageReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{79}
+	return file_core_client_proto_rawDescGZIP(), []int{80}
 }
 
 func (x *MallBuyPackageReq) GetConfId() int32 {
@@ -4242,7 +4295,7 @@ type MallBuyPackageRsp struct {
 
 func (x *MallBuyPackageRsp) Reset() {
 	*x = MallBuyPackageRsp{}
-	mi := &file_core_client_proto_msgTypes[80]
+	mi := &file_core_client_proto_msgTypes[81]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4254,7 +4307,7 @@ func (x *MallBuyPackageRsp) String() string {
 func (*MallBuyPackageRsp) ProtoMessage() {}
 
 func (x *MallBuyPackageRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[80]
+	mi := &file_core_client_proto_msgTypes[81]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4267,7 +4320,7 @@ func (x *MallBuyPackageRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallBuyPackageRsp.ProtoReflect.Descriptor instead.
 func (*MallBuyPackageRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{80}
+	return file_core_client_proto_rawDescGZIP(), []int{81}
 }
 
 func (x *MallBuyPackageRsp) GetRet() *Ret {
@@ -4288,7 +4341,7 @@ type MallRechargeReq struct {
 
 func (x *MallRechargeReq) Reset() {
 	*x = MallRechargeReq{}
-	mi := &file_core_client_proto_msgTypes[81]
+	mi := &file_core_client_proto_msgTypes[82]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4300,7 +4353,7 @@ func (x *MallRechargeReq) String() string {
 func (*MallRechargeReq) ProtoMessage() {}
 
 func (x *MallRechargeReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[81]
+	mi := &file_core_client_proto_msgTypes[82]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4313,7 +4366,7 @@ func (x *MallRechargeReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallRechargeReq.ProtoReflect.Descriptor instead.
 func (*MallRechargeReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{81}
+	return file_core_client_proto_rawDescGZIP(), []int{82}
 }
 
 func (x *MallRechargeReq) GetConfId() int32 {
@@ -4339,7 +4392,7 @@ type MallRechargeRsp struct {
 
 func (x *MallRechargeRsp) Reset() {
 	*x = MallRechargeRsp{}
-	mi := &file_core_client_proto_msgTypes[82]
+	mi := &file_core_client_proto_msgTypes[83]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4351,7 +4404,7 @@ func (x *MallRechargeRsp) String() string {
 func (*MallRechargeRsp) ProtoMessage() {}
 
 func (x *MallRechargeRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[82]
+	mi := &file_core_client_proto_msgTypes[83]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4364,7 +4417,7 @@ func (x *MallRechargeRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use MallRechargeRsp.ProtoReflect.Descriptor instead.
 func (*MallRechargeRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{82}
+	return file_core_client_proto_rawDescGZIP(), []int{83}
 }
 
 func (x *MallRechargeRsp) GetRet() *Ret {
@@ -4385,7 +4438,7 @@ type UseItemReq struct {
 
 func (x *UseItemReq) Reset() {
 	*x = UseItemReq{}
-	mi := &file_core_client_proto_msgTypes[83]
+	mi := &file_core_client_proto_msgTypes[84]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4397,7 +4450,7 @@ func (x *UseItemReq) String() string {
 func (*UseItemReq) ProtoMessage() {}
 
 func (x *UseItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[83]
+	mi := &file_core_client_proto_msgTypes[84]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4410,7 +4463,7 @@ func (x *UseItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UseItemReq.ProtoReflect.Descriptor instead.
 func (*UseItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{83}
+	return file_core_client_proto_rawDescGZIP(), []int{84}
 }
 
 func (x *UseItemReq) GetItemId() int32 {
@@ -4436,7 +4489,7 @@ type UseItemRsp struct {
 
 func (x *UseItemRsp) Reset() {
 	*x = UseItemRsp{}
-	mi := &file_core_client_proto_msgTypes[84]
+	mi := &file_core_client_proto_msgTypes[85]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4448,7 +4501,7 @@ func (x *UseItemRsp) String() string {
 func (*UseItemRsp) ProtoMessage() {}
 
 func (x *UseItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[84]
+	mi := &file_core_client_proto_msgTypes[85]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4461,7 +4514,7 @@ func (x *UseItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UseItemRsp.ProtoReflect.Descriptor instead.
 func (*UseItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{84}
+	return file_core_client_proto_rawDescGZIP(), []int{85}
 }
 
 func (x *UseItemRsp) GetRet() *Ret {
@@ -4482,7 +4535,7 @@ type SellItemReq struct {
 
 func (x *SellItemReq) Reset() {
 	*x = SellItemReq{}
-	mi := &file_core_client_proto_msgTypes[85]
+	mi := &file_core_client_proto_msgTypes[86]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4494,7 +4547,7 @@ func (x *SellItemReq) String() string {
 func (*SellItemReq) ProtoMessage() {}
 
 func (x *SellItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[85]
+	mi := &file_core_client_proto_msgTypes[86]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4507,7 +4560,7 @@ func (x *SellItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SellItemReq.ProtoReflect.Descriptor instead.
 func (*SellItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{85}
+	return file_core_client_proto_rawDescGZIP(), []int{86}
 }
 
 func (x *SellItemReq) GetItemId() int32 {
@@ -4533,7 +4586,7 @@ type SellItemRsp struct {
 
 func (x *SellItemRsp) Reset() {
 	*x = SellItemRsp{}
-	mi := &file_core_client_proto_msgTypes[86]
+	mi := &file_core_client_proto_msgTypes[87]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4545,7 +4598,7 @@ func (x *SellItemRsp) String() string {
 func (*SellItemRsp) ProtoMessage() {}
 
 func (x *SellItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[86]
+	mi := &file_core_client_proto_msgTypes[87]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4558,7 +4611,7 @@ func (x *SellItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use SellItemRsp.ProtoReflect.Descriptor instead.
 func (*SellItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{86}
+	return file_core_client_proto_rawDescGZIP(), []int{87}
 }
 
 func (x *SellItemRsp) GetRet() *Ret {
@@ -4579,7 +4632,7 @@ type DecomposeItemReq struct {
 
 func (x *DecomposeItemReq) Reset() {
 	*x = DecomposeItemReq{}
-	mi := &file_core_client_proto_msgTypes[87]
+	mi := &file_core_client_proto_msgTypes[88]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4591,7 +4644,7 @@ func (x *DecomposeItemReq) String() string {
 func (*DecomposeItemReq) ProtoMessage() {}
 
 func (x *DecomposeItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[87]
+	mi := &file_core_client_proto_msgTypes[88]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4604,7 +4657,7 @@ func (x *DecomposeItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecomposeItemReq.ProtoReflect.Descriptor instead.
 func (*DecomposeItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{87}
+	return file_core_client_proto_rawDescGZIP(), []int{88}
 }
 
 func (x *DecomposeItemReq) GetItemId() int32 {
@@ -4631,7 +4684,7 @@ type DecomposeItemRsp struct {
 
 func (x *DecomposeItemRsp) Reset() {
 	*x = DecomposeItemRsp{}
-	mi := &file_core_client_proto_msgTypes[88]
+	mi := &file_core_client_proto_msgTypes[89]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4643,7 +4696,7 @@ func (x *DecomposeItemRsp) String() string {
 func (*DecomposeItemRsp) ProtoMessage() {}
 
 func (x *DecomposeItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[88]
+	mi := &file_core_client_proto_msgTypes[89]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4656,7 +4709,7 @@ func (x *DecomposeItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DecomposeItemRsp.ProtoReflect.Descriptor instead.
 func (*DecomposeItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{88}
+	return file_core_client_proto_rawDescGZIP(), []int{89}
 }
 
 func (x *DecomposeItemRsp) GetRet() *Ret {
@@ -4685,7 +4738,7 @@ type QueryBackpackReq struct {
 
 func (x *QueryBackpackReq) Reset() {
 	*x = QueryBackpackReq{}
-	mi := &file_core_client_proto_msgTypes[89]
+	mi := &file_core_client_proto_msgTypes[90]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4697,7 +4750,7 @@ func (x *QueryBackpackReq) String() string {
 func (*QueryBackpackReq) ProtoMessage() {}
 
 func (x *QueryBackpackReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[89]
+	mi := &file_core_client_proto_msgTypes[90]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4710,7 +4763,7 @@ func (x *QueryBackpackReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryBackpackReq.ProtoReflect.Descriptor instead.
 func (*QueryBackpackReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{89}
+	return file_core_client_proto_rawDescGZIP(), []int{90}
 }
 
 func (x *QueryBackpackReq) GetBagType() int32 {
@@ -4748,7 +4801,7 @@ type QueryBackpackRsp struct {
 
 func (x *QueryBackpackRsp) Reset() {
 	*x = QueryBackpackRsp{}
-	mi := &file_core_client_proto_msgTypes[90]
+	mi := &file_core_client_proto_msgTypes[91]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4760,7 +4813,7 @@ func (x *QueryBackpackRsp) String() string {
 func (*QueryBackpackRsp) ProtoMessage() {}
 
 func (x *QueryBackpackRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[90]
+	mi := &file_core_client_proto_msgTypes[91]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4773,7 +4826,7 @@ func (x *QueryBackpackRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use QueryBackpackRsp.ProtoReflect.Descriptor instead.
 func (*QueryBackpackRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{90}
+	return file_core_client_proto_rawDescGZIP(), []int{91}
 }
 
 func (x *QueryBackpackRsp) GetRet() *Ret {
@@ -4828,7 +4881,7 @@ type BatchAddItemReq struct {
 
 func (x *BatchAddItemReq) Reset() {
 	*x = BatchAddItemReq{}
-	mi := &file_core_client_proto_msgTypes[91]
+	mi := &file_core_client_proto_msgTypes[92]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4840,7 +4893,7 @@ func (x *BatchAddItemReq) String() string {
 func (*BatchAddItemReq) ProtoMessage() {}
 
 func (x *BatchAddItemReq) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[91]
+	mi := &file_core_client_proto_msgTypes[92]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4853,7 +4906,7 @@ func (x *BatchAddItemReq) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BatchAddItemReq.ProtoReflect.Descriptor instead.
 func (*BatchAddItemReq) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{91}
+	return file_core_client_proto_rawDescGZIP(), []int{92}
 }
 
 func (x *BatchAddItemReq) GetItems() []*PbItem {
@@ -4872,7 +4925,7 @@ type BatchAddItemRsp struct {
 
 func (x *BatchAddItemRsp) Reset() {
 	*x = BatchAddItemRsp{}
-	mi := &file_core_client_proto_msgTypes[92]
+	mi := &file_core_client_proto_msgTypes[93]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4884,7 +4937,7 @@ func (x *BatchAddItemRsp) String() string {
 func (*BatchAddItemRsp) ProtoMessage() {}
 
 func (x *BatchAddItemRsp) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[92]
+	mi := &file_core_client_proto_msgTypes[93]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4897,7 +4950,7 @@ func (x *BatchAddItemRsp) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BatchAddItemRsp.ProtoReflect.Descriptor instead.
 func (*BatchAddItemRsp) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{92}
+	return file_core_client_proto_rawDescGZIP(), []int{93}
 }
 
 func (x *BatchAddItemRsp) GetRet() *Ret {
@@ -4923,7 +4976,7 @@ type ObtainRewardItem struct {
 
 func (x *ObtainRewardItem) Reset() {
 	*x = ObtainRewardItem{}
-	mi := &file_core_client_proto_msgTypes[93]
+	mi := &file_core_client_proto_msgTypes[94]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -4935,7 +4988,7 @@ func (x *ObtainRewardItem) String() string {
 func (*ObtainRewardItem) ProtoMessage() {}
 
 func (x *ObtainRewardItem) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[93]
+	mi := &file_core_client_proto_msgTypes[94]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -4948,7 +5001,7 @@ func (x *ObtainRewardItem) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use ObtainRewardItem.ProtoReflect.Descriptor instead.
 func (*ObtainRewardItem) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{93}
+	return file_core_client_proto_rawDescGZIP(), []int{94}
 }
 
 func (x *ObtainRewardItem) GetRewardType() int32 {
@@ -5017,7 +5070,7 @@ type S2CObtainNotice struct {
 
 func (x *S2CObtainNotice) Reset() {
 	*x = S2CObtainNotice{}
-	mi := &file_core_client_proto_msgTypes[94]
+	mi := &file_core_client_proto_msgTypes[95]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -5029,7 +5082,7 @@ func (x *S2CObtainNotice) String() string {
 func (*S2CObtainNotice) ProtoMessage() {}
 
 func (x *S2CObtainNotice) ProtoReflect() protoreflect.Message {
-	mi := &file_core_client_proto_msgTypes[94]
+	mi := &file_core_client_proto_msgTypes[95]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -5042,7 +5095,7 @@ func (x *S2CObtainNotice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use S2CObtainNotice.ProtoReflect.Descriptor instead.
 func (*S2CObtainNotice) Descriptor() ([]byte, []int) {
-	return file_core_client_proto_rawDescGZIP(), []int{94}
+	return file_core_client_proto_rawDescGZIP(), []int{95}
 }
 
 func (x *S2CObtainNotice) GetRequestId() string {
@@ -5216,7 +5269,12 @@ const file_core_client_proto_rawDesc = "" +
 	"\x10delete_frame_ids\x18\b \x03(\x05R\x0edeleteFrameIds\"v\n" +
 	"\x14RoleActvityTaskPatch\x126\n" +
 	"\fupsert_tasks\x18\x01 \x03(\v2\x13.g1.protocol.PbTaskR\vupsertTasks\x12&\n" +
-	"\x0fdelete_task_ids\x18\x02 \x03(\x05R\rdeleteTaskIds\"\xb1\x03\n" +
+	"\x0fdelete_task_ids\x18\x02 \x03(\x05R\rdeleteTaskIds\"\x96\x01\n" +
+	"\x11RoleCurrencyPatch\x12E\n" +
+	"\achanged\x18\x01 \x03(\v2+.g1.protocol.RoleCurrencyPatch.ChangedEntryR\achanged\x1a:\n" +
+	"\fChangedEntry\x12\x10\n" +
+	"\x03key\x18\x01 \x01(\x05R\x03key\x12\x14\n" +
+	"\x05value\x18\x02 \x01(\x03R\x05value:\x028\x01\"\xf8\x03\n" +
 	"\x10ScSyncUserDataV2\x12*\n" +
 	"\x11full_section_mask\x18\x01 \x01(\x05R\x0ffullSectionMask\x12,\n" +
 	"\x12patch_section_mask\x18\x02 \x01(\x05R\x10patchSectionMask\x122\n" +
@@ -5226,7 +5284,8 @@ const file_core_client_proto_rawDesc = "" +
 	"mall_patch\x18\x05 \x01(\v2\x1a.g1.protocol.RoleMallPatchR\tmallPatch\x129\n" +
 	"\n" +
 	"icon_patch\x18\x06 \x01(\v2\x1a.g1.protocol.RoleIconPatchR\ticonPatch\x12O\n" +
-	"\x12actvity_task_patch\x18\a \x01(\v2!.g1.protocol.RoleActvityTaskPatchR\x10actvityTaskPatch\"2\n" +
+	"\x12actvity_task_patch\x18\a \x01(\v2!.g1.protocol.RoleActvityTaskPatchR\x10actvityTaskPatch\x12E\n" +
+	"\x0ecurrency_patch\x18\b \x01(\v2\x1e.g1.protocol.RoleCurrencyPatchR\rcurrencyPatch\"2\n" +
 	"\x06ScChat\x12(\n" +
 	"\x03msg\x18\x01 \x01(\v2\x16.g1.protocol.PbChatMsgR\x03msg\"&\n" +
 	"\x12ScDataChangeNotify\x12\x10\n" +
@@ -5449,7 +5508,7 @@ func file_core_client_proto_rawDescGZIP() []byte {
 }
 
 var file_core_client_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_core_client_proto_msgTypes = make([]protoimpl.MessageInfo, 95)
+var file_core_client_proto_msgTypes = make([]protoimpl.MessageInfo, 97)
 var file_core_client_proto_goTypes = []any{
 	(ObtainDisplayMode)(0),              // 0: g1.protocol.ObtainDisplayMode
 	(*PbChatMsg)(nil),                   // 1: g1.protocol.PbChatMsg
@@ -5482,166 +5541,170 @@ var file_core_client_proto_goTypes = []any{
 	(*RoleMallPatch)(nil),               // 28: g1.protocol.RoleMallPatch
 	(*RoleIconPatch)(nil),               // 29: g1.protocol.RoleIconPatch
 	(*RoleActvityTaskPatch)(nil),        // 30: g1.protocol.RoleActvityTaskPatch
-	(*ScSyncUserDataV2)(nil),            // 31: g1.protocol.ScSyncUserDataV2
-	(*ScChat)(nil),                      // 32: g1.protocol.ScChat
-	(*ScDataChangeNotify)(nil),          // 33: g1.protocol.ScDataChangeNotify
-	(*LoginReq)(nil),                    // 34: g1.protocol.LoginReq
-	(*LoginRsp)(nil),                    // 35: g1.protocol.LoginRsp
-	(*LogoutReq)(nil),                   // 36: g1.protocol.LogoutReq
-	(*LogoutRsp)(nil),                   // 37: g1.protocol.LogoutRsp
-	(*HeartBeatReq)(nil),                // 38: g1.protocol.HeartBeatReq
-	(*HeartBeatRsp)(nil),                // 39: g1.protocol.HeartBeatRsp
-	(*ItemUseReq)(nil),                  // 40: g1.protocol.ItemUseReq
-	(*ItemUseRsp)(nil),                  // 41: g1.protocol.ItemUseRsp
-	(*ChangeNameReq)(nil),               // 42: g1.protocol.ChangeNameReq
-	(*ChangeNameRsp)(nil),               // 43: g1.protocol.ChangeNameRsp
-	(*ChangeIconReq)(nil),               // 44: g1.protocol.ChangeIconReq
-	(*ChangeIconRsp)(nil),               // 45: g1.protocol.ChangeIconRsp
-	(*InfoGetBriefInfoReq)(nil),         // 46: g1.protocol.InfoGetBriefInfoReq
-	(*InfoGetBriefInfoRsp)(nil),         // 47: g1.protocol.InfoGetBriefInfoRsp
-	(*InfoGetIconDescReq)(nil),          // 48: g1.protocol.InfoGetIconDescReq
-	(*InfoGetIconDescRsp)(nil),          // 49: g1.protocol.InfoGetIconDescRsp
-	(*GuideCompletedReq)(nil),           // 50: g1.protocol.GuideCompletedReq
-	(*GuideCompletedRsp)(nil),           // 51: g1.protocol.GuideCompletedRsp
-	(*GuideInProgressReq)(nil),          // 52: g1.protocol.GuideInProgressReq
-	(*GuideInProgressRsp)(nil),          // 53: g1.protocol.GuideInProgressRsp
-	(*ExchangeGiftBagReq)(nil),          // 54: g1.protocol.ExchangeGiftBagReq
-	(*ExchangeGiftBagRsp)(nil),          // 55: g1.protocol.ExchangeGiftBagRsp
-	(*GetMailListReq)(nil),              // 56: g1.protocol.GetMailListReq
-	(*GetMailListRsp)(nil),              // 57: g1.protocol.GetMailListRsp
-	(*ReadMailReq)(nil),                 // 58: g1.protocol.ReadMailReq
-	(*ReadMailRsp)(nil),                 // 59: g1.protocol.ReadMailRsp
-	(*DelMailReq)(nil),                  // 60: g1.protocol.DelMailReq
-	(*DelMailRsp)(nil),                  // 61: g1.protocol.DelMailRsp
-	(*GetMailAttachReq)(nil),            // 62: g1.protocol.GetMailAttachReq
-	(*GetMailAttachRsp)(nil),            // 63: g1.protocol.GetMailAttachRsp
-	(*ChatChatReq)(nil),                 // 64: g1.protocol.ChatChatReq
-	(*ChatChatRsp)(nil),                 // 65: g1.protocol.ChatChatRsp
-	(*ChatGetChatInfoReq)(nil),          // 66: g1.protocol.ChatGetChatInfoReq
-	(*ChatGetChatInfoRsp)(nil),          // 67: g1.protocol.ChatGetChatInfoRsp
-	(*ChatDelChatReq)(nil),              // 68: g1.protocol.ChatDelChatReq
-	(*ChatDelChatRsp)(nil),              // 69: g1.protocol.ChatDelChatRsp
-	(*FriendGetFriendInfoReq)(nil),      // 70: g1.protocol.FriendGetFriendInfoReq
-	(*FriendGetFriendInfoRsp)(nil),      // 71: g1.protocol.FriendGetFriendInfoRsp
-	(*FriendAddFriendReq)(nil),          // 72: g1.protocol.FriendAddFriendReq
-	(*FriendAddFriendRsp)(nil),          // 73: g1.protocol.FriendAddFriendRsp
-	(*FriendConfirmFriendReq)(nil),      // 74: g1.protocol.FriendConfirmFriendReq
-	(*FriendConfirmFriendRsp)(nil),      // 75: g1.protocol.FriendConfirmFriendRsp
-	(*FriendShieldUserReq)(nil),         // 76: g1.protocol.FriendShieldUserReq
-	(*FriendShieldUserRsp)(nil),         // 77: g1.protocol.FriendShieldUserRsp
-	(*FriendSearchRoleReq)(nil),         // 78: g1.protocol.FriendSearchRoleReq
-	(*FriendSearchRoleRsp)(nil),         // 79: g1.protocol.FriendSearchRoleRsp
-	(*MallBuyPackageReq)(nil),           // 80: g1.protocol.MallBuyPackageReq
-	(*MallBuyPackageRsp)(nil),           // 81: g1.protocol.MallBuyPackageRsp
-	(*MallRechargeReq)(nil),             // 82: g1.protocol.MallRechargeReq
-	(*MallRechargeRsp)(nil),             // 83: g1.protocol.MallRechargeRsp
-	(*UseItemReq)(nil),                  // 84: g1.protocol.UseItemReq
-	(*UseItemRsp)(nil),                  // 85: g1.protocol.UseItemRsp
-	(*SellItemReq)(nil),                 // 86: g1.protocol.SellItemReq
-	(*SellItemRsp)(nil),                 // 87: g1.protocol.SellItemRsp
-	(*DecomposeItemReq)(nil),            // 88: g1.protocol.DecomposeItemReq
-	(*DecomposeItemRsp)(nil),            // 89: g1.protocol.DecomposeItemRsp
-	(*QueryBackpackReq)(nil),            // 90: g1.protocol.QueryBackpackReq
-	(*QueryBackpackRsp)(nil),            // 91: g1.protocol.QueryBackpackRsp
-	(*BatchAddItemReq)(nil),             // 92: g1.protocol.BatchAddItemReq
-	(*BatchAddItemRsp)(nil),             // 93: g1.protocol.BatchAddItemRsp
-	(*ObtainRewardItem)(nil),            // 94: g1.protocol.ObtainRewardItem
-	(*S2CObtainNotice)(nil),             // 95: g1.protocol.S2CObtainNotice
-	(*PbIconDesc)(nil),                  // 96: g1.protocol.PbIconDesc
-	(*PbItem)(nil),                      // 97: g1.protocol.PbItem
-	(*Ret)(nil),                         // 98: g1.protocol.Ret
-	(*RoleInfo)(nil),                    // 99: g1.protocol.RoleInfo
-	(EKickOutReason)(0),                 // 100: g1.protocol.EKickOutReason
-	(*PbMallItem)(nil),                  // 101: g1.protocol.PbMallItem
-	(*PbIcon)(nil),                      // 102: g1.protocol.PbIcon
-	(*PbFrame)(nil),                     // 103: g1.protocol.PbFrame
-	(*PbTask)(nil),                      // 104: g1.protocol.PbTask
-	(*PbRoleBriefInfo)(nil),             // 105: g1.protocol.PbRoleBriefInfo
+	(*RoleCurrencyPatch)(nil),           // 31: g1.protocol.RoleCurrencyPatch
+	(*ScSyncUserDataV2)(nil),            // 32: g1.protocol.ScSyncUserDataV2
+	(*ScChat)(nil),                      // 33: g1.protocol.ScChat
+	(*ScDataChangeNotify)(nil),          // 34: g1.protocol.ScDataChangeNotify
+	(*LoginReq)(nil),                    // 35: g1.protocol.LoginReq
+	(*LoginRsp)(nil),                    // 36: g1.protocol.LoginRsp
+	(*LogoutReq)(nil),                   // 37: g1.protocol.LogoutReq
+	(*LogoutRsp)(nil),                   // 38: g1.protocol.LogoutRsp
+	(*HeartBeatReq)(nil),                // 39: g1.protocol.HeartBeatReq
+	(*HeartBeatRsp)(nil),                // 40: g1.protocol.HeartBeatRsp
+	(*ItemUseReq)(nil),                  // 41: g1.protocol.ItemUseReq
+	(*ItemUseRsp)(nil),                  // 42: g1.protocol.ItemUseRsp
+	(*ChangeNameReq)(nil),               // 43: g1.protocol.ChangeNameReq
+	(*ChangeNameRsp)(nil),               // 44: g1.protocol.ChangeNameRsp
+	(*ChangeIconReq)(nil),               // 45: g1.protocol.ChangeIconReq
+	(*ChangeIconRsp)(nil),               // 46: g1.protocol.ChangeIconRsp
+	(*InfoGetBriefInfoReq)(nil),         // 47: g1.protocol.InfoGetBriefInfoReq
+	(*InfoGetBriefInfoRsp)(nil),         // 48: g1.protocol.InfoGetBriefInfoRsp
+	(*InfoGetIconDescReq)(nil),          // 49: g1.protocol.InfoGetIconDescReq
+	(*InfoGetIconDescRsp)(nil),          // 50: g1.protocol.InfoGetIconDescRsp
+	(*GuideCompletedReq)(nil),           // 51: g1.protocol.GuideCompletedReq
+	(*GuideCompletedRsp)(nil),           // 52: g1.protocol.GuideCompletedRsp
+	(*GuideInProgressReq)(nil),          // 53: g1.protocol.GuideInProgressReq
+	(*GuideInProgressRsp)(nil),          // 54: g1.protocol.GuideInProgressRsp
+	(*ExchangeGiftBagReq)(nil),          // 55: g1.protocol.ExchangeGiftBagReq
+	(*ExchangeGiftBagRsp)(nil),          // 56: g1.protocol.ExchangeGiftBagRsp
+	(*GetMailListReq)(nil),              // 57: g1.protocol.GetMailListReq
+	(*GetMailListRsp)(nil),              // 58: g1.protocol.GetMailListRsp
+	(*ReadMailReq)(nil),                 // 59: g1.protocol.ReadMailReq
+	(*ReadMailRsp)(nil),                 // 60: g1.protocol.ReadMailRsp
+	(*DelMailReq)(nil),                  // 61: g1.protocol.DelMailReq
+	(*DelMailRsp)(nil),                  // 62: g1.protocol.DelMailRsp
+	(*GetMailAttachReq)(nil),            // 63: g1.protocol.GetMailAttachReq
+	(*GetMailAttachRsp)(nil),            // 64: g1.protocol.GetMailAttachRsp
+	(*ChatChatReq)(nil),                 // 65: g1.protocol.ChatChatReq
+	(*ChatChatRsp)(nil),                 // 66: g1.protocol.ChatChatRsp
+	(*ChatGetChatInfoReq)(nil),          // 67: g1.protocol.ChatGetChatInfoReq
+	(*ChatGetChatInfoRsp)(nil),          // 68: g1.protocol.ChatGetChatInfoRsp
+	(*ChatDelChatReq)(nil),              // 69: g1.protocol.ChatDelChatReq
+	(*ChatDelChatRsp)(nil),              // 70: g1.protocol.ChatDelChatRsp
+	(*FriendGetFriendInfoReq)(nil),      // 71: g1.protocol.FriendGetFriendInfoReq
+	(*FriendGetFriendInfoRsp)(nil),      // 72: g1.protocol.FriendGetFriendInfoRsp
+	(*FriendAddFriendReq)(nil),          // 73: g1.protocol.FriendAddFriendReq
+	(*FriendAddFriendRsp)(nil),          // 74: g1.protocol.FriendAddFriendRsp
+	(*FriendConfirmFriendReq)(nil),      // 75: g1.protocol.FriendConfirmFriendReq
+	(*FriendConfirmFriendRsp)(nil),      // 76: g1.protocol.FriendConfirmFriendRsp
+	(*FriendShieldUserReq)(nil),         // 77: g1.protocol.FriendShieldUserReq
+	(*FriendShieldUserRsp)(nil),         // 78: g1.protocol.FriendShieldUserRsp
+	(*FriendSearchRoleReq)(nil),         // 79: g1.protocol.FriendSearchRoleReq
+	(*FriendSearchRoleRsp)(nil),         // 80: g1.protocol.FriendSearchRoleRsp
+	(*MallBuyPackageReq)(nil),           // 81: g1.protocol.MallBuyPackageReq
+	(*MallBuyPackageRsp)(nil),           // 82: g1.protocol.MallBuyPackageRsp
+	(*MallRechargeReq)(nil),             // 83: g1.protocol.MallRechargeReq
+	(*MallRechargeRsp)(nil),             // 84: g1.protocol.MallRechargeRsp
+	(*UseItemReq)(nil),                  // 85: g1.protocol.UseItemReq
+	(*UseItemRsp)(nil),                  // 86: g1.protocol.UseItemRsp
+	(*SellItemReq)(nil),                 // 87: g1.protocol.SellItemReq
+	(*SellItemRsp)(nil),                 // 88: g1.protocol.SellItemRsp
+	(*DecomposeItemReq)(nil),            // 89: g1.protocol.DecomposeItemReq
+	(*DecomposeItemRsp)(nil),            // 90: g1.protocol.DecomposeItemRsp
+	(*QueryBackpackReq)(nil),            // 91: g1.protocol.QueryBackpackReq
+	(*QueryBackpackRsp)(nil),            // 92: g1.protocol.QueryBackpackRsp
+	(*BatchAddItemReq)(nil),             // 93: g1.protocol.BatchAddItemReq
+	(*BatchAddItemRsp)(nil),             // 94: g1.protocol.BatchAddItemRsp
+	(*ObtainRewardItem)(nil),            // 95: g1.protocol.ObtainRewardItem
+	(*S2CObtainNotice)(nil),             // 96: g1.protocol.S2CObtainNotice
+	nil,                                 // 97: g1.protocol.RoleCurrencyPatch.ChangedEntry
+	(*PbIconDesc)(nil),                  // 98: g1.protocol.PbIconDesc
+	(*PbItem)(nil),                      // 99: g1.protocol.PbItem
+	(*Ret)(nil),                         // 100: g1.protocol.Ret
+	(*RoleInfo)(nil),                    // 101: g1.protocol.RoleInfo
+	(EKickOutReason)(0),                 // 102: g1.protocol.EKickOutReason
+	(*PbMallItem)(nil),                  // 103: g1.protocol.PbMallItem
+	(*PbIcon)(nil),                      // 104: g1.protocol.PbIcon
+	(*PbFrame)(nil),                     // 105: g1.protocol.PbFrame
+	(*PbTask)(nil),                      // 106: g1.protocol.PbTask
+	(*PbRoleBriefInfo)(nil),             // 107: g1.protocol.PbRoleBriefInfo
 }
 var file_core_client_proto_depIdxs = []int32{
-	96,  // 0: g1.protocol.PbChatMsg.sender_icon:type_name -> g1.protocol.PbIconDesc
+	98,  // 0: g1.protocol.PbChatMsg.sender_icon:type_name -> g1.protocol.PbIconDesc
 	1,   // 1: g1.protocol.PbChatFriendMsg.msg_list:type_name -> g1.protocol.PbChatMsg
 	2,   // 2: g1.protocol.PbChatInfo.friend_msg_list:type_name -> g1.protocol.PbChatFriendMsg
-	97,  // 3: g1.protocol.PbMail.attach_list:type_name -> g1.protocol.PbItem
+	99,  // 3: g1.protocol.PbMail.attach_list:type_name -> g1.protocol.PbItem
 	4,   // 4: g1.protocol.MailInfo.mail_list:type_name -> g1.protocol.PbMail
 	4,   // 5: g1.protocol.MailInnerAddMailReq.mail_list:type_name -> g1.protocol.PbMail
-	98,  // 6: g1.protocol.MailInnerAddMailRsp.ret:type_name -> g1.protocol.Ret
+	100, // 6: g1.protocol.MailInnerAddMailRsp.ret:type_name -> g1.protocol.Ret
 	8,   // 7: g1.protocol.RoleFriendInfo.friend_list:type_name -> g1.protocol.PbFriend
 	9,   // 8: g1.protocol.RoleFriendInfo.invitation_list:type_name -> g1.protocol.PbFriendInvitation
-	98,  // 9: g1.protocol.FriendInnerAddFriendRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 10: g1.protocol.FriendInnerConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 11: g1.protocol.GMGetRoleRsp.ret:type_name -> g1.protocol.Ret
-	99,  // 12: g1.protocol.GMGetRoleRsp.role_info:type_name -> g1.protocol.RoleInfo
-	99,  // 13: g1.protocol.GMSetRoleReq.role_info:type_name -> g1.protocol.RoleInfo
-	98,  // 14: g1.protocol.GMSetRoleRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 15: g1.protocol.GMAddItemRsp.ret:type_name -> g1.protocol.Ret
-	100, // 16: g1.protocol.ScKickOut.reason:type_name -> g1.protocol.EKickOutReason
-	100, // 17: g1.protocol.ConnKickOutReq.reason:type_name -> g1.protocol.EKickOutReason
-	98,  // 18: g1.protocol.ConnKickOutRsp.ret:type_name -> g1.protocol.Ret
-	99,  // 19: g1.protocol.ScSyncUserData.role_info:type_name -> g1.protocol.RoleInfo
-	97,  // 20: g1.protocol.RoleInventoryPatch.upsert_items:type_name -> g1.protocol.PbItem
-	101, // 21: g1.protocol.RoleMallPatch.upsert_items:type_name -> g1.protocol.PbMallItem
-	102, // 22: g1.protocol.RoleIconPatch.upsert_icons:type_name -> g1.protocol.PbIcon
-	103, // 23: g1.protocol.RoleIconPatch.upsert_frames:type_name -> g1.protocol.PbFrame
-	104, // 24: g1.protocol.RoleActvityTaskPatch.upsert_tasks:type_name -> g1.protocol.PbTask
-	99,  // 25: g1.protocol.ScSyncUserDataV2.role_info:type_name -> g1.protocol.RoleInfo
-	27,  // 26: g1.protocol.ScSyncUserDataV2.inventory_patch:type_name -> g1.protocol.RoleInventoryPatch
-	28,  // 27: g1.protocol.ScSyncUserDataV2.mall_patch:type_name -> g1.protocol.RoleMallPatch
-	29,  // 28: g1.protocol.ScSyncUserDataV2.icon_patch:type_name -> g1.protocol.RoleIconPatch
-	30,  // 29: g1.protocol.ScSyncUserDataV2.actvity_task_patch:type_name -> g1.protocol.RoleActvityTaskPatch
-	1,   // 30: g1.protocol.ScChat.msg:type_name -> g1.protocol.PbChatMsg
-	98,  // 31: g1.protocol.LoginRsp.ret:type_name -> g1.protocol.Ret
-	99,  // 32: g1.protocol.LoginRsp.role_info:type_name -> g1.protocol.RoleInfo
-	98,  // 33: g1.protocol.LogoutRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 34: g1.protocol.HeartBeatRsp.ret:type_name -> g1.protocol.Ret
-	97,  // 35: g1.protocol.ItemUseReq.item_list:type_name -> g1.protocol.PbItem
-	98,  // 36: g1.protocol.ItemUseRsp.ret:type_name -> g1.protocol.Ret
-	97,  // 37: g1.protocol.ItemUseRsp.real_add_item_list:type_name -> g1.protocol.PbItem
-	98,  // 38: g1.protocol.ChangeNameRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 39: g1.protocol.ChangeIconRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 40: g1.protocol.InfoGetBriefInfoRsp.ret:type_name -> g1.protocol.Ret
-	105, // 41: g1.protocol.InfoGetBriefInfoRsp.info_list:type_name -> g1.protocol.PbRoleBriefInfo
-	98,  // 42: g1.protocol.InfoGetIconDescRsp.ret:type_name -> g1.protocol.Ret
-	96,  // 43: g1.protocol.InfoGetIconDescRsp.icon_list:type_name -> g1.protocol.PbIconDesc
-	98,  // 44: g1.protocol.GuideCompletedRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 45: g1.protocol.GuideInProgressRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 46: g1.protocol.ExchangeGiftBagRsp.ret:type_name -> g1.protocol.Ret
-	97,  // 47: g1.protocol.ExchangeGiftBagRsp.item_list:type_name -> g1.protocol.PbItem
-	98,  // 48: g1.protocol.GetMailListRsp.ret:type_name -> g1.protocol.Ret
-	5,   // 49: g1.protocol.GetMailListRsp.mail_info:type_name -> g1.protocol.MailInfo
-	98,  // 50: g1.protocol.ReadMailRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 51: g1.protocol.DelMailRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 52: g1.protocol.GetMailAttachRsp.ret:type_name -> g1.protocol.Ret
-	97,  // 53: g1.protocol.GetMailAttachRsp.item_list:type_name -> g1.protocol.PbItem
-	1,   // 54: g1.protocol.ChatChatReq.msg:type_name -> g1.protocol.PbChatMsg
-	98,  // 55: g1.protocol.ChatChatRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 56: g1.protocol.ChatGetChatInfoRsp.ret:type_name -> g1.protocol.Ret
-	3,   // 57: g1.protocol.ChatGetChatInfoRsp.chat_info:type_name -> g1.protocol.PbChatInfo
-	98,  // 58: g1.protocol.ChatDelChatRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 59: g1.protocol.FriendGetFriendInfoRsp.ret:type_name -> g1.protocol.Ret
-	10,  // 60: g1.protocol.FriendGetFriendInfoRsp.friend_info:type_name -> g1.protocol.RoleFriendInfo
-	98,  // 61: g1.protocol.FriendAddFriendRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 62: g1.protocol.FriendConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 63: g1.protocol.FriendShieldUserRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 64: g1.protocol.FriendSearchRoleRsp.ret:type_name -> g1.protocol.Ret
-	96,  // 65: g1.protocol.FriendSearchRoleRsp.role_list:type_name -> g1.protocol.PbIconDesc
-	98,  // 66: g1.protocol.MallBuyPackageRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 67: g1.protocol.MallRechargeRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 68: g1.protocol.UseItemRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 69: g1.protocol.SellItemRsp.ret:type_name -> g1.protocol.Ret
-	98,  // 70: g1.protocol.DecomposeItemRsp.ret:type_name -> g1.protocol.Ret
-	97,  // 71: g1.protocol.DecomposeItemRsp.rewards:type_name -> g1.protocol.PbItem
-	98,  // 72: g1.protocol.QueryBackpackRsp.ret:type_name -> g1.protocol.Ret
-	97,  // 73: g1.protocol.QueryBackpackRsp.items:type_name -> g1.protocol.PbItem
-	97,  // 74: g1.protocol.BatchAddItemReq.items:type_name -> g1.protocol.PbItem
-	98,  // 75: g1.protocol.BatchAddItemRsp.ret:type_name -> g1.protocol.Ret
-	0,   // 76: g1.protocol.S2CObtainNotice.display_mode:type_name -> g1.protocol.ObtainDisplayMode
-	94,  // 77: g1.protocol.S2CObtainNotice.items:type_name -> g1.protocol.ObtainRewardItem
-	78,  // [78:78] is the sub-list for method output_type
-	78,  // [78:78] is the sub-list for method input_type
-	78,  // [78:78] is the sub-list for extension type_name
-	78,  // [78:78] is the sub-list for extension extendee
-	0,   // [0:78] is the sub-list for field type_name
+	100, // 9: g1.protocol.FriendInnerAddFriendRsp.ret:type_name -> g1.protocol.Ret
+	100, // 10: g1.protocol.FriendInnerConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
+	100, // 11: g1.protocol.GMGetRoleRsp.ret:type_name -> g1.protocol.Ret
+	101, // 12: g1.protocol.GMGetRoleRsp.role_info:type_name -> g1.protocol.RoleInfo
+	101, // 13: g1.protocol.GMSetRoleReq.role_info:type_name -> g1.protocol.RoleInfo
+	100, // 14: g1.protocol.GMSetRoleRsp.ret:type_name -> g1.protocol.Ret
+	100, // 15: g1.protocol.GMAddItemRsp.ret:type_name -> g1.protocol.Ret
+	102, // 16: g1.protocol.ScKickOut.reason:type_name -> g1.protocol.EKickOutReason
+	102, // 17: g1.protocol.ConnKickOutReq.reason:type_name -> g1.protocol.EKickOutReason
+	100, // 18: g1.protocol.ConnKickOutRsp.ret:type_name -> g1.protocol.Ret
+	101, // 19: g1.protocol.ScSyncUserData.role_info:type_name -> g1.protocol.RoleInfo
+	99,  // 20: g1.protocol.RoleInventoryPatch.upsert_items:type_name -> g1.protocol.PbItem
+	103, // 21: g1.protocol.RoleMallPatch.upsert_items:type_name -> g1.protocol.PbMallItem
+	104, // 22: g1.protocol.RoleIconPatch.upsert_icons:type_name -> g1.protocol.PbIcon
+	105, // 23: g1.protocol.RoleIconPatch.upsert_frames:type_name -> g1.protocol.PbFrame
+	106, // 24: g1.protocol.RoleActvityTaskPatch.upsert_tasks:type_name -> g1.protocol.PbTask
+	97,  // 25: g1.protocol.RoleCurrencyPatch.changed:type_name -> g1.protocol.RoleCurrencyPatch.ChangedEntry
+	101, // 26: g1.protocol.ScSyncUserDataV2.role_info:type_name -> g1.protocol.RoleInfo
+	27,  // 27: g1.protocol.ScSyncUserDataV2.inventory_patch:type_name -> g1.protocol.RoleInventoryPatch
+	28,  // 28: g1.protocol.ScSyncUserDataV2.mall_patch:type_name -> g1.protocol.RoleMallPatch
+	29,  // 29: g1.protocol.ScSyncUserDataV2.icon_patch:type_name -> g1.protocol.RoleIconPatch
+	30,  // 30: g1.protocol.ScSyncUserDataV2.actvity_task_patch:type_name -> g1.protocol.RoleActvityTaskPatch
+	31,  // 31: g1.protocol.ScSyncUserDataV2.currency_patch:type_name -> g1.protocol.RoleCurrencyPatch
+	1,   // 32: g1.protocol.ScChat.msg:type_name -> g1.protocol.PbChatMsg
+	100, // 33: g1.protocol.LoginRsp.ret:type_name -> g1.protocol.Ret
+	101, // 34: g1.protocol.LoginRsp.role_info:type_name -> g1.protocol.RoleInfo
+	100, // 35: g1.protocol.LogoutRsp.ret:type_name -> g1.protocol.Ret
+	100, // 36: g1.protocol.HeartBeatRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 37: g1.protocol.ItemUseReq.item_list:type_name -> g1.protocol.PbItem
+	100, // 38: g1.protocol.ItemUseRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 39: g1.protocol.ItemUseRsp.real_add_item_list:type_name -> g1.protocol.PbItem
+	100, // 40: g1.protocol.ChangeNameRsp.ret:type_name -> g1.protocol.Ret
+	100, // 41: g1.protocol.ChangeIconRsp.ret:type_name -> g1.protocol.Ret
+	100, // 42: g1.protocol.InfoGetBriefInfoRsp.ret:type_name -> g1.protocol.Ret
+	107, // 43: g1.protocol.InfoGetBriefInfoRsp.info_list:type_name -> g1.protocol.PbRoleBriefInfo
+	100, // 44: g1.protocol.InfoGetIconDescRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 45: g1.protocol.InfoGetIconDescRsp.icon_list:type_name -> g1.protocol.PbIconDesc
+	100, // 46: g1.protocol.GuideCompletedRsp.ret:type_name -> g1.protocol.Ret
+	100, // 47: g1.protocol.GuideInProgressRsp.ret:type_name -> g1.protocol.Ret
+	100, // 48: g1.protocol.ExchangeGiftBagRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 49: g1.protocol.ExchangeGiftBagRsp.item_list:type_name -> g1.protocol.PbItem
+	100, // 50: g1.protocol.GetMailListRsp.ret:type_name -> g1.protocol.Ret
+	5,   // 51: g1.protocol.GetMailListRsp.mail_info:type_name -> g1.protocol.MailInfo
+	100, // 52: g1.protocol.ReadMailRsp.ret:type_name -> g1.protocol.Ret
+	100, // 53: g1.protocol.DelMailRsp.ret:type_name -> g1.protocol.Ret
+	100, // 54: g1.protocol.GetMailAttachRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 55: g1.protocol.GetMailAttachRsp.item_list:type_name -> g1.protocol.PbItem
+	1,   // 56: g1.protocol.ChatChatReq.msg:type_name -> g1.protocol.PbChatMsg
+	100, // 57: g1.protocol.ChatChatRsp.ret:type_name -> g1.protocol.Ret
+	100, // 58: g1.protocol.ChatGetChatInfoRsp.ret:type_name -> g1.protocol.Ret
+	3,   // 59: g1.protocol.ChatGetChatInfoRsp.chat_info:type_name -> g1.protocol.PbChatInfo
+	100, // 60: g1.protocol.ChatDelChatRsp.ret:type_name -> g1.protocol.Ret
+	100, // 61: g1.protocol.FriendGetFriendInfoRsp.ret:type_name -> g1.protocol.Ret
+	10,  // 62: g1.protocol.FriendGetFriendInfoRsp.friend_info:type_name -> g1.protocol.RoleFriendInfo
+	100, // 63: g1.protocol.FriendAddFriendRsp.ret:type_name -> g1.protocol.Ret
+	100, // 64: g1.protocol.FriendConfirmFriendRsp.ret:type_name -> g1.protocol.Ret
+	100, // 65: g1.protocol.FriendShieldUserRsp.ret:type_name -> g1.protocol.Ret
+	100, // 66: g1.protocol.FriendSearchRoleRsp.ret:type_name -> g1.protocol.Ret
+	98,  // 67: g1.protocol.FriendSearchRoleRsp.role_list:type_name -> g1.protocol.PbIconDesc
+	100, // 68: g1.protocol.MallBuyPackageRsp.ret:type_name -> g1.protocol.Ret
+	100, // 69: g1.protocol.MallRechargeRsp.ret:type_name -> g1.protocol.Ret
+	100, // 70: g1.protocol.UseItemRsp.ret:type_name -> g1.protocol.Ret
+	100, // 71: g1.protocol.SellItemRsp.ret:type_name -> g1.protocol.Ret
+	100, // 72: g1.protocol.DecomposeItemRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 73: g1.protocol.DecomposeItemRsp.rewards:type_name -> g1.protocol.PbItem
+	100, // 74: g1.protocol.QueryBackpackRsp.ret:type_name -> g1.protocol.Ret
+	99,  // 75: g1.protocol.QueryBackpackRsp.items:type_name -> g1.protocol.PbItem
+	99,  // 76: g1.protocol.BatchAddItemReq.items:type_name -> g1.protocol.PbItem
+	100, // 77: g1.protocol.BatchAddItemRsp.ret:type_name -> g1.protocol.Ret
+	0,   // 78: g1.protocol.S2CObtainNotice.display_mode:type_name -> g1.protocol.ObtainDisplayMode
+	95,  // 79: g1.protocol.S2CObtainNotice.items:type_name -> g1.protocol.ObtainRewardItem
+	80,  // [80:80] is the sub-list for method output_type
+	80,  // [80:80] is the sub-list for method input_type
+	80,  // [80:80] is the sub-list for extension type_name
+	80,  // [80:80] is the sub-list for extension extendee
+	0,   // [0:80] is the sub-list for field type_name
 }
 
 func init() { file_core_client_proto_init() }
@@ -5658,7 +5721,7 @@ func file_core_client_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_client_proto_rawDesc), len(file_core_client_proto_rawDesc)),
 			NumEnums:      1,
-			NumMessages:   95,
+			NumMessages:   97,
 			NumExtensions: 0,
 			NumServices:   0,
 		},
