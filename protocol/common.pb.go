@@ -345,213 +345,6 @@ func (EItemID) EnumDescriptor() ([]byte, []int) {
 	return file_core_common_proto_rawDescGZIP(), []int{3}
 }
 
-type EItemType int32
-
-const (
-	EItemType__ITEM_TYPE_NONE EItemType = 0
-	EItemType_DROP            EItemType = 9
-)
-
-// Enum value maps for EItemType.
-var (
-	EItemType_name = map[int32]string{
-		0: "_ITEM_TYPE_NONE",
-		9: "DROP",
-	}
-	EItemType_value = map[string]int32{
-		"_ITEM_TYPE_NONE": 0,
-		"DROP":            9,
-	}
-)
-
-func (x EItemType) Enum() *EItemType {
-	p := new(EItemType)
-	*p = x
-	return p
-}
-
-func (x EItemType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (EItemType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[4].Descriptor()
-}
-
-func (EItemType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[4]
-}
-
-func (x EItemType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use EItemType.Descriptor instead.
-func (EItemType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{4}
-}
-
-// 道具掉落方式
-type EItemDropWay int32
-
-const (
-	EItemDropWay__ITEM_DROP_WAY_NONE EItemDropWay = 0
-	EItemDropWay_CERTAIN             EItemDropWay = 1
-	EItemDropWay_PROBABILITY         EItemDropWay = 2
-	EItemDropWay_WEIGHT              EItemDropWay = 3
-)
-
-// Enum value maps for EItemDropWay.
-var (
-	EItemDropWay_name = map[int32]string{
-		0: "_ITEM_DROP_WAY_NONE",
-		1: "CERTAIN",
-		2: "PROBABILITY",
-		3: "WEIGHT",
-	}
-	EItemDropWay_value = map[string]int32{
-		"_ITEM_DROP_WAY_NONE": 0,
-		"CERTAIN":             1,
-		"PROBABILITY":         2,
-		"WEIGHT":              3,
-	}
-)
-
-func (x EItemDropWay) Enum() *EItemDropWay {
-	p := new(EItemDropWay)
-	*p = x
-	return p
-}
-
-func (x EItemDropWay) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (EItemDropWay) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[5].Descriptor()
-}
-
-func (EItemDropWay) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[5]
-}
-
-func (x EItemDropWay) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use EItemDropWay.Descriptor instead.
-func (EItemDropWay) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{5}
-}
-
-// 道具类型
-type EItemMainType int32
-
-const (
-	EItemMainType__ITEM_MAIN_TYPE_NONE EItemMainType = 0
-	EItemMainType_ICON                 EItemMainType = 701
-	EItemMainType_HERO_CARD            EItemMainType = 401
-	EItemMainType_EQUIP                EItemMainType = 501
-	EItemMainType_ARTIFACT             EItemMainType = 601
-	EItemMainType_PACKAGE              EItemMainType = 901
-)
-
-// Enum value maps for EItemMainType.
-var (
-	EItemMainType_name = map[int32]string{
-		0:   "_ITEM_MAIN_TYPE_NONE",
-		701: "ICON",
-		401: "HERO_CARD",
-		501: "EQUIP",
-		601: "ARTIFACT",
-		901: "PACKAGE",
-	}
-	EItemMainType_value = map[string]int32{
-		"_ITEM_MAIN_TYPE_NONE": 0,
-		"ICON":                 701,
-		"HERO_CARD":            401,
-		"EQUIP":                501,
-		"ARTIFACT":             601,
-		"PACKAGE":              901,
-	}
-)
-
-func (x EItemMainType) Enum() *EItemMainType {
-	p := new(EItemMainType)
-	*p = x
-	return p
-}
-
-func (x EItemMainType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (EItemMainType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[6].Descriptor()
-}
-
-func (EItemMainType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[6]
-}
-
-func (x EItemMainType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use EItemMainType.Descriptor instead.
-func (EItemMainType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{6}
-}
-
-type EItemSubType int32
-
-const (
-	EItemSubType__ITEM_SUB_TYPE_NONE EItemSubType = 0
-	EItemSubType_ICON_ICON           EItemSubType = 70101
-	EItemSubType_ICON_FRAME          EItemSubType = 70102
-)
-
-// Enum value maps for EItemSubType.
-var (
-	EItemSubType_name = map[int32]string{
-		0:     "_ITEM_SUB_TYPE_NONE",
-		70101: "ICON_ICON",
-		70102: "ICON_FRAME",
-	}
-	EItemSubType_value = map[string]int32{
-		"_ITEM_SUB_TYPE_NONE": 0,
-		"ICON_ICON":           70101,
-		"ICON_FRAME":          70102,
-	}
-)
-
-func (x EItemSubType) Enum() *EItemSubType {
-	p := new(EItemSubType)
-	*p = x
-	return p
-}
-
-func (x EItemSubType) String() string {
-	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
-}
-
-func (EItemSubType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[7].Descriptor()
-}
-
-func (EItemSubType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[7]
-}
-
-func (x EItemSubType) Number() protoreflect.EnumNumber {
-	return protoreflect.EnumNumber(x)
-}
-
-// Deprecated: Use EItemSubType.Descriptor instead.
-func (EItemSubType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{7}
-}
-
 // 红点系统枚举
 type ERedPointSystem int32
 
@@ -592,11 +385,11 @@ func (x ERedPointSystem) String() string {
 }
 
 func (ERedPointSystem) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[8].Descriptor()
+	return file_core_common_proto_enumTypes[4].Descriptor()
 }
 
 func (ERedPointSystem) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[8]
+	return &file_core_common_proto_enumTypes[4]
 }
 
 func (x ERedPointSystem) Number() protoreflect.EnumNumber {
@@ -605,7 +398,7 @@ func (x ERedPointSystem) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ERedPointSystem.Descriptor instead.
 func (ERedPointSystem) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{8}
+	return file_core_common_proto_rawDescGZIP(), []int{4}
 }
 
 type MailType int32
@@ -644,11 +437,11 @@ func (x MailType) String() string {
 }
 
 func (MailType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[9].Descriptor()
+	return file_core_common_proto_enumTypes[5].Descriptor()
 }
 
 func (MailType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[9]
+	return &file_core_common_proto_enumTypes[5]
 }
 
 func (x MailType) Number() protoreflect.EnumNumber {
@@ -657,7 +450,7 @@ func (x MailType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use MailType.Descriptor instead.
 func (MailType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{9}
+	return file_core_common_proto_rawDescGZIP(), []int{5}
 }
 
 // 聊天频道
@@ -697,11 +490,11 @@ func (x ChatChannel) String() string {
 }
 
 func (ChatChannel) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[10].Descriptor()
+	return file_core_common_proto_enumTypes[6].Descriptor()
 }
 
 func (ChatChannel) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[10]
+	return &file_core_common_proto_enumTypes[6]
 }
 
 func (x ChatChannel) Number() protoreflect.EnumNumber {
@@ -710,7 +503,7 @@ func (x ChatChannel) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ChatChannel.Descriptor instead.
 func (ChatChannel) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{10}
+	return file_core_common_proto_rawDescGZIP(), []int{6}
 }
 
 // 任务更新方法
@@ -747,11 +540,11 @@ func (x TaskCountType) String() string {
 }
 
 func (TaskCountType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[11].Descriptor()
+	return file_core_common_proto_enumTypes[7].Descriptor()
 }
 
 func (TaskCountType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[11]
+	return &file_core_common_proto_enumTypes[7]
 }
 
 func (x TaskCountType) Number() protoreflect.EnumNumber {
@@ -760,7 +553,7 @@ func (x TaskCountType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TaskCountType.Descriptor instead.
 func (TaskCountType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{11}
+	return file_core_common_proto_rawDescGZIP(), []int{7}
 }
 
 type TaskName int32
@@ -823,11 +616,11 @@ func (x TaskName) String() string {
 }
 
 func (TaskName) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[12].Descriptor()
+	return file_core_common_proto_enumTypes[8].Descriptor()
 }
 
 func (TaskName) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[12]
+	return &file_core_common_proto_enumTypes[8]
 }
 
 func (x TaskName) Number() protoreflect.EnumNumber {
@@ -836,7 +629,7 @@ func (x TaskName) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use TaskName.Descriptor instead.
 func (TaskName) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{12}
+	return file_core_common_proto_rawDescGZIP(), []int{8}
 }
 
 type ActvityTaskUpdateType int32
@@ -872,11 +665,11 @@ func (x ActvityTaskUpdateType) String() string {
 }
 
 func (ActvityTaskUpdateType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[13].Descriptor()
+	return file_core_common_proto_enumTypes[9].Descriptor()
 }
 
 func (ActvityTaskUpdateType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[13]
+	return &file_core_common_proto_enumTypes[9]
 }
 
 func (x ActvityTaskUpdateType) Number() protoreflect.EnumNumber {
@@ -885,7 +678,7 @@ func (x ActvityTaskUpdateType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ActvityTaskUpdateType.Descriptor instead.
 func (ActvityTaskUpdateType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{13}
+	return file_core_common_proto_rawDescGZIP(), []int{9}
 }
 
 type ActvityTaskCompareType int32
@@ -924,11 +717,11 @@ func (x ActvityTaskCompareType) String() string {
 }
 
 func (ActvityTaskCompareType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[14].Descriptor()
+	return file_core_common_proto_enumTypes[10].Descriptor()
 }
 
 func (ActvityTaskCompareType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[14]
+	return &file_core_common_proto_enumTypes[10]
 }
 
 func (x ActvityTaskCompareType) Number() protoreflect.EnumNumber {
@@ -937,7 +730,7 @@ func (x ActvityTaskCompareType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ActvityTaskCompareType.Descriptor instead.
 func (ActvityTaskCompareType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{14}
+	return file_core_common_proto_rawDescGZIP(), []int{10}
 }
 
 type ActvityTaskAwardType int32
@@ -976,11 +769,11 @@ func (x ActvityTaskAwardType) String() string {
 }
 
 func (ActvityTaskAwardType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[15].Descriptor()
+	return file_core_common_proto_enumTypes[11].Descriptor()
 }
 
 func (ActvityTaskAwardType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[15]
+	return &file_core_common_proto_enumTypes[11]
 }
 
 func (x ActvityTaskAwardType) Number() protoreflect.EnumNumber {
@@ -989,7 +782,7 @@ func (x ActvityTaskAwardType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ActvityTaskAwardType.Descriptor instead.
 func (ActvityTaskAwardType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{15}
+	return file_core_common_proto_rawDescGZIP(), []int{11}
 }
 
 type ActvityTaskReceiveType int32
@@ -1025,11 +818,11 @@ func (x ActvityTaskReceiveType) String() string {
 }
 
 func (ActvityTaskReceiveType) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[16].Descriptor()
+	return file_core_common_proto_enumTypes[12].Descriptor()
 }
 
 func (ActvityTaskReceiveType) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[16]
+	return &file_core_common_proto_enumTypes[12]
 }
 
 func (x ActvityTaskReceiveType) Number() protoreflect.EnumNumber {
@@ -1038,7 +831,7 @@ func (x ActvityTaskReceiveType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use ActvityTaskReceiveType.Descriptor instead.
 func (ActvityTaskReceiveType) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{16}
+	return file_core_common_proto_rawDescGZIP(), []int{12}
 }
 
 type Reason int32
@@ -1107,11 +900,11 @@ func (x Reason) String() string {
 }
 
 func (Reason) Descriptor() protoreflect.EnumDescriptor {
-	return file_core_common_proto_enumTypes[17].Descriptor()
+	return file_core_common_proto_enumTypes[13].Descriptor()
 }
 
 func (Reason) Type() protoreflect.EnumType {
-	return &file_core_common_proto_enumTypes[17]
+	return &file_core_common_proto_enumTypes[13]
 }
 
 func (x Reason) Number() protoreflect.EnumNumber {
@@ -1120,7 +913,7 @@ func (x Reason) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Reason.Descriptor instead.
 func (Reason) EnumDescriptor() ([]byte, []int) {
-	return file_core_common_proto_rawDescGZIP(), []int{17}
+	return file_core_common_proto_rawDescGZIP(), []int{13}
 }
 
 // 每个回包都需要包含的返回值
@@ -1228,7 +1021,7 @@ const file_core_common_proto_rawDesc = "" +
 	"GUIDE_INFO\x10\x80\x04\x12\x13\n" +
 	"\x0eOPEN_FUNC_INFO\x10\x80\b\x12\x16\n" +
 	"\x11ACTVITY_TASK_INFO\x10\x80\x10\x12\x12\n" +
-	"\rCURRENCY_INFO\x10\x80 *\xe3\x02\n" +
+	"\rCURRENCY_INFO\x10\x80 *\xc2\x02\n" +
 	"\aEItemID\x12\x11\n" +
 	"\r_ITEM_ID_NONE\x10\x00\x12\b\n" +
 	"\x04GOLD\x10\x01\x12\v\n" +
@@ -1255,30 +1048,7 @@ const file_core_common_proto_rawDesc = "" +
 	"\bSTARDUST\x10q\x12\t\n" +
 	"\x05CHARM\x10r\x12\x0f\n" +
 	"\vMATCH_POINT\x10s\x12\x15\n" +
-	"\x10CHANGE_NAME_CARD\x10\x91N\"\x04\bg\x10g\"\x04\bh\x10h*\aACECOIN*\n" +
-	"WINACECOIN**\n" +
-	"\tEItemType\x12\x13\n" +
-	"\x0f_ITEM_TYPE_NONE\x10\x00\x12\b\n" +
-	"\x04DROP\x10\t*Q\n" +
-	"\fEItemDropWay\x12\x17\n" +
-	"\x13_ITEM_DROP_WAY_NONE\x10\x00\x12\v\n" +
-	"\aCERTAIN\x10\x01\x12\x0f\n" +
-	"\vPROBABILITY\x10\x02\x12\n" +
-	"\n" +
-	"\x06WEIGHT\x10\x03*m\n" +
-	"\rEItemMainType\x12\x18\n" +
-	"\x14_ITEM_MAIN_TYPE_NONE\x10\x00\x12\t\n" +
-	"\x04ICON\x10\xbd\x05\x12\x0e\n" +
-	"\tHERO_CARD\x10\x91\x03\x12\n" +
-	"\n" +
-	"\x05EQUIP\x10\xf5\x03\x12\r\n" +
-	"\bARTIFACT\x10\xd9\x04\x12\f\n" +
-	"\aPACKAGE\x10\x85\a*J\n" +
-	"\fEItemSubType\x12\x17\n" +
-	"\x13_ITEM_SUB_TYPE_NONE\x10\x00\x12\x0f\n" +
-	"\tICON_ICON\x10գ\x04\x12\x10\n" +
-	"\n" +
-	"ICON_FRAME\x10֣\x04*\x85\x01\n" +
+	"\x10CHANGE_NAME_CARD\x10\x91N*\x85\x01\n" +
 	"\x0fERedPointSystem\x12\x1a\n" +
 	"\x16_RED_POINT_SYSTEM_NONE\x10\x00\x12\x12\n" +
 	"\x0eRED_POINT_ICON\x10\x01\x12\x13\n" +
@@ -1360,32 +1130,28 @@ func file_core_common_proto_rawDescGZIP() []byte {
 	return file_core_common_proto_rawDescData
 }
 
-var file_core_common_proto_enumTypes = make([]protoimpl.EnumInfo, 18)
+var file_core_common_proto_enumTypes = make([]protoimpl.EnumInfo, 14)
 var file_core_common_proto_msgTypes = make([]protoimpl.MessageInfo, 1)
 var file_core_common_proto_goTypes = []any{
 	(DBType)(0),                 // 0: g1.protocol.DBType
 	(EKickOutReason)(0),         // 1: g1.protocol.EKickOutReason
 	(ERoleSectionFlag)(0),       // 2: g1.protocol.ERoleSectionFlag
 	(EItemID)(0),                // 3: g1.protocol.EItemID
-	(EItemType)(0),              // 4: g1.protocol.EItemType
-	(EItemDropWay)(0),           // 5: g1.protocol.EItemDropWay
-	(EItemMainType)(0),          // 6: g1.protocol.EItemMainType
-	(EItemSubType)(0),           // 7: g1.protocol.EItemSubType
-	(ERedPointSystem)(0),        // 8: g1.protocol.ERedPointSystem
-	(MailType)(0),               // 9: g1.protocol.MailType
-	(ChatChannel)(0),            // 10: g1.protocol.ChatChannel
-	(TaskCountType)(0),          // 11: g1.protocol.TaskCountType
-	(TaskName)(0),               // 12: g1.protocol.TaskName
-	(ActvityTaskUpdateType)(0),  // 13: g1.protocol.ActvityTaskUpdateType
-	(ActvityTaskCompareType)(0), // 14: g1.protocol.ActvityTaskCompareType
-	(ActvityTaskAwardType)(0),   // 15: g1.protocol.ActvityTaskAwardType
-	(ActvityTaskReceiveType)(0), // 16: g1.protocol.ActvityTaskReceiveType
-	(Reason)(0),                 // 17: g1.protocol.Reason
-	(*Ret)(nil),                 // 18: g1.protocol.Ret
-	(ErrorCode)(0),              // 19: g1.protocol.ErrorCode
+	(ERedPointSystem)(0),        // 4: g1.protocol.ERedPointSystem
+	(MailType)(0),               // 5: g1.protocol.MailType
+	(ChatChannel)(0),            // 6: g1.protocol.ChatChannel
+	(TaskCountType)(0),          // 7: g1.protocol.TaskCountType
+	(TaskName)(0),               // 8: g1.protocol.TaskName
+	(ActvityTaskUpdateType)(0),  // 9: g1.protocol.ActvityTaskUpdateType
+	(ActvityTaskCompareType)(0), // 10: g1.protocol.ActvityTaskCompareType
+	(ActvityTaskAwardType)(0),   // 11: g1.protocol.ActvityTaskAwardType
+	(ActvityTaskReceiveType)(0), // 12: g1.protocol.ActvityTaskReceiveType
+	(Reason)(0),                 // 13: g1.protocol.Reason
+	(*Ret)(nil),                 // 14: g1.protocol.Ret
+	(ErrorCode)(0),              // 15: g1.protocol.ErrorCode
 }
 var file_core_common_proto_depIdxs = []int32{
-	19, // 0: g1.protocol.Ret.code:type_name -> g1.protocol.ErrorCode
+	15, // 0: g1.protocol.Ret.code:type_name -> g1.protocol.ErrorCode
 	1,  // [1:1] is the sub-list for method output_type
 	1,  // [1:1] is the sub-list for method input_type
 	1,  // [1:1] is the sub-list for extension type_name
@@ -1404,7 +1170,7 @@ func file_core_common_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_core_common_proto_rawDesc), len(file_core_common_proto_rawDesc)),
-			NumEnums:      18,
+			NumEnums:      14,
 			NumMessages:   1,
 			NumExtensions: 0,
 			NumServices:   0,

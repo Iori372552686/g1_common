@@ -28,11 +28,14 @@ service MysqlService {
     };
   }
 
-  // L3 全量快照写回：运行期经 IgnoreRsp 异步投递，停机路径同步等 ack。
+  // L3 全量快照写回：one-way 尽力投递（stale 由 update_time 守卫兜底），
+  // mysqlsvr 不回包——Simple 发送方无事务接收 RSP（此前回包落入 mainsvr
+  // TransMgr 报 no reg cmd 0x4100f 噪声）。
   rpc SaveRoleData(g1.protocol.MysqlInnerSaveRoleDataReq) returns (g1.protocol.MysqlInnerSaveRoleDataRsp) {
     option (goone.options.v1.ssrpc) = {
       cmd_name: "CMD_MYSQL_INNER_SAVE_ROLE_DATA_REQ"
-      comment: "mysql save role data snapshot"
+      one_way: true
+      comment: "mysql save role data snapshot (best-effort one-way)"
     };
   }
 
